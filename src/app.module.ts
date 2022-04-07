@@ -2,9 +2,8 @@ import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Intents } from 'discord.js';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { BotModule } from './bot/bot.module';
+import { BotGateway } from './bot.gateway';
+import { JokeModule } from './joke/joke.module';
 
 @Module({
   imports: [
@@ -29,9 +28,8 @@ import { BotModule } from './bot/bot.module';
       }),
       inject: [ConfigService],
     }),
-    BotModule,
+    JokeModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [BotGateway],
 })
 export class AppModule {}
