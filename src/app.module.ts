@@ -5,6 +5,7 @@ import { Intents } from 'discord.js';
 import { BotGateway } from './bot.gateway';
 import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
+import { LinksModule } from './links/links.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { SteerlockModule } from './steerlock/steerlock.module';
     }),
     JokeModule,
     SteerlockModule,
+    LinksModule,
   ],
   providers: [BotGateway],
 })
