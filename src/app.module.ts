@@ -6,6 +6,7 @@ import { BotGateway } from './bot.gateway';
 import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
 import { LinksModule } from './links/links.module';
+import { HelpModule } from './help/help.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { LinksModule } from './links/links.module';
     JokeModule,
     SteerlockModule,
     LinksModule,
+    HelpModule,
   ],
   providers: [BotGateway],
 })

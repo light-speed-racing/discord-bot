@@ -10,10 +10,9 @@ import axios from 'axios';
 @Injectable()
 @Command({
   name: 'joke',
-  description: 'Tell a joke',
+  description: 'Let me tell you a joke',
 })
-@UsePipes(TransformPipe)
-export class JokeCommand implements DiscordTransformedCommand<undefined> {
+export class JokeCommand {
   async handler(): Promise<string> {
     return await (
       await axios.get('https://api.chucknorris.io/jokes/random')
