@@ -7,7 +7,6 @@ import {
   UsePipes,
 } from '@discord-nestjs/core';
 import { Injectable, ValidationPipe } from '@nestjs/common';
-import { BaseCommand } from 'src/common/base.command';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { SteerlockDto } from './steerlock.dto';
 import data from './steerlocks.json';
@@ -20,7 +19,6 @@ import data from './steerlocks.json';
 @UsePipes(TransformPipe, ValidationPipe)
 @UseFilters(CommandValidationFilter)
 export class SteerlockCommand
-  extends BaseCommand
   implements DiscordTransformedCommand<SteerlockDto>
 {
   async handler(@Payload() { car }: SteerlockDto): Promise<string> {

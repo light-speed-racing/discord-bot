@@ -14,6 +14,6 @@ export class BotGateway {
   @Once('ready')
   async onReady() {
     this.logger.log(`Bot ${this.client.user.tag} was started!`);
-    this.client.user.setActivity('/help');
+    this.client.user.setActivity('Use /help');
   }
 }
