@@ -3,8 +3,8 @@ import { Once, InjectDiscordClient } from '@discord-nestjs/core';
 import { Client } from 'discord.js';
 
 @Injectable()
-export class BotGateway {
-  private readonly logger = new Logger(BotGateway.name);
+export class OnReadyEvent {
+  private readonly logger = new Logger(OnReadyEvent.name);
 
   constructor(
     @InjectDiscordClient()
@@ -12,8 +12,8 @@ export class BotGateway {
   ) {}
 
   @Once('ready')
-  async onReady() {
-    this.logger.log(`Bot ${this.client.user.tag} was started!`);
+  async main() {
+    this.logger.debug(`Bot ${this.client.user.tag} was started!`);
     this.client.user.setActivity('Use /help');
   }
 }

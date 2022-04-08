@@ -14,7 +14,7 @@ export class CalendarSubCommand implements DiscordCommand {
       embeds: [
         new MessageEmbed().addField(
           'The Light Speed Racing event calendar',
-          this.config.get<string>('SG_CALENDAR_URL'),
+          this.config.get<string>('SIMGRID_CALENDAR_URL'),
         ),
       ],
     };

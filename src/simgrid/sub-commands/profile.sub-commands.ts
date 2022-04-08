@@ -14,7 +14,7 @@ export class ProfileSubCommand implements DiscordCommand {
       embeds: [
         new MessageEmbed().addField(
           'The Light Speed Racing profile on simgrid',
-          this.config.get<string>('SG_PROFILE_URL'),
+          this.config.get<string>('SIMGRID_PROFILE_URL'),
         ),
       ],
     };
