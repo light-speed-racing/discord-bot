@@ -7,10 +7,16 @@ import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { BotModule } from './bot/bot.module';
+import discordConfig from './config/discord.config';
+import simgridConfig from './config/simgrid.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      load: [discordConfig, simgridConfig],
+    }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({

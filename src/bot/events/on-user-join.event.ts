@@ -5,8 +5,6 @@ import { ConfigService } from '@nestjs/config';
 import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
 import { Mention } from 'src/common/mention';
 
-type LinkToChannel = 'RULES' | 'WHAT_ARE_YOU_PLAYING' | 'WHERE_ARE_YOU_FROM';
-
 @Injectable()
 export class OnUserJoinEvent {
   constructor(private readonly config: ConfigService) {}
@@ -24,14 +22,20 @@ export class OnUserJoinEvent {
           `We are so happy that you joined :boom: :fire: :dancer: :beers:`,
         ].join('\n'),
       )
-      .addField('Please read our rules', this.linkToChannel('RULES'))
+      .addField(
+        'Please read our rules',
+        Mention('CHANNEL', this.config.get('discord.channels.rules')),
+      )
       .addField(
         'We would love to know what games you are playing',
-        this.linkToChannel('WHAT_ARE_YOU_PLAYING'),
+        Mention(
+          'CHANNEL',
+          this.config.get('discord.channels.whatAreYouPlaying'),
+        ),
       )
       .addField(
         'and where you are from',
-        this.linkToChannel('WHERE_ARE_YOU_FROM'),
+        Mention('CHANNEL', this.config.get('discord.channels.whereAreYouFrom')),
       )
       .setColor('GREEN')
       .setThumbnail(
@@ -41,18 +45,11 @@ export class OnUserJoinEvent {
         text: client.user.tag,
       });
     const c = (await client.channels.fetch(
-      this.config.get('DISCORD_WELCOME_CHANNEL_ID'),
+      this.config.get('discord.channels.welcome'),
     )) as TextChannel;
 
     return c.send({
       embeds: [embed],
     });
-  }
-
-  private linkToChannel(channel: LinkToChannel) {
-    return Mention(
-      'CHANNEL',
-      this.config.get<string>(`DISCORD_${channel}_CHANNEL_ID`),
-    );
   }
 }
