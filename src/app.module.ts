@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Intents } from 'discord.js';
 import { BotGateway } from './bot.gateway';
 import { JokeModule } from './joke/joke.module';
+import { SteerlockModule } from './steerlock/steerlock.module';
 
 @Module({
   imports: [
@@ -17,7 +18,6 @@ import { JokeModule } from './joke/joke.module';
             Intents.FLAGS.GUILDS,
             Intents.FLAGS.GUILD_MEMBERS,
             Intents.FLAGS.GUILD_MESSAGES,
-            Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
           ],
         },
         registerCommandOptions: [
@@ -29,6 +29,7 @@ import { JokeModule } from './joke/joke.module';
       inject: [ConfigService],
     }),
     JokeModule,
+    SteerlockModule,
   ],
   providers: [BotGateway],
 })
