@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { On, UseGuards } from '@discord-nestjs/core';
-import { GuildMember, MessageEmbed, TextChannel } from 'discord.js';
+import { GuildMember, MessageEmbed, TextChannel, User } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
 import { Mention } from 'src/common/mention';
@@ -13,7 +13,7 @@ export class OnUserJoinEvent {
   @UseGuards(GuildMemberJoinGuard)
   async main({ user, guild: { memberCount }, client }: GuildMember) {
     const embed = new MessageEmbed()
-      .setTitle(`Everybody, please welcome ${user.username}`)
+      .setTitle(this.title(user))
       .setDescription(
         [
           `Hi there ${user} and welcome to :lsr: Light Speed Racing.`,
@@ -25,6 +25,13 @@ export class OnUserJoinEvent {
       .addField(
         'Please read our rules',
         Mention('CHANNEL', this.config.get('discord.channels.rules')),
+      )
+      .addField(
+        'We would love to get to know you',
+        `Please ${Mention(
+          'CHANNEL',
+          this.config.get('discord.channels.introduceYourself'),
+        )}`,
       )
       .addField(
         'We would love to know what games you are playing',
@@ -51,5 +58,22 @@ export class OnUserJoinEvent {
     return c.send({
       embeds: [embed],
     });
+  }
+
+  private title({ username }: User) {
+    const items = [
+      `${username} has just joined`,
+      `Our newest racer is ${username} :race_car:`,
+      `Welcome ${username} :wave:`,
+      `Amazing! ${username} just joined :partying_face:`,
+      `Everybody!!! ${username} is here! :heart_eyes:`,
+      `Hi there ${username} :wave:`,
+      `Hold on... Are you really the famous ${username}?!?`,
+      `Im glad you are here ${username}`,
+      `${username}, can we be friends?`,
+      `${username}?!? Nice to meet you ${username} :wave:`,
+    ];
+
+    return items[Math.floor(Math.random() * items.length)];
   }
 }
