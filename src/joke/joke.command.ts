@@ -1,9 +1,4 @@
-import { TransformPipe } from '@discord-nestjs/common';
-import {
-  Command,
-  DiscordTransformedCommand,
-  UsePipes,
-} from '@discord-nestjs/core';
+import { Command } from '@discord-nestjs/core';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 
