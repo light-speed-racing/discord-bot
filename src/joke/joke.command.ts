@@ -9,8 +9,10 @@ import axios from 'axios';
 })
 export class JokeCommand {
   async handler(): Promise<string> {
-    return await (
-      await axios.get('https://api.chucknorris.io/jokes/random')
-    ).data?.value;
+    const { data, statusText } = await axios.get(
+      'https://api.chucknorris.io/jokes/random',
+    );
+
+    return data?.value ?? `Request not completed. ${statusText}`;
   }
 }
