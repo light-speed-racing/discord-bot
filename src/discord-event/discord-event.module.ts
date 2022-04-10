@@ -7,4 +7,4 @@ import { OnUserJoinEvent } from './events/on-user-join.event';
   imports: [DiscordModule.forFeature()],
   providers: [OnReadyEvent, OnUserJoinEvent],
 })
-export class BotModule {}
+export class DiscordEventModule {}
