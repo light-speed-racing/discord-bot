@@ -7,6 +7,7 @@ import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { BotModule } from './bot/bot.module';
+import baseConfig from './config/base.config';
 import discordConfig from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
 
@@ -15,7 +16,7 @@ import simgridConfig from './config/simgrid.config';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [discordConfig, simgridConfig],
+      load: [baseConfig, discordConfig, simgridConfig],
     }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
