@@ -7,6 +7,7 @@ export default registerAs('discord', () => ({
     rules: process.env.DISCORD_RULES_CHANNEL_ID,
     whatAreYouPlaying: process.env.DISCORD_WHAT_ARE_YOU_PLAYING_CHANNEL_ID,
     whereAreYouFrom: process.env.DISCORD_WHERE_ARE_YOU_FROM_CHANNEL_ID,
+    introduceYourSelf: process.env.DISCORD_INTRODUCE_YOURSELF_CHANNEL_ID,
     logging: process.env.DISCORD_LOGGING_CHANNEL_ID,
   },
 }));
