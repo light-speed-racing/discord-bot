@@ -11,16 +11,16 @@ export class OnUserJoinEvent {
 
   @On('guildMemberAdd')
   @UseGuards(GuildMemberJoinGuard)
-  async main({ user, guild: { memberCount }, client }: GuildMember) {
+  async main({ user, guild, client }: GuildMember) {
     const { channels } = this.config.get('discord');
+    const { logo } = this.config.get('base');
 
     const embed = new MessageEmbed()
       .setTitle(this.title(user))
       .setDescription(
         [
-          `Hi there ${user} and welcome to :lsr: Light Speed Racing.`,
-          `You are member number ${memberCount}`,
-          `I'm **${client.user.username}**. I'm the LSR personal asistant.`,
+          `Hi there ${user} and welcome to ${guild.name}`,
+          `You are our member number ${guild.memberCount}. I'm **${client.user.username}**. I'm the LSR personal asistant.`,
           `We are so happy that you joined :boom: :fire: :dancer: :beers:`,
           '',
           `To be able to grant you the right roles please let us know what ${Mention(
@@ -40,23 +40,17 @@ export class OnUserJoinEvent {
       )
       .addField(
         'Also, what you are playing',
-        Mention(
-          'CHANNEL',
-          this.config.get('discord.channels.whatAreYouPlaying'),
-        ),
+        Mention('CHANNEL', channels.whatAreYouPlaying),
       )
       .addField(
         'and where you are from',
         Mention('CHANNEL', channels.whereAreYouFrom),
       )
       .setColor('GREEN')
-      .setThumbnail(
-        'https://www.thesimgrid.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUFiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6af1f0c52f9631dbedd8e30ef5d32624f4edcc7/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2QzNKbGMybDZaVWtpRFRFNE5IZ3hPRFJlQmpzR1ZEb0pZM0p2Y0VraUVERTROSGd4T0RRck1Dc3dCanNHVkRvTWNYVmhiR2wwZVdrOCIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--904fa9fd716ba1706436a9028124e7803824f39f/Logo%20with%20background.png',
-      )
+      .setThumbnail(logo)
       .setFooter({
         text: client.user.tag,
-        iconURL:
-          'https://www.thesimgrid.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUFiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6af1f0c52f9631dbedd8e30ef5d32624f4edcc7/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2QzNKbGMybDZaVWtpRFRFNE5IZ3hPRFJlQmpzR1ZEb0pZM0p2Y0VraUVERTROSGd4T0RRck1Dc3dCanNHVkRvTWNYVmhiR2wwZVdrOCIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--904fa9fd716ba1706436a9028124e7803824f39f/Logo%20with%20background.png',
+        iconURL: logo,
       });
 
     const c = (await client.channels.fetch(channels.welcome)) as TextChannel;

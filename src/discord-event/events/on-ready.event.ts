@@ -27,7 +27,7 @@ export class OnReadyEvent {
         (name) =>
           !channelIds.includes(process.env[name]) &&
           this.logger.error(
-            `Channel ${name} was not found in discord configuration`,
+            `Channel ${name} was not found in discord configuration. Please update the .env file`,
           ),
       );
   }
