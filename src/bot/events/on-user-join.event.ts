@@ -22,12 +22,21 @@ export class OnUserJoinEvent {
           `You are member number ${memberCount}`,
           `I'm **${client.user.username}**. I'm the LSR personal asistant.`,
           `We are so happy that you joined :boom: :fire: :dancer: :beers:`,
+          '',
+          `To be able to grant you the right roles please let us know what ${Mention(
+            'CHANNEL',
+            channels.events,
+          )} you are here for`,
         ].join('\n'),
       )
       .addField('Please read our rules', Mention('CHANNEL', channels.rules))
       .addField(
         'We would love to get to know you',
         `Please ${Mention('CHANNEL', channels.introduceYourSelf)}`,
+      )
+      .addField(
+        'What events are you here for',
+        `Please ${Mention('CHANNEL', channels.events)}`,
       )
       .addField(
         'Also, what you are playing',
