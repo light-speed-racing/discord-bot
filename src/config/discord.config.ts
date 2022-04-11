@@ -2,6 +2,7 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('discord', () => ({
   token: process.env.DISCORD_TOKEN,
+  guildId: process.env.DISCORD_GUILD_ID,
   channels: {
     welcome: process.env.DISCORD_WELCOME_CHANNEL_ID,
     rules: process.env.DISCORD_RULES_CHANNEL_ID,

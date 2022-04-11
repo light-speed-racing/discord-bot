@@ -1,5 +1,5 @@
 import { DiscordModule } from '@discord-nestjs/core';
-import { Module } from '@nestjs/common';
+import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Intents } from 'discord.js';
 import { HelpModule } from './help/help.module';
@@ -21,7 +21,7 @@ import simgridConfig from './config/simgrid.config';
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
-        token: config.get<string>('DISCORD_TOKEN'),
+        token: config.get<string>('discord.token'),
         discordClientOptions: {
           intents: [
             Intents.FLAGS.GUILDS,
@@ -32,7 +32,7 @@ import simgridConfig from './config/simgrid.config';
         },
         registerCommandOptions: [
           {
-            forGuild: config.get<string>('DISCORD_GUILD_ID'),
+            forGuild: config.get<string>('discord.guildId'),
           },
         ],
       }),
@@ -45,4 +45,14 @@ import simgridConfig from './config/simgrid.config';
     DiscordEventModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  private readonly logger = new Logger(AppModule.name);
+
+  constructor(private readonly config: ConfigService) {}
+
+  onModuleInit() {
+    if (!this.config.get('discord.guildId')) {
+      throw new Error('Missing guildId in the .env');
+    }
+  }
+}
