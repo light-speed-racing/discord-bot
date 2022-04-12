@@ -7,6 +7,7 @@ import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { DiscordEventModule } from './discord-event/discord-event.module';
+import { FuelcalculatorModule } from './fuelcalculator/fuelcalculator.module';
 import baseConfig from './config/base.config';
 import discordConfig from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
@@ -43,6 +44,7 @@ import simgridConfig from './config/simgrid.config';
     SteerlockModule,
     SimgridModule,
     DiscordEventModule,
+    FuelcalculatorModule,
   ],
 })
 export class AppModule {}
