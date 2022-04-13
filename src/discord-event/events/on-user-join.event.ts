@@ -20,19 +20,31 @@ export class OnUserJoinEvent {
       .setDescription(
         [
           `Hi there ${user} and welcome to ${guild.name}`,
-          `You are our member number ${guild.memberCount}. I'm **${client.user.username}**. I'm the LSR personal asistant.`,
-          `We are so happy that you joined :boom: :fire: :dancer: :beers:`,
+          `You are our member number ${guild.memberCount}. I'm **${client.user.username}**. We are so thrilled that you joined :boom: :fire: :dancer: :beers: :wave:`,
           '',
-          `To be able to grant you the right roles please let us know what ${Mention(
+          `For planning all of our events we use the Sim Grid. Check out ${Mention(
+            'CHANNEL',
+            channels.links,
+          )} to get the links you need for our profile and calendar. You can also checkout ${Mention(
             'CHANNEL',
             channels.events,
-          )} you are here for`,
+          )} to request an event role`,
+          '',
+          `Finally, don't hesitate to join the chat in ${Mention(
+            'CHANNEL',
+            channels.general,
+          )}.`,
+          '',
+          'Lets have some good and clean battles with lots of fun',
         ].join('\n'),
       )
       .addField('Please read our rules', Mention('CHANNEL', channels.rules))
       .addField(
-        'We would love to get to know you',
-        `Please ${Mention('CHANNEL', channels.introduceYourSelf)}`,
+        `We would love to get to know you. Stop by ${Mention(
+          'CHANNEL',
+          channels.introduceYourSelf,
+        )} so we cna get to know you.`,
+        `${Mention('CHANNEL', channels.introduceYourSelf)}`,
       )
       .addField(
         'What events are you here for',
