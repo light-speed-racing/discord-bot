@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { On, UseGuards } from '@discord-nestjs/core';
 import { GuildMember, MessageEmbed, TextChannel, User } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
@@ -7,6 +7,8 @@ import { Mention } from 'src/common/mention';
 
 @Injectable()
 export class OnUserJoinEvent {
+  private readonly logger = new Logger(OnUserJoinEvent.name);
+
   constructor(private readonly config: ConfigService) {}
 
   @On('guildMemberAdd')
@@ -14,6 +16,8 @@ export class OnUserJoinEvent {
   async main({ user, guild, client }: GuildMember) {
     const { channels } = this.config.get('discord');
     const { logo } = this.config.get('base');
+
+    this.logger.debug(`${user.tag} just joined`);
 
     const embed = new MessageEmbed()
       .setTitle(this.title(user))
