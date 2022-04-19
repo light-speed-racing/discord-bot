@@ -10,13 +10,14 @@ import { DiscordEventModule } from './discord-event/discord-event.module';
 import baseConfig from './config/base.config';
 import discordConfig from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
+import apiKeys from './config/apiKeys.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [baseConfig, discordConfig, simgridConfig],
+      load: [baseConfig, discordConfig, simgridConfig, apiKeys],
     }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
