@@ -4,18 +4,18 @@ updates:
     directory: /
     schedule:
       interval: daily
-    reviewers:
-      - arelstone
     labels:
       - dependencies
       - javascript
+    commit-message:
+      prefix: ⬆️
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
-    reviewers:
-      - arelstone
     labels:
       - dependencies
       - action
+    commit-message:
+      prefix: 👷
