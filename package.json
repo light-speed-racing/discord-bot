@@ -24,7 +24,7 @@
     "@discord-nestjs/common": "^3.0.5",
     "@discord-nestjs/core": "^3.0.6",
     "@giphy/js-fetch-api": "^4.1.2",
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^8.4.4",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.4.4",
