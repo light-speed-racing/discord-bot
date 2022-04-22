@@ -1,15 +1,24 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { On, UseGuards } from '@discord-nestjs/core';
-import { GuildMember, MessageEmbed, TextChannel, User } from 'discord.js';
+import { InjectDiscordClient, On, UseGuards } from '@discord-nestjs/core';
+import {
+  Client,
+  GuildMember,
+  MessageEmbed,
+  TextChannel,
+  User,
+} from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
-import { Mention } from 'src/common/mention';
+import { MentionUtils } from 'src/common/mention-utils';
 
 @Injectable()
 export class OnUserJoinEvent {
   private readonly logger = new Logger(OnUserJoinEvent.name);
 
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    @InjectDiscordClient() private readonly client: Client,
+    private readonly config: ConfigService,
+  ) {}
 
   @On('guildMemberAdd')
   @UseGuards(GuildMemberJoinGuard)
@@ -23,47 +32,53 @@ export class OnUserJoinEvent {
       .setTitle(this.title(user))
       .setDescription(
         [
-          `Hi there ${user} and welcome to ${guild.name}`,
-          `You are our member number ${guild.memberCount}. I'm **${client.user.username}**. We are so thrilled that you joined :boom: :fire: :dancer: :beers: :wave:`,
+          `Hi there ${user} and welcome to **${guild.name}**`,
+          `You are our member number ${guild.memberCount}. We are so thrilled that you joined :boom: :fire: :dancer: :beers: :wave:`,
           '',
-          `For planning all of our events we use the Sim Grid. Check out ${Mention(
+          `For planning all of our events we use the Sim Grid. Check out ${MentionUtils.mention(
             'CHANNEL',
             channels.links,
-          )} to get the links you need for our profile and calendar. You can also checkout ${Mention(
+          )} to get the links you need for our profile and calendar. You can also checkout ${MentionUtils.mention(
             'CHANNEL',
             channels.events,
-          )} to request an event role`,
-          '',
-          `Finally, don't hesitate to join the chat in ${Mention(
+          )} to request an event role. Finally, don't hesitate to join the chat in ${MentionUtils.mention(
             'CHANNEL',
             channels.general,
           )}.`,
-          '',
-          'Lets have some good and clean battles with lots of fun',
         ].join('\n'),
       )
-      .addField('Please read our rules', Mention('CHANNEL', channels.rules))
       .addField(
-        `We would love to get to know you. Stop by ${Mention(
-          'CHANNEL',
-          channels.introduceYourSelf,
-        )} so we cna get to know you.`,
-        `${Mention('CHANNEL', channels.introduceYourSelf)}`,
+        'Please read our rules',
+        MentionUtils.mention('CHANNEL', channels.rules),
+        true,
+      )
+      .addField(
+        'We would love to get to know you',
+        `${MentionUtils.mention('CHANNEL', channels.introduceYourSelf)}`,
+        true,
       )
       .addField(
         'What events are you here for',
-        `Please ${Mention('CHANNEL', channels.events)}`,
+        `Please ${MentionUtils.mention('CHANNEL', channels.events)}`,
+        true,
       )
       .addField(
         'Also, what you are playing',
-        Mention('CHANNEL', channels.whatAreYouPlaying),
+        MentionUtils.mention('CHANNEL', channels.whatAreYouPlaying),
+        true,
       )
       .addField(
         'and where you are from',
-        Mention('CHANNEL', channels.whereAreYouFrom),
+        MentionUtils.mention('CHANNEL', channels.whereAreYouFrom),
+        true,
       )
       .setColor('GREEN')
       .setThumbnail(logo)
+      .setTimestamp()
+      .setAuthor({
+        name: this.client.user.tag,
+        iconURL: logo,
+      })
       .setFooter({
         text: client.user.tag,
         iconURL: logo,
