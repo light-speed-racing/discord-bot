@@ -7,6 +7,7 @@ import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { DiscordEventModule } from './discord-event/discord-event.module';
+import { UtilsModule } from './utils/utils.module';
 import baseConfig from './config/base.config';
 import discordConfig from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
@@ -44,6 +45,7 @@ import apiKeys from './config/apiKeys.config';
     SteerlockModule,
     SimgridModule,
     DiscordEventModule,
+    UtilsModule,
   ],
 })
 export class AppModule implements OnModuleInit {
