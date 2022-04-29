@@ -11,7 +11,7 @@ import { ConfigService } from '@nestjs/config';
 import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
 import moment from 'moment-timezone';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
-import { TimezoneDto, Timezones } from './timezone.dto';
+import { TimezoneDto } from './timezone.dto';
 
 @SubCommand({
   name: 'timezone',
