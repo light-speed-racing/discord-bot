@@ -30,7 +30,6 @@ export class TimezoneSubCommand
   handler(@Payload() { tz }: TimezoneDto): InteractionReplyOptions {
     const { logo } = this.config.get('base');
 
-    const theTz = Timezones[tz];
     const embed = new MessageEmbed()
       .setThumbnail(logo)
       .setTimestamp()
@@ -43,22 +42,8 @@ export class TimezoneSubCommand
         iconURL: logo,
       });
 
-    if (!theTz) {
-      embed
-        .setTitle('You provided a unknown timezone')
-        .setDescription('The following timezones is available');
-
-      for (const t in Timezones) {
-        embed.addField(t, Timezones[t]);
-      }
-
-      return {
-        embeds: [embed],
-      };
-    }
-
     return {
-      embeds: [embed.addField(tz, moment.tz(theTz).format('LLLL'))],
+      embeds: [embed.addField(tz, moment.tz(tz).format('LLLL'))],
     };
   }
 }
