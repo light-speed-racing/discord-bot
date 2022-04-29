@@ -45,9 +45,12 @@ export class GreetCommand implements DiscordTransformedCommand<GreetDto> {
       this.config.get('discord.guildId'),
     );
 
-    this.client.emit(
-      'guildMemberAdd',
-      members.cache.get(MentionUtils.toId(user)),
-    );
+    const userToGreet = members.cache.get(MentionUtils.toId(user));
+
+    if (!userToGreet) {
+      return;
+    }
+
+    this.client.emit('guildMemberAdd', userToGreet);
   }
 }

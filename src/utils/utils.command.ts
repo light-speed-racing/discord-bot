@@ -3,7 +3,7 @@ import { TimezoneSubCommand } from './timezone.subcommand';
 
 @Command({
   name: 'utils',
-  description: 'Everything about simgrid in one place',
+  description: 'A set of utility commands to help you',
   include: [TimezoneSubCommand],
 })
 export class UtilsCommand {}
