@@ -25,6 +25,7 @@ import { Config } from './config/config.types';
       imports: [ConfigModule],
       useFactory: (config: ConfigService<Config>) => {
         const { guildId, token } = config.get<DiscordConfig>('discord');
+
         return {
           token,
           discordClientOptions: {

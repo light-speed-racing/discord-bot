@@ -1,4 +1,5 @@
 import { registerAs } from '@nestjs/config';
+import 'dotenv/config';
 
 const config = {
   profile: 'https://www.thesimgrid.com/hosts/light-speed-racing',

@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-// import { DiscordConfig } from './config.types';
+import 'dotenv/config';
 
 const config = {
   token: process.env.DISCORD_TOKEN,
