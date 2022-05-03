@@ -20,10 +20,6 @@ export type DiscordConfig = {
     links: string;
     logging: string;
   };
-
-  roles: {
-    newCommer: string;
-  };
 };
 
 export type BaseConfig = {

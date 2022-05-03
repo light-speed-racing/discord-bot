@@ -24,9 +24,5 @@ export default registerAs(
       links: process.env.DISCORD_LINKS_CHANNEL_ID || '961380805928710164',
       logging: process.env.DISCORD_LOGGING_CHANNEL_ID,
     },
-
-    roles: {
-      newCommer: process.env.DISCORD_NEW_COMMER_ROLE_ID,
-    },
   }),
 );
