@@ -10,7 +10,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
 import moment from 'moment-timezone';
-import { BaseConfig, Config } from 'src/config/config.types';
+import { BaseConfig } from 'src/config/base.config';
+import { Config } from 'src/config/config.types';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { TimezoneDto } from './timezone.dto';
 

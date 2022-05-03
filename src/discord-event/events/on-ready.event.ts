@@ -2,7 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Once, InjectDiscordClient } from '@discord-nestjs/core';
 import { Client } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
-import { Config, DiscordConfig } from 'src/config/config.types';
+import { Config } from 'src/config/config.types';
+import { DiscordConfig } from 'src/config/discord.config';
 
 @Injectable()
 export class OnReadyEvent {

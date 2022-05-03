@@ -10,7 +10,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
 import { MentionUtils } from 'src/common/mention-utils';
-import { BaseConfig, Config, DiscordConfig } from 'src/config/config.types';
+import { Config } from 'src/config/config.types';
+import { DiscordConfig } from 'src/config/discord.config';
+import { BaseConfig } from 'src/config/base.config';
 
 @Injectable()
 export class OnUserJoinEvent {

@@ -5,7 +5,9 @@ import { ConfigService } from '@nestjs/config';
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { UserSaidGuard } from 'src/guards/user-said.guard';
 import sample from 'lodash.sample';
-import { ApiKeysConfig, BaseConfig, Config } from 'src/config/config.types';
+import { Config } from 'src/config/config.types';
+import { ApiKeysConfig } from 'src/config/apiKeys.config';
+import { BaseConfig } from 'src/config/base.config';
 
 @Injectable()
 export class OnMessageEvent {

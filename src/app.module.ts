@@ -9,10 +9,10 @@ import { SimgridModule } from './simgrid/simgrid.module';
 import { DiscordEventModule } from './discord-event/discord-event.module';
 import { UtilsModule } from './utils/utils.module';
 import baseConfig from './config/base.config';
-import discordConfig from './config/discord.config';
+import discordConfig, { DiscordConfig } from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
 import apiKeys from './config/apiKeys.config';
-import { Config, DiscordConfig } from './config/config.types';
+import { Config } from './config/config.types';
 
 @Module({
   imports: [

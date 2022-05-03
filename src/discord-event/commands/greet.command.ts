@@ -12,7 +12,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, UserMention } from 'discord.js';
 import { MentionUtils } from 'src/common/mention-utils';
-import { Config, DiscordConfig } from 'src/config/config.types';
+import { Config } from 'src/config/config.types';
+import { DiscordConfig } from 'src/config/discord.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 
 class GreetDto {

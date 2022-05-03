@@ -7,7 +7,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { ValidationError } from 'class-validator';
 import { Client, MessageEmbed } from 'discord.js';
-import { BaseConfig, Config } from 'src/config/config.types';
+import { BaseConfig } from 'src/config/base.config';
+import { Config } from 'src/config/config.types';
 
 @Catch(ValidationError)
 export class CommandValidationFilter implements DiscordExceptionFilter {
