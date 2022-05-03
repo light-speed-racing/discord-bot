@@ -10,8 +10,6 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
 import moment from 'moment-timezone';
-import { BaseConfig } from 'src/config/base.config';
-import { Config } from 'src/config/config.types';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { TimezoneDto } from './timezone.dto';
 
@@ -26,11 +24,11 @@ export class TimezoneSubCommand
 {
   constructor(
     @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
+    private readonly config: ConfigService,
   ) {}
 
   handler(@Payload() { tz }: TimezoneDto): InteractionReplyOptions {
-    const { logo } = this.config.get<BaseConfig>('base');
+    const { logo } = this.config.get('base');
 
     const embed = new MessageEmbed()
       .setThumbnail(logo)

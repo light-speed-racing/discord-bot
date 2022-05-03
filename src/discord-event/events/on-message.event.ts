@@ -5,9 +5,6 @@ import { ConfigService } from '@nestjs/config';
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { UserSaidGuard } from 'src/guards/user-said.guard';
 import sample from 'lodash.sample';
-import { Config } from 'src/config/config.types';
-import { ApiKeysConfig } from 'src/config/apiKeys.config';
-import { BaseConfig } from 'src/config/base.config';
 
 @Injectable()
 export class OnMessageEvent {
@@ -16,11 +13,9 @@ export class OnMessageEvent {
 
   constructor(
     @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
+    private readonly config: ConfigService,
   ) {
-    this.giphy = new GiphyFetch(
-      this.config.get<ApiKeysConfig>('apiKeys').giphy,
-    );
+    this.giphy = new GiphyFetch(this.config.get('apiKeys').giphy);
   }
 
   @On('messageCreate')
@@ -30,7 +25,7 @@ export class OnMessageEvent {
 
     const { data } = await this.giphy.search('raving');
     const random = sample(data);
-    const { logo } = this.config.get<BaseConfig>('base');
+    const { logo } = this.config.get('base');
 
     return channel.send({
       embeds: [

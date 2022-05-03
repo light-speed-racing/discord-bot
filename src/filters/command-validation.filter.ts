@@ -7,21 +7,19 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { ValidationError } from 'class-validator';
 import { Client, MessageEmbed } from 'discord.js';
-import { BaseConfig } from 'src/config/base.config';
-import { Config } from 'src/config/config.types';
 
 @Catch(ValidationError)
 export class CommandValidationFilter implements DiscordExceptionFilter {
   constructor(
     @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
+    private readonly config: ConfigService,
   ) {}
 
   async catch(
     exceptionList: ValidationError[],
     metadata: DiscordArgumentMetadata<'interactionCreate'>,
   ): Promise<void> {
-    const { logo } = this.config.get<BaseConfig>('base');
+    const { logo } = this.config.get('base');
     const [interaction] = metadata.eventArgs;
 
     const embeds = exceptionList.map((exception) =>
