@@ -1,8 +1,12 @@
 import { registerAs } from '@nestjs/config';
+import { BaseConfig } from './config.types';
 
-export default registerAs('base', () => ({
-  env: process.env.ENV,
-  port: process.env.PORT,
+export default registerAs(
+  'base',
+  (): BaseConfig => ({
+    env: process.env.ENV,
+    port: Number(process.env.PORT),
 
-  logo: 'https://www.thesimgrid.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUFiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6af1f0c52f9631dbedd8e30ef5d32624f4edcc7/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2QzNKbGMybDZaVWtpRFRFNE5IZ3hPRFJlQmpzR1ZEb0pZM0p2Y0VraUVERTROSGd4T0RRck1Dc3dCanNHVkRvTWNYVmhiR2wwZVdrOCIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--904fa9fd716ba1706436a9028124e7803824f39f/Logo%20with%20background.png',
-}));
+    logo: 'https://www.thesimgrid.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUFiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6af1f0c52f9631dbedd8e30ef5d32624f4edcc7/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2QzNKbGMybDZaVWtpRFRFNE5IZ3hPRFJlQmpzR1ZEb0pZM0p2Y0VraUVERTROSGd4T0RRck1Dc3dCanNHVkRvTWNYVmhiR2wwZVdrOCIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--904fa9fd716ba1706436a9028124e7803824f39f/Logo%20with%20background.png',
+  }),
+);

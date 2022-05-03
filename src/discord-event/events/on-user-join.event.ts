@@ -10,6 +10,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
 import { MentionUtils } from 'src/common/mention-utils';
+import { BaseConfig, Config, DiscordConfig } from 'src/config/config.types';
 
 @Injectable()
 export class OnUserJoinEvent {
@@ -17,14 +18,14 @@ export class OnUserJoinEvent {
 
   constructor(
     @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService<Config>,
   ) {}
 
   @On('guildMemberAdd')
   @UseGuards(GuildMemberJoinGuard)
   async main({ user, guild, client }: GuildMember) {
-    const { channels } = this.config.get('discord');
-    const { logo } = this.config.get('base');
+    const { channels } = this.config.get<DiscordConfig>('discord');
+    const { logo } = this.config.get<BaseConfig>('base');
 
     this.logger.debug(`${user.tag} just joined`);
 
