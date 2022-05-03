@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Once, InjectDiscordClient } from '@discord-nestjs/core';
 import { Client } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
+import { Config } from 'src/config/config.types';
+import { DiscordConfig } from 'src/config/discord.config';
 
 @Injectable()
 export class OnReadyEvent {
@@ -10,12 +12,12 @@ export class OnReadyEvent {
   constructor(
     @InjectDiscordClient()
     private readonly client: Client,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService<Config>,
   ) {}
 
   @Once('ready')
   async main() {
-    const { channels } = this.config.get('discord');
+    const { channels } = this.config.get<DiscordConfig>('discord');
     const channelIds = Object.values(channels);
 
     this.logger.debug(`Bot ${this.client.user.tag} was started!`);

@@ -5,6 +5,9 @@ import {
 } from '@discord-nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
+import { BaseConfig } from 'src/config/base.config';
+import { Config } from 'src/config/config.types';
+import { SimgridConfig } from 'src/config/simgrid.config';
 
 @SubCommand({
   name: 'profile',
@@ -13,11 +16,11 @@ import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
 export class ProfileSubCommand implements DiscordCommand {
   constructor(
     @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService<Config>,
   ) {}
 
   handler(): InteractionReplyOptions {
-    const { logo } = this.config.get('base');
+    const { logo } = this.config.get<BaseConfig>('base');
 
     return {
       embeds: [
@@ -34,7 +37,7 @@ export class ProfileSubCommand implements DiscordCommand {
           })
           .addField(
             'The Light Speed Racing profile on simgrid',
-            this.config.get('simgrid').profile,
+            this.config.get<SimgridConfig>('simgrid').profile,
           ),
       ],
     };

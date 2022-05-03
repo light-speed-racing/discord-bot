@@ -1,8 +1,10 @@
 import { registerAs } from '@nestjs/config';
+import 'dotenv/config';
 
-export default registerAs('discord', () => ({
+const config = {
   token: process.env.DISCORD_TOKEN,
   guildId: process.env.DISCORD_GUILD_ID ?? '937348963831541800',
+
   channels: {
     welcome: process.env.DISCORD_WELCOME_CHANNEL_ID || '937348963831541802',
     rules: process.env.DISCORD_RULES_CHANNEL_ID || '937349666503278592',
@@ -18,4 +20,8 @@ export default registerAs('discord', () => ({
     links: process.env.DISCORD_LINKS_CHANNEL_ID || '961380805928710164',
     logging: process.env.DISCORD_LOGGING_CHANNEL_ID,
   },
-}));
+};
+
+export type DiscordConfig = typeof config;
+
+export default registerAs('discord', (): DiscordConfig => config);
