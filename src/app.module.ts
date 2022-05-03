@@ -9,10 +9,9 @@ import { SimgridModule } from './simgrid/simgrid.module';
 import { DiscordEventModule } from './discord-event/discord-event.module';
 import { UtilsModule } from './utils/utils.module';
 import baseConfig from './config/base.config';
-import discordConfig, { DiscordConfig } from './config/discord.config';
+import discordConfig from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
 import apiKeys from './config/apiKeys.config';
-import { Config } from './config/config.types';
 
 @Module({
   imports: [
@@ -23,25 +22,22 @@ import { Config } from './config/config.types';
     }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (config: ConfigService<Config>) => {
-        const { guildId, token } = config.get<DiscordConfig>('discord');
-        return {
-          token,
-          discordClientOptions: {
-            intents: [
-              Intents.FLAGS.GUILDS,
-              Intents.FLAGS.GUILD_MEMBERS,
-              Intents.FLAGS.GUILD_MESSAGES,
-              Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-            ],
-          },
-          registerCommandOptions: [
-            {
-              forGuild: guildId,
-            },
+      useFactory: (config: ConfigService) => ({
+        token: config.get<string>('discord.token'),
+        discordClientOptions: {
+          intents: [
+            Intents.FLAGS.GUILDS,
+            Intents.FLAGS.GUILD_MEMBERS,
+            Intents.FLAGS.GUILD_MESSAGES,
+            Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
           ],
-        };
-      },
+        },
+        registerCommandOptions: [
+          {
+            forGuild: config.get<string>('discord.guildId'),
+          },
+        ],
+      }),
       inject: [ConfigService],
     }),
     HelpModule,
@@ -55,10 +51,10 @@ import { Config } from './config/config.types';
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);
 
-  constructor(private readonly config: ConfigService<Config>) {}
+  constructor(private readonly config: ConfigService) {}
 
   onModuleInit() {
-    if (!this.config.get<DiscordConfig>('discord').guildId) {
+    if (!this.config.get('discord.guildId')) {
       throw new Error('Missing guildId in the .env');
     }
   }
