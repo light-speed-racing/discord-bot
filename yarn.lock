@@ -363,10 +363,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@discord-nestjs/common@^3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-3.0.8.tgz#e60349da818869d37d7dece66ed302567bcc2805"
-  integrity sha512-sGuQzzBoJG/9cvbi04pckAX2rOh5idJ4e1ZhF/WM4jN8vsfR71Z/oXFETA/aziwBxT/3pGXjzSC4e13AZYpJSQ==
+"@discord-nestjs/common@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-3.1.0.tgz#ebdcf6e7536e9d5943ef071ac823540df0afb738"
+  integrity sha512-ez+k1TptmBk83EmxwyRYxvwm1vVAM943aQAv4ZTIYAk3koAxL0L+9vuWdgIlxMSCycXkltKCjvfNcgGdvPmlqA==
   dependencies:
     "@nestjs/mapped-types" "1.0.1"
     class-transformer "0.5.1"
