@@ -1,7 +1,7 @@
 import { DiscordModule } from '@discord-nestjs/core';
 import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Intents } from 'discord.js';
+import { Client, Intents } from 'discord.js';
 import { HelpModule } from './help/help.module';
 import { JokeModule } from './joke/joke.module';
 import { SteerlockModule } from './steerlock/steerlock.module';
@@ -13,6 +13,8 @@ import discordConfig, { DiscordConfig } from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
 import apiKeys from './config/apiKeys.config';
 import { Config } from './config/config.types';
+import { FuelModule } from './fuel/fuel.module';
+import discordModals from 'discord-modals';
 
 @Module({
   imports: [
@@ -43,6 +45,7 @@ import { Config } from './config/config.types';
           ],
         };
       },
+      setupClientFactory: (client: Client) => discordModals(client),
       inject: [ConfigService],
     }),
     HelpModule,
@@ -51,11 +54,10 @@ import { Config } from './config/config.types';
     SimgridModule,
     DiscordEventModule,
     UtilsModule,
+    FuelModule,
   ],
 })
 export class AppModule implements OnModuleInit {
-  private readonly logger = new Logger(AppModule.name);
-
   constructor(private readonly config: ConfigService<Config>) {}
 
   onModuleInit() {
