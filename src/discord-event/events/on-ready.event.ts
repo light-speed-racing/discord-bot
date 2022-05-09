@@ -29,15 +29,13 @@ export class OnReadyEvent {
     this.logger.debug(`Bot ${this.client.user.tag} was started!`);
     this.client.user.setActivity('Use /help');
 
-    // const now = new Date().toISOString();
-    const now = '2022-05-08T11:37:25.386Z';
     const latestDeployTime = readFileSync(
       `${process.cwd()}/last-deploy.txt`,
       'utf-8',
     );
 
     if (env === 'production' && this.ghService.hasGithubToken()) {
-      const commits = await this.ghService.commitsSince(now);
+      const commits = await this.ghService.commitsSince(latestDeployTime);
       const logChannel = this.client.channels.cache.get(
         channels.logging,
       ) as TextChannel;
@@ -68,7 +66,11 @@ export class OnReadyEvent {
       );
 
       logChannel.send({ embeds: [embes] });
-      writeFileSync(`${process.cwd()}/last-deploy.txt`, now);
+
+      writeFileSync(
+        `${process.cwd()}/last-deploy.txt`,
+        new Date().toISOString(),
+      );
     }
 
     Object.keys(process.env)
