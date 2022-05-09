@@ -1,4 +1,5 @@
 .env
+last-deploy.txt
 
 # compiled output
 /dist
