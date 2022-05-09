@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Once, InjectDiscordClient } from '@discord-nestjs/core';
-import { Client, MessageEmbed, TextChannel } from 'discord.js';
+import { Client, Formatters, MessageEmbed, TextChannel } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { Config } from 'src/config/config.types';
 import { DiscordConfig } from 'src/config/discord.config';
@@ -35,18 +35,17 @@ export class OnReadyEvent {
     );
 
     if (env === 'production' && this.ghService.hasGithubToken()) {
-      const commits = await this.ghService.commitsSince(latestDeployTime);
+      const numberOfCommits = 10;
+      const commits = await this.ghService.commitsSince(
+        latestDeployTime,
+        numberOfCommits,
+      );
       const logChannel = this.client.channels.cache.get(
         channels.logging,
       ) as TextChannel;
 
       const embes = new MessageEmbed()
-        .setTitle(":robot: I'm alive!")
-        .setDescription(
-          `Commits since last time I woke up ${moment(latestDeployTime).format(
-            'LLLL',
-          )}`,
-        )
+        .setTitle(":robot: I'm alive after a very short sleep!")
         .setThumbnail(logo)
         .setTimestamp()
         .setAuthor({
@@ -58,12 +57,21 @@ export class OnReadyEvent {
           iconURL: logo,
         });
 
-      commits.map((c) =>
-        embes.addField(
-          c.messageHeadline,
-          `by: ${c.author?.name} at: ${c.pushedDate}`,
-        ),
-      );
+      if (commits.length > 0) {
+        embes.setDescription(
+          `These are the latest ${Formatters.bold(
+            `${numberOfCommits}`,
+          )} changes since I woke up the last time at ${Formatters.bold(
+            moment(latestDeployTime).format('LLLL'),
+          )}`,
+        );
+        commits.map((c) =>
+          embes.addField(
+            c.messageHeadline,
+            `by: ${c.author?.name} at: ${c.pushedDate}`,
+          ),
+        );
+      }
 
       logChannel.send({ embeds: [embes] });
 

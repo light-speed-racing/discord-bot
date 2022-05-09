@@ -2,9 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { Config } from 'src/config/config.types';
-import { graphql, GraphQlQueryResponseData } from '@octokit/graphql';
-import { Commit, Ref } from '@octokit/graphql-schema';
-import { GraphQlQueryResponse } from '@octokit/graphql/dist-types/types';
+import { graphql } from '@octokit/graphql';
+import { Commit } from '@octokit/graphql-schema';
 
 @Injectable()
 export class GithubService {
@@ -30,16 +29,17 @@ export class GithubService {
     return !!this.config.get<ApiKeysConfig>('apiKeys').github;
   };
 
-  async commitsSince(date: string): Promise<Commit[]> {
-    console.log('###HERE', date);
-
-    const { repository, errors }: any = await this.client(
-      `query CommitsSince($since: GitTimestamp!){
+  async commitsSince(
+    since: string,
+    numberOfCommits: number,
+  ): Promise<Commit[]> {
+    const { repository, errors } = await this.client(
+      `query CommitsSince($since: GitTimestamp!, $numberOfCommits: Int!){
           repository(name: "light-speed-racing-discord", owner: "arelstone") {
             ref(qualifiedName: "master") {
               target {
                 ... on Commit {
-                  history(first: 20, since: $since) {
+                  history(first: $numberOfCommits, since: $since) {
                     edges {
                       node {
                         messageHeadline
@@ -58,7 +58,8 @@ export class GithubService {
           }
       }`,
       {
-        since: date,
+        since,
+        numberOfCommits,
       },
     );
     if (errors) {
