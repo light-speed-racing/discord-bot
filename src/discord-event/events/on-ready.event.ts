@@ -4,7 +4,7 @@ import { Client, Formatters, MessageEmbed, TextChannel } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { Config } from 'src/config/config.types';
 import { DiscordConfig } from 'src/config/discord.config';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { GithubService } from 'src/common/github.service';
 import { BaseConfig } from 'src/config/base.config';
 import moment from 'moment';
@@ -28,13 +28,14 @@ export class OnReadyEvent {
 
     this.logger.debug(`Bot ${this.client.user.tag} was started!`);
     this.client.user.setActivity('Use /help');
+    const path = `${process.cwd()}/last-deploy.txt`;
+    const latestDeployTime = existsSync(path) && readFileSync(path, 'utf-8');
 
-    const latestDeployTime = readFileSync(
-      `${process.cwd()}/last-deploy.txt`,
-      'utf-8',
-    );
-
-    if (env === 'production' && this.ghService.hasGithubToken()) {
+    if (
+      !!latestDeployTime &&
+      env === 'production' &&
+      this.ghService.hasGithubToken()
+    ) {
       const numberOfCommits = 10;
       const commits = await this.ghService.commitsSince(
         latestDeployTime,
