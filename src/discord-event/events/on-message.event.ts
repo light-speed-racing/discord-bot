@@ -8,6 +8,7 @@ import sample from 'lodash.sample';
 import { Config } from 'src/config/config.types';
 import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { BaseConfig } from 'src/config/base.config';
+import { MessageAuthorGuard } from 'src/guards/message-author.guard';
 
 @Injectable()
 export class OnMessageEvent {
@@ -25,7 +26,7 @@ export class OnMessageEvent {
 
   @On('messageCreate')
   @UseGuards(new UserSaidGuard('raving', 'rave'))
-  async main({ author, channel }: Message) {
+  async raving({ author, channel }: Message) {
     this.logger.debug(`${author} is raving!`);
 
     const { data } = await this.giphy.search('raving');
@@ -50,5 +51,21 @@ export class OnMessageEvent {
           .setImage(random.images.original.url),
       ],
     });
+  }
+
+  spencerMentionedIRacingCount = 0;
+  @On('messageCreate')
+  @UseGuards(new UserSaidGuard('iracing', 'iraving'))
+  @UseGuards(new MessageAuthorGuard('EeekDK'))
+  async spencerSaysIRacing(message: Message) {
+    if (this.spencerMentionedIRacingCount % 1) {
+      await message.reply(
+        `Did you mean to write "the netcode game" or "the unrealistic grippy grappy game" instead, ${message.author}???`,
+      );
+
+      this.spencerMentionedIRacingCount = this.spencerMentionedIRacingCount + 1;
+
+      return;
+    }
   }
 }
