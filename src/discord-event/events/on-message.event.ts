@@ -58,7 +58,7 @@ export class OnMessageEvent {
   @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
   async spencerSaysIRacing(message: Message) {
-    if (this.spencerMentionedIRacingCount % 1) {
+    if (this.spencerMentionedIRacingCount % 6) {
       await message.reply(
         `Did you mean to write "the netcode game" or "the unrealistic grippy grappy game" instead, ${message.author}???`,
       );
