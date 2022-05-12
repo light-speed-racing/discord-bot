@@ -56,7 +56,7 @@ export class OnMessageEvent {
   spencerMentionedIRacingCount = 0;
   @On('messageCreate')
   @UseGuards(new UserSaidGuard('iracing', 'iraving'))
-  @UseGuards(new MessageAuthorGuard('EeekDK'))
+  @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
   async spencerSaysIRacing(message: Message) {
     if (this.spencerMentionedIRacingCount % 1) {
       await message.reply(
