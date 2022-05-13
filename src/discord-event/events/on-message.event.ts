@@ -53,18 +53,18 @@ export class OnMessageEvent {
     });
   }
 
-  spencerMentionedIRacingCount = 0;
+  replyPrediction = 84;
   @On('messageCreate')
   @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
   async spencerSaysIRacing(message: Message) {
-    if (this.spencerMentionedIRacingCount % 6) {
+    if (
+      this.replyPrediction <
+      Math.floor(Math.random() * 100) + 1
+    ) {
       await message.reply(
         `Did you mean to write "the netcode game" or "the unrealistic grippy grappy game" instead, ${message.author}???`,
       );
-
-      this.spencerMentionedIRacingCount = this.spencerMentionedIRacingCount + 1;
-
       return;
     }
   }
