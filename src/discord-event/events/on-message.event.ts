@@ -53,13 +53,13 @@ export class OnMessageEvent {
     });
   }
 
-  spencerMentionedIRacingCount = 84;
+  replyPrediction = 84;
   @On('messageCreate')
   @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
   async spencerSaysIRacing(message: Message) {
     if (
-      this.spencerMentionedIRacingCount <
+      this.replyPrediction <
       Math.floor(Math.random() * 100) + 1
     ) {
       await message.reply(
