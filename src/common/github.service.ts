@@ -12,7 +12,7 @@ export class GithubService {
   constructor(private readonly config: ConfigService<Config>) {
     if (!this.hasGithubToken()) {
       this.logger.error(
-        'No github  pat provided. Please add `GITHUB_PAT` to your .env file',
+        'No github access token provided. Please add `GITHUB_PAT` to your .env file',
       );
     }
   }

@@ -53,18 +53,18 @@ export class OnMessageEvent {
     });
   }
 
-  replyPrediction = 84;
   @On('messageCreate')
   @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
   async spencerSaysIRacing(message: Message) {
-    if (
-      this.replyPrediction <
-      Math.floor(Math.random() * 100) + 1
-    ) {
+    const shouldReply = Math.random() * 100;
+    const replyPrediction = 50;
+
+    if (replyPrediction < shouldReply) {
       await message.reply(
         `Did you mean to write "the netcode game" or "the unrealistic grippy grappy game" instead, ${message.author}???`,
       );
+
       return;
     }
   }
