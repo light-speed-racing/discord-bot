@@ -12,12 +12,7 @@ import {
   showModal,
   TextInputComponent,
 } from 'discord-modals';
-import {
-  Client,
-  CommandInteraction,
-  Formatters,
-  MessageEmbed,
-} from 'discord.js';
+import { Client, CommandInteraction, MessageEmbed } from 'discord.js';
 import { BaseConfig } from 'src/config/base.config';
 import { Config } from 'src/config/config.types';
 import { FuelService } from './fuel.service';
@@ -50,17 +45,15 @@ export class FuelCommand implements DiscordCommand {
           .setMinLength(2)
           .setMaxLength(3)
           .setPlaceholder('30, 60, 90, 120')
-          .setDefaultValue('30')
           .setRequired(true),
 
         new TextInputComponent()
           .setCustomId('lapTime')
-          .setLabel('Average lap time (M:SS)')
+          .setLabel('Average lap time (M:SS.MS)')
           .setStyle('SHORT')
           .setMinLength(3)
           .setMaxLength(8)
           .setPlaceholder('1:42.4')
-          .setDefaultValue('1:42,4')
           .setRequired(true),
 
         new TextInputComponent()
@@ -70,16 +63,7 @@ export class FuelCommand implements DiscordCommand {
           .setMinLength(3)
           .setMaxLength(4)
           .setPlaceholder('3.2')
-          .setDefaultValue('3,2')
           .setRequired(true),
-
-        new TextInputComponent()
-          .setCustomId('stintCount')
-          .setLabel('Number of stints')
-          .setStyle('SHORT')
-          .setPlaceholder('2')
-          .setDefaultValue('1')
-          .setRequired(false),
 
         new TextInputComponent()
           .setCustomId('safeLaps')
@@ -103,20 +87,18 @@ export class FuelCommand implements DiscordCommand {
     this.logger.log(`Modal ${modal.customId} submit`);
 
     if (modal.customId === this.modalId) {
-      const duration = Number(modal.getTextInputValue('duration'));
+      const raceTime = Number(modal.getTextInputValue('duration'));
       const lapTime = modal.getTextInputValue('lapTime').replace(/,/g, '.');
-      const usage = Number(
+      const fuelPerLap = Number(
         modal.getTextInputValue('fuelUsage').replace(/,/g, '.'),
       );
-      const stintCount = Number(modal.getTextInputValue('stintCount'));
       const safeLaps = Number(modal.getTextInputValue('safeLaps'));
 
       const res = this.service.calculate({
-        duration,
+        raceTime,
         lapTime,
         safeLaps,
-        usage,
-        stintCount,
+        fuelPerLap,
       });
 
       await modal.reply({
@@ -133,17 +115,13 @@ export class FuelCommand implements DiscordCommand {
               iconURL: logo,
             })
             .setTitle('Fuel calculation')
-            .addField('Race time', `${duration} min`, true)
+            .addField('Race time', `${raceTime} min`, true)
             .addField('Avg. lap time', `${lapTime}`, true)
-            .addField('Fuel per lap', `${usage} L`, true)
-            .addField('Pitstop no.', `${stintCount}`, true)
+            .addField('Fuel per lap', `${fuelPerLap} L`, true)
             .addField('Est. no. of laps', `${res.laps}`, true)
-            .addField(
-              `Safe laps (${res.safeFuelPercentage}%)`,
-              `${safeLaps} (${res.safeFuelLiter} L)`,
-            )
-            .addField('Est. fuel for race', `${res.fuel} L`, true)
-            .addField('Est. fuel per stint', `${res.fuelPrStint} L`, true),
+            .addField('Min. fuel', `${res.fuel} L`, true)
+            .addField(`Safe laps`, `${res.safeFuelLiter} L (${safeLaps} laps)`)
+            .addField('Est. fuel for race', `${res.fuel} L`, true),
         ],
       });
     }

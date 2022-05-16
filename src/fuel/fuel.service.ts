@@ -1,33 +1,41 @@
 import { Injectable } from '@nestjs/common';
+
 type Calculate = {
-  duration: number;
-  usage: number;
+  raceTime: number;
+  fuelPerLap: number;
   lapTime: string;
   safeLaps: number;
-  stintCount: number;
 };
 
 type CalculationResult = {
   laps: number;
   fuel: number;
   fuelPerLap: number;
-  safeFuel: number;
+  safeLaps: number;
   safeFuelLiter: number;
-  safeFuelPercentage: number;
-  fuelPrStint: number;
 };
 
 @Injectable()
 export class FuelService {
-  calculate = (data: Calculate): CalculationResult => {
+  calculate = ({
+    raceTime,
+    lapTime,
+    fuelPerLap,
+    safeLaps,
+  }: Calculate): CalculationResult => {
+    const durationInSec = raceTime * 60;
+    const [min, sec] = lapTime.split(/\:/gim).map((x) => Number(x));
+    const lapTimeInSec = min * 60 + sec;
+    const totalLaps = Math.ceil(durationInSec / lapTimeInSec);
+    const totalFuel = Math.ceil(totalLaps * fuelPerLap);
+    const safeFuelLiter = Math.ceil((safeLaps + totalLaps) * fuelPerLap);
+
     return {
-      fuel: 0,
-      laps: 0,
-      fuelPerLap: 0,
-      safeFuel: 0,
-      safeFuelLiter: 0,
-      safeFuelPercentage: 0,
-      fuelPrStint: 0,
+      fuel: totalFuel,
+      laps: totalLaps,
+      fuelPerLap,
+      safeLaps,
+      safeFuelLiter,
     };
   };
 }
