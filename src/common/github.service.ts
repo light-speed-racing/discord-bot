@@ -4,7 +4,7 @@ import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { Config } from 'src/config/config.types';
 import { graphql } from '@octokit/graphql';
 import { Commit } from '@octokit/graphql-schema';
-import { Championships } from 'src/server/server-config.dto';
+import { Championships } from 'src/server/championships.enum';
 
 export type ServerConfigFiles = {
   'assistRules.json': Record<string, any>;

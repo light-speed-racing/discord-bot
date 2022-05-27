@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Championships, YesOrNo } from './server-config.dto';
 import axios from 'axios';
 import { StatusCodes } from 'http-status-codes';
+import { Championships } from './championships.enum';
+import { YesOrNo } from './yes-or-no.enum';
 
 @Injectable()
 export class ServerService {
