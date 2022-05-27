@@ -7,13 +7,15 @@ import {
   UsePipes,
 } from '@discord-nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import { Formatters, MessageEmbed } from 'discord.js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
+import { FtpService } from 'src/common/ftp.service';
 import { GithubService, ServerConfigFiles } from 'src/common/github.service';
 import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
-import { ServerConfigDto } from './server-config.dto';
+import { Championships, ServerConfigDto } from './server-config.dto';
 import { ServerService } from './server.service';
 
 @SubCommand({
@@ -36,6 +38,7 @@ export class SetupSubCommand
     private readonly service: ServerService,
     private readonly github: GithubService,
     private readonly config: ConfigService<Config>,
+    private readonly ftp: FtpService,
   ) {}
 
   async handler(@Payload() dto: ServerConfigDto) {
@@ -50,7 +53,11 @@ export class SetupSubCommand
         'entryList.json': await this.entryList(dto),
       });
 
-      return 'entryList';
+      await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
+
+      return `Configuration for ${Formatters.bold(
+        dto.championship,
+      )} was updated. You need to restart the server manually to apply these configurations`;
     } catch (error) {
       return error.message;
     }
