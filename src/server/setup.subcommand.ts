@@ -3,11 +3,13 @@ import {
   DiscordTransformedCommand,
   Payload,
   SubCommand,
+  TransformedCommandExecutionContext,
   UseFilters,
+  UseGuards,
   UsePipes,
 } from '@discord-nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { Formatters, MessageEmbed } from 'discord.js';
+import { Formatters } from 'discord.js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { FtpService } from 'src/common/ftp.service';
@@ -15,7 +17,8 @@ import { GithubService, ServerConfigFiles } from 'src/common/github.service';
 import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
-import { Championships, ServerConfigDto } from './server-config.dto';
+import { RoleGuard } from 'src/guards/role.guard';
+import { ServerConfigDto } from './server-config.dto';
 import { ServerService } from './server.service';
 
 @SubCommand({
@@ -41,6 +44,7 @@ export class SetupSubCommand
     private readonly ftp: FtpService,
   ) {}
 
+  @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
   async handler(@Payload() dto: ServerConfigDto) {
     try {
       const serverFiles = await this.fetchServerConfigOnGithub(dto);
@@ -50,7 +54,7 @@ export class SetupSubCommand
         'assistRules.json': serverFiles['assistRules.json'],
         'event.json': serverFiles['event.json'],
         'eventRules.json': serverFiles['eventRules.json'],
-        'entryList.json': await this.entryList(dto),
+        'entryList.json': await this.fetchEntryList(dto),
       });
 
       await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
@@ -83,8 +87,11 @@ export class SetupSubCommand
     return dto.adminPassword ?? defaultAdminPassword;
   }
 
-  private async entryList({ championship, forceentrylist }: ServerConfigDto) {
-    return await this.service.entryListFor(championship, forceentrylist);
+  private async fetchEntryList(dto: ServerConfigDto) {
+    return await this.service.entryListFor(
+      dto.championship,
+      dto.forceentrylist,
+    );
   }
 
   private async fetchServerConfigOnGithub(dto: ServerConfigDto) {
@@ -94,7 +101,7 @@ export class SetupSubCommand
 
     return {
       ...serverFiles,
-      ...this.replaceInFile(
+      ...this.replace(
         'settings.json',
         'adminPassword',
         this.adminPassword(dto),
@@ -103,7 +110,7 @@ export class SetupSubCommand
     };
   }
 
-  private replaceInFile(
+  private replace(
     fileName: string,
     key: string,
     value: unknown,
