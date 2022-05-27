@@ -10,9 +10,7 @@ export class FtpService {
 
   private ftpConfig = {
     include: ['*.json'],
-    // delete ALL existing files at destination before uploading, if true
     deleteRemote: false,
-    // Passive mode is forced (EPSV command is not sent)
     forcePasv: true,
     sftp: false,
     user: undefined,
@@ -40,13 +38,9 @@ export class FtpService {
 
   async connectAndUploadFrom(localRoot: string) {
     try {
-      // const cfg = { ...this.ftpConfig, localRoot };
-
-      // console.log(cfg);
-
       return await this.ftp.deploy({ ...this.ftpConfig, localRoot });
     } catch (error) {
-      console.error(error);
+      return error.message;
     }
   }
 }

@@ -3,7 +3,6 @@ import {
   DiscordTransformedCommand,
   Payload,
   SubCommand,
-  TransformedCommandExecutionContext,
   UseFilters,
   UseGuards,
   UsePipes,
@@ -22,12 +21,12 @@ import { ServerConfigDto } from './server-config.dto';
 import { ServerService } from './server.service';
 
 @SubCommand({
-  name: 'setup',
-  description: 'Setup the configuration for a server',
+  name: 'sync',
+  description: 'Sync the configuration for a championship',
 })
 @UsePipes(TransformPipe)
 @UseFilters(CommandValidationFilter)
-export class SetupSubCommand
+export class SyncSubCommand
   implements DiscordTransformedCommand<ServerConfigDto>
 {
   private readonly serverConfigTempPath = join(
