@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 
 @Injectable()
 export class ServerService {
-  async entryListFor(id: Championships, forceEntryList: YesOrNo) {
+  async entryListFor(id: Championships, forceEntryList: YesOrNo = YesOrNo.Yes) {
     const url = `https://www.thesimgrid.com/admin/championships/${id}/registrations.json`;
     const { data, status, statusText } = await axios.get(url);
 
@@ -15,7 +15,7 @@ export class ServerService {
 
     return {
       ...data,
-      forceEntryList: !!forceEntryList ? 1 : 0,
+      forceEntryList: forceEntryList === YesOrNo.Yes ? 1 : 0,
     };
   }
 }
