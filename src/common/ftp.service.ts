@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import FtpClient from 'ftp-deploy';
 import { Config } from 'src/config/config.types';
@@ -6,6 +6,7 @@ import { ServerSetupConfig } from 'src/config/server-setup.config';
 
 @Injectable()
 export class FtpService {
+  private readonly logger: Logger = new Logger(FtpService.name);
   private readonly ftp = new FtpClient();
 
   private ftpConfig = {
@@ -38,7 +39,15 @@ export class FtpService {
 
   async connectAndUploadFrom(localRoot: string) {
     try {
-      return await this.ftp.deploy({ ...this.ftpConfig, localRoot });
+      const config = { ...this.ftpConfig, localRoot };
+      this.logger.debug(
+        `Uploading files to game server ${JSON.stringify(
+          { remote: config.remoteRoot, localRoot },
+          null,
+          2,
+        )}`,
+      );
+      return await this.ftp.deploy(config);
     } catch (error) {
       return error.message;
     }

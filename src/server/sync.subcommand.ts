@@ -7,6 +7,7 @@ import {
   UseGuards,
   UsePipes,
 } from '@discord-nestjs/core';
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Formatters } from 'discord.js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
@@ -17,6 +18,7 @@ import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
+import { Championships } from './championships.enum';
 import { ServerConfigDto } from './server-config.dto';
 import { ServerService } from './server.service';
 
@@ -29,6 +31,8 @@ import { ServerService } from './server.service';
 export class SyncSubCommand
   implements DiscordTransformedCommand<ServerConfigDto>
 {
+  private readonly logger: Logger = new Logger(SyncSubCommand.name);
+
   private readonly serverConfigTempPath = join(
     __dirname,
     '..',
@@ -43,9 +47,13 @@ export class SyncSubCommand
     private readonly ftp: FtpService,
   ) {}
 
-  @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
+  @UseGuards(new RoleGuard('host', 'moderator', 'steward'))
   async handler(@Payload() dto: ServerConfigDto) {
     try {
+      const name =
+        Object.keys(Championships)[
+          Object.values(Championships).indexOf(dto.championship)
+        ];
       const serverFiles = await this.fetchServerConfigOnGithub(dto);
 
       this.storeTempFiles({
@@ -59,7 +67,7 @@ export class SyncSubCommand
       await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
 
       return `Configuration for ${Formatters.bold(
-        dto.championship,
+        name,
       )} was updated. You need to restart the server manually to apply these configurations`;
     } catch (error) {
       return error.message;
@@ -67,11 +75,14 @@ export class SyncSubCommand
   }
 
   private storeTempFiles(content: Record<string, Record<string, unknown>>) {
+    this.logger.debug(`Storing files`);
     if (!existsSync(this.serverConfigTempPath)) {
+      this.logger.debug(`Creating directory`);
       mkdirSync(this.serverConfigTempPath);
     }
 
     for (const fileName in content) {
+      this.logger.debug(`Writing ${fileName}`);
       writeFileSync(
         join(this.serverConfigTempPath, fileName),
         JSON.stringify(content[fileName], null, 2),
@@ -79,31 +90,34 @@ export class SyncSubCommand
     }
   }
 
-  private adminPassword(dto: ServerConfigDto) {
+  private adminPassword({ adminPassword }: Partial<ServerConfigDto>) {
     const { defaultAdminPassword } =
       this.config.get<ServerSetupConfig>('server-setup');
 
-    return dto.adminPassword ?? defaultAdminPassword;
+    return adminPassword ?? defaultAdminPassword;
   }
 
-  private async fetchEntryList(dto: ServerConfigDto) {
-    return await this.service.entryListFor(
-      dto.championship,
-      dto.forceentrylist,
-    );
+  private async fetchEntryList({
+    championship,
+    forceentrylist,
+  }: ServerConfigDto) {
+    this.logger.debug(`Fetching entrylist from SimGrid for ${championship}`);
+    return await this.service.entryListFor(championship, forceentrylist);
   }
 
-  private async fetchServerConfigOnGithub(dto: ServerConfigDto) {
-    const serverFiles = await this.github.fetchChampionshipConfig(
-      dto.championship,
-    );
+  private async fetchServerConfigOnGithub({
+    championship,
+    adminPassword,
+  }: ServerConfigDto) {
+    this.logger.debug(`Fetching championship files for ${championship}`);
+    const serverFiles = await this.github.fetchChampionshipConfig(championship);
 
     return {
       ...serverFiles,
       ...this.replace(
         'settings.json',
         'adminPassword',
-        this.adminPassword(dto),
+        this.adminPassword({ adminPassword }),
         serverFiles,
       ),
     };
@@ -115,6 +129,7 @@ export class SyncSubCommand
     value: unknown,
     serverFiles: ServerConfigFiles,
   ) {
+    this.logger.debug(`Replacing ${key}: ${value} in ${fileName}`);
     return {
       ...serverFiles,
       [fileName]: {

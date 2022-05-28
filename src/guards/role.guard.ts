@@ -1,5 +1,6 @@
 import { DiscordGuard, UseGuards } from '@discord-nestjs/core';
-import { CommandInteraction } from 'discord.js';
+import { UnauthorizedException } from '@nestjs/common';
+import { CommandInteraction, Guild, GuildMember } from 'discord.js';
 import { MessageFromUserGuard } from './message-from-user.guard';
 
 export class RoleGuard implements DiscordGuard {
@@ -11,13 +12,15 @@ export class RoleGuard implements DiscordGuard {
 
   @UseGuards(MessageFromUserGuard)
   canActive(
-    _: 'interactionCreate',
+    event: 'interactionCreate',
     [{ member, guild }]: [CommandInteraction],
   ): boolean | Promise<boolean> {
-    return guild.members.cache
-      .find((m) => m.id === member.user.id)
-      .roles.cache.some((role) => {
-        return this.requiredRoles.includes(role.name.toLowerCase());
-      });
+    return this.guildMember(guild, member as GuildMember).roles.cache.some(
+      ({ name }) => this.requiredRoles.includes(name.toLowerCase()),
+    );
+  }
+
+  private guildMember({ members }: Guild, { user }: GuildMember) {
+    return members.cache.find(({ id }) => id === user.id);
   }
 }

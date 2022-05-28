@@ -1,4 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { Config } from 'src/config/config.types';
@@ -109,7 +113,14 @@ export class GithubService {
         folder: `HEAD:${name}`,
       },
     );
+
     const { object } = repository;
+
+    if (!repository || !object || !object.entries) {
+      throw new UnprocessableEntityException(
+        '[Github Service]: Error fetching files',
+      );
+    }
 
     return object.entries.reduce((acc, entry) => {
       return {
