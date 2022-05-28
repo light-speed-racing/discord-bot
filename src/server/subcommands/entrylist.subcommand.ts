@@ -3,7 +3,6 @@ import {
   DiscordTransformedCommand,
   Payload,
   SubCommand,
-  TransformedCommandExecutionContext,
   UseFilters,
   UseGuards,
   UsePipes,
@@ -16,7 +15,6 @@ import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
 import { EntryListDto } from '../dto/entry-list.dto';
 import { ServerService } from '../server.service';
-import { $enum } from 'ts-enum-util';
 import { Championships } from '../enum/championships.enum';
 import { Formatters } from 'discord.js';
 
