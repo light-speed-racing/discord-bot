@@ -47,7 +47,7 @@ export class SyncSubCommand
     private readonly ftp: FtpService,
   ) {}
 
-  @UseGuards(new RoleGuard('host', 'moderator', 'steward'))
+  @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
   async handler(@Payload() dto: ServerConfigDto) {
     try {
       const name =
