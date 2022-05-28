@@ -31,13 +31,6 @@ import { ServerService } from '../server.service';
 export class SyncSubCommand implements DiscordTransformedCommand<SyncDto> {
   private readonly logger: Logger = new Logger(SyncSubCommand.name);
 
-  private readonly serverConfigTempPath = join(
-    __dirname,
-    '..',
-    '..',
-    '__server-config__',
-  );
-
   constructor(
     private readonly service: ServerService,
     private readonly github: GithubService,
@@ -54,40 +47,22 @@ export class SyncSubCommand implements DiscordTransformedCommand<SyncDto> {
         ];
       const serverFiles = await this.fetchServerConfigOnGithub(dto);
 
-      this.storeTempFiles({
-        'settings.json': serverFiles['settings.json'],
-        'assistRules.json': serverFiles['assistRules.json'],
-        'event.json': serverFiles['event.json'],
-        'eventRules.json': serverFiles['eventRules.json'],
-        'entryList.json': await this.service.entryListFor(
-          dto.championship,
-          dto.forceentrylist,
-        ),
-      });
+      this.service.storeFile('settings.json', serverFiles['settings.json']);
+      this.service.storeFile(
+        'assistRules.json',
+        serverFiles['assistRules.json'],
+      );
+      this.service.storeFile('event.json', serverFiles['event.json']);
+      this.service.storeFile('eventRules.json', serverFiles['eventRules.json']);
+      await this.service.entryListFor(dto.championship, dto.forceentrylist);
 
-      await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
+      await this.ftp.uploadAllFilesFrom(ServerService.serverConfigTempPath);
 
       return `Configuration for ${Formatters.bold(
         name,
       )} was updated. You need to restart the server manually to apply these configurations`;
     } catch (error) {
       return error.message;
-    }
-  }
-
-  private storeTempFiles(content: Record<string, Record<string, unknown>>) {
-    this.logger.debug(`Storing files`);
-    if (!existsSync(this.serverConfigTempPath)) {
-      this.logger.debug(`Creating directory`);
-      mkdirSync(this.serverConfigTempPath);
-    }
-
-    for (const fileName in content) {
-      this.logger.debug(`Writing ${fileName}`);
-      writeFileSync(
-        join(this.serverConfigTempPath, fileName),
-        JSON.stringify(content[fileName], null, 2),
-      );
     }
   }
 

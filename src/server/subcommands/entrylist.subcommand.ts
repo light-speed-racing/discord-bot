@@ -16,6 +16,9 @@ import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
 import { EntryListDto } from '../dto/entry-list.dto';
 import { ServerService } from '../server.service';
+import { $enum } from 'ts-enum-util';
+import { Championships } from '../enum/championships.enum';
+import { Formatters } from 'discord.js';
 
 @SubCommand({
   name: 'entrylist',
@@ -36,9 +39,19 @@ export class EntryListSubCommand
 
   @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
   async handler(@Payload() { championship, forceentrylist }: EntryListDto) {
-    const entryList = await this.service.entryListFor(
-      championship,
-      forceentrylist,
+    const name =
+      Object.keys(Championships)[
+        Object.values(Championships).indexOf(championship)
+      ];
+    await this.service.entryListFor(championship, forceentrylist);
+
+    await this.ftp.uploadFile(
+      ServerService.serverConfigTempPath,
+      'entrylist.json',
     );
+
+    return `Entrylist for ${Formatters.bold(
+      name,
+    )} was updated. To apply it the server needs to be restarted`;
   }
 }
