@@ -18,9 +18,9 @@ import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
-import { Championships } from './championships.enum';
-import { ServerConfigDto } from './server-config.dto';
-import { ServerService } from './server.service';
+import { Championships } from '../enum/championships.enum';
+import { SyncDto } from '../dto/server-sync.dto';
+import { ServerService } from '../server.service';
 
 @SubCommand({
   name: 'sync',
@@ -28,9 +28,7 @@ import { ServerService } from './server.service';
 })
 @UsePipes(TransformPipe)
 @UseFilters(CommandValidationFilter)
-export class SyncSubCommand
-  implements DiscordTransformedCommand<ServerConfigDto>
-{
+export class SyncSubCommand implements DiscordTransformedCommand<SyncDto> {
   private readonly logger: Logger = new Logger(SyncSubCommand.name);
 
   private readonly serverConfigTempPath = join(
@@ -48,7 +46,7 @@ export class SyncSubCommand
   ) {}
 
   @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
-  async handler(@Payload() dto: ServerConfigDto) {
+  async handler(@Payload() dto: SyncDto) {
     try {
       const name =
         Object.keys(Championships)[
@@ -61,7 +59,10 @@ export class SyncSubCommand
         'assistRules.json': serverFiles['assistRules.json'],
         'event.json': serverFiles['event.json'],
         'eventRules.json': serverFiles['eventRules.json'],
-        'entryList.json': await this.fetchEntryList(dto),
+        'entryList.json': await this.service.entryListFor(
+          dto.championship,
+          dto.forceentrylist,
+        ),
       });
 
       await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
@@ -90,25 +91,17 @@ export class SyncSubCommand
     }
   }
 
-  private adminPassword({ adminPassword }: Partial<ServerConfigDto>) {
+  private adminPassword({ adminPassword }: Partial<SyncDto>) {
     const { defaultAdminPassword } =
       this.config.get<ServerSetupConfig>('server-setup');
 
     return adminPassword ?? defaultAdminPassword;
   }
 
-  private async fetchEntryList({
-    championship,
-    forceentrylist,
-  }: ServerConfigDto) {
-    this.logger.debug(`Fetching entrylist from SimGrid for ${championship}`);
-    return await this.service.entryListFor(championship, forceentrylist);
-  }
-
   private async fetchServerConfigOnGithub({
     championship,
     adminPassword,
-  }: ServerConfigDto) {
+  }: SyncDto) {
     this.logger.debug(`Fetching championship files for ${championship}`);
     const serverFiles = await this.github.fetchChampionshipConfig(championship);
 

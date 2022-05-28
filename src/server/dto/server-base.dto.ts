@@ -1,9 +1,9 @@
 import { Choice, Param } from '@discord-nestjs/core';
 import { IsAlphanumeric } from 'class-validator';
-import { Championships } from './championships.enum';
-import { YesOrNo } from './yes-or-no.enum';
+import { Championships } from '../enum/championships.enum';
+import { YesOrNo } from '../enum/yes-or-no.enum';
 
-export class ServerConfigDto {
+export class ServerBaseDto {
   @IsAlphanumeric()
   @Param({
     name: 'championship',
@@ -12,14 +12,6 @@ export class ServerConfigDto {
   })
   @Choice(Championships)
   championship: Championships;
-
-  @IsAlphanumeric()
-  @Param({
-    name: 'adminpassword',
-    description: 'What should the server admin password be?',
-    required: false,
-  })
-  adminPassword: string;
 
   @IsAlphanumeric()
   @Param({
