@@ -4,14 +4,6 @@ import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { Config } from 'src/config/config.types';
 import { graphql } from '@octokit/graphql';
 import { Commit } from '@octokit/graphql-schema';
-import { Championships } from 'src/server/championships.enum';
-
-export type ServerConfigFiles = {
-  'assistRules.json': Record<string, any>;
-  'eventRules.json': Record<string, any>;
-  'settings.json': Record<string, any>;
-  'event.json': Record<string, any>;
-};
 
 @Injectable()
 export class GithubService {
@@ -76,46 +68,5 @@ export class GithubService {
     }
 
     return repository?.ref?.target?.history?.edges.map(({ node }) => node);
-  }
-
-  async fetchChampionshipConfig(
-    championship: Championships,
-  ): Promise<ServerConfigFiles> {
-    const name =
-      Object.keys(Championships)[
-        Object.values(Championships).indexOf(championship)
-      ];
-
-    const { repository } = await this.client(
-      `
-      query GetFilesQuery($folder: String!) {
-        repository(name: "lsr-race-config", owner: "arelstone") {
-          object(expression: $folder) {
-            ... on Tree {
-              entries {
-                name
-                object {
-                  ... on Blob {
-                    text
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `,
-      {
-        folder: `HEAD:${name}`,
-      },
-    );
-    const { object } = repository;
-
-    return object.entries.reduce((acc, entry) => {
-      return {
-        ...acc,
-        [entry.name]: JSON.parse(entry.object.text),
-      };
-    }, {});
   }
 }
