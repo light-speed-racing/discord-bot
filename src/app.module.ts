@@ -14,14 +14,22 @@ import simgridConfig from './config/simgrid.config';
 import apiKeys from './config/apiKeys.config';
 import { Config } from './config/config.types';
 import { FuelModule } from './fuel/fuel.module';
+import { ServerModule } from './server/server.module';
 import discordModals from 'discord-modals';
+import serverSetupConfig from './config/server-setup.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [baseConfig, discordConfig, simgridConfig, apiKeys],
+      load: [
+        baseConfig,
+        discordConfig,
+        simgridConfig,
+        apiKeys,
+        serverSetupConfig,
+      ],
     }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],
@@ -55,6 +63,7 @@ import discordModals from 'discord-modals';
     DiscordEventModule,
     UtilsModule,
     FuelModule,
+    ServerModule,
   ],
 })
 export class AppModule implements OnModuleInit {
