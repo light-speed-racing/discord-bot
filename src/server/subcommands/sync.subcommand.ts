@@ -18,9 +18,9 @@ import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
-import { Championships } from './championships.enum';
-import { ServerConfigDto } from './server-config.dto';
-import { ServerService } from './server.service';
+import { Championships } from '../enum/championships.enum';
+import { SyncDto } from '../dto/server-sync.dto';
+import { ServerService } from '../server.service';
 
 @SubCommand({
   name: 'sync',
@@ -28,17 +28,8 @@ import { ServerService } from './server.service';
 })
 @UsePipes(TransformPipe)
 @UseFilters(CommandValidationFilter)
-export class SyncSubCommand
-  implements DiscordTransformedCommand<ServerConfigDto>
-{
+export class SyncSubCommand implements DiscordTransformedCommand<SyncDto> {
   private readonly logger: Logger = new Logger(SyncSubCommand.name);
-
-  private readonly serverConfigTempPath = join(
-    __dirname,
-    '..',
-    '..',
-    '__server-config__',
-  );
 
   constructor(
     private readonly service: ServerService,
@@ -47,8 +38,8 @@ export class SyncSubCommand
     private readonly ftp: FtpService,
   ) {}
 
-  @UseGuards(new RoleGuard('host', 'moderator', 'steward'))
-  async handler(@Payload() dto: ServerConfigDto) {
+  @UseGuards(new RoleGuard('admin', 'host', 'moderator', 'steward'))
+  async handler(@Payload() dto: SyncDto) {
     try {
       const name =
         Object.keys(Championships)[
@@ -56,15 +47,16 @@ export class SyncSubCommand
         ];
       const serverFiles = await this.fetchServerConfigOnGithub(dto);
 
-      this.storeTempFiles({
-        'settings.json': serverFiles['settings.json'],
-        'assistRules.json': serverFiles['assistRules.json'],
-        'event.json': serverFiles['event.json'],
-        'eventRules.json': serverFiles['eventRules.json'],
-        'entryList.json': await this.fetchEntryList(dto),
-      });
+      this.service.storeFile('settings.json', serverFiles['settings.json']);
+      this.service.storeFile(
+        'assistRules.json',
+        serverFiles['assistRules.json'],
+      );
+      this.service.storeFile('event.json', serverFiles['event.json']);
+      this.service.storeFile('eventRules.json', serverFiles['eventRules.json']);
+      await this.service.entryListFor(dto.championship, dto.forceentrylist);
 
-      await this.ftp.connectAndUploadFrom(this.serverConfigTempPath);
+      await this.ftp.uploadAllFilesFrom(ServerService.serverConfigTempPath);
 
       return `Configuration for ${Formatters.bold(
         name,
@@ -74,41 +66,17 @@ export class SyncSubCommand
     }
   }
 
-  private storeTempFiles(content: Record<string, Record<string, unknown>>) {
-    this.logger.debug(`Storing files`);
-    if (!existsSync(this.serverConfigTempPath)) {
-      this.logger.debug(`Creating directory`);
-      mkdirSync(this.serverConfigTempPath);
-    }
-
-    for (const fileName in content) {
-      this.logger.debug(`Writing ${fileName}`);
-      writeFileSync(
-        join(this.serverConfigTempPath, fileName),
-        JSON.stringify(content[fileName], null, 2),
-      );
-    }
-  }
-
-  private adminPassword({ adminPassword }: Partial<ServerConfigDto>) {
+  private adminPassword({ adminPassword }: Partial<SyncDto>) {
     const { defaultAdminPassword } =
       this.config.get<ServerSetupConfig>('server-setup');
 
     return adminPassword ?? defaultAdminPassword;
   }
 
-  private async fetchEntryList({
-    championship,
-    forceentrylist,
-  }: ServerConfigDto) {
-    this.logger.debug(`Fetching entrylist from SimGrid for ${championship}`);
-    return await this.service.entryListFor(championship, forceentrylist);
-  }
-
   private async fetchServerConfigOnGithub({
     championship,
     adminPassword,
-  }: ServerConfigDto) {
+  }: SyncDto) {
     this.logger.debug(`Fetching championship files for ${championship}`);
     const serverFiles = await this.github.fetchChampionshipConfig(championship);
 

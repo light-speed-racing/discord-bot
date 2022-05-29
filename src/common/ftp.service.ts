@@ -1,5 +1,10 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { existsSync } from 'fs';
 import FtpClient from 'ftp-deploy';
 import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
@@ -37,7 +42,32 @@ export class FtpService {
     };
   }
 
-  async connectAndUploadFrom(localRoot: string) {
+  async uploadFile(localPath: string, filename: string) {
+    const localRoot = `${localPath}/${filename}`;
+    if (!existsSync(localRoot)) {
+      throw new UnprocessableEntityException(`${filename} does not exist`);
+    }
+
+    const config = {
+      ...this.ftpConfig,
+      include: [filename],
+      localRoot: localPath,
+    };
+    this.logger.debug(`Uploading ${localPath}/${filename} to game server`);
+    try {
+      const [[response]] = await this.ftp.deploy(config);
+
+      if (!response) {
+        return Promise.reject();
+      }
+
+      return Promise.resolve(response);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async uploadAllFilesFrom(localRoot: string) {
     try {
       const config = { ...this.ftpConfig, localRoot };
       this.logger.debug(

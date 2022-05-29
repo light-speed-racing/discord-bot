@@ -1,9 +1,10 @@
 import { Command } from '@discord-nestjs/core';
-import { SyncSubCommand } from './sync.subcommand';
+import { EntryListSubCommand } from './subcommands/entrylist.subcommand';
+import { SyncSubCommand } from './subcommands/sync.subcommand';
 
 @Command({
   name: 'server',
   description: 'A set of utility commands to setup an acc server',
-  include: [SyncSubCommand],
+  include: [SyncSubCommand, EntryListSubCommand],
 })
 export class ServerCommand {}
