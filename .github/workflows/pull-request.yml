@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Ensure that title uses gitmoji
-        uses: paralenz/actions/gitmoji@v2.1.4
+        uses: paralenz/actions/gitmoji@v2.1.6
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
