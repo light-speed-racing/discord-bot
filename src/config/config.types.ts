@@ -11,3 +11,11 @@ export type Config = {
   simgrid: SimgridConfig;
   'server-setup': ServerSetupConfig;
 };
+
+export {
+  DiscordConfig,
+  BaseConfig,
+  ApiKeysConfig,
+  SimgridConfig,
+  ServerSetupConfig,
+};

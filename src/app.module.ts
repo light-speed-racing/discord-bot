@@ -17,6 +17,8 @@ import { FuelModule } from './fuel/fuel.module';
 import { ServerModule } from './server/server.module';
 import discordModals from 'discord-modals';
 import serverSetupConfig from './config/server-setup.config';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import serverSetupConfig from './config/server-setup.config';
       setupClientFactory: (client: Client) => discordModals(client),
       inject: [ConfigService],
     }),
+    ScheduleModule.forRoot(),
     HelpModule,
     JokeModule,
     SteerlockModule,
@@ -64,6 +67,7 @@ import serverSetupConfig from './config/server-setup.config';
     UtilsModule,
     FuelModule,
     ServerModule,
+    TaskModule,
   ],
 })
 export class AppModule implements OnModuleInit {

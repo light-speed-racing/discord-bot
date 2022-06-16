@@ -1,6 +1,6 @@
 import { Choice, Param } from '@discord-nestjs/core';
 import { IsAlphanumeric } from 'class-validator';
-import { Championships } from './championships.enum';
+import { Championships } from '../championships';
 import { YesOrNo } from './yes-or-no.enum';
 
 export class ServerConfigDto {
