@@ -18,9 +18,9 @@ import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
-import { Championships } from './championships.enum';
+import { SimgridService } from 'src/common/simgrid.service';
+import { Championships } from '../championships';
 import { ServerConfigDto } from './server-config.dto';
-import { ServerService } from './server.service';
 
 @SubCommand({
   name: 'sync',
@@ -41,7 +41,7 @@ export class SyncSubCommand
   );
 
   constructor(
-    private readonly service: ServerService,
+    private readonly service: SimgridService,
     private readonly github: GithubService,
     private readonly config: ConfigService<Config>,
     private readonly ftp: FtpService,
@@ -102,7 +102,7 @@ export class SyncSubCommand
     forceentrylist,
   }: ServerConfigDto) {
     this.logger.debug(`Fetching entrylist from SimGrid for ${championship}`);
-    return await this.service.entryListFor(championship, forceentrylist);
+    return await this.service.jsonEntryListFor(championship, forceentrylist);
   }
 
   private async fetchServerConfigOnGithub({
