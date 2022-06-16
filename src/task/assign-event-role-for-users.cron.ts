@@ -18,7 +18,7 @@ export class AssignEventRoleForUsers {
     private readonly log: LoggingChannelService,
   ) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_HOUR)
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
 
