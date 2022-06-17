@@ -18,7 +18,7 @@ import { SimgridService } from 'src/common/simgrid.service';
 import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
-import { RoleGuard } from 'src/guards/role.guard';
+import { HasRoleGuard } from 'src/guards/has-role.guard';
 import { Championships } from '../championships';
 import { ServerConfigDto } from './server-config.dto';
 
@@ -47,7 +47,7 @@ export class SyncSubCommand
     private readonly ftp: FtpService,
   ) {}
 
-  @UseGuards(new RoleGuard('host', 'moderator', 'steward'))
+  @UseGuards(new HasRoleGuard('host', 'moderator', 'steward', 'admin'))
   async handler(@Payload() dto: ServerConfigDto) {
     try {
       const name =

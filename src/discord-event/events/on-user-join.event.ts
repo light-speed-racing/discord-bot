@@ -9,7 +9,7 @@ import {
   User,
 } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
-import { GuildMemberJoinGuard } from 'src/guards/guild-member-join.guard';
+import { NotBotGuard } from 'src/guards/not-bot.guard';
 import { Config } from 'src/config/config.types';
 import { DiscordConfig } from 'src/config/discord.config';
 import { BaseConfig } from 'src/config/base.config';
@@ -24,7 +24,7 @@ export class OnUserJoinEvent {
   ) {}
 
   @On('guildMemberAdd')
-  @UseGuards(GuildMemberJoinGuard)
+  @UseGuards(NotBotGuard)
   async main({ user, guild, client }: GuildMember) {
     this.logger.debug(`${user.username ?? user.tag} just joined`);
 

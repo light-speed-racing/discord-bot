@@ -54,8 +54,8 @@ export class OnMessageEvent {
   }
 
   @On('messageCreate')
-  @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
+  @UseGuards(new UserSaidGuard('iracing', 'iraving'))
   async spencerSaysIRacing(message: Message) {
     const shouldReply = Math.random() * 100;
     const replyPrediction = 50;
