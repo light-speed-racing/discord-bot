@@ -1,8 +1,7 @@
 import { InjectDiscordClient } from '@discord-nestjs/core';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Client, Collection, GuildMember, Role, Snowflake } from 'discord.js';
-import { kill } from 'process';
+import { Client, GuildMember, Role } from 'discord.js';
 import { Config, DiscordConfig } from 'src/config/config.types';
 
 @Injectable()
@@ -21,7 +20,9 @@ export class RoleService {
       this.config.get<DiscordConfig>('discord').guildId,
     );
 
-    return guild.roles.cache.find((role) => role.name === name);
+    return guild.roles.cache.find(
+      (role) => role.name.toLowerCase() === name.toLowerCase(),
+    );
   }
 
   async create(name: string): Promise<Role> {

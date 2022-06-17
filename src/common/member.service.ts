@@ -1,26 +1,40 @@
 import { InjectDiscordClient } from '@discord-nestjs/core';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, GuildMember } from 'discord.js';
 import { Config, DiscordConfig } from 'src/config/config.types';
 
 @Injectable()
 export class MemberService {
+  private readonly logger: Logger = new Logger(MemberService.name);
+
   constructor(
     @InjectDiscordClient() private readonly client: Client,
     private readonly config: ConfigService<Config>,
   ) {}
 
   async findByUsername(username: string): Promise<GuildMember> {
-    const members = await this.client.guilds.cache
-      .get(this.config.get<DiscordConfig>('discord').guildId)
-      .members.fetch({ force: true });
+    try {
+      const members = await this.client.guilds.cache
+        .get(this.config.get<DiscordConfig>('discord').guildId)
+        .members.fetch({ force: true });
 
-    return members.find((member) => member.user.username === username);
+      return members.find(
+        ({ user }) => user.username.toLowerCase() === username.toLowerCase(),
+      );
+    } catch (error: any) {
+      this.logger.warn('Failed to fetch guildmember');
+      return;
+    }
   }
 
   async hasNickname(guildMember: GuildMember) {
-    return !!(await guildMember.fetch(true)).nickname;
+    try {
+      return !!(await guildMember.fetch(true)).nickname;
+    } catch (error: any) {
+      this.logger.warn('Failed to fetch guildmember');
+      return;
+    }
   }
 
   async setNickNameFor(

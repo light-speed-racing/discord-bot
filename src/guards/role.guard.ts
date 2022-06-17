@@ -1,8 +1,6 @@
 import { DiscordGuard, UseGuards } from '@discord-nestjs/core';
-import { UnauthorizedException } from '@nestjs/common';
 import { CommandInteraction, Guild, GuildMember } from 'discord.js';
 import { MessageFromUserGuard } from './message-from-user.guard';
-
 export class RoleGuard implements DiscordGuard {
   private readonly requiredRoles: string[];
 

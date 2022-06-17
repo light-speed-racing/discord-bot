@@ -14,11 +14,11 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { FtpService } from 'src/common/ftp.service';
 import { GithubService, ServerConfigFiles } from 'src/common/github.service';
+import { SimgridService } from 'src/common/simgrid.service';
 import { Config } from 'src/config/config.types';
 import { ServerSetupConfig } from 'src/config/server-setup.config';
 import { CommandValidationFilter } from 'src/filters/command-validation.filter';
 import { RoleGuard } from 'src/guards/role.guard';
-import { SimgridService } from 'src/common/simgrid.service';
 import { Championships } from '../championships';
 import { ServerConfigDto } from './server-config.dto';
 

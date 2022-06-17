@@ -31,13 +31,10 @@ export class AssignEventRoleForUsers {
       try {
         csv.forEach(async (row) => {
           const username = row.username;
-
           const member = await this.memberService.findByUsername(username);
 
           if (!member) {
-            return await this.log.send(
-              `${Formatters.bold(username)} has not joined yet`,
-            );
+            return;
           }
 
           if (this.roleService.has(member, role)) {
@@ -45,7 +42,7 @@ export class AssignEventRoleForUsers {
           }
           if (!this.roleService.exists(role)) {
             await this.roleService.create(role);
-            this.log.send(`${role} was created`);
+            await this.log.send(`${role} was created`);
           }
 
           const r = this.roleService.findByName(role);
