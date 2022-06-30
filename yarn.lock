@@ -340,10 +340,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@discord-nestjs/common@^3.3.4":
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-3.3.4.tgz#9f5c569f3b86e98b64abc857a0ccb146ab82e805"
-  integrity sha512-4bfKZSgRUh5wPWIi2UtK5n1Kmld1/Vi+RHrjZO+2yVDrB9RUvplGn+RlzQLSNFo/5cQkLYuC8h4a4C4GeeLccw==
+"@discord-nestjs/common@^3.3.5":
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-3.3.5.tgz#c3883a67a9a7606b28445caaba083feb41b58ef4"
+  integrity sha512-Kps2dbo7VTFPTvBwFyySl50lBglSavlUN58UCOzhLzZNmqz3XfD8sjSb9zPlm9S0dTf7fj/qpLRQQCQUg8zMmw==
   dependencies:
     "@nestjs/mapped-types" "1.0.1"
     class-transformer "0.5.1"
@@ -786,10 +786,10 @@
     is-plain-object "^5.0.0"
     universal-user-agent "^6.0.0"
 
-"@octokit/graphql-schema@^10.73.0":
-  version "10.73.0"
-  resolved "https://registry.yarnpkg.com/@octokit/graphql-schema/-/graphql-schema-10.73.0.tgz#d1dadc7ea854f01b16ee9a5bdc4715b9ab5a8f9c"
-  integrity sha512-0pHfbnl3n+b5mtTwP6nmMYlMwLgUvGZjndKVqPS2uyR1Vh8WGMldVW4sFXxDxOPY8RyznLGg44m8sDQT+vAbnw==
+"@octokit/graphql-schema@^10.74.1":
+  version "10.74.1"
+  resolved "https://registry.yarnpkg.com/@octokit/graphql-schema/-/graphql-schema-10.74.1.tgz#097f9923dc2a4716bd962298f5e39e045d4ece02"
+  integrity sha512-FeaXZH/xwZ8aTtBBMvVg7slRTgvRZGsf407coLjl4pLTirWkN/PQ6DxZUSEeXsYJcYiMim4C1rSaPNzjhBx98w==
   dependencies:
     graphql "^15.0.0"
     graphql-tag "^2.10.3"
