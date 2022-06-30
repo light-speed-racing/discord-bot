@@ -8,7 +8,6 @@ import sample from 'lodash.sample';
 import { Config } from 'src/config/config.types';
 import { ApiKeysConfig } from 'src/config/apiKeys.config';
 import { BaseConfig } from 'src/config/base.config';
-import { MessageAuthorGuard } from 'src/guards/message-author.guard';
 
 @Injectable()
 export class OnMessageEvent {
@@ -51,21 +50,5 @@ export class OnMessageEvent {
           .setImage(random.images.original.url),
       ],
     });
-  }
-
-  @On('messageCreate')
-  @UseGuards(new UserSaidGuard('iracing', 'iraving'))
-  @UseGuards(new MessageAuthorGuard('Skeez0414', 'Shoebop'))
-  async spencerSaysIRacing(message: Message) {
-    const shouldReply = Math.random() * 100;
-    const replyPrediction = 50;
-
-    if (replyPrediction < shouldReply) {
-      await message.reply(
-        `Did you mean to write "the netcode game" or "the unrealistic grippy grappy game" instead, ${message.author}???`,
-      );
-
-      return;
-    }
   }
 }
