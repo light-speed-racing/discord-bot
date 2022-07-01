@@ -3,6 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, GuildMember } from 'discord.js';
 import { Config, DiscordConfig } from 'src/config/config.types';
+import { GuildService } from './guild.services';
 
 @Injectable()
 export class MemberService {
@@ -11,13 +12,14 @@ export class MemberService {
   constructor(
     @InjectDiscordClient() private readonly client: Client,
     private readonly config: ConfigService<Config>,
+    private readonly guilsService: GuildService,
   ) {}
 
   async findByUsername(username: string): Promise<GuildMember> {
     try {
-      const members = await this.client.guilds.cache
-        .get(this.config.get<DiscordConfig>('discord').guildId)
-        .members.fetch({ force: true });
+      const members = await this.guilsService.guild.members.fetch({
+        force: true,
+      });
 
       return members.find(
         ({ user }) => user.username.toLowerCase() === username.toLowerCase(),

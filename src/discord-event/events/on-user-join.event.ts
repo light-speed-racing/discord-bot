@@ -22,7 +22,7 @@ export class OnUserJoinEvent {
     } = this.config.get<DiscordConfig>('discord');
 
     const message = [
-      `${Formatters.bold(this.title(user))}`, //this.title(user),
+      `${Formatters.bold(this.title(user))}`,
       `Hi there ${user} and welcome to **${guild.name}**`,
       '',
       `You are our member number ${Formatters.bold(

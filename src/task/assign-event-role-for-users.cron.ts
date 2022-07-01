@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { Formatters } from 'discord.js';
 import { LoggingChannelService } from 'src/common/logging-channel.service';
 import { MemberService } from 'src/common/member.service';
 import { RoleService } from 'src/common/role.services';
@@ -26,7 +25,7 @@ export class AssignEventRoleForUsers {
       const id = Championships[championship];
       const role = championshipRoles[id];
 
-      this.log.send(`Updating roles for ${championship}`);
+      this.logger.debug(`Updating roles for ${championship}`, true);
       const csv = await this.sgService.driversOf(id);
       try {
         csv.forEach(async (row) => {
@@ -48,11 +47,7 @@ export class AssignEventRoleForUsers {
           const r = this.roleService.findByName(role);
 
           const { user } = await member.roles.add(r);
-          await this.log.send(
-            `${Formatters.bold(
-              user.username,
-            )} was assigned ${Formatters.roleMention(r.id)}`,
-          );
+          await this.log.send(`${user.username} was assigned ${r.name}`);
         });
       } catch (error) {
         console.log(error);

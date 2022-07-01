@@ -1,36 +1,23 @@
-import { InjectDiscordClient } from '@discord-nestjs/core';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Client, GuildMember, Role } from 'discord.js';
-import { Config, DiscordConfig } from 'src/config/config.types';
+import { GuildMember, Role } from 'discord.js';
+import { GuildService } from './guild.services';
 
 @Injectable()
 export class RoleService {
-  constructor(
-    @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
-  ) {}
+  constructor(private readonly guild: GuildService) {}
 
   has(member: GuildMember, role: string): boolean {
     return member.roles.cache.map((role) => role.name).includes(role);
   }
 
   findByName(name: string): Role | null {
-    const guild = this.client.guilds.cache.get(
-      this.config.get<DiscordConfig>('discord').guildId,
-    );
-
-    return guild.roles.cache.find(
+    return this.guild.guild.roles.cache.find(
       (role) => role.name.toLowerCase() === name.toLowerCase(),
     );
   }
 
   async create(name: string): Promise<Role> {
-    const guild = this.client.guilds.cache.get(
-      this.config.get<DiscordConfig>('discord').guildId,
-    );
-
-    return await guild.roles.create({ name, color: '#088bbf' });
+    return await this.guild.guild.roles.create({ name, color: '#088bbf' });
   }
 
   exists(name: string): boolean {
