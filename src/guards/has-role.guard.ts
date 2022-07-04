@@ -1,6 +1,6 @@
 import { DiscordGuard, UseGuards } from '@discord-nestjs/core';
 import { CommandInteraction, GuildMember } from 'discord.js';
-import { MessageIsFromUserGuard } from './message-from-user.guard';
+import { NotBotGuard } from './not-bot.guard';
 
 export class HasRoleGuard implements DiscordGuard {
   private readonly requiredRoles: string[];
@@ -9,7 +9,7 @@ export class HasRoleGuard implements DiscordGuard {
     this.requiredRoles = requiredRoles.map((role) => role.toLowerCase());
   }
 
-  @UseGuards(MessageIsFromUserGuard)
+  @UseGuards(NotBotGuard)
   canActive(
     event: 'interactionCreate',
     [{ member }]: [CommandInteraction],
