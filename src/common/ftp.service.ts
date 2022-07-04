@@ -52,4 +52,12 @@ export class FtpService {
       return error.message;
     }
   }
+
+  async uploadFile(localRoot: string, filename: string) {
+    return await this.ftp.deploy({
+      ...this.ftpConfig,
+      localRoot,
+      include: [filename],
+    });
+  }
 }

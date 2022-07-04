@@ -67,6 +67,15 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
+"@arelstone/simgrid-utils@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arelstone/simgrid-utils/-/simgrid-utils-1.1.0.tgz#94175c2a2a5977840e3f9f4a4cba4cb59aec4333"
+  integrity sha512-HvafliEl+5SAtMXMm8fBJ+jIViZWj3tndwsOKT9SZbBa3T3vqcRMsJolMCKTL3rHvYilc1+j+oB0xhGCerszxw==
+  dependencies:
+    axios "^0.27.2"
+    http-status-codes "^2.2.0"
+    papaparse "^5.3.2"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.7":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.16.7.tgz#44416b6bd7624b998f5b1af5d470856c40138789"
@@ -1092,13 +1101,6 @@
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.0.tgz#67c7b724e1bcdd7a8821ce0d5ee184d3b4dd525a"
   integrity sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==
-
-"@types/papaparse@^5.3.2":
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.2.tgz#6ccace6eac8ddb03a6fd06883b84dd6c6561f69f"
-  integrity sha512-BNbCHJkTE4RwmAFkCxEalET4mDvGr/1ld7ZtQ4i/laWI/iiVt+GL07stdvufle4KfywyvloqqpIiJscXNCrKxA==
-  dependencies:
-    "@types/node" "*"
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
