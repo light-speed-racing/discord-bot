@@ -10,11 +10,13 @@ export class SimgridService {
   async jsonEntryListFor(
     id: Championships,
     forceEntryList: YesOrNo = YesOrNo.Yes,
+    teamEvent: YesOrNo = YesOrNo.No,
   ) {
     try {
       return await Simgrid.entryList.ACC.json(
         id,
         forceEntryList === YesOrNo.Yes,
+        teamEvent === YesOrNo.Yes,
       );
     } catch (error: any) {
       this.logger.error(
@@ -23,9 +25,12 @@ export class SimgridService {
     }
   }
 
-  async driversOf(id: string): Promise<ReadonlyArray<CsvEntry>> {
+  async driversOf(
+    id: string,
+    teamEvent = false,
+  ): Promise<ReadonlyArray<CsvEntry>> {
     try {
-      return await Simgrid.entryList.ACC.csv(id);
+      return await Simgrid.entryList.ACC.csv(id, teamEvent);
     } catch (error: any) {
       this.logger.error(
         `Failed to fetch CSV entrylist for ${id}. ${error?.message}`,

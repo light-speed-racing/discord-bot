@@ -6,6 +6,7 @@ import { ServerCommand } from './server.command';
 import { GithubService } from 'src/common/github.service';
 import { FtpService } from 'src/common/ftp.service';
 import { SimgridService } from 'src/common/simgrid.service';
+import { EntryListSubCommand } from './entrylist.subcommand';
 
 @Module({
   imports: [DiscordModule.forFeature()],
@@ -15,6 +16,7 @@ import { SimgridService } from 'src/common/simgrid.service';
     FtpService,
     ServerCommand,
     SyncSubCommand,
+    EntryListSubCommand,
   ],
 })
 export class ServerModule {}

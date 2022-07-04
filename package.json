@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@arelstone/simgrid-utils": "^1.0.1",
+    "@arelstone/simgrid-utils": "^1.1.0",
     "@discord-nestjs/common": "^3.3.5",
     "@discord-nestjs/core": "^3.4.0",
     "@giphy/js-fetch-api": "^4.3.1",
