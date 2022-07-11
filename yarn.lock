@@ -381,10 +381,10 @@
     class-transformer "0.5.1"
     class-validator "0.13.2"
 
-"@discord-nestjs/core@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@discord-nestjs/core/-/core-3.5.0.tgz#621a175ee7d7a6f9db9673d1adb0b3369b1933f7"
-  integrity sha512-eadhb+C+1nK2HbQLL+lJyyEM3/ZU6EhGHuQGUDSdPTHt9qLUTwI6pXKbf4BnyfMPVQ8oVJ2zDcJ8hCkk2VE3Ig==
+"@discord-nestjs/core@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@discord-nestjs/core/-/core-3.6.0.tgz#2818458b5c0ae1d973b93445a82a72cc57b6f787"
+  integrity sha512-RXkfMb/LuUddfuhY622DhTIT53p/ZUFCgSR1Rzt+xdw8xoE6bF6GKNkQisZLWontMsVV/FzoFzAEzDCVdrw4aA==
   dependencies:
     class-transformer "0.5.1"
 
