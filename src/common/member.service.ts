@@ -25,7 +25,7 @@ export class MemberService {
         ({ user }) => user.username.toLowerCase() === username.toLowerCase(),
       );
     } catch (error: any) {
-      this.logger.warn('Failed to fetch guildmember');
+      this.logger.warn('Failed to fetch guildmember', error);
       return;
     }
   }
