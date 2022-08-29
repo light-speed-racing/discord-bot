@@ -370,12 +370,12 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@discord-nestjs/common@^3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-3.4.2.tgz#0d14942361e3e2e1c09d49f05b759b27ab0f4cc2"
-  integrity sha512-urgTFsqqmCzbqN/Plu0Fhq76MIxN5i0tuWi4FL793nBVe7C6Ail7+ueGvjzWGfBUK/L5EtFBzjD1ptDw9Z+2zg==
+"@discord-nestjs/common@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@discord-nestjs/common/-/common-4.0.0.tgz#2ed6296f9d6bba521f80c67a7486b23e666497b5"
+  integrity sha512-OesuiCDjrGoKJoEoeu8ZYm7aumh0JY5UZL0ZoOL10nZ3kWOQ21hduwg/MM4sG9SxjGI0oIn+X4caaKZdQI8jtw==
   dependencies:
-    "@nestjs/mapped-types" "1.0.1"
+    "@nestjs/mapped-types" "1.1.0"
     class-transformer "0.5.1"
     class-validator "0.13.2"
 
@@ -744,10 +744,10 @@
     tslib "2.4.0"
     uuid "8.3.2"
 
-"@nestjs/mapped-types@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-1.0.1.tgz#78b62041c7a407db4a90eb140567321602bed18e"
-  integrity sha512-NFvofzSinp00j5rzUd4tf+xi9od6383iY0JP7o0Bnu1fuItAUkWBgc4EKuIQ3D+c2QI3i9pG1kDWAeY27EMGtg==
+"@nestjs/mapped-types@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-1.1.0.tgz#54a9fa61079635dd6c3c75fd9593f20b2302a55b"
+  integrity sha512-+2kSly4P1QI+9eGt+/uGyPdEG1hVz7nbpqPHWZVYgoqz8eOHljpXPag+UCVRw9zo2XCu4sgNUIGe8Uk0+OvUQg==
 
 "@nestjs/platform-express@^8.4.7":
   version "8.4.7"
