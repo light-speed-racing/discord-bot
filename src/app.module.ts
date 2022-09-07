@@ -14,7 +14,6 @@ import simgridConfig from './config/simgrid.config';
 import apiKeys from './config/apiKeys.config';
 import { Config } from './config/config.types';
 import { FuelModule } from './fuel/fuel.module';
-import { ServerModule } from './server/server.module';
 import discordModals from 'discord-modals';
 import serverSetupConfig from './config/server-setup.config';
 import { ScheduleModule } from '@nestjs/schedule';
@@ -66,7 +65,6 @@ import { TaskModule } from './task/task.module';
     DiscordEventModule,
     UtilsModule,
     FuelModule,
-    ServerModule,
     TaskModule,
   ],
 })
