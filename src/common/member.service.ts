@@ -17,11 +17,7 @@ export class MemberService {
 
   async findByUsername(username: string): Promise<GuildMember> {
     try {
-      const members = await this.guilsService.guild.members.fetch({
-        force: true,
-      });
-
-      return members.find(
+      return this.guilsService.guild.members.cache.find(
         ({ user }) => user.username.toLowerCase() === username.toLowerCase(),
       );
     } catch (error: any) {
