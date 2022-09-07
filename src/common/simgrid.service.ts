@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Simgrid, CsvEntry } from '@arelstone/simgrid-utils';
-import { Championships } from 'src/championships';
-import { YesOrNo } from 'src/yes-or-no.enum';
+import { Championships } from '../championships';
+import { YesOrNo } from '../yes-or-no.enum';
 
 @Injectable()
 export class SimgridService {

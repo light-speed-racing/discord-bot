@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TextChannel } from 'discord.js';
-import { Config, DiscordConfig } from 'src/config/config.types';
+import { Config, DiscordConfig } from '../config/config.types';
 import { GuildService } from './guild.services';
 
 @Injectable()

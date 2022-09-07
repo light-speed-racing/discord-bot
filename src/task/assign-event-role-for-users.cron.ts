@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { LoggingChannelService } from 'src/common/logging-channel.service';
-import { MemberService } from 'src/common/member.service';
-import { RoleService } from 'src/common/role.services';
-import { SimgridService } from 'src/common/simgrid.service';
-import { championshipRoles, Championships } from 'src/championships';
+import { LoggingChannelService } from '../common/logging-channel.service';
+import { MemberService } from '../common/member.service';
+import { RoleService } from '../common/role.services';
+import { SimgridService } from '../common/simgrid.service';
+import { championshipRoles, Championships } from '../championships';
 
 @Injectable()
 export class AssignEventRoleForUsers {

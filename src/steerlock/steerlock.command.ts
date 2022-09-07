@@ -8,7 +8,7 @@ import {
   UsePipes,
 } from '@discord-nestjs/core';
 import { Injectable, Logger } from '@nestjs/common';
-import { CommandValidationFilter } from 'src/filters/command-validation.filter';
+import { CommandValidationFilter } from '../filters/command-validation.filter';
 import { SteerlockDto } from './steerlock.dto';
 import data from './steerlocks.json';
 

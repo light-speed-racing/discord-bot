@@ -13,8 +13,8 @@ import {
   TextInputComponent,
 } from 'discord-modals';
 import { Client, CommandInteraction, MessageEmbed } from 'discord.js';
-import { BaseConfig } from 'src/config/base.config';
-import { Config } from 'src/config/config.types';
+import { BaseConfig } from '../config/base.config';
+import { Config } from '../config/config.types';
 import { FuelService } from './fuel.service';
 
 @Command({

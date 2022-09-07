@@ -4,11 +4,11 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ApiKeysConfig } from 'src/config/apiKeys.config';
-import { Config } from 'src/config/config.types';
+import { ApiKeysConfig } from '../config/apiKeys.config';
+import { Config } from '../config/config.types';
 import { graphql } from '@octokit/graphql';
 import { Commit } from '@octokit/graphql-schema';
-import { Championships } from 'src/championships';
+import { Championships } from '../championships';
 
 export type ServerConfigFiles = {
   'assistRules.json': Record<string, any>;

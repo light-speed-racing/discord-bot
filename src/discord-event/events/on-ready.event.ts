@@ -2,11 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Once, InjectDiscordClient } from '@discord-nestjs/core';
 import { Client, Formatters, MessageEmbed, TextChannel } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
-import { Config } from 'src/config/config.types';
-import { DiscordConfig } from 'src/config/discord.config';
+import { Config } from '../../config/config.types';
+import { DiscordConfig } from '../../config/discord.config';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { GithubService } from 'src/common/github.service';
-import { BaseConfig } from 'src/config/base.config';
+import { GithubService } from '../../common/github.service';
+import { BaseConfig } from '../../config/base.config';
 import moment from 'moment';
 
 @Injectable()

@@ -5,9 +5,9 @@ import {
 } from '@discord-nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { Client, InteractionReplyOptions, MessageEmbed } from 'discord.js';
-import { BaseConfig } from 'src/config/base.config';
-import { Config } from 'src/config/config.types';
-import { SimgridConfig } from 'src/config/simgrid.config';
+import { BaseConfig } from '../../config/base.config';
+import { Config } from '../../config/config.types';
+import { SimgridConfig } from '../../config/simgrid.config';
 
 @SubCommand({
   name: 'profile',

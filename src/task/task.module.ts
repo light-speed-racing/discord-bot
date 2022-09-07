@@ -1,10 +1,10 @@
 import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
-import { GuildService } from 'src/common/guild.services';
-import { LoggingChannelService } from 'src/common/logging-channel.service';
-import { MemberService } from 'src/common/member.service';
-import { RoleService } from 'src/common/role.services';
-import { SimgridModule } from 'src/simgrid/simgrid.module';
+import { GuildService } from '../common/guild.services';
+import { LoggingChannelService } from '../common/logging-channel.service';
+import { MemberService } from '../common/member.service';
+import { RoleService } from '../common/role.services';
+import { SimgridModule } from '../simgrid/simgrid.module';
 import { AssignEventRoleForUsers } from './assign-event-role-for-users.cron';
 
 @Module({

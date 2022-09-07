@@ -3,11 +3,11 @@ import { GiphyFetch } from '@giphy/js-fetch-api';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, Message, MessageEmbed } from 'discord.js';
-import { UserSaidGuard } from 'src/guards/user-said.guard';
+import { UserSaidGuard } from '../../guards/user-said.guard';
 import sample from 'lodash.sample';
-import { Config } from 'src/config/config.types';
-import { ApiKeysConfig } from 'src/config/apiKeys.config';
-import { BaseConfig } from 'src/config/base.config';
+import { Config } from '../../config/config.types';
+import { ApiKeysConfig } from '../../config/apiKeys.config';
+import { BaseConfig } from '../../config/base.config';
 
 @Injectable()
 export class OnMessageEvent {

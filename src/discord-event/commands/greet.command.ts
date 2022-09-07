@@ -11,9 +11,9 @@ import {
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, UserMention } from 'discord.js';
-import { GuildService } from 'src/common/guild.services';
-import { Config } from 'src/config/config.types';
-import { CommandValidationFilter } from 'src/filters/command-validation.filter';
+import { GuildService } from '../../common/guild.services';
+import { Config } from '../../config/config.types';
+import { CommandValidationFilter } from '../../filters/command-validation.filter';
 
 class GreetDto {
   @Param({

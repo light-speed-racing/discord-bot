@@ -1,7 +1,7 @@
 import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
-import { GithubService } from 'src/common/github.service';
-import { GuildService } from 'src/common/guild.services';
+import { GithubService } from '../common/github.service';
+import { GuildService } from '../common/guild.services';
 import { GreetCommand } from './commands/greet.command';
 import { OnMessageEvent } from './events/on-message.event';
 import { OnReadyEvent } from './events/on-ready.event';

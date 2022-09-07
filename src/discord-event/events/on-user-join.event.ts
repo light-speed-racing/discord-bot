@@ -2,9 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import { On, UseGuards } from '@discord-nestjs/core';
 import { Formatters, GuildMember, TextChannel, User } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
-import { NotBotGuard } from 'src/guards/not-bot.guard';
-import { Config } from 'src/config/config.types';
-import { DiscordConfig } from 'src/config/discord.config';
+import { NotBotGuard } from '../../guards/not-bot.guard';
+import { Config } from '../../config/config.types';
+import { DiscordConfig } from '../../config/discord.config';
 
 @Injectable()
 export class OnUserJoinEvent {

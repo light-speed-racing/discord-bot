@@ -2,7 +2,7 @@ import { InjectDiscordClient } from '@discord-nestjs/core';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Client, GuildMember } from 'discord.js';
-import { Config, DiscordConfig } from 'src/config/config.types';
+import { Config } from '../config/config.types';
 import { GuildService } from './guild.services';
 
 @Injectable()
