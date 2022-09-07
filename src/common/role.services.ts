@@ -7,9 +7,9 @@ export class RoleService {
   constructor(private readonly guild: GuildService) {}
 
   async has(member: GuildMember, role: string): Promise<boolean> {
-    const { id } = await this.findByName(role);
+    const r = await this.findByName(role);
 
-    return member.roles.cache.has(id);
+    return member.roles.cache.has(r.id);
   }
 
   async findByName(name: string): Promise<Role | null> {
