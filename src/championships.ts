@@ -1,17 +1,47 @@
-export enum Championships {
-  'Züüüüüüper GT Zundayz' = '2023',
-  'Endurance S1' = '1266',
-  'Midweek League S2' = '1449',
-  '82 cars at Spa' = '1746',
-  '12 hours at Spa' = '1660',
-  '105 cars at Suzuka' = '1917',
-}
-
-export const championshipRoles: Record<Championships, string> = {
-  [Championships['Endurance S1']]: 'Endurance S1',
-  [Championships['Midweek League S2']]: 'Midweek League S2',
-  [Championships['12 hours at Spa']]: 'Endurance - 12h at Spa',
-  [Championships['82 cars at Spa']]: 'One off - Fill the pool',
-  [Championships['105 cars at Suzuka']]: 'One off - Running Sushi at Suzuka',
-  [Championships['Züüüüüüper GT Zundayz']]: 'Zuper GT Zundayz',
+export type Championship = {
+  id: number;
+  name: string;
+  role: string;
+  isTeamEvent?: boolean;
 };
+
+export const championships: ReadonlyArray<Championship> = [
+  {
+    id: 2023,
+    name: 'Züüüüüüper GT Zundayz',
+    role: 'Züper Zundayz',
+  },
+  {
+    id: 1266,
+    name: 'Endurance S1',
+    role: 'Endurance S1',
+    isTeamEvent: true,
+  },
+  {
+    id: 1449,
+    name: 'Midweek League S2',
+    role: 'Midweek League S2',
+  },
+  {
+    id: 1749,
+    name: '82 cars at Spa',
+    role: 'One off - Fill the pool',
+  },
+  {
+    id: 1449,
+    name: '105 cars at Suzuka',
+    role: 'One off - Running Sushi at Suzuka',
+  },
+  {
+    id: 1449,
+    name: '12h at Spa',
+    role: 'Endurance - 12h at Spa',
+    isTeamEvent: true,
+  },
+  {
+    id: 2014,
+    name: 'Kyalami 1000k',
+    role: 'Kyalami 1000k',
+    isTeamEvent: true,
+  },
+];

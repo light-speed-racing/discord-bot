@@ -18,7 +18,7 @@ export class OnUserJoinEvent {
     this.logger.debug(`${user.username ?? user.tag} just joined`);
 
     const {
-      channels: { requestARole, general, rules, introduceYourSelf, welcome },
+      channels: { requestARole, introduceYourSelf, welcome },
     } = this.config.get<DiscordConfig>('discord');
 
     const message = [
@@ -33,22 +33,17 @@ export class OnUserJoinEvent {
         introduceYourSelf,
       )}`,
       '',
-      `Please read our ${Formatters.channelMention(
-        rules,
-      )} and react with a :white_check_mark:`,
-      '',
       `What are you playing? Please let us know in ${Formatters.channelMention(
         requestARole,
-      )}`,
-      `Don't hesitate to take part in the chat in ${Formatters.channelMention(
-        general,
       )}`,
       '',
       'Finally. Have fun. See you on grid.',
     ].join('\r\n');
 
-    const c = (await client.channels.fetch(welcome)) as TextChannel;
-    await c.send(message);
+    setTimeout(async () => {
+      const c = (await client.channels.fetch(welcome)) as TextChannel;
+      await c.send(message);
+    }, 5000);
   }
 
   private title({ id }: User) {

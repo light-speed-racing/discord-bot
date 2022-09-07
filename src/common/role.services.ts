@@ -6,11 +6,13 @@ import { GuildService } from './guild.services';
 export class RoleService {
   constructor(private readonly guild: GuildService) {}
 
-  has(member: GuildMember, role: string): boolean {
-    return member.roles.cache.map((role) => role.name).includes(role);
+  async has(member: GuildMember, role: string): Promise<boolean> {
+    const { id } = await this.findByName(role);
+
+    return member.roles.cache.has(id);
   }
 
-  findByName(name: string): Role | null {
+  async findByName(name: string): Promise<Role | null> {
     return this.guild.guild.roles.cache.find(
       (role) => role.name.toLowerCase() === name.toLowerCase(),
     );
@@ -20,7 +22,7 @@ export class RoleService {
     return await this.guild.guild.roles.create({ name, color: '#088bbf' });
   }
 
-  exists(name: string): boolean {
-    return !!this.findByName(name);
+  async exists(name: string): Promise<boolean> {
+    return !!(await this.findByName(name));
   }
 }

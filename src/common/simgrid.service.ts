@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Simgrid, CsvEntry } from '@arelstone/simgrid-utils';
-import { Championships } from '../championships';
+
 import { YesOrNo } from '../yes-or-no.enum';
 
 @Injectable()
@@ -8,13 +8,13 @@ export class SimgridService {
   private readonly logger: Logger = new Logger(SimgridService.name);
 
   async jsonEntryListFor(
-    id: Championships,
+    id: string | number,
     forceEntryList: YesOrNo = YesOrNo.Yes,
     teamEvent: YesOrNo = YesOrNo.No,
   ) {
     try {
       return await Simgrid.entryList.ACC.json(
-        id,
+        `${id}`,
         forceEntryList === YesOrNo.Yes,
         teamEvent === YesOrNo.Yes,
       );
@@ -26,11 +26,11 @@ export class SimgridService {
   }
 
   async driversOf(
-    id: string,
+    id: string | number,
     teamEvent = false,
   ): Promise<ReadonlyArray<CsvEntry>> {
     try {
-      return await Simgrid.entryList.ACC.csv(id, teamEvent);
+      return await Simgrid.entryList.ACC.csv(`${id}`, teamEvent);
     } catch (error: any) {
       this.logger.error(
         `Failed to fetch CSV entrylist for ${id}. ${error?.message}`,
