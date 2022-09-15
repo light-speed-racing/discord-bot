@@ -6,20 +6,27 @@ import { GuildService } from './guild.services';
 export class RoleService {
   constructor(private readonly guild: GuildService) {}
 
-  async has(member: GuildMember, role: string): Promise<boolean> {
-    const r = await this.findByName(role);
+  async has(member: GuildMember, rolename: string): Promise<boolean> {
+    const role = await this.findByName(rolename);
 
-    return member.roles.cache.has(r.id);
+    return (await member.fetch(true)).roles.cache.has(role?.id);
   }
 
   async findByName(name: string): Promise<Role | null> {
-    return this.guild.guild.roles.cache.find(
+    const role = (await this.guild.guild.roles.fetch()).find(
       (role) => role.name.toLowerCase() === name.toLowerCase(),
     );
+
+    return role;
   }
 
   async create(name: string): Promise<Role> {
-    return await this.guild.guild.roles.create({ name, color: '#088bbf' });
+    const role = await this.guild.guild.roles.create({
+      name,
+      color: '#088bbf',
+    });
+
+    return role;
   }
 
   async exists(name: string): Promise<boolean> {
