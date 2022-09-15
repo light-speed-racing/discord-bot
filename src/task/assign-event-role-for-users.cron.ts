@@ -21,11 +21,11 @@ export class AssignEventRoleForUsers {
 
     for (const { id, name, role, isTeamEvent } of championships) {
       this.logger.debug(`Updating roles for ${name}`);
-      const csv = await this.sgService.driversOf(id, isTeamEvent ?? false);
+      const csv = await this.sgService.driversOf(id, isTeamEvent);
+
       try {
         csv.forEach(async ({ username }) => {
           const member = await this.memberService.findByUsername(username);
-
           if (!member) {
             return;
           }
@@ -33,13 +33,18 @@ export class AssignEventRoleForUsers {
           if (await this.roleService.has(member, role)) {
             return;
           }
-
-          const r = this.roleService.exists(role)
+          const newRole = (await this.roleService.exists(role))
             ? await this.roleService.findByName(role)
             : await this.roleService.create(role);
 
-          const { user } = await member.roles.add(r);
-          this.logger.debug(`${r.name} was assigned to ${user.username}`);
+          if (!newRole) {
+            return;
+          }
+
+          const { user } = await member.roles.add(newRole);
+          this.logger.debug(
+            `${newRole.name} was assigned to ${user.username ?? username}`,
+          );
         });
       } catch (error) {
         console.log(error);
