@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ApiKeysConfig } from '../config/apiKeys.config';
 import { Config } from '../config/config.types';
-import { graphql } from '@octokit/graphql';
+import { graphql, GraphQlQueryResponseData } from '@octokit/graphql';
 import { Commit } from '@octokit/graphql-schema';
 
 export type ServerConfigFiles = {
@@ -40,7 +40,7 @@ export class GithubService {
     since: string,
     numberOfCommits: number,
   ): Promise<Commit[]> {
-    const { repository, errors } = await this.client(
+    const { repository, errors } = await this.client<GraphQlQueryResponseData>(
       `query CommitsSince($since: GitTimestamp!, $numberOfCommits: Int!){
           repository(name: "light-speed-racing-discord", owner: "arelstone") {
             ref(qualifiedName: "master") {
