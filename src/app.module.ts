@@ -15,7 +15,6 @@ import apiKeys from './config/apiKeys.config';
 import { Config } from './config/config.types';
 import { FuelModule } from './fuel/fuel.module';
 import discordModals from 'discord-modals';
-import serverSetupConfig from './config/server-setup.config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TaskModule } from './task/task.module';
 
@@ -24,13 +23,7 @@ import { TaskModule } from './task/task.module';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [
-        baseConfig,
-        discordConfig,
-        simgridConfig,
-        apiKeys,
-        serverSetupConfig,
-      ],
+      load: [baseConfig, discordConfig, simgridConfig, apiKeys],
     }),
     DiscordModule.forRootAsync({
       imports: [ConfigModule],

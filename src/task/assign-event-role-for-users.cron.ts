@@ -19,13 +19,13 @@ export class AssignEventRoleForUsers {
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
 
-    for (const { id, name, role, isTeamEvent } of championships) {
-      this.logger.debug(`Updating roles for ${name}`);
-      const csv = await this.sgService.driversOf(id, isTeamEvent);
+    for (const { id, name, role, driverSwap } of championships) {
+      this.logger.debug(`Updating roles for ${id} ${name ?? role}`);
+      const csv = await this.sgService.driversOf(id, driverSwap);
 
       try {
         csv.forEach(async ({ username }) => {
-          const member = await this.memberService.findByUsername(username);
+          const member = await this.memberService.find(username);
           if (!member) {
             return;
           }
@@ -47,7 +47,7 @@ export class AssignEventRoleForUsers {
           );
         });
       } catch (error) {
-        console.log(error);
+        this.logger.error(error);
         continue;
       }
     }

@@ -43,7 +43,7 @@ export class OnUserJoinEvent {
     setTimeout(async () => {
       const c = (await client.channels.fetch(welcome)) as TextChannel;
       await c.send(message);
-    }, 5000);
+    }, 30000);
   }
 
   private title({ id }: User) {

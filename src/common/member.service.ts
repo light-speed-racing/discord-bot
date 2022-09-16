@@ -9,21 +9,17 @@ import { GuildService } from './guild.services';
 export class MemberService {
   private readonly logger: Logger = new Logger(MemberService.name);
 
-  constructor(
-    @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
-    private readonly guilsService: GuildService,
-  ) {}
+  constructor(private readonly guilsService: GuildService) {}
 
-  async findByUsername(username: string): Promise<GuildMember> {
+  async find(query: string): Promise<GuildMember> {
     try {
-      const members = await this.guilsService.guild.members.fetch();
-
-      return members.find(
-        ({ user }) =>
-          user.username.replace(/[\W_]/g, '_') ===
-          username.replace(/[\W_]/g, '_'),
-      );
+      return (
+        await this.guilsService.guild.members.search({
+          query,
+          cache: false,
+          limit: 1,
+        })
+      ).first();
     } catch (error: any) {
       this.logger.warn('Failed to fetch guildmember', error);
       return;
