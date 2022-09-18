@@ -21,4 +21,5 @@ export const championships: ReadonlyArray<Championship> = [
   { id: 1449, role: 'Endurance - 12h at Spa', driverSwap: true },
   { id: 2014, role: 'Kyalami 1000k', driverSwap: true },
   { id: 2012, role: 'Trackday - Silverstone' },
+  { id: 2084, role: 'Versus Thursdays' },
 ];
