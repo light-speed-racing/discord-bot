@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.template
 last-deploy.txt
 
 # compiled output

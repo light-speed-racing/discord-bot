@@ -1,8 +1,5 @@
-import { InjectDiscordClient } from '@discord-nestjs/core';
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Client, GuildMember } from 'discord.js';
-import { Config } from '../config/config.types';
+import { GuildMember } from 'discord.js';
 import { GuildService } from './guild.services';
 
 @Injectable()
@@ -11,15 +8,16 @@ export class MemberService {
 
   constructor(private readonly guilsService: GuildService) {}
 
-  async find(query: string): Promise<GuildMember> {
+  async find(query: string): Promise<GuildMember | null> {
     try {
-      return (
+      const found = (
         await this.guilsService.guild.members.search({
           query,
-          cache: false,
           limit: 1,
         })
       ).first();
+
+      return found ?? null;
     } catch (error: any) {
       this.logger.warn('Failed to fetch guildmember', error);
       return;

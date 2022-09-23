@@ -15,35 +15,43 @@ export class AssignEventRoleForUsers {
     private readonly memberService: MemberService,
   ) {}
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
+  @Cron(CronExpression.EVERY_MINUTE)
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
 
-    for (const { id, name, role, driverSwap } of championships) {
-      this.logger.debug(`Updating roles for ${id} ${name ?? role}`);
+    for (const { id, name, role: roleName, driverSwap } of championships) {
+      this.logger.debug(`Updating roles for ${id} ${name ?? roleName}`);
       const csv = await this.sgService.driversOf(id, driverSwap);
 
       try {
-        csv.forEach(async ({ username }) => {
-          const member = await this.memberService.find(username);
+        csv.forEach(async ({ username, ...row }) => {
+          const member =
+            (await this.memberService.find(username)) ??
+            (await this.memberService.find(row['real name']));
+
           if (!member) {
+            this.logger.debug(
+              `Member ${username} (${row['real name']}) not found for ${
+                name ?? roleName
+              }`,
+            );
             return;
           }
 
-          if (await this.roleService.has(member, role)) {
+          if (await this.roleService.has(member, roleName)) {
             return;
           }
-          const newRole = (await this.roleService.exists(role))
-            ? await this.roleService.findByName(role)
-            : await this.roleService.create(role);
+          const role = (await this.roleService.exists(roleName))
+            ? await this.roleService.findByName(roleName)
+            : await this.roleService.create(roleName);
 
-          if (!newRole) {
+          if (!role) {
             return;
           }
 
-          const { user } = await member.roles.add(newRole);
+          const { user } = await member.roles.add(role);
           this.logger.debug(
-            `${newRole.name} was assigned to ${user.username ?? username}`,
+            `${role.name} was assigned to ${user.username ?? username}`,
           );
         });
       } catch (error) {
