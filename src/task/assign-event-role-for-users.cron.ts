@@ -15,7 +15,7 @@ export class AssignEventRoleForUsers {
     private readonly memberService: MemberService,
   ) {}
 
-  @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_5_MINUTES)
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
 
