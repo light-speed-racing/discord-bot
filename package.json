@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.1",
-    "@nestjs/schematics": "^9.0.1",
+    "@nestjs/schematics": "^9.0.3",
     "@nestjs/testing": "^8.4.7",
     "@octokit/graphql-schema": "^12.7.1",
     "@types/cron": "^2.0.0",
