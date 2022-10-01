@@ -4,6 +4,8 @@ import { MemberService } from '../common/member.service';
 import { RoleService } from '../common/role.services';
 import { championships } from '../championships';
 import { SimgridService } from '../common/simgrid.service';
+import { LoggingChannelService } from 'src/common/logging-channel.service';
+import { Formatters } from 'discord.js';
 
 @Injectable()
 export class AssignEventRoleForUsers {
@@ -13,14 +15,18 @@ export class AssignEventRoleForUsers {
     private readonly sgService: SimgridService,
     private readonly roleService: RoleService,
     private readonly memberService: MemberService,
+    private readonly loggingChannel: LoggingChannelService,
   ) {}
 
   @Cron(CronExpression.EVERY_5_MINUTES)
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
-
+    this.loggingChannel.send(
+      'Running task: `Assign role to user for simgrid events`',
+    );
     for (const { id, name, role: roleName, driverSwap } of championships) {
       this.logger.debug(`Updating roles for ${id} ${name ?? roleName}`);
+      this.loggingChannel.send(`Updating roles for ${id} ${name ?? roleName}`);
       const csv = await this.sgService.driversOf(id, driverSwap);
 
       try {
@@ -31,6 +37,11 @@ export class AssignEventRoleForUsers {
 
           if (!member) {
             this.logger.debug(
+              `Member ${username} (${row['real name']}) not found for ${
+                name ?? roleName
+              }`,
+            );
+            this.loggingChannel.send(
               `Member ${username} (${row['real name']}) not found for ${
                 name ?? roleName
               }`,
@@ -53,9 +64,13 @@ export class AssignEventRoleForUsers {
           this.logger.debug(
             `${role.name} was assigned to ${user.username ?? username}`,
           );
+          this.loggingChannel.send(
+            `${role.name} was assigned to ${user.username ?? username}`,
+          );
         });
       } catch (error) {
         this.logger.error(error);
+        this.loggingChannel.send(`ERROR: ${Formatters.codeBlock(error)}`);
         continue;
       }
     }

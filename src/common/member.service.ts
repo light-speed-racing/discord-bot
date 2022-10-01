@@ -14,6 +14,7 @@ export class MemberService {
         await this.guilsService.guild.members.search({
           query,
           limit: 1,
+          cache: false,
         })
       ).first();
 
