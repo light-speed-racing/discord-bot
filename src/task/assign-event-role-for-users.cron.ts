@@ -4,7 +4,7 @@ import { MemberService } from '../common/member.service';
 import { RoleService } from '../common/role.services';
 import { championships } from '../championships';
 import { SimgridService } from '../common/simgrid.service';
-import { LoggingChannelService } from 'src/common/logging-channel.service';
+import { LoggingChannelService } from '../common/logging-channel.service';
 import { Formatters } from 'discord.js';
 
 @Injectable()
