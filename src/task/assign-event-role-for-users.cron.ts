@@ -41,11 +41,6 @@ export class AssignEventRoleForUsers {
                 name ?? roleName
               }`,
             );
-            this.loggingChannel.send(
-              `Member ${username} (${row['real name']}) not found for ${
-                name ?? roleName
-              }`,
-            );
             return;
           }
 
