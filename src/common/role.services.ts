@@ -11,7 +11,10 @@ export class RoleService {
   async has(member: GuildMember, rolename: string): Promise<boolean> {
     const role = await this.findByName(rolename);
     try {
-      return (await member.fetch(true)).roles.cache.has(role?.id);
+      if (!role) {
+        return false;
+      }
+      return (await member.fetch(true)).roles.cache.has(role.id);
     } catch (error) {
       this.logger.error('has: Could not fetch role of members', {
         member,
