@@ -21,12 +21,12 @@ export class AssignEventRoleForUsers {
   @Cron(CronExpression.EVERY_5_MINUTES)
   async handleCron() {
     this.logger.debug('Running task: `Assign role to user for simgrid events`');
-    this.loggingChannel.send(
-      'Running task: `Assign role to user for simgrid events`',
-    );
+    // this.loggingChannel.send(
+    //   'Running task: `Assign role to user for simgrid events`',
+    // );
     for (const { id, name, role: roleName, driverSwap } of championships) {
       this.logger.debug(`Updating roles for ${id} ${name ?? roleName}`);
-      this.loggingChannel.send(`Updating roles for ${id} ${name ?? roleName}`);
+      // this.loggingChannel.send(`Updating roles for ${id} ${name ?? roleName}`);
       const csv = await this.sgService.driversOf(id, driverSwap);
 
       try {
@@ -59,9 +59,9 @@ export class AssignEventRoleForUsers {
           this.logger.debug(
             `${role.name} was assigned to ${user.username ?? username}`,
           );
-          this.loggingChannel.send(
-            `${role.name} was assigned to ${user.username ?? username}`,
-          );
+          // this.loggingChannel.send(
+          //   `${role.name} was assigned to ${user.username ?? username}`,
+          // );
         });
       } catch (error) {
         this.logger.error(error);
