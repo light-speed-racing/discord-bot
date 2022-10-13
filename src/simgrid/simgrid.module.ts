@@ -1,8 +1,5 @@
 import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
-import { LoggingChannelService } from '../common/logging-channel.service';
-import { MemberService } from '../common/member.service';
-import { RoleService } from '../common/role.services';
 import { SimgridService } from '../common/simgrid.service';
 import { SimgridCommand } from './simgrid.commands';
 import { CalendarSubCommand } from './sub-commands/calendar.sub-commands';
@@ -15,9 +12,6 @@ import { ProfileSubCommand } from './sub-commands/profile.sub-commands';
     ProfileSubCommand,
     CalendarSubCommand,
     SimgridService,
-    RoleService,
-    MemberService,
-    LoggingChannelService,
   ],
   exports: [SimgridService],
 })
