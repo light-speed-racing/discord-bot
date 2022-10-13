@@ -9,10 +9,8 @@ import {
   UsePipes,
 } from '@discord-nestjs/core';
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Client, UserMention } from 'discord.js';
-import { GuildService } from '../../common/guild.services';
-import { Config } from '../../config/config.types';
+import { GuildService } from 'src/common/guild.service';
 import { CommandValidationFilter } from '../../filters/command-validation.filter';
 
 class GreetDto {
@@ -34,17 +32,14 @@ class GreetDto {
 export class GreetCommand implements DiscordTransformedCommand<GreetDto> {
   private readonly logger = new Logger(GreetCommand.name);
 
-  constructor(
-    @InjectDiscordClient() private readonly client: Client,
-    private readonly config: ConfigService<Config>,
-    private readonly guildService: GuildService,
-  ) {}
+  constructor(@InjectDiscordClient() private readonly client: Client) {}
 
   async handler(@Payload() { user }: GreetDto): Promise<void> {
     this.logger.debug(`Greeting ${user} from the command`);
 
     const [id] = user.match(/\d+/g);
-    const userToGreet = this.guildService.guild.members.cache.get(id);
+
+    const userToGreet = (await GuildService.Members()).cache.get(id);
 
     if (!userToGreet) {
       return;
