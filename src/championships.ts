@@ -16,10 +16,9 @@ export const championships: ReadonlyArray<Championship> = [
   { id: 2023, role: 'Züper Zundayz' },
   { id: 1266, role: 'Endurance S1', driverSwap: true },
   { id: 1449, role: 'Midweek League S2' },
-  { id: 1749, role: 'One off - Fill the pool' },
-  { id: 1449, role: 'One off - Running Sushi at Suzuka' },
-  { id: 1449, role: 'Endurance - 12h at Spa', driverSwap: true },
+  { id: 1746, role: 'One off - Fill the pool' },
+  { id: 1917, role: 'One off - Running Sushi at Suzuka' },
+  { id: 1746, role: 'Endurance - 12h at Spa', driverSwap: true },
   { id: 2014, role: 'Kyalami 1000k', driverSwap: true },
-  { id: 2012, role: 'Trackday - Silverstone' },
   { id: 2084, role: 'Versus Thursdays' },
 ];
