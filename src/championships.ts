@@ -22,4 +22,5 @@ export const championships: ReadonlyArray<Championship> = [
   { id: 2084, role: 'Versus Thursdays' },
   { id: 2272, role: 'Eco Lovers Spa Day' },
   { id: 2332, role: 'Winter Challenge' },
+  { id: 2373, role: 'Mega Grid - Watkins Glen' },
 ];
