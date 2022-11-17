@@ -38,7 +38,7 @@
     "isomorphic-fetch": "^3.0.0",
     "lodash.sample": "^4.2.1",
     "moment": "^2.29.4",
-    "moment-timezone": "^0.5.38",
+    "moment-timezone": "^0.5.39",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.7"
