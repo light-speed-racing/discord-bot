@@ -17,6 +17,8 @@ export class OnUserJoinEvent {
   async main({ user, guild, client }: GuildMember) {
     this.logger.debug(`${user.username ?? user.tag} just joined`);
 
+    return 
+    /**
     const {
       channels: { requestARole, introduceYourSelf, welcome },
     } = this.config.get<DiscordConfig>('discord');
@@ -44,8 +46,10 @@ export class OnUserJoinEvent {
       const c = (await client.channels.fetch(welcome)) as TextChannel;
       await c.send(message);
     }, 30000);
+     */
   }
 
+  /**
   private title({ id }: User) {
     const items = [
       `${Formatters.userMention(id)} has just joined`,
@@ -62,4 +66,5 @@ export class OnUserJoinEvent {
 
     return items[Math.floor(Math.random() * items.length)];
   }
+  */
 }
