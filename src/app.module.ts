@@ -4,10 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Client, Intents } from 'discord.js';
 import { HelpModule } from './help/help.module';
 import { JokeModule } from './joke/joke.module';
-import { SteerlockModule } from './steerlock/steerlock.module';
-import { SimgridModule } from './simgrid/simgrid.module';
 import { DiscordEventModule } from './discord-event/discord-event.module';
-import { UtilsModule } from './utils/utils.module';
 import baseConfig from './config/base.config';
 import discordConfig, { DiscordConfig } from './config/discord.config';
 import simgridConfig from './config/simgrid.config';
@@ -53,10 +50,7 @@ import { TaskModule } from './task/task.module';
     ScheduleModule.forRoot(),
     HelpModule,
     JokeModule,
-    SteerlockModule,
-    SimgridModule,
     DiscordEventModule,
-    UtilsModule,
     FuelModule,
     TaskModule,
   ],
