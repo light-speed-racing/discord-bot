@@ -8,11 +8,6 @@ import { SimgridModule } from '../simgrid/simgrid.module';
 
 @Module({
   imports: [DiscordModule.forFeature(), SimgridModule],
-  providers: [
-    RoleService,
-    GuildService,
-    MemberService,
-    LoggingChannelService,
-  ],
+  providers: [RoleService, GuildService, MemberService, LoggingChannelService],
 })
 export class TaskModule {}
