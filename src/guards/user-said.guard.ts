@@ -11,8 +11,6 @@ export class UserSaidGuard implements DiscordGuard {
 
   @UseGuards(NotBotGuard)
   canActive(event: 'messageCreate', [message]: [Message]): boolean {
-    return this.words.some((word) =>
-      message.content.toLowerCase().includes(word),
-    );
+    return this.words.some((word) => message.content.toLowerCase().includes(word));
   }
 }
