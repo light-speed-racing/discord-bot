@@ -103,8 +103,8 @@ export class FuelCommand {
       embeds: [
         new EmbedBuilder()
           .setTimestamp()
-          .setAuthor({ name: this.client.user.tag })
-          .setFooter({ text: this.client.user.tag })
+          .setAuthor({ name: this.client.user?.tag ?? '' })
+          .setFooter({ text: this.client.user?.tag ?? '' })
           .setTitle('Fuel calculation')
           .addFields([
             { name: 'Race time', value: `${duration.value} min`, inline: true },

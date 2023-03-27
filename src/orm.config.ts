@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import { join } from 'path';
 
 export default new DataSource({
   type: 'postgres',
@@ -8,6 +7,6 @@ export default new DataSource({
   username: 'postgres',
   password: 'postgres',
   database: 'discord-bot',
-  entities: [join(__dirname, 'src/**/*.entity.{ts,js}')],
-  migrations: [join(__dirname, 'src/database/migrations/*.{ts,js}')],
+  entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/database/migrations/*.js'],
 });

@@ -20,9 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "typeorm": "ts-node ./node_modules/typeorm/cli",
-    "typeorm:migrate": "typeorm migration:run -d ./orm.config.ts",
-    "typeorm:make": "sh -c 'yarn typeorm -d ./orm.config.ts migration:generate ./src/database/migrations/${0} --pretty'",
+    "typeorm": "yarn build && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:migrate": "yarn typeorm migration:run -d ./dist/orm.config.js",
+    "typeorm:make": "sh -c 'yarn typeorm -d dist/orm.config.js migration:generate ./src/database/migrations/${0} --pretty'",
     "typeorm:make:empty": "sh -c 'yarn typeorm migration:create ./src/database/migrations/${0}'",
     "typeorm:revert": "yarn typeorm -d ./orm.config.ts migration:revert"
   },

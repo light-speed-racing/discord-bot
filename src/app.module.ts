@@ -11,9 +11,7 @@ import { DiscordConfigService } from './discord-config.service';
   imports: [
     ConfigModule,
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
-    TypeOrmModule.forRootAsync({
-      useClass: TypeOrmConfigService,
-    }),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     JokeModule,
     FuelModule,
   ],
