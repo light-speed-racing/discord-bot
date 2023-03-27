@@ -1,6 +1,5 @@
 import { DiscordModule } from '@discord-nestjs/core';
 import discordModals from 'discord-modals';
-import { DiscordConfigService } from './common/discord-config.service';
 import { Client } from 'discord.js';
 import { Module } from '@nestjs/common';
 import { HelpModule } from './help/help.module';
@@ -9,6 +8,7 @@ import { FuelModule } from './fuel/fuel.module';
 import { ConfigModule } from './config/config.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
+import { DiscordConfigService } from './discord-config.service';
 
 @Module({
   imports: [
