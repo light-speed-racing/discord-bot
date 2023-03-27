@@ -1,6 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { Calculate } from './calculate.type';
-import { CalculationResult } from './calculation.result.type';
+
+export type Calculate = {
+  raceTime: number;
+  fuelPerLap: number;
+  lapTime: string;
+  safeLaps: number;
+};
+
+export type CalculationResult = {
+  laps: number;
+  fuel: number;
+  fuelPerLap: number;
+  safeLaps: number;
+  safeFuelLiter: number;
+};
 
 @Injectable()
 export class FuelService {

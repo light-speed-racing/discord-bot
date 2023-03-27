@@ -1,6 +1,6 @@
 import { DiscordModuleOption, DiscordOptionsFactory } from '@discord-nestjs/core';
 import { Injectable } from '@nestjs/common';
-import { Intents } from 'discord.js';
+import { GatewayIntentBits } from 'discord.js';
 import { RootConfig } from 'src/config/config';
 
 @Injectable()
@@ -12,10 +12,10 @@ export class DiscordConfigService implements DiscordOptionsFactory {
       token: this.config.discord.token,
       discordClientOptions: {
         intents: [
-          Intents.FLAGS.GUILDS,
-          Intents.FLAGS.GUILD_MEMBERS,
-          Intents.FLAGS.GUILD_MESSAGES,
-          Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+          GatewayIntentBits.Guilds,
+          GatewayIntentBits.GuildMembers,
+          GatewayIntentBits.GuildMessages,
+          GatewayIntentBits.GuildEmojisAndStickers,
         ],
       },
       registerCommandOptions: [{ forGuild: this.config.discord.guildId }],
