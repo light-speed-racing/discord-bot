@@ -6,6 +6,7 @@ import { ConfigModule } from './config/config.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
 import { DiscordConfigService } from './discord-config.service';
+import { HotlapModule } from './hotlap/hotlap.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DiscordConfigService } from './discord-config.service';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     JokeModule,
     FuelModule,
+    HotlapModule,
   ],
 })
 export class AppModule {}
