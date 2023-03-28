@@ -1,6 +1,6 @@
 import { EntityOf } from 'src/shared';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Driver } from './driver.entity';
+import { Driver } from '../driver/driver.entity';
 
 @Entity('hotlaps')
 export class Hotlap {
@@ -16,9 +16,6 @@ export class Hotlap {
 
   @Column({ array: true, type: 'simple-array' })
   laptimes: Array<string>;
-
-  @Column()
-  driverId: string;
 
   @ManyToOne(() => Driver, (driver) => driver.hotlaps)
   driver: Driver;

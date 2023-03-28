@@ -1,13 +1,6 @@
 import { EntityOf } from 'src/shared';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Hotlap } from './hotlap.entity';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Hotlap } from '../hotlap/hotlap.entity';
 
 @Entity('drivers')
 export class Driver {
@@ -24,8 +17,14 @@ export class Driver {
   @Column({ nullable: true })
   discordId?: string;
 
+  @Column({ nullable: true })
+  firstName?: string;
+
+  @Column({ nullable: true })
+  lastName?: string;
+
   @OneToMany(() => Hotlap, (hotlap) => hotlap.driver)
-  hotlaps: Array<Hotlap>;
+  hotlaps?: Array<Hotlap>;
 
   @CreateDateColumn()
   createdAt: Date;

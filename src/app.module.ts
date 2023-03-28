@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
 import { DiscordConfigService } from './discord-config.service';
 import { HotlapModule } from './hotlap/hotlap.module';
+import { DriverModule } from './driver/driver.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { HotlapModule } from './hotlap/hotlap.module';
     JokeModule,
     FuelModule,
     HotlapModule,
+    DriverModule,
   ],
 })
 export class AppModule {}

@@ -31,7 +31,7 @@ export class FuelCommand {
   ) {}
 
   @Handler()
-  async onRegisterCommand(interaction: CommandInteraction): Promise<void> {
+  async handle(interaction: CommandInteraction): Promise<void> {
     const modal = new ModalBuilder().setTitle('Fuel calculation').setCustomId(this.modalId);
 
     const durationInput = new TextInputBuilder()
