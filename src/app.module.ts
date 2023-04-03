@@ -5,8 +5,9 @@ import { DiscordConfigService } from './discord-config.service';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
 import { ConfigModule } from './config/config.module';
 import { FuelModule } from './fuel/fuel.module';
-import { HotlapModule } from './hotlap/hotlap.module';
-import { DriverModule } from './driver/driver.module';
+import { JokeModule } from './joke/joke.module';
+// import { HotlapModule } from './hotlap/hotlap.module';
+// import { DriverModule } from './driver/driver.module';
 
 @Module({
   imports: [
@@ -14,8 +15,9 @@ import { DriverModule } from './driver/driver.module';
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     FuelModule,
-    HotlapModule,
-    DriverModule,
+    JokeModule,
+    // HotlapModule,
+    // DriverModule,
   ],
 })
 export class AppModule {}
