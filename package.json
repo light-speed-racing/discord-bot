@@ -1,0 +1,78 @@
+{
+  "name": "light-speed-discord-bot",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "typeorm": "yarn build && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:migrate": "yarn typeorm migration:run -d ./dist/orm.config.js",
+    "typeorm:make": "sh -c 'yarn typeorm -d dist/orm.config.js migration:generate ./src/database/migrations/${0} --pretty'",
+    "typeorm:make:empty": "sh -c 'yarn typeorm migration:create ./src/database/migrations/${0}'",
+    "typeorm:revert": "yarn typeorm -d ./orm.config.ts migration:revert"
+  },
+  "dependencies": {
+    "@discord-nestjs/common": "^5.2.3",
+    "@discord-nestjs/core": "^5.3.5",
+    "@discordjs/builders": "1.5.0",
+    "@nestjs/common": "9.3.10",
+    "@nestjs/core": "9.3.10",
+    "@nestjs/typeorm": "^9.0.1",
+    "axios": "^1.3.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "discord.js": "14.8.0",
+    "nest-typed-config": "^2.5.2",
+    "pg": "^8.10.0",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "4.4.0",
+    "rxjs": "7.8.0",
+    "typeorm": "^0.3.12"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "9.3.0",
+    "@nestjs/schematics": "9.0.4",
+    "@types/node": "18.15.3",
+    "@typescript-eslint/eslint-plugin": "5.56.0",
+    "@typescript-eslint/parser": "5.56.0",
+    "eslint": "8.36.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.8.5",
+    "ts-loader": "9.4.2",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.1.2",
+    "typescript": "5.0.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

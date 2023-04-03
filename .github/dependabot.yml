@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+      - javascript
+    commit-message:
+      prefix: ⬆️
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+      - action
+    commit-message:
+      prefix: 👷
