@@ -21,9 +21,9 @@
     "docker:down": "docker-compose down",
     "typeorm": "yarn build && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:migrate": "yarn typeorm migration:run -d ./dist/orm.config.js",
-    "typeorm:make": "sh -c 'yarn typeorm -d dist/orm.config.js migration:generate ./src/database/migrations/${0} --pretty'",
+    "typeorm:make": "sh -c 'yarn typeorm -d ./dist/orm.config.js migration:generate ./src/database/migrations/${0} --pretty'",
     "typeorm:make:empty": "sh -c 'yarn typeorm migration:create ./src/database/migrations/${0}'",
-    "typeorm:revert": "yarn typeorm -d ./orm.config.ts migration:revert"
+    "typeorm:revert": "yarn typeorm -d ./dist/orm.config.js migration:revert"
   },
   "dependencies": {
     "@discord-nestjs/common": "^5.2.3",

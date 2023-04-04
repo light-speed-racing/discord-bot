@@ -1,6 +1,6 @@
 import { Command, UseGroup } from '@discord-nestjs/core';
 import { MakeSubcommand } from './create-server.sub-command';
-import { DeleteServerSubcommand } from './delete-server.sub-command';
+import { UpdateServerSubcommand } from './update-server.sub-command';
 import { FetchResultsSubcommand } from './update-results.sub-command';
 
 @Command({
@@ -10,7 +10,7 @@ import { FetchResultsSubcommand } from './update-results.sub-command';
     UseGroup(
       { name: 'server', description: 'Handle a hotlap server' },
       MakeSubcommand,
-      DeleteServerSubcommand,
+      UpdateServerSubcommand,
     ),
     UseGroup({ name: 'results', description: 'Handle hotlap results' }, FetchResultsSubcommand),
   ],

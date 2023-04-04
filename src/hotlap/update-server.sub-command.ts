@@ -3,13 +3,13 @@ import { Logger } from '@nestjs/common';
 
 @SubCommand({
   name: 'update',
-  description: 'Update yourself as a driver',
+  description: 'Update a hotlap server',
 })
-export class UpdateDriverSubcommand {
-  private readonly logger = new Logger(UpdateDriverSubcommand.name);
+export class UpdateServerSubcommand {
+  private readonly logger = new Logger(UpdateServerSubcommand.name);
 
   @Handler()
   async onRegisterCommand(): Promise<string> {
-    return 'UpdateDriverSubcommand';
+    return 'UpdateServerSubcommand';
   }
 }

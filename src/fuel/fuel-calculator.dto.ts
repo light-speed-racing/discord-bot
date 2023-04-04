@@ -1,16 +1,15 @@
-import { Field } from '@discord-nestjs/core';
-import { TextInputModalData } from 'discord.js';
+import { TextInputValue } from '@discord-nestjs/core';
 
 export class FuelCalculatorDto {
-  @Field('duration')
-  duration: TextInputModalData;
+  @TextInputValue('duration')
+  duration: string;
 
-  @Field('lapTime')
-  lapTime: TextInputModalData;
+  @TextInputValue('lapTime')
+  lapTime: string;
 
-  @Field('fuelUsage')
-  fuelUsage: TextInputModalData;
+  @TextInputValue('fuelUsage')
+  fuelUsage: string;
 
-  @Field('safeLaps')
-  safeLaps: TextInputModalData;
+  @TextInputValue('safeLaps')
+  safeLaps: string;
 }

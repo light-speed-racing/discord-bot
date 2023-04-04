@@ -1,22 +1,14 @@
 import { EntityOf } from 'src/shared';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 @Entity('drivers')
+@Unique(['steamId', 'discordId'])
 export class Driver {
   constructor(data?: EntityOf<Driver>) {
     Object.assign(this, data);
   }
 
-  @PrimaryGeneratedColumn()
-  id: string;
-
-  @Column()
+  @PrimaryColumn()
   steamId: string;
 
   @Column({ nullable: true })
@@ -28,9 +20,12 @@ export class Driver {
   @Column({ nullable: true })
   lastName?: string;
 
-  @CreateDateColumn()
+  @Column('integer', { nullable: true })
+  preferedDriverNumber?: number;
+
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   updatedAt: Date;
 }

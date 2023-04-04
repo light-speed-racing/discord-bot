@@ -30,46 +30,42 @@ export class FuelCommand {
     private readonly service: FuelService,
   ) {}
 
-  @Handler()
-  async onRegisterCommand(interaction: CommandInteraction): Promise<void> {
-    const modal = new ModalBuilder().setTitle('Fuel calculation').setCustomId(this.modalId);
-
-    const durationInput = new TextInputBuilder()
-      .setCustomId('duration')
+  fields = [
+    new TextInputBuilder()
+      // .setCustomId('duration')
       .setLabel('Race length in minutes')
       .setStyle(TextInputStyle.Short)
       .setMinLength(2)
       .setMaxLength(3)
-      .setPlaceholder('30, 60, 90, 120')
-      .setRequired(true);
-
-    const lapTimeInput = new TextInputBuilder()
-      .setCustomId('lapTime')
+      .setPlaceholder('30, 60, 90, 120'),
+    new TextInputBuilder()
+      // .setCustomId('lapTime')
       .setLabel('Average lap time (M:SS.MS)')
       .setStyle(TextInputStyle.Short)
       .setMinLength(3)
       .setMaxLength(8)
-      .setPlaceholder('1:42.4')
-      .setRequired(true);
-
-    const fuelUsageInput = new TextInputBuilder()
-      .setCustomId('fuelUsage')
+      .setPlaceholder('1:42.4'),
+    new TextInputBuilder()
+      // .setCustomId('fuelUsage')
       .setLabel('Fuel usage (Liters pr. lap)')
       .setStyle(TextInputStyle.Short)
       .setMinLength(3)
       .setMaxLength(4)
-      .setPlaceholder('3.2')
-      .setRequired(true);
-
-    const safeLapsInput = new TextInputBuilder()
-      .setCustomId('safeLaps')
+      .setPlaceholder('3.2'),
+    new TextInputBuilder()
+      // .setCustomId('saf
+      // eLaps')
       .setLabel('Reserve laps (For safe fuel)')
       .setStyle(TextInputStyle.Short)
       .setPlaceholder('3')
-      .setValue('3')
-      .setRequired(true);
+      .setValue('3'),
+  ];
 
-    const rows = [durationInput, lapTimeInput, fuelUsageInput, safeLapsInput].map((component) =>
+  @Handler()
+  async onRegisterCommand(interaction: CommandInteraction): Promise<void> {
+    const modal = new ModalBuilder().setTitle('Fuel calculation').setCustomId(this.modalId);
+
+    const rows = this.fields.map((component) =>
       new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(component),
     );
 
@@ -92,12 +88,12 @@ export class FuelCommand {
 
     if (modal.customId !== this.modalId) return;
 
-    const res = this.service.calculate({
-      raceTime: Number(duration.value),
-      lapTime: lapTime.value.replace(/,/g, '.'),
-      safeLaps: Number(safeLaps.value),
-      fuelPerLap: Number(fuelUsage.value),
-    });
+    // const res = this.service.calculate({
+    //   raceTime: Number(duration.value),
+    //   lapTime: lapTime.value.replace(/,/g, '.'),
+    //   safeLaps: Number(safeLaps.value),
+    //   fuelPerLap: Number(fuelUsage.value),
+    // });
 
     await modal.reply({
       embeds: [
@@ -105,23 +101,23 @@ export class FuelCommand {
           .setTimestamp()
           .setAuthor({ name: this.client.user?.tag ?? '' })
           .setFooter({ text: this.client.user?.tag ?? '' })
-          .setTitle('Fuel calculation')
-          .addFields([
-            { name: 'Race time', value: `${duration.value} min`, inline: true },
-            { name: 'Avg. lap time', value: `${duration.value} min`, inline: true },
-            { name: 'Fuel per lap', value: `${fuelUsage.value} L`, inline: true },
-            { name: 'Est. no. of laps', value: `${res.laps}`, inline: true },
-            { name: 'Min. fuel', value: `${res.fuel} L`, inline: true },
-            {
-              name: `Safe laps`,
-              value: `${res.safeFuelLiter} L (${res.safeLaps} inline: laps)`,
-            },
-            {
-              name: 'Est. fuel for race',
-              value: `${res.fuel} L`,
-              inline: true,
-            },
-          ]),
+          .setTitle('Fuel calculation'),
+        // .addFields([
+        //   // { name: 'Race time', value: `${duration.value} min`, inline: true },
+        //   // { name: 'Avg. lap time', value: `${duration.value} min`, inline: true },
+        //   // { name: 'Fuel per lap', value: `${fuelUsage.value} L`, inline: true },
+        //   // { name: 'Est. no. of laps', value: `${res.laps}`, inline: true },
+        //   // { name: 'Min. fuel', value: `${res.fuel} L`, inline: true },
+        //   {
+        //     name: `Safe laps`,
+        //     value: `${res.safeFuelLiter} L (${res.safeLaps} inline: laps)`,
+        //   },
+        //   {
+        //     name: 'Est. fuel for race',
+        //     value: `${res.fuel} L`,
+        //     inline: true,
+        //   },
+        // ]),
       ],
     });
   }
