@@ -1,5 +1,14 @@
+import { Lap } from 'src/hotlap/lap.entity';
 import { EntityOf } from 'src/shared';
-import { Column, CreateDateColumn, Entity, PrimaryColumn, Unique, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+  Unique,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('drivers')
 @Unique(['steamId', 'discordId'])
@@ -22,6 +31,9 @@ export class Driver {
 
   @Column('integer', { nullable: true })
   preferedDriverNumber?: number;
+
+  @OneToMany(() => Lap, (lap) => lap.driver)
+  laps: Promise<Array<Lap>>;
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt: Date;

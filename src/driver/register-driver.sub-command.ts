@@ -11,7 +11,7 @@ import {
   ModalActionRowComponentBuilder,
 } from 'discord.js';
 import { IsModalInteractionGuard } from 'src/guard/is-modal-interaction.guard';
-import { CreateDriverDto } from './create-driver.dto';
+import { RegisterDriverDto } from './register-driver.dto';
 import { Driver } from './driver.entity';
 import { DriverService } from './driver.service';
 import { userMention } from 'discord.js';
@@ -70,7 +70,7 @@ export class RegisterDriverSubcommand {
   @On('interactionCreate')
   @UseGuards(IsModalInteractionGuard)
   async onModuleSubmit(
-    @IA(ModalFieldsTransformPipe) dto: CreateDriverDto,
+    @IA(ModalFieldsTransformPipe) dto: RegisterDriverDto,
     @EventParams() eventArgs: ClientEvents['interactionCreate'],
   ): Promise<void> {
     const [modal] = eventArgs;
