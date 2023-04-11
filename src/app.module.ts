@@ -8,6 +8,7 @@ import { ConfigModule } from './config/config.module';
 import { JokeModule } from './joke/joke.module';
 import { HotlapModule } from './hotlap/hotlap.module';
 import { DriverModule } from './driver/driver.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { DriverModule } from './driver/driver.module';
     JokeModule,
     HotlapModule,
     DriverModule,
+    CommonModule,
   ],
   providers: [],
 })
