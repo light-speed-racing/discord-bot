@@ -2,6 +2,7 @@ import { EntityOf } from 'src/shared';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -27,8 +28,14 @@ export class Hotlap {
   @Column({ nullable: true })
   entrylistUrl?: string;
 
-  @Column({ nullable: true })
-  resultFileUrl?: string;
+  @Column('jsonb', { nullable: true })
+  openGamePanelData?: {
+    url: string;
+    token: string;
+    ip: string;
+    port: string;
+    path: string;
+  };
 
   @OneToMany(() => Lap, (laps) => laps.hotlap)
   laps: Promise<Array<Lap>>;
@@ -38,4 +45,7 @@ export class Hotlap {
 
   @UpdateDateColumn({ type: 'timestamp with time zone' })
   updatedAt: Date;
+
+  @DeleteDateColumn({ nullable: true, type: 'timestamp with time zone' })
+  deletedAt?: Date;
 }

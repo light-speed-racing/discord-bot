@@ -88,12 +88,12 @@ export class FuelCommand {
 
     if (modal.customId !== this.modalId) return;
 
-    // const res = this.service.calculate({
-    //   raceTime: Number(duration.value),
-    //   lapTime: lapTime.value.replace(/,/g, '.'),
-    //   safeLaps: Number(safeLaps.value),
-    //   fuelPerLap: Number(fuelUsage.value),
-    // });
+    const res = this.service.calculate({
+      raceTime: Number(duration),
+      lapTime: lapTime.replace(/,/g, '.'),
+      safeLaps: Number(safeLaps),
+      fuelPerLap: Number(fuelUsage),
+    });
 
     await modal.reply({
       embeds: [
@@ -101,23 +101,23 @@ export class FuelCommand {
           .setTimestamp()
           .setAuthor({ name: this.client.user?.tag ?? '' })
           .setFooter({ text: this.client.user?.tag ?? '' })
-          .setTitle('Fuel calculation'),
-        // .addFields([
-        //   // { name: 'Race time', value: `${duration.value} min`, inline: true },
-        //   // { name: 'Avg. lap time', value: `${duration.value} min`, inline: true },
-        //   // { name: 'Fuel per lap', value: `${fuelUsage.value} L`, inline: true },
-        //   // { name: 'Est. no. of laps', value: `${res.laps}`, inline: true },
-        //   // { name: 'Min. fuel', value: `${res.fuel} L`, inline: true },
-        //   {
-        //     name: `Safe laps`,
-        //     value: `${res.safeFuelLiter} L (${res.safeLaps} inline: laps)`,
-        //   },
-        //   {
-        //     name: 'Est. fuel for race',
-        //     value: `${res.fuel} L`,
-        //     inline: true,
-        //   },
-        // ]),
+          .setTitle('Fuel calculation')
+          .addFields([
+            { name: 'Race time', value: `${duration} min`, inline: true },
+            { name: 'Avg. lap time', value: `${duration} min`, inline: true },
+            { name: 'Fuel per lap', value: `${fuelUsage} L`, inline: true },
+            { name: 'Est. no. of laps', value: `${res.laps}`, inline: true },
+            { name: 'Min. fuel', value: `${res.fuel} L`, inline: true },
+            {
+              name: `Safe laps`,
+              value: `${res.safeFuelLiter} L (${res.safeLaps} inline: laps)`,
+            },
+            {
+              name: 'Est. fuel for race',
+              value: `${res.fuel} L`,
+              inline: true,
+            },
+          ]),
       ],
     });
   }

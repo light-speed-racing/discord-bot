@@ -1,13 +1,6 @@
 import { Driver } from 'src/driver/driver.entity';
 import { EntityOf } from 'src/shared';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Hotlap } from './hotlap.entity';
 import { LapJsonEntity } from './lap-json-entity.object';
 

@@ -8,14 +8,12 @@ import { ConfigModule } from './config/config.module';
 import { JokeModule } from './joke/joke.module';
 import { HotlapModule } from './hotlap/hotlap.module';
 import { DriverModule } from './driver/driver.module';
-import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
     ConfigModule,
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    CommonModule,
     // FuelModule,
     JokeModule,
     HotlapModule,

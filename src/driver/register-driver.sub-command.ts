@@ -36,15 +36,9 @@ export class RegisterDriverSubcommand {
       .setMinLength(17)
       .setMaxLength(17),
 
-    new TextInputBuilder()
-      .setCustomId('firstName')
-      .setLabel('First name')
-      .setStyle(TextInputStyle.Short),
+    new TextInputBuilder().setCustomId('firstName').setLabel('First name').setStyle(TextInputStyle.Short),
 
-    new TextInputBuilder()
-      .setCustomId('lastName')
-      .setLabel('Last name')
-      .setStyle(TextInputStyle.Short),
+    new TextInputBuilder().setCustomId('lastName').setLabel('Last name').setStyle(TextInputStyle.Short),
   ];
 
   @Handler()
@@ -52,23 +46,19 @@ export class RegisterDriverSubcommand {
     const entity = await this.service.findOneBy('discordId', user.id);
 
     if (entity) {
-      await reply(
-        `${entity.firstName} ${entity.lastName} (${userMention(user.id)}) is already registered`,
-      );
+      await reply(`${entity.firstName} ${entity.lastName} (${userMention(user.id)}) is already registered`);
       return;
     }
 
     this.modal.addComponents(
-      this.fields.map((component) =>
-        new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(component),
-      ),
+      this.fields.map((component) => new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(component)),
     );
 
     showModal(this.modal);
   }
 
   @On('interactionCreate')
-  @UseGuards(IsModalInteractionGuard)
+  @UseGuards(new IsModalInteractionGuard(RegisterDriverSubcommand.name))
   async onModuleSubmit(
     @IA(ModalFieldsTransformPipe) dto: RegisterDriverDto,
     @EventParams() eventArgs: ClientEvents['interactionCreate'],
@@ -81,9 +71,7 @@ export class RegisterDriverSubcommand {
 
     this.logger.log(`Modal ${modal.customId} submit`);
 
-    const entity = await this.service.createOrUpdate(
-      new Driver({ ...dto, discordId: modal.user.id }),
-    );
+    const entity = await this.service.createOrUpdate(new Driver({ ...dto, discordId: modal.user.id }));
 
     await modal.reply(`${userMention(modal.user.id)} (${entity.firstName}) has been registered`);
   }

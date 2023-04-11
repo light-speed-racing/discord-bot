@@ -1,0 +1,11 @@
+{
+    "eslint.format.enable": true,
+    "editor.formatOnSave": false,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.rulers": [
+        80,
+        120
+    ]
+}

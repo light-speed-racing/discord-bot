@@ -1,14 +1,6 @@
 import { Lap } from 'src/hotlap/lap.entity';
 import { EntityOf } from 'src/shared';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryColumn,
-  Unique,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 @Entity('drivers')
 @Unique(['steamId', 'discordId'])
