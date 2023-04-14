@@ -3,6 +3,10 @@ import { FindOptionsWhere, Repository } from 'typeorm';
 export abstract class GenericRepository<T> {
   constructor(private readonly repository: Repository<T>) {}
 
+  async all(): Promise<Array<T>> {
+    return await this.repository.find();
+  }
+
   async findOneBy(key: keyof T, value: string | number): Promise<T | null> {
     const entity = await this.repository.findOne({
       where: { [key]: value } as FindOptionsWhere<T>,

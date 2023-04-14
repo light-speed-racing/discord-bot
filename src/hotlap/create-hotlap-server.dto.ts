@@ -5,14 +5,5 @@ export class CreateHotlapServerDto {
   title: string;
 
   @TextInputValue()
-  ogpUrl: string;
-
-  @TextInputValue()
-  ogpToken: string;
-
-  @TextInputValue()
-  ogpIp: string;
-
-  @TextInputValue()
-  ogpPort: number;
+  entrylistUrl: string;
 }

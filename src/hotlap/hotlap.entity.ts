@@ -22,8 +22,8 @@ export class Hotlap {
   @Column({ nullable: true })
   title: string;
 
-  @Column()
-  track: string;
+  @Column({ nullable: true })
+  track?: string;
 
   @Column({ nullable: true })
   entrylistUrl?: string;
@@ -33,12 +33,11 @@ export class Hotlap {
     url: string;
     token: string;
     ip: string;
-    port: string;
-    path: string;
+    port: number;
   };
 
-  @OneToMany(() => Lap, (laps) => laps.hotlap)
-  laps: Promise<Array<Lap>>;
+  @OneToMany(() => Lap, (laps) => laps.hotlap, { nullable: true })
+  laps?: Promise<Array<Lap>>;
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt: Date;
