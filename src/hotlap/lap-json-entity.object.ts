@@ -25,31 +25,35 @@ type Timing = {
   lastSplitId: number;
 };
 
+export type LapJsonEntityCar = {
+  carId: number;
+  raceNumber: number;
+  carModel: number;
+  cupCategory: number;
+  carGroup: string;
+  teamName: string;
+  nationality: number;
+  carGuid: number;
+  teamGuid: number;
+  drivers: Array<Driver>;
+  currentDriver: Array<Driver>;
+  currentDriverIndex: number;
+  timing: Timing;
+  missingMandatoryPitstop: number;
+  driverTotalTimes: Array<number>;
+};
+
+export type LapJsonEntityLap = {
+  carId: number;
+  driverIndex: number;
+  laptime: number;
+  isValidForBest: boolean;
+  splits: [number, number, number];
+};
+
 export class LapJsonEntity {
-  car: {
-    carId: number;
-    raceNumber: number;
-    carModel: number;
-    cupCategory: number;
-    carGroup: string;
-    teamName: string;
-    nationality: number;
-    carGuid: number;
-    teamGuid: number;
-    drivers: Array<Driver>;
-    currentDriver: Array<Driver>;
-    currentDriverIndex: number;
-    timing: Timing;
-    missingMandatoryPitstop: number;
-    driverTotalTimes: Array<number>;
-  };
-  laps: Array<{
-    carId: number;
-    driverIndex: number;
-    laptime: number;
-    isValidForBest: boolean;
-    splits: [number, number, number];
-  }>;
+  car: LapJsonEntityCar;
+  laps: Array<LapJsonEntityLap>;
   penalties: Array<Penalty>;
   post_race_penalties: Array<Penalty>;
 }

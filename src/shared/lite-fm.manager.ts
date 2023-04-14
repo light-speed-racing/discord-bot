@@ -35,7 +35,7 @@ type OgpResultFile = {
     bestlap: number;
     bestSplits: [number, number, number];
     isWetSession: 1 | 0;
-    type: 1 | 0; // ????
+    type: 1 | 0;
     leaderBoardLines: Array<{
       car: {
         carId: number;
