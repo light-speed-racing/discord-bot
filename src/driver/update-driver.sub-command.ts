@@ -9,32 +9,49 @@ import {
   ClientEvents,
   ActionRowBuilder,
   ModalActionRowComponentBuilder,
+  userMention,
 } from 'discord.js';
 import { IsModalInteractionGuard } from 'src/guard/is-modal-interaction.guard';
-import { RegisterDto } from './register.dto';
 import { Driver } from './driver.entity';
 import { DriverService } from './driver.service';
-import { userMention } from 'discord.js';
+import { UpdateDriverDto } from './update-driver.dto';
 
 @SubCommand({
-  name: 'register',
-  description: 'Register yourself as a driver',
+  name: 'update',
+  description: 'Update your driver profile',
 })
-export class RegisterDriverSubCommand {
-  private readonly logger = new Logger(RegisterDriverSubCommand.name);
+export class UpdateDriverSubCommand {
+  private readonly logger = new Logger(UpdateDriverSubCommand.name);
   constructor(private readonly service: DriverService) {}
 
   @Handler()
   async register(interaction: CommandInteraction): Promise<void> {
     const entity = await this.service.findOneBy('id', interaction.user.id);
 
-    if (entity) {
-      await interaction.reply(
-        `${entity.firstName} ${entity.lastName} (${userMention(interaction.user.id)}) is already registered`,
-      );
+    if (!entity) {
+      await interaction.reply('You are not registered yet');
       return;
     }
-    const modal = new ModalBuilder().setTitle('Register yourself as driver').setCustomId(RegisterDriverSubCommand.name);
+    const modal = new ModalBuilder().setTitle('Update your driver profile').setCustomId(UpdateDriverSubCommand.name);
+    const firstName = new TextInputBuilder()
+      .setCustomId('firstName')
+      .setLabel('First name')
+      .setStyle(TextInputStyle.Short)
+      .setRequired(false);
+
+    if (entity.firstName) {
+      firstName.setValue(entity.firstName ?? '');
+    }
+
+    const lastName = new TextInputBuilder()
+      .setCustomId('lastName')
+      .setLabel('Last name')
+      .setStyle(TextInputStyle.Short)
+      .setRequired(false);
+
+    if (entity.lastName) {
+      lastName.setValue(entity.lastName ?? '');
+    }
 
     const fields = [
       new TextInputBuilder()
@@ -43,19 +60,10 @@ export class RegisterDriverSubCommand {
         .setStyle(TextInputStyle.Short)
         .setPlaceholder('Sxxxxxxxxxxxxxxxx')
         .setMinLength(17)
-        .setMaxLength(17),
-
-      new TextInputBuilder()
-        .setCustomId('firstName')
-        .setLabel('First name')
-        .setStyle(TextInputStyle.Short)
-        .setRequired(false),
-
-      new TextInputBuilder()
-        .setCustomId('lastName')
-        .setLabel('Last name')
-        .setStyle(TextInputStyle.Short)
-        .setRequired(false),
+        .setMaxLength(17)
+        .setValue(entity.steamId),
+      firstName,
+      lastName,
     ];
 
     modal.addComponents(
@@ -66,21 +74,21 @@ export class RegisterDriverSubCommand {
   }
 
   @On('interactionCreate')
-  @UseGuards(new IsModalInteractionGuard(RegisterDriverSubCommand.name))
+  @UseGuards(new IsModalInteractionGuard(UpdateDriverSubCommand.name))
   async onModuleSubmit(
-    @IA(ModalFieldsTransformPipe) dto: RegisterDto,
+    @IA(ModalFieldsTransformPipe) dto: UpdateDriverDto,
     @EventParams() eventArgs: ClientEvents['interactionCreate'],
   ): Promise<void> {
     const [modal] = eventArgs;
 
-    if (!modal.isModalSubmit() || modal.customId !== RegisterDriverSubCommand.name) {
+    if (!modal.isModalSubmit() || modal.customId !== UpdateDriverSubCommand.name) {
       return;
     }
 
     this.logger.log(`Modal ${modal.customId} submit`);
 
-    await this.service.createOrUpdate(new Driver({ ...dto, id: modal.user.id }));
-
-    await modal.reply(`${userMention(modal.user.id)} has been registered`);
+    await this.service.createOrUpdate(new Driver({ id: modal.user.id, ...dto }));
+    await modal.user.send('Your profile has been updated');
+    await modal.reply(`${userMention(modal.user.id)}s profile has been updated`);
   }
 }

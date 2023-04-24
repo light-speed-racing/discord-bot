@@ -1,21 +1,22 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class createDriversTable1680612760642 implements MigrationInterface {
-  name = 'createDriversTable1680612760642';
+export class createDriversTable1682353528672 implements MigrationInterface {
+  name = 'createDriversTable1682353528672';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
             CREATE TABLE "drivers" (
-                "steamId" character varying NOT NULL,
-                "discordId" character varying,
+                "id" character varying NOT NULL,
+                "steamId" character varying,
                 "firstName" character varying,
                 "lastName" character varying,
                 "preferedDriverNumber" integer,
                 "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
                 "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-                CONSTRAINT "UQ_7577021b0595458a213d5bdba6d" UNIQUE ("steamId", "discordId"),
-                CONSTRAINT "PK_4f930c8592b1f3ed8afe84e38c9" PRIMARY KEY ("steamId")
-            )
+                CONSTRAINT "UQ_4f930c8592b1f3ed8afe84e38c9" UNIQUE ("steamId"),
+                CONSTRAINT "PK_92ab3fb69e566d3eb0cae896047" PRIMARY KEY ("id")
+            );
+            COMMENT ON COLUMN "drivers"."id" IS 'The discord id of the member'
         `);
   }
 

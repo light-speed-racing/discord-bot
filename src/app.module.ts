@@ -6,7 +6,6 @@ import { TypeOrmConfigService } from './database/type-orm-configuration.service'
 import { ConfigModule } from './config/config.module';
 // import { FuelModule } from './fuel/fuel.module';
 import { JokeModule } from './joke/joke.module';
-import { HotlapModule } from './hotlap/hotlap.module';
 import { DriverModule } from './driver/driver.module';
 
 @Module({
@@ -16,7 +15,6 @@ import { DriverModule } from './driver/driver.module';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     // FuelModule,
     JokeModule,
-    HotlapModule,
     DriverModule,
   ],
   providers: [],

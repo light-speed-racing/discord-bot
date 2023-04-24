@@ -1,6 +1,6 @@
 import { TextInputValue } from '@discord-nestjs/core';
 
-export class RegisterDriverDto {
+export class RegisterDto {
   @TextInputValue()
   steamId: string;
 

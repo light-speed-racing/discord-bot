@@ -1,9 +1,10 @@
-import { Command, UseGroup } from '@discord-nestjs/core';
-import { RegisterDriverSubcommand } from './register-driver.sub-command';
+import { Command } from '@discord-nestjs/core';
+import { RegisterDriverSubCommand } from './register-driver.sub-command';
+import { UpdateDriverSubCommand } from './update-driver.sub-command';
 
 @Command({
   name: 'driver',
-  description: 'Driver stuff?!=',
-  include: [UseGroup({ name: 'driver', description: 'Handle drivers' }), RegisterDriverSubcommand],
+  description: 'Driver stuff?!',
+  include: [RegisterDriverSubCommand, UpdateDriverSubCommand],
 })
 export class DriverCommand {}

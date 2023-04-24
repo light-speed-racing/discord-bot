@@ -21,7 +21,7 @@ export class DiscordConfigService implements DiscordOptionsFactory {
       registerCommandOptions: [
         {
           forGuild: this.config.discord.guildId,
-          removeCommandsBefore: true,
+          // removeCommandsBefore: true,
         },
       ],
     };

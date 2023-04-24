@@ -8,11 +8,7 @@ export abstract class GenericRepository<T> {
       where: { [key]: value } as FindOptionsWhere<T>,
     });
 
-    if (!entity) {
-      return null;
-    }
-
-    return entity;
+    return entity ?? null;
   }
 
   async createOrUpdate(input: T): Promise<T> {
