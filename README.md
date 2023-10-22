@@ -13,7 +13,7 @@ Start by copying the `template.env.json` to `.evn.json` and set update your own 
 
 In your terminal type
 ```sh
-  mv template.env.json env.json
+  mv template.env.json .env.json
 ```
 **Note:** Make sure to update the discord token and discord guild id to your development discord server.
 

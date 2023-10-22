@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import { IsDefined, IsNumber, IsString } from 'class-validator';
 import { DatabaseConfig } from './database.config';
 import { DiscordConfig } from './discord.config';
+import { GiphyConfig } from './giphy.config';
 
 export class RootConfig {
   @IsString()
@@ -17,4 +18,8 @@ export class RootConfig {
   @IsDefined()
   @Type(() => DatabaseConfig)
   readonly database: DatabaseConfig;
+
+  @IsDefined()
+  @Type(() => GiphyConfig)
+  readonly giphy: GiphyConfig;
 }
