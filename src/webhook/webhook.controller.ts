@@ -16,9 +16,10 @@ export class WebhookController {
       throw new UnprocessableEntityException();
     }
 
-    const { entrylistUrl } = await this.customFields.for(homedir);
-    const entrylist = await this.entrylist.fetch(entrylistUrl);
+    const { custom_fields } = await this.customFields.for(homedir);
 
-    return entrylist;
+    const entrylist = await this.entrylist.fetch(custom_fields.entrylist_url);
+
+    return entrylist ?? EntrylistService.emptyEntrylist;
   }
 }

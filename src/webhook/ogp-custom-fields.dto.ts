@@ -3,13 +3,13 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class OgpCustomFieldsDto {
   @IsString()
   @IsOptional()
-  entrylistUrl?: string;
+  entrylist_url?: string;
 
   @IsOptional()
   @IsNumber()
-  channelId?: number;
+  channel_id?: number;
 
   @IsOptional()
   @IsNumber()
-  roleId?: number;
+  role_id?: number;
 }

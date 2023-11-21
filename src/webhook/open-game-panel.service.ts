@@ -1,14 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { OgpCustomFieldsDto } from './ogp-custom-fields.dto';
+import { ServerHomes } from 'src/database/server-homes.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CustomFieldsService {
-  async for(homedir: string): Promise<OgpCustomFieldsDto> {
-    console.log(homedir);
+  constructor(
+    @InjectRepository(ServerHomes)
+    private readonly repository: Repository<ServerHomes>,
+  ) {}
 
-    return {
-      // @TODO: This should call the database and return the entity
-      entrylistUrl: 'https://www.thesimgrid.com/admin/championships/5245/registrations.json',
-    };
+  async for(home_path: string): Promise<ServerHomes> {
+    const entity = await this.repository.findOneByOrFail({ home_path });
+
+    return entity;
   }
 }

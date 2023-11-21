@@ -8,19 +8,19 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: 'postgres',
+      type: 'mysql',
       host: this.config.database.host,
       port: this.config.database.port,
       database: this.config.database.databaseName,
       username: this.config.database.username,
       password: this.config.database.password,
       entities: ['dist/src/**/*.entity.js'],
-      migrations: ['dist/src/database/migrations/*.js'],
+      // migrations: ['dist/src/database/migrations/*.js'],
       autoLoadEntities: true,
-      migrationsRun: this.config.env === 'development',
-      migrationsTransactionMode: 'each',
-      schema: 'public',
-      synchronize: false,
+      // migrationsRun: this.config.env === 'development',
+      // migrationsTransactionMode: 'each',
+      // schema: 'public',
+      // synchronize: false,
       logging: true,
     };
   }

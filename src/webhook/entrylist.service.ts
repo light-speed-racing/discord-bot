@@ -10,22 +10,20 @@ export class EntrylistService {
 
   constructor(private readonly httpService: HttpService) {}
 
+  static emptyEntrylist: Entrylist = {
+    entries: [],
+    forceEntrylist: 0,
+  };
+
   async fetch(entrylistUrl: string): Promise<Entrylist> {
     const { data } = await firstValueFrom(
       this.httpService.get<Entrylist>(entrylistUrl).pipe(
         catchError((error: AxiosError) => {
-          this.logger.error(`Could not fetch entrylist for ${entrylistUrl}`, error.response.data);
-          throw 'An error happened!';
+          throw error.message;
         }),
       ),
     );
 
-    if (!data) {
-      return {
-        entries: [],
-        forceEntrylist: 0,
-      };
-    }
     return data;
   }
 }
