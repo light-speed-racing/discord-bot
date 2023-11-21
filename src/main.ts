@@ -1,11 +1,12 @@
+import 'isomorphic-fetch';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { RootConfig } from './config/config';
+import { rootConfig } from './config/config.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.listen(new RootConfig().port);
+  app.listen(rootConfig.port);
 }
 
 bootstrap();

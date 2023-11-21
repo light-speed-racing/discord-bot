@@ -4,7 +4,7 @@ import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import { RootConfig } from 'src/config/config';
 import { MessageFromUserGuard } from 'src/guard/message-from-user.guard';
-import { MessageIs } from 'src/guard/message-is.guard.ts';
+import { MessageIs } from 'src/guard/message-is.guard';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
 
