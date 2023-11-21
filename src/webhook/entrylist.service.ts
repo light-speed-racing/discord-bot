@@ -3,25 +3,14 @@ import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { Entrylist } from './entrylist.type';
-import { PreStartDto } from './pre-start.dto';
-
-const emtryEntrylist: Entrylist = {
-  entries: [],
-  forceEntrylist: 0,
-};
 
 @Injectable()
-export class WebhookService {
-  private readonly logger = new Logger(WebhookService.name);
+export class EntrylistService {
+  private readonly logger = new Logger(EntrylistService.name);
 
   constructor(private readonly httpService: HttpService) {}
 
-  async entrylist({ entrylistUrl }: PreStartDto): Promise<Entrylist> {
-    if (!entrylistUrl) {
-      this.logger.log('No url provided. Returning default empty entrylist');
-      return { ...emtryEntrylist };
-    }
-
+  async fetch(entrylistUrl: string): Promise<Entrylist> {
     const { data } = await firstValueFrom(
       this.httpService.get<Entrylist>(entrylistUrl).pipe(
         catchError((error: AxiosError) => {
@@ -32,12 +21,11 @@ export class WebhookService {
     );
 
     if (!data) {
-      return { ...emtryEntrylist };
+      return {
+        entries: [],
+        forceEntrylist: 0,
+      };
     }
     return data;
-  }
-
-  async sendMessageInChannel({ channelId }: PreStartDto) {
-    console.log(channelId);
   }
 }

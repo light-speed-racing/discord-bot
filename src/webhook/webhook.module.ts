@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { WebhookController } from './webhook.controller';
-import { WebhookService } from './webhook.service';
+import { EntrylistService } from './entrylist.service';
 import { HttpModule } from '@nestjs/axios';
+import { CustomFieldsService } from './open-game-panel.service';
 
 @Module({
   imports: [HttpModule],
-  providers: [WebhookService],
+  providers: [EntrylistService, CustomFieldsService],
   controllers: [WebhookController],
 })
 export class WebhookModule {}
