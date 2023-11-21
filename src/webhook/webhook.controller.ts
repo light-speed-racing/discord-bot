@@ -18,9 +18,7 @@ export class WebhookController {
 
   @Get('/')
   async helloWorld() {
-    return this.channel
-      .find<TextChannel>('843028833984053250')
-      .send(`${roleMention('886139426726625350')} the race server is starting!`);
+    return 'Hello World';
   }
 
   @Post('pre-start')
