@@ -7,9 +7,9 @@ export class OgpCustomFieldsDto {
 
   @IsOptional()
   @IsNumber()
-  channel_id?: number;
+  channel_id?: string;
 
   @IsOptional()
   @IsNumber()
-  role_id?: number;
+  role_id?: string;
 }
