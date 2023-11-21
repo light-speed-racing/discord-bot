@@ -2,27 +2,9 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
+import { Entrylist } from './entrylist.type';
+import { PreStartDto } from './pre-start.dto';
 
-type Entrylist = {
-  entries: Array<{
-    drivers: Array<{
-      firstName: string;
-      lastName: string;
-      shortName: string;
-      driverCategory: 0 | 1 | 2 | 3;
-      nationality: number;
-      playerID: string;
-    }>;
-    raceNumber: number;
-    forcedCarModel: number;
-    overrideDriverInfo: 0 | 1;
-    defaultGridPosition: number;
-    ballastKg: number;
-    restrictor: number;
-    isServerAdmin: 0 | 1;
-  }>;
-  forceEntrylist: 0 | 1;
-};
 const emtryEntrylist: Entrylist = {
   entries: [],
   forceEntrylist: 0,
@@ -34,16 +16,16 @@ export class WebhookService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async entrylist(url?: string): Promise<Entrylist> {
-    if (!url) {
+  async entrylist({ entrylistUrl }: PreStartDto): Promise<Entrylist> {
+    if (!entrylistUrl) {
       this.logger.log('No url provided. Returning default empty entrylist');
       return { ...emtryEntrylist };
     }
 
     const { data } = await firstValueFrom(
-      this.httpService.get<Entrylist>(url).pipe(
+      this.httpService.get<Entrylist>(entrylistUrl).pipe(
         catchError((error: AxiosError) => {
-          this.logger.error(`Could not fetch entrylist for ${url}`, error.response.data);
+          this.logger.error(`Could not fetch entrylist for ${entrylistUrl}`, error.response.data);
           throw 'An error happened!';
         }),
       ),
@@ -53,5 +35,9 @@ export class WebhookService {
       return { ...emtryEntrylist };
     }
     return data;
+  }
+
+  async sendMessageInChannel({ channelId }: PreStartDto) {
+    console.log(channelId);
   }
 }
