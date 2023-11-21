@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UnprocessableEntityException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
 import { AuthModalGuard } from 'src/guard/auth-token.guard';
 import { EntrylistService } from './entrylist.service';
@@ -13,7 +13,7 @@ export class WebhookController {
   @UseGuards(AuthModalGuard)
   async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     if (!homedir) {
-      throw new UnprocessableEntityException();
+      return EntrylistService.emptyEntrylist;
     }
 
     const { custom_fields } = await this.customFields.for(homedir);
