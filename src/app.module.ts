@@ -7,6 +7,7 @@ import { ConfigModule } from './config/config.module';
 // import { FuelModule } from './fuel/fuel.module';
 import { JokeModule } from './joke/joke.module';
 import { GiphyModule } from './giphy/giphy.module';
+import { WebhookModule } from './webhook/webhook.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { GiphyModule } from './giphy/giphy.module';
     // FuelModule,
     JokeModule,
     GiphyModule,
+    WebhookModule,
   ],
   providers: [],
 })
