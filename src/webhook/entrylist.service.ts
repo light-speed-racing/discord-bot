@@ -16,6 +16,8 @@ export class EntrylistService {
   };
 
   async fetch(entrylistUrl: string): Promise<Entrylist> {
+    this.logger.debug('-> Calling ', entrylistUrl);
+
     const { data } = await firstValueFrom(
       this.httpService.get<Entrylist>(entrylistUrl).pipe(
         catchError((error: AxiosError) => {
