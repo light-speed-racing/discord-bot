@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { OnMessageEvent } from './on-message.event';
+import { OnMessageBySiakoz } from './on-message-by-siakoz.event';
+import { OnMessageByMuller } from './on-message-by-christian-muller.event';
 
 @Module({
-  providers: [OnMessageEvent],
+  providers: [OnMessageBySiakoz, OnMessageByMuller],
 })
 export class DiscordEventsModule {}

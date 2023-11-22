@@ -6,7 +6,7 @@ import { Likelihood } from 'src/guard/likelyhood.guard';
 import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 
 @Injectable()
-export class OnMessageEvent {
+export class OnMessageBySiakoz {
   @On('messageCreate')
   @UseGuards(new Likelihood(3), new MessageSendByUsername('siakoz'))
   respond(message: Message) {
