@@ -24,18 +24,30 @@ export class WebhookController {
   @Post('pre-start')
   @UseGuards(AuthModalGuard)
   async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
-    this.logger.log('Incommimng request');
+    this.logger.log('Incommimng request', { homedir });
     if (!homedir) {
+      this.logger.log('No homedir provided. Sending empty entrylist');
       return EntrylistService.emptyEntrylist;
     }
 
-    const { custom_fields } = await this.customFields.for(homedir);
+    const {
+      custom_fields: { channel_id, entrylist_url, role_id },
+    } = await this.customFields.for(homedir);
 
-    const entrylist = await this.entrylist.fetch(custom_fields.entrylist_url);
+    const entrylist = await this.entrylist.fetch(entrylist_url);
 
-    await this.channel
-      .find<TextChannel>(custom_fields.channel_id)
-      .send(`${roleMention(custom_fields.role_id)} the race server is starting!`);
+    if (channel_id) {
+      await this.channel
+        .find<TextChannel>(channel_id)
+        .send(
+          [
+            role_id && `Hey ${roleMention(role_id)}! How daaare you...\n`,
+            'The race server is starting! I have updated the entrylist for you',
+          ]
+            .filter(Boolean)
+            .join(' '),
+        );
+    }
 
     return entrylist ?? EntrylistService.emptyEntrylist;
   }
