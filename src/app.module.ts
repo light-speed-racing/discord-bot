@@ -8,6 +8,7 @@ import { ConfigModule } from './config/config.module';
 import { JokeModule } from './joke/joke.module';
 import { GiphyModule } from './giphy/giphy.module';
 import { WebhookModule } from './webhook/webhook.module';
+import { DiscordEventsModule } from './discord-events/discord-events.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { WebhookModule } from './webhook/webhook.module';
     JokeModule,
     GiphyModule,
     WebhookModule,
+    DiscordEventsModule,
   ],
   providers: [],
 })

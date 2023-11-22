@@ -5,7 +5,7 @@ interface DiscordExecutionContext extends ExecutionContext {
   getMessage(): Message;
 }
 
-export class MessageFromUserGuard implements CanActivate {
+export class MessageIsSendByAUser implements CanActivate {
   canActivate(context: DiscordExecutionContext): boolean {
     const message = context.getArgByIndex(0);
 
