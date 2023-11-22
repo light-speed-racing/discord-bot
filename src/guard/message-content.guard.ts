@@ -5,7 +5,7 @@ interface DiscordExecutionContext extends ExecutionContext {
   getMessage(): Message;
 }
 
-export class MessageIs implements CanActivate {
+export class MessageContent implements CanActivate {
   private readonly words: string[];
 
   constructor(...words: string[]) {
