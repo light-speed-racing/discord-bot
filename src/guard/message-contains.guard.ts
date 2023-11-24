@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Logger } from '@nestjs/common';
 import { Message } from 'discord.js';
 
 interface DiscordExecutionContext extends ExecutionContext {
@@ -6,6 +6,7 @@ interface DiscordExecutionContext extends ExecutionContext {
 }
 
 export class MessageContains implements CanActivate {
+  private logger = new Logger(MessageContains.name);
   private readonly words: string[];
 
   constructor(...words: string[]) {
@@ -19,7 +20,9 @@ export class MessageContains implements CanActivate {
       const w = word.toLowerCase();
       const msg = message.content.toLowerCase();
 
-      return msg.includes(w);
+      const success = msg.includes(w);
+      this.logger.log(`The word "${w}" was part of message: ${msg}`);
+      return success;
     });
   }
 }
