@@ -13,7 +13,7 @@ export class Likelihood implements CanActivate {
     const number = random(0, 100);
     const success = inRange(number, 0, this.percentage);
 
-    this.logger.log(`Likelihood is ${this.percentage}. Number is: ${number}`);
+    this.logger.log(`Likelihood is ${this.percentage}. Number is: ${number}. Success: ${success}`);
 
     return success;
   }

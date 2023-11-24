@@ -21,7 +21,7 @@ export class MessageContains implements CanActivate {
       const msg = message.content.toLowerCase();
 
       const success = msg.includes(w);
-      this.logger.log(`The word "${w}" was part of message: ${msg}`);
+      success && this.logger.log(`The word "${w}" was part of message: ${msg}`);
       return success;
     });
   }
