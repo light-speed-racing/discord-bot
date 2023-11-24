@@ -1,9 +1,8 @@
-import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
-import { UserSaidRaveEvent } from './user-said-rave.event';
+import { GiphyService } from './giphy.service';
 
 @Module({
-  imports: [DiscordModule.forFeature()],
-  providers: [UserSaidRaveEvent],
+  providers: [GiphyService],
+  exports: [GiphyService],
 })
 export class GiphyModule {}

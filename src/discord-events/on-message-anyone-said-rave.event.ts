@@ -1,20 +1,15 @@
 import { On } from '@discord-nestjs/core';
-import { GiphyFetch } from '@giphy/js-fetch-api';
 import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
-import { RootConfig } from 'src/config/config';
 import { MessageIsSendByAUser } from 'src/guard/message-is-send-by-a-user.guard';
 import { MessageContent } from 'src/guard/message-content.guard';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
+import { GiphyService } from 'src/giphy/giphy.service';
 
 @Injectable()
-export class UserSaidRaveEvent {
-  private readonly giphy: GiphyFetch;
-
-  constructor(private readonly config: RootConfig) {
-    this.giphy = new GiphyFetch(config.giphy.apiKey);
-  }
+export class OnMessageAnyoneSaidRaveEvent {
+  constructor(private readonly giphy: GiphyService) {}
 
   @On('messageCreate')
   @UseGuards(MessageIsSendByAUser)
