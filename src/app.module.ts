@@ -8,7 +8,7 @@ import { ConfigModule } from './config/config.module';
 import { JokeModule } from './joke/joke.module';
 import { GiphyModule } from './giphy/giphy.module';
 import { WebhookModule } from './webhook/webhook.module';
-import { DiscordEventsModule } from './discord-events/discord-events.module';
+import { UserSaidModule } from './user-said/user-said.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 
@@ -21,7 +21,7 @@ import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
     JokeModule,
     GiphyModule,
     WebhookModule,
-    DiscordEventsModule,
+    UserSaidModule,
     SimgridModule,
     OpenGamePanelModule,
   ],
