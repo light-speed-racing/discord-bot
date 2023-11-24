@@ -1,4 +1,3 @@
-import { OgpCustomFieldsDto } from 'src/webhook/ogp-custom-fields.dto';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({
@@ -21,5 +20,9 @@ export class ServerHomes {
       from: (value: string) => JSON.parse(value),
     },
   })
-  custom_fields: null | OgpCustomFieldsDto;
+  custom_fields: null | {
+    entrylist_url?: string;
+    channel_id?: string;
+    role_id?: string;
+  };
 }

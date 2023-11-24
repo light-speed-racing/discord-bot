@@ -3,7 +3,7 @@ import { PreStartDto } from './pre-start.dto';
 import { AuthModalGuard } from 'src/guard/auth-token.guard';
 import { EntrylistService } from '../simgrid/entrylist.service';
 import { Entrylist } from '../simgrid/entrylist.type';
-import { CustomFieldsService } from './open-game-panel.service';
+import { CustomFieldsService } from '../open-game-panel/custom-fields-service.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';
 

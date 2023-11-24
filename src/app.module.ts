@@ -10,6 +10,7 @@ import { GiphyModule } from './giphy/giphy.module';
 import { WebhookModule } from './webhook/webhook.module';
 import { DiscordEventsModule } from './discord-events/discord-events.module';
 import { SimgridModule } from './simgrid/simgrid.module';
+import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SimgridModule } from './simgrid/simgrid.module';
     WebhookModule,
     DiscordEventsModule,
     SimgridModule,
+    OpenGamePanelModule,
   ],
   providers: [],
 })
