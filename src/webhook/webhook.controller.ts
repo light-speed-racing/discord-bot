@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Logger, Post, UseGuards } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
 import { AuthModalGuard } from 'src/guard/auth-token.guard';
-import { EntrylistService } from './entrylist.service';
-import { Entrylist } from './entrylist.type';
+import { EntrylistService } from '../simgrid/entrylist.service';
+import { Entrylist } from '../simgrid/entrylist.type';
 import { CustomFieldsService } from './open-game-panel.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';

@@ -9,6 +9,7 @@ import { JokeModule } from './joke/joke.module';
 import { GiphyModule } from './giphy/giphy.module';
 import { WebhookModule } from './webhook/webhook.module';
 import { DiscordEventsModule } from './discord-events/discord-events.module';
+import { SimgridModule } from './simgrid/simgrid.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { DiscordEventsModule } from './discord-events/discord-events.module';
     GiphyModule,
     WebhookModule,
     DiscordEventsModule,
+    SimgridModule,
   ],
   providers: [],
 })
