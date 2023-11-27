@@ -6,12 +6,14 @@ import { Entrylist } from '../simgrid/entrylist.type';
 import { CustomFieldsService } from '../open-game-panel/custom-fields-service.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';
+import { join } from 'path';
+import { readFileSync } from 'fs';
 
 @Controller('webhooks')
 export class WebhookController {
   private logger = new Logger(WebhookController.name);
   constructor(
-    private readonly entrylist: EntrylistService,
+    private readonly entrylistService: EntrylistService,
     private readonly customFields: CustomFieldsService,
     private readonly channel: ChannelService,
   ) {}
@@ -21,9 +23,17 @@ export class WebhookController {
     return 'Hello World';
   }
 
-  @Post('pre-start')
+  @Get('bop')
   @UseGuards(AuthModalGuard)
-  async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
+  async bop() {
+    const path = join(__dirname, '../..', 'bop.json');
+
+    return readFileSync(path, 'base64');
+  }
+
+  @Post('entrylist')
+  @UseGuards(AuthModalGuard)
+  async entrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
     if (!homedir) {
       this.logger.log('No homedir provided. Sending empty entrylist');
@@ -34,7 +44,7 @@ export class WebhookController {
       custom_fields: { channel_id, entrylist_url, role_id },
     } = await this.customFields.for(homedir);
 
-    const entrylist = await this.entrylist.fetch(entrylist_url);
+    const entrylist = await this.entrylistService.fetch(entrylist_url);
 
     if (channel_id) {
       await this.channel

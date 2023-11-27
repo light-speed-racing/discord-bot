@@ -40,3 +40,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 __server-config__
+
+bop.json

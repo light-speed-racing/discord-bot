@@ -12,6 +12,9 @@ export class RootConfig {
   @IsNumber()
   readonly port: number = 3000;
 
+  @IsString()
+  readonly bopUrl: string;
+
   @IsDefined()
   @Type(() => DiscordConfig)
   readonly discord: DiscordConfig;
