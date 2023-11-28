@@ -1,3 +1,4 @@
+export type EntrylistEntry = Entrylist['entries'][number];
 export type Entrylist = {
   entries: Array<{
     drivers: Array<{
