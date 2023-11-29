@@ -2,10 +2,10 @@ import { Body, Controller, Get, Logger, Post, UseGuards } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
 import { AuthModalGuard } from 'src/guard/auth-token.guard';
 import { EntrylistService } from '../simgrid/entrylist.service';
-import { Entrylist } from '../simgrid/entrylist.type';
 import { CustomFieldsService } from '../open-game-panel/custom-fields-service.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';
+import { Entrylist } from 'src/assetto-corsa-competizione.types';
 
 @Controller('webhooks')
 export class WebhookController {
