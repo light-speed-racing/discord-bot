@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { EntrylistService } from './entrylist.service';
 import { HttpModule } from '@nestjs/axios';
-import { PatreonModule } from 'src/patreon/patreon.module';
 
 @Module({
-  imports: [HttpModule, PatreonModule],
+  imports: [HttpModule],
   providers: [EntrylistService],
   exports: [EntrylistService],
 })

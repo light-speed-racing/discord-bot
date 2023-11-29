@@ -11,7 +11,6 @@ import { WebhookModule } from './webhook/webhook.module';
 import { UserSaidModule } from './user-said/user-said.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
-import { PatreonModule } from './patreon/patreon.module';
 
 @Module({
   imports: [
@@ -25,7 +24,6 @@ import { PatreonModule } from './patreon/patreon.module';
     UserSaidModule,
     SimgridModule,
     OpenGamePanelModule,
-    PatreonModule,
   ],
   providers: [],
 })

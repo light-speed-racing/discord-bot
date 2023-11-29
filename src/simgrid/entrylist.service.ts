@@ -2,14 +2,14 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { Entrylist, EntrylistEntry } from './entrylist.type';
-import { PatreonService } from 'src/patreon/patreon.service';
+import { Entrylist, EntrylistEntry } from 'src/assetto-corsa-competizione.types';
+import { Patreons } from 'src/patreons';
 
 @Injectable()
 export class EntrylistService {
   private readonly logger = new Logger(EntrylistService.name);
 
-  constructor(private readonly httpService: HttpService, private readonly patreon: PatreonService) {}
+  constructor(private readonly httpService: HttpService) {}
 
   static emptyEntrylist: Entrylist = {
     entries: [],
@@ -40,13 +40,13 @@ export class EntrylistService {
 
     const steamId = Number(playerID.replace('S', ''));
 
-    if (!this.patreon.has(steamId)) {
+    if (!Patreons.has(steamId)) {
       return entry;
     }
 
     return {
       ...entry,
-      raceNumber: this.patreon.raceNumber(steamId),
+      raceNumber: Patreons.get(steamId).raceNumber,
     };
   }
 }

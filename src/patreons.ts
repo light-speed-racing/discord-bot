@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-loss-of-precision */
-import { Injectable } from '@nestjs/common';
-
 export type Patreon = {
   discordId: number;
   raceNumber: number;
@@ -8,7 +6,7 @@ export type Patreon = {
 
 type SteamId = number;
 
-const Patreons = new Map<SteamId, Patreon>()
+export const Patreons = new Map<SteamId, Patreon>()
   .set(76561198051239559, { raceNumber: 13, discordId: 883616496906014741 }) // Tickner
   .set(76561198342638728, { raceNumber: 16, discordId: 688405680734077019 }) // Stefano Furlan
   .set(76561199247468623, { raceNumber: 30, discordId: 878356315385258014 }) // Müller
@@ -28,14 +26,3 @@ const Patreons = new Map<SteamId, Patreon>()
   .set(null, { raceNumber: 74, discordId: 680324364561940480 }) // Scott
   .set(null, { raceNumber: 89, discordId: 838598784597360700 }) // Shoebop
   .set(null, { raceNumber: 999, discordId: 571745335513186306 }); // delusion_khan
-
-@Injectable()
-export class PatreonService {
-  has(steamId: number): boolean {
-    return Patreons.has(steamId);
-  }
-
-  raceNumber(steamId: number): null | number {
-    return Patreons.get(steamId).raceNumber ?? null;
-  }
-}
