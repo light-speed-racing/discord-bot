@@ -2,7 +2,8 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { Entrylist } from './entrylist.type';
+import { Entrylist, EntrylistEntry } from 'src/assetto-corsa-competizione.types';
+import { Patreons } from 'src/patreons';
 
 @Injectable()
 export class EntrylistService {
@@ -26,6 +27,26 @@ export class EntrylistService {
       ),
     );
 
-    return data;
+    const sanitized = data.entries.map(this.ensurePatreonRaceNumber);
+
+    return {
+      entries: sanitized,
+      forceEntrylist: data.forceEntrylist,
+    };
+  }
+
+  private ensurePatreonRaceNumber(entry: EntrylistEntry): EntrylistEntry {
+    const { playerID } = entry.drivers.at(0);
+
+    const steamId = Number(playerID.replace('S', ''));
+
+    if (!Patreons.has(steamId)) {
+      return entry;
+    }
+
+    return {
+      ...entry,
+      raceNumber: Patreons.get(steamId).raceNumber,
+    };
   }
 }
