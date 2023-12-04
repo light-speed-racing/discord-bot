@@ -14,8 +14,9 @@ export class SiakozSaidEvent {
       `Hur vågar du ${message.author}?!?`,
       `Kan jag få lite mer Carlsberg, tack ${message.author}?!?`,
       `Tjennar ${message.author}`,
-      'https://www.youtube.com/watch?v=WRuf6iI1C5Y',
       '🍻 Helan går. Sjung hopp faderallan lallan lej 🍻',
+      'https://giphy.com/embed/l46CxJ9ai3N8UrAgE',
+      'https://giphy.com/embed/qTFQeTwms3xW8',
     ]);
   }
 }
