@@ -15,7 +15,8 @@ export class CustomFieldsService {
     this.logger.log('Getting custom fields for:', home_path);
 
     const entity = await this.repository.findOneByOrFail({ home_path });
-    this.logger.log('Found:', entity);
+
+    this.logger.log('Found:', JSON.stringify(entity));
 
     return entity;
   }

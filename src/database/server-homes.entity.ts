@@ -17,7 +17,7 @@ export class ServerHomes {
     nullable: true,
     transformer: {
       to: (value: string) => value,
-      from: (value: string) => JSON.parse(value),
+      from: (value: string) => !!value && JSON.parse(value),
     },
   })
   custom_fields: null | {

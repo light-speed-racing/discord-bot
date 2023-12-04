@@ -18,6 +18,9 @@ export class WebhookController {
 
   @Get('/')
   async helloWorld() {
+    const r = await this.preStart({ homedir: '/home/cyg_server/OGP_User_Files/master' });
+
+    console.log(r);
     return 'Hello World';
   }
 
@@ -32,7 +35,11 @@ export class WebhookController {
 
     const {
       custom_fields: { channel_id, entrylist_url, role_id },
-    } = await this.customFields.for(homedir);
+    } = (await this.customFields.for(homedir)) ?? {};
+
+    if (!entrylist_url) {
+      return EntrylistService.emptyEntrylist;
+    }
 
     const entrylist = await this.entrylist.fetch(entrylist_url);
 
