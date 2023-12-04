@@ -25,4 +25,5 @@ export const Patreons = new Map<SteamId, Patreon>()
   .set(null, { raceNumber: 64, discordId: 667880127266291733 })
   .set(null, { raceNumber: 74, discordId: 680324364561940480 }) // Scott
   .set(null, { raceNumber: 89, discordId: 838598784597360700 }) // Shoebop
+  .set(null, { raceNumber: 97, discordId: 414645572427972620 }) // michaelquick
   .set(null, { raceNumber: 999, discordId: 571745335513186306 }); // delusion_khan
