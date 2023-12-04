@@ -18,9 +18,6 @@ export class WebhookController {
 
   @Get('/')
   async helloWorld() {
-    const r = await this.preStart({ homedir: '/home/cyg_server/OGP_User_Files/master' });
-
-    console.log(r);
     return 'Hello World';
   }
 
