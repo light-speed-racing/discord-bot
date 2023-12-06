@@ -4,9 +4,10 @@ import { ChannelService } from './channel.service';
 import { DiscordModule } from '@discord-nestjs/core';
 import { SimgridModule } from 'src/simgrid/simgrid.module';
 import { OpenGamePanelModule } from 'src/open-game-panel/open-game-panel.module';
+import { GiphyModule } from 'src/giphy/giphy.module';
 
 @Module({
-  imports: [DiscordModule.forFeature(), SimgridModule, OpenGamePanelModule],
+  imports: [DiscordModule.forFeature(), SimgridModule, OpenGamePanelModule, GiphyModule],
   providers: [ChannelService],
   controllers: [WebhookController],
 })
