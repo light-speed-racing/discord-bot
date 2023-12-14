@@ -20,5 +20,5 @@ export type Entrylist = {
     restrictor: number;
     isServerAdmin: 0 | 1;
   }>;
-  forceEntrylist: 0 | 1;
+  forceEntryList: 0 | 1;
 };
