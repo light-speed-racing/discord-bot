@@ -13,7 +13,7 @@ export class EntrylistService {
 
   static emptyEntrylist: Entrylist = {
     entries: [],
-    forceEntrylist: 0,
+    forceEntryList: 0,
   };
 
   async fetch(entrylistUrl: string): Promise<Entrylist> {
@@ -31,7 +31,7 @@ export class EntrylistService {
 
     return {
       entries: sanitized,
-      forceEntrylist: data.forceEntrylist,
+      forceEntryList: data.forceEntryList,
     };
   }
 
