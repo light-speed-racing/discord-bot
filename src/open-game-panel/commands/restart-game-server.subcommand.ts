@@ -7,10 +7,10 @@ import { StringSelectMenuInteraction } from 'discord.js';
 import { ServerSelectMenu } from './select-menu-with-servers';
 
 @SubCommand({
-  name: 'start',
-  description: 'Start a game server',
+  name: 'restart',
+  description: 'Restart a game server',
 })
-export class StartGameServerSubcommand extends ServerSelectMenu {
+export class RestartGameServerSubcommand extends ServerSelectMenu {
   constructor(
     @InjectRepository(GameServer)
     readonly repository: Repository<GameServer>,
@@ -18,12 +18,6 @@ export class StartGameServerSubcommand extends ServerSelectMenu {
   ) {
     super(repository);
   }
-
-  // @UseGuards(IsHost)
-  // @Handler()
-  // async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
-  //   return this._handle(interaction);
-  // }
 
   @On('interactionCreate')
   async onSubmit(@IA() { customId, values, message }: StringSelectMenuInteraction) {
@@ -33,8 +27,8 @@ export class StartGameServerSubcommand extends ServerSelectMenu {
 
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
-    await message.reply({ content: `I'm starting **${selectedServer.home_name}**. Please wait...` });
-    const response = await this.gameManager.start(selectedServer);
+    await message.reply({ content: `I'm restarting **${selectedServer.home_name}**. Please wait...` });
+    const response = await this.gameManager.restart(selectedServer);
 
     return await message.reply({ content: `${response.message}` });
   }

@@ -12,6 +12,8 @@ import { FileManager } from './file-manager.service';
 import { DiscordModule } from '@discord-nestjs/core';
 import { GameServerCommand } from './commands/game-server.command';
 import { StartGameServerSubcommand } from './commands/start-game-server.subcommand';
+import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
+import { StopGameServerSubcommand } from './commands/stop-game-server.subcommand';
 
 @Module({
   imports: [TypeOrmModule.forFeature([GameServer, Server, IpPort, ApiToken]), DiscordModule.forFeature(), HttpModule],
@@ -22,6 +24,8 @@ import { StartGameServerSubcommand } from './commands/start-game-server.subcomma
     FileManager,
     GameServerCommand,
     StartGameServerSubcommand,
+    StopGameServerSubcommand,
+    RestartGameServerSubcommand,
   ],
   exports: [GameServerService, OpenGamePanelApi, GameManager, FileManager],
 })
