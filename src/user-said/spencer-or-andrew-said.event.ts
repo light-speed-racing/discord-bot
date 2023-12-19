@@ -7,7 +7,7 @@ import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 @Injectable()
 export class SpencerOrAndrewSaidEvent {
   @On('messageCreate')
-  @UseGuards(new Likelihood(2), new MessageSendByUsername('skeez0414', 'shoebop'))
+  @UseGuards(new MessageSendByUsername('skeez0414', 'shoebop'), new Likelihood(2))
   respond() {
     return sample([
       `https://oyster.ignimgs.com/wordpress/stg.ign.com/2015/07/Z11P8R5FSd0X.gif?fit=bounds&width=1280&height=720`,
