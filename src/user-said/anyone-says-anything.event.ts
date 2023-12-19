@@ -4,14 +4,15 @@ import { Message } from 'discord.js';
 import { MessageIsSendByAUser } from 'src/guard/message-is-send-by-a-user.guard';
 import sample from 'lodash.sample';
 import { Likelihood } from 'src/guard/likelyhood.guard';
+import { HasBeenMemberLongerThan } from 'src/guard/has-been-member-longer-than.guard';
 
 @Injectable()
 export class AnyoneSaysAnythingEvent {
   @On('messageCreate')
-  @UseGuards(MessageIsSendByAUser, new Likelihood(1))
+  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(0.5))
   async onMessage(message: Message): Promise<void> {
     const messages = [
-      `I am go mad at you! How dare you! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
+      `I am so mad at you!!! How dare you...!! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
       `I will ban you ${message.author}!!`,
       `How dare you say my name ${message.author}?!`,
       `I own 100 private jets. What do you have ${message.author}? A gas driven car?!?`,

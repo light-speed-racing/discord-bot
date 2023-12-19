@@ -22,7 +22,7 @@ export class AnyoneSaidRaveEvent {
       embeds: [
         new EmbedBuilder({
           description: `Lets raaaaave ${message.author}!`,
-          image: { url: random.images.original.url },
+          image: { url: random.images.downsized.url },
         }),
       ],
     });

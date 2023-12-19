@@ -8,7 +8,7 @@ import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 @Injectable()
 export class ChristianMullerSaidEvent {
   @On('messageCreate')
-  @UseGuards(new Likelihood(5), new MessageSendByUsername('hypn0tik4735'))
+  @UseGuards(new MessageSendByUsername('hypn0tik4735'), new Likelihood(5))
   respond(message: Message) {
     return sample([
       `It's a Bird... It's a Plane... No...! It's ${message.author}`,
