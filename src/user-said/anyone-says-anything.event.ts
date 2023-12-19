@@ -9,16 +9,16 @@ import { HasBeenMemberLongerThan } from 'src/guard/has-been-member-longer-than.g
 @Injectable()
 export class AnyoneSaysAnythingEvent {
   @On('messageCreate')
-  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(0.5))
+  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(1))
   async onMessage(message: Message): Promise<void> {
     const messages = [
-      `I am so mad at you!!! How dare you...!! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
+      `I am sooo mad at you!!! How dare you...!! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
       `I will ban you ${message.author}!!`,
       `How dare you say my name ${message.author}?!`,
       `I own 100 private jets. What do you have ${message.author}? A gas driven car?!?`,
       `You're a nuclear reactor to me ${message.author}`,
       `${message.author} makes me want to glue myself onto the next road?`,
-      `${message.author}'s carbon footprint is bigger than their brain capacity!`,
+      `${message.author}, your carbon footprint is bigger than their brain capacity!`,
       `The only rise I see here is the rise in my frustration level due to your climate indifference.`,
       `If ignorance was a greenhouse gas, you would be the main source!`,
       `You're glued to fossil fuels, just like you're glued to ignorance, ${message.author}!`,
