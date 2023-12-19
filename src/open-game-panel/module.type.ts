@@ -6,5 +6,5 @@ export type Module = {
   'gamemanager/restart': Port;
   'litefm/list': Port & { relative_path: string };
   'litefm/get': Port & { relative_path: string };
-  'litefm/remove': Port & { relative_path: string };
+  'litefm/save': Port & { relative_path: string; content: string };
 };

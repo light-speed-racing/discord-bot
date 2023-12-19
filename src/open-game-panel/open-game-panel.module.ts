@@ -9,10 +9,20 @@ import { OpenGamePanelApi } from './open-game-panel-api.service';
 import { HttpModule } from '@nestjs/axios';
 import { GameManager } from './game-manager.service';
 import { FileManager } from './file-manager.service';
+import { DiscordModule } from '@discord-nestjs/core';
+import { GameServerCommand } from './commands/game-server.command';
+import { StartGameServerSubcommand } from './commands/start-game-server.subcommand';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GameServer, Server, IpPort, ApiToken]), HttpModule],
-  providers: [GameServerService, OpenGamePanelApi, GameManager, FileManager],
+  imports: [TypeOrmModule.forFeature([GameServer, Server, IpPort, ApiToken]), DiscordModule.forFeature(), HttpModule],
+  providers: [
+    GameServerService,
+    OpenGamePanelApi,
+    GameManager,
+    FileManager,
+    GameServerCommand,
+    StartGameServerSubcommand,
+  ],
   exports: [GameServerService, OpenGamePanelApi, GameManager, FileManager],
 })
 export class OpenGamePanelModule {}
