@@ -1,17 +1,17 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ServerHomes } from 'src/database/server-homes.entity';
+import { GameServer } from 'src/database/game-server.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class CustomFieldsService {
-  private logger = new Logger(CustomFieldsService.name);
+export class GameServerService {
+  private logger = new Logger(GameServerService.name);
   constructor(
-    @InjectRepository(ServerHomes)
-    private readonly repository: Repository<ServerHomes>,
+    @InjectRepository(GameServer)
+    private readonly repository: Repository<GameServer>,
   ) {}
 
-  async for(home_path: string): Promise<ServerHomes> {
+  async homedir(home_path: string): Promise<GameServer> {
     this.logger.log('Getting custom fields for:', home_path);
 
     const entity = await this.repository.findOneByOrFail({ home_path });
