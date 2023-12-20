@@ -11,8 +11,9 @@ import {
   StringSelectMenuInteraction,
   StringSelectMenuOptionBuilder,
 } from 'discord.js';
-import { IsHost } from 'src/guard/is-host.guard';
 import { UseGuards } from '@nestjs/common';
+import { HasCustomId } from '../../guard/has-custom-id.guard';
+import { HasRole } from 'src/guard/has-role.guard';
 
 @SubCommand({
   name: 'stop',
@@ -26,13 +27,13 @@ export class StopGameServerSubcommand {
     private readonly gameManager: GameManager,
   ) {}
 
-  @UseGuards(IsHost)
+  @UseGuards(new HasRole('Host'))
   @Handler()
   async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
     this.allServers = await this.repository.find();
 
     const select = new StringSelectMenuBuilder()
-      .setCustomId('stopGameServer')
+      .setCustomId(StopGameServerSubcommand.name)
       .setPlaceholder('Select a server')
       .addOptions(
         this.allServers.map(({ home_name }, index) => {
@@ -47,11 +48,8 @@ export class StopGameServerSubcommand {
   }
 
   @On('interactionCreate')
-  async onSubmit(@IA() { customId, values, message }: StringSelectMenuInteraction) {
-    if (customId !== 'stopGameServer') {
-      return;
-    }
-
+  @UseGuards(new HasCustomId(StopGameServerSubcommand.name))
+  async onSubmit(@IA() { values, message }: StringSelectMenuInteraction) {
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
     await message.reply({ content: `I'm stopping **${selectedServer.home_name}**. Please wait...` });

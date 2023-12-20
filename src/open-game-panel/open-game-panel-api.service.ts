@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { Module } from './module.type';
+import { FileManagerModule } from './file-manager-module.type';
 import { RootConfig } from 'src/config/config';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class OpenGamePanelApi {
   private readonly logger = new Logger(OpenGamePanelApi.name);
   constructor(private readonly http: HttpService, private readonly config: RootConfig) {}
 
-  url<T extends keyof Module>(module: T, parameters: Module[T]) {
+  url<T extends keyof FileManagerModule>(module: T, parameters: FileManagerModule[T]) {
     const qs = new URLSearchParams();
 
     qs.set('token', this.config.openGamePanel.apiToken);
@@ -24,7 +24,7 @@ export class OpenGamePanelApi {
     return new URL(`http://${this.config.openGamePanel.ip}/ogp_api.php?${module}&${qs}`);
   }
 
-  async get<M extends keyof Module, Message = string>(module: M, parameters: Module[M]) {
+  async get<M extends keyof FileManagerModule, Message = string>(module: M, parameters: FileManagerModule[M]) {
     const url = this.url(module, parameters);
     this.logger.debug(`Fetching data from: ${url}`);
     const { data } = await firstValueFrom(

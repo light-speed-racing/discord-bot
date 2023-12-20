@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OpenGamePanelApi } from './open-game-panel-api.service';
 import { GameServer } from 'src/database/game-server.entity';
-import { Module } from './module.type';
+import { FileManagerModule } from './file-manager-module.type';
 import {
   AssistRulesJSON,
   BopJSON,
@@ -33,7 +33,7 @@ export class FileManager {
   async readConfig<
     T extends AssistRulesJSON | ConfigurationJSON | Entrylist | EventJSON | EventRulesJSON | SettingsJSON | BopJSON,
   >(filename: keyof ConfigFiles, entry: GameServer): Promise<T> {
-    const { message } = await this.api.get<keyof Module, FileList>('litefm/get', {
+    const { message } = await this.api.get<keyof FileManagerModule, FileList>('litefm/get', {
       port: entry.IpPort.port,
       relative_path: `cfg/${filename}`,
     });

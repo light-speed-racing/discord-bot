@@ -1,6 +1,6 @@
 type Port = { port: number | string };
 
-export type Module = {
+export type FileManagerModule = {
   'gamemanager/start': Port;
   'gamemanager/stop': Port;
   'gamemanager/restart': Port;
