@@ -29,7 +29,7 @@ export class StopGameServerSubcommand {
   @UseGuards(IsHost)
   @Handler()
   async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
-    // this.allServers = await this.repository.find();
+    this.allServers = await this.repository.find();
 
     const select = new StringSelectMenuBuilder()
       .setCustomId('stopGameServer')
