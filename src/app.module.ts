@@ -1,5 +1,5 @@
 import { DiscordModule } from '@discord-nestjs/core';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { DiscordConfigService } from './discord-config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
@@ -11,6 +11,8 @@ import { WebhookModule } from './webhook/webhook.module';
 import { UserSaidModule } from './user-said/user-said.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
+import { HealthModule } from './health/health.module';
+import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 
 @Module({
   imports: [
@@ -24,7 +26,12 @@ import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
     UserSaidModule,
     SimgridModule,
     OpenGamePanelModule,
+    HealthModule,
   ],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/pre-start');
+  }
+}
