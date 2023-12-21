@@ -12,6 +12,6 @@ export class AuthModalGuard implements CanActivate {
       return true;
     }
 
-    return request.headers['X-Authorization'] === rootConfig.openGamePanel.authorizationToken;
+    return request.headers['X-Authorization'] === rootConfig.openGamePanel.authorization_token;
   }
 }

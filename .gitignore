@@ -39,4 +39,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-__server-config__
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

@@ -13,7 +13,7 @@ export class OpenGamePanelApi {
   url<T extends keyof FileManagerModule>(module: T, parameters: FileManagerModule[T]) {
     const qs = new URLSearchParams();
 
-    qs.set('token', this.config.openGamePanel.apiToken);
+    qs.set('token', this.config.openGamePanel.api_token);
     qs.set('ip', this.config.openGamePanel.ip);
     qs.set('mod_key', `default`);
 

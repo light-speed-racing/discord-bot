@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
 
 export class DatabaseConfig {
@@ -5,6 +6,7 @@ export class DatabaseConfig {
   readonly host: string;
 
   @IsNumber()
+  @Type(() => Number)
   readonly port: number;
 
   @IsString()
@@ -14,5 +16,5 @@ export class DatabaseConfig {
   readonly password: string;
 
   @IsString()
-  readonly databaseName: string;
+  readonly database_name: string;
 }
