@@ -18,6 +18,7 @@ export const Patreons = new Map<SteamId, Patreon>()
   .set(76561198079364851, { raceNumber: 32, discordId: 367427290428080148 }) // Ryan
   .set(76561199076112515, { raceNumber: 37, discordId: 725368578479489037 }) // Ferry
   .set(76561197985618443, { raceNumber: 75, discordId: 501092515542466570 }) // Jonas
+  .set(76561198112678444, { raceNumber: 16, discordId: 721066327355424788 }) // Pascal
   .set(76561198314937562, { raceNumber: null, discordId: 543838291296780303 }) // Franco
   .set(null, { raceNumber: 5, discordId: 285385820423323658 }) // Jan Budde
   .set(null, { raceNumber: 7, discordId: 415517703256801280 }) // Oliver
