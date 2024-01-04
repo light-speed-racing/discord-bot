@@ -13,11 +13,16 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
-  check() {
-    return this.health.check([
-      () => this.http.pingCheck('bot', 'https://google.com'),
-      () => this.http.pingCheck('open-game-panel', `http://${this.config.openGamePanel.ip}`),
-      () => this.db.pingCheck('database'),
-    ]);
+  async check() {
+    return {
+      env: this.config.env,
+      port: this.config.port,
+      time: new Date().toISOString(),
+      ...(await this.health.check([
+        () => this.http.pingCheck('internet connection', 'https://google.com'),
+        () => this.http.pingCheck('open-game-panel', `http://${this.config.openGamePanel.ip}`),
+        () => this.db.pingCheck('database'),
+      ])),
+    };
   }
 }
