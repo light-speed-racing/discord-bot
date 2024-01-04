@@ -28,27 +28,29 @@ export class WebhookController {
   }
 
   @Post('pre-start')
-  async preStart(@Body() { homedir }: PreStartDto): Promise<{ message: string; data: Entrylist }> {
+  async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
 
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
     if (!entity) {
       this.logger.error('Entity was not found or no homedir provided. Sending empty entrylist');
-      return await this.fileManager.update(EntrylistService.emptyEntrylist, 'entrylist.json', entity);
+      return EntrylistService.emptyEntrylist;
     }
 
-    const { channel_id, entrylist_url, role_id } = entity.custom_fields;
+    const {
+      custom_fields: { channel_id, entrylist_url, role_id },
+    } = entity;
 
     if (!entrylist_url) {
-      return await this.fileManager.update(EntrylistService.emptyEntrylist, 'entrylist.json', entity);
+      return EntrylistService.emptyEntrylist;
     }
 
     if (channel_id) {
       await this.notifyChannel(channel_id, role_id, entity);
     }
 
-    return await this.fileManager.update(await this.entrylist.fetch(entrylist_url), 'entrylist.json', entity);
+    return (await this.entrylist.fetch(entrylist_url)) ?? EntrylistService.emptyEntrylist;
   }
 
   private async notifyChannel(channelId: string, roleId: string | undefined, entity: GameServer) {
