@@ -28,35 +28,33 @@ export class WebhookController {
   }
 
   @Post('pre-start')
-  async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
+  async preStart(@Body() { homedir }: PreStartDto): Promise<{ message: string; data: Entrylist }> {
     this.logger.log('Incommimng request', { homedir });
 
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
     if (!entity) {
       this.logger.error('Entity was not found or no homedir provided. Sending empty entrylist');
-      return EntrylistService.emptyEntrylist;
+      return await this.fileManager.update(EntrylistService.emptyEntrylist, 'entrylist.json', entity);
     }
 
-    const {
-      custom_fields: { channel_id, entrylist_url, role_id },
-    } = entity;
+    const { channel_id, entrylist_url, role_id } = entity.custom_fields;
 
     if (!entrylist_url) {
-      return EntrylistService.emptyEntrylist;
+      return await this.fileManager.update(EntrylistService.emptyEntrylist, 'entrylist.json', entity);
     }
 
     if (channel_id) {
       await this.notifyChannel(channel_id, role_id, entity);
     }
 
-    return (await this.entrylist.fetch(entrylist_url)) ?? EntrylistService.emptyEntrylist;
+    return await this.fileManager.update(await this.entrylist.fetch(entrylist_url), 'entrylist.json', entity);
   }
 
   private async notifyChannel(channelId: string, roleId: string | undefined, entity: GameServer) {
     const { data } = await this.giphy.search('race time');
-    const settings = await this.fileManager.readConfig<SettingsJSON>('settings.json', entity);
-    const event = await this.fileManager.readConfig<EventJSON>('event.json', entity);
+    const settings = await this.fileManager.read<SettingsJSON>('settings.json', entity);
+    const event = await this.fileManager.read<EventJSON>('event.json', entity);
 
     return await this.channel.find<TextChannel>(channelId).send({
       content: [
