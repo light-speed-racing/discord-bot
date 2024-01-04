@@ -1,6 +1,5 @@
-import { Body, Controller, Get, Logger, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
-import { AuthModalGuard } from 'src/guard/auth-token.guard';
 import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
 import { ChannelService } from './channel.service';
@@ -10,6 +9,7 @@ import { GiphyService } from 'src/giphy/giphy.service';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
+import { GameServer } from 'src/database/game-server.entity';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -28,7 +28,6 @@ export class WebhookController {
   }
 
   @Post('pre-start')
-  @UseGuards(AuthModalGuard)
   async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
 
@@ -48,37 +47,41 @@ export class WebhookController {
     }
 
     if (channel_id) {
-      const { data } = await this.giphy.search('race time');
-      const settings = await this.fileManager.readConfig<SettingsJSON>('settings.json', entity);
-      const event = await this.fileManager.readConfig<EventJSON>('event.json', entity);
-
-      await this.channel.find<TextChannel>(channel_id).send({
-        content: [
-          [role_id && `${roleMention(role_id)}!`, `IT'S RACE TIME!`].filter(Boolean).join(' '),
-          'The server is starting...',
-          '**__As a back marker__**: Be predictable. Hold your line. Lift off the throttle to let the faster car by. Let faster cars by on the first straight',
-          '**__As a overtaking car__**: Be predictable. It is your job to overtake safely. No dive bombing. Wait till you are let by',
-          '**__Sportsmanship__**: When crashing re-enter safely. Wait for clear space to re-enter. If you cause a collision, be a gentleman and give back the spot',
-          '**__Be aware and be careful__**:  Please be very careful on the first couple of laps. Use the radar. Be careful - You might ruin the race for others if you are not careful',
-          '**__Safety on track!__**: PLEASE for the love of god. Please act in a safe manner! No turning around into incoming traffic! No full send on the first couple of laps!',
-          '',
-          'Also, please do not use the game chat during qualification and the race. It might cost you a 5sec penalty',
-        ]
-          .filter(Boolean)
-          .join('\n'),
-        embeds: [
-          new EmbedBuilder({
-            fields: [
-              { name: 'Server Name', value: `${settings.serverName}`, inline: true },
-              { name: 'Password', value: `${settings.password}`, inline: true },
-              { name: 'Track', value: `${event.track}`, inline: true },
-            ],
-            image: { url: sample(data).images.downsized.url },
-          }),
-        ],
-      });
+      await this.notifyChannel(channel_id, role_id, entity);
     }
 
     return (await this.entrylist.fetch(entrylist_url)) ?? EntrylistService.emptyEntrylist;
+  }
+
+  private async notifyChannel(channelId: string, roleId: string | undefined, entity: GameServer) {
+    const { data } = await this.giphy.search('race time');
+    const settings = await this.fileManager.readConfig<SettingsJSON>('settings.json', entity);
+    const event = await this.fileManager.readConfig<EventJSON>('event.json', entity);
+
+    return await this.channel.find<TextChannel>(channelId).send({
+      content: [
+        [roleId && `${roleMention(roleId)}!`, `IT'S RACE TIME!`].filter(Boolean).join(' '),
+        'The server is starting...',
+        '**__As a back marker__**: Be predictable. Hold your line. Lift off the throttle to let the faster car by. Let faster cars by on the first straight',
+        '**__As a overtaking car__**: Be predictable. It is your job to overtake safely. No dive bombing. Wait till you are let by',
+        '**__Sportsmanship__**: When crashing re-enter safely. Wait for clear space to re-enter. If you cause a collision, be a gentleman and give back the spot',
+        '**__Be aware and be careful__**:  Please be very careful on the first couple of laps. Use the radar. Be careful - You might ruin the race for others if you are not careful',
+        '**__Safety on track!__**: PLEASE for the love of god. Please act in a safe manner! No turning around into incoming traffic! No full send on the first couple of laps!',
+        '',
+        'Also, please do not use the game chat during qualification and the race. It might cost you a 5sec penalty',
+      ]
+        .filter(Boolean)
+        .join('\n'),
+      embeds: [
+        new EmbedBuilder({
+          fields: [
+            { name: 'Server Name', value: `${settings.serverName}`, inline: true },
+            { name: 'Password', value: `${settings.password}`, inline: true },
+            { name: 'Track', value: `${event.track}`, inline: true },
+          ],
+          image: { url: sample(data).images.downsized.url },
+        }),
+      ],
+    });
   }
 }
