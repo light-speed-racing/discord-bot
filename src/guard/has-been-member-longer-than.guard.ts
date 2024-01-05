@@ -6,7 +6,7 @@ import { Message } from 'discord.js';
 export class HasBeenMemberLongerThan implements CanActivate {
   private date: Moment;
   constructor(number: number, unit: Unit) {
-    this.date = datemath.parse(`now-${number}w${unit}`);
+    this.date = datemath.parse(`now-${number}${unit}`);
   }
 
   canActivate(context: ExecutionContext): boolean {
