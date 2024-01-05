@@ -4,7 +4,7 @@ import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';
-import { Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
+import { ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { GiphyService } from 'src/giphy/giphy.service';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
@@ -38,29 +38,43 @@ export class WebhookController {
       return EntrylistService.emptyEntrylist;
     }
 
-    const {
-      custom_fields: { channel_id, entrylist_url, role_id },
-    } = entity;
+    const { channel_id, entrylist_url } = entity.custom_fields;
+
+    await this.updatePortsInConfiguration(entity);
 
     if (!entrylist_url) {
       return EntrylistService.emptyEntrylist;
     }
 
     if (channel_id) {
-      await this.notifyChannel(channel_id, role_id, entity);
+      await this.notifyChannel(entity);
     }
 
     return (await this.entrylist.fetch(entrylist_url)) ?? EntrylistService.emptyEntrylist;
   }
 
-  private async notifyChannel(channelId: string, roleId: string | undefined, entity: GameServer) {
+  private async updatePortsInConfiguration(entity: GameServer): Promise<void> {
+    const { port } = entity.IpPort;
+    const existing = await this.fileManager.read<ConfigurationJSON>('configuration.json', entity);
+    if (existing.tcpPort === port && existing.udpPort === port) {
+      return;
+    }
+    await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
+
+    return;
+  }
+
+  private async notifyChannel(entity: GameServer) {
+    const {
+      custom_fields: { channel_id, role_id },
+    } = entity;
     const { data } = await this.giphy.search('race time');
     const settings = await this.fileManager.read<SettingsJSON>('settings.json', entity);
     const event = await this.fileManager.read<EventJSON>('event.json', entity);
 
-    return await this.channel.find<TextChannel>(channelId).send({
+    return await this.channel.find<TextChannel>(channel_id).send({
       content: [
-        [roleId && `${roleMention(roleId)}!`, `IT'S RACE TIME!`].filter(Boolean).join(' '),
+        [role_id && `${roleMention(role_id)}!`, `IT'S RACE TIME!`].filter(Boolean).join(' '),
         'The server is starting...',
         '**__As a back marker__**: Be predictable. Hold your line. Lift off the throttle to let the faster car by. Let faster cars by on the first straight',
         '**__As a overtaking car__**: Be predictable. It is your job to overtake safely. No dive bombing. Wait till you are let by',
