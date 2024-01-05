@@ -28,8 +28,8 @@ export class FileManager {
   }
 
   async update<T extends ConfigFile>(
-    data: Record<string, unknown>,
     filename: keyof ConfigFiles,
+    data: Record<string, unknown>,
     entry: GameServer,
   ): Promise<{ message: string; data: T }> {
     const content = {

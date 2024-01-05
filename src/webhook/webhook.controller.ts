@@ -59,7 +59,7 @@ export class WebhookController {
     if (existing.tcpPort === port && existing.udpPort === port) {
       return;
     }
-    await this.fileManager.update({ ...existing, tcpPort: port, udpPort: port }, 'configuration.json', entity);
+    await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
 
     return;
   }
