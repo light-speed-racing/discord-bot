@@ -4,6 +4,7 @@ import { DatabaseConfig } from './database.config';
 import { DiscordConfig } from './discord.config';
 import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
+import { SimgridConfig } from './simgrid.config';
 
 export class RootConfig {
   @IsString()
@@ -28,4 +29,8 @@ export class RootConfig {
   @Type(() => OpenGamePanelConfig)
   @ValidateNested()
   readonly openGamePanel: OpenGamePanelConfig;
+
+  @Type(() => SimgridConfig)
+  @ValidateNested()
+  readonly simgrid: SimgridConfig;
 }
