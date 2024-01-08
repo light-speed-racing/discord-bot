@@ -207,10 +207,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.36.0.tgz#9837f768c03a1e4a30bd304a64fb8844f0e72efe"
   integrity sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==
 
-"@giphy/js-fetch-api@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@giphy/js-fetch-api/-/js-fetch-api-5.2.0.tgz#3931fd8d2cf1404c1ff804daadb3ada4dfff6299"
-  integrity sha512-lqSSj0BjRSOGs4qQtAdIJXYHD/Lef2YPdwz9iGkrYmgykNb1iKQ9so7ndUib2Rxog3jdgl3FIHOPPhAqMfwthQ==
+"@giphy/js-fetch-api@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@giphy/js-fetch-api/-/js-fetch-api-5.3.0.tgz#a7821dff16ec4772249bd7dbc8b7c1747f911440"
+  integrity sha512-zeLXjxMsuOKhmiFYvmZqEwQmAsze8Ech7jRAv6Ub0UarRD+9P2cJfBxaopUoBGREvzrmzwdMRfEro9hKFDs7tw==
   dependencies:
     "@giphy/js-types" "*"
     "@giphy/js-util" "*"
