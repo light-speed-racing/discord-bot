@@ -9,7 +9,7 @@ export class ApiTokenMiddleware implements NestMiddleware {
   use(req: Request, _: Response, next: NextFunction) {
     const { authorization_token } = rootConfig.openGamePanel;
     const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
-    const token = (req.header('x-api-token') || req.header('x-authorization')) ?? url.searchParams.get('token');
+    const token = req.header('x-api-token') || url.searchParams.get('token');
 
     if (!token || token !== authorization_token) {
       this.logger.error(
