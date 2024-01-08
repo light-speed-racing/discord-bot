@@ -30,6 +30,24 @@ export class FileManager {
     return JSON.parse(message) as T;
   }
 
+  async write<T extends ConfigFile>(
+    filename: keyof ConfigFiles,
+    data: Record<string, unknown>,
+    entry: GameServer,
+  ): Promise<{ message: string; data: T }> {
+    this.logger.debug(`Write ${filename} using OGP_API`, data);
+
+    const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/save', {
+      port: entry.IpPort.port,
+      relative_path: `cfg/${filename}`,
+      contents: JSON.stringify(data, null, 2),
+    });
+    return {
+      message,
+      data: data as T,
+    };
+  }
+
   async update<T extends ConfigFile>(
     filename: keyof ConfigFiles,
     data: Record<string, unknown>,
@@ -41,15 +59,6 @@ export class FileManager {
       ...(await this.read(filename, entry)),
       ...data,
     };
-
-    const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/save', {
-      port: entry.IpPort.port,
-      relative_path: `cfg/${filename}`,
-      contents: JSON.stringify(content, null, 2),
-    });
-    return {
-      message,
-      data: content as T,
-    };
+    return await this.write<T>(filename, content, entry);
   }
 }

@@ -4,6 +4,7 @@ import { DatabaseConfig } from './database.config';
 import { DiscordConfig } from './discord.config';
 import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
+import { LfmConfig } from './lfm.config';
 
 export class RootConfig {
   @IsString()
@@ -24,6 +25,10 @@ export class RootConfig {
   @Type(() => GiphyConfig)
   @ValidateNested()
   readonly giphy: GiphyConfig;
+
+  @Type(() => LfmConfig)
+  @ValidateNested()
+  readonly lfm: LfmConfig;
 
   @Type(() => OpenGamePanelConfig)
   @ValidateNested()

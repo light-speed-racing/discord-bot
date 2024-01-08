@@ -10,6 +10,7 @@ import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
+import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -17,6 +18,7 @@ export class WebhookController {
 
   constructor(
     private readonly entrylist: EntrylistService,
+    private readonly bop: BalanceOfPerformanceService,
     private readonly gameServer: GameServerService,
     private readonly channel: ChannelService,
     private readonly giphy: GiphyService,
@@ -42,6 +44,7 @@ export class WebhookController {
     const { channel_id, entrylist_url } = entity.custom_fields;
 
     await this.updatePortsInConfiguration(entity);
+    await this.updateBop(entity);
 
     if (!entrylist_url) {
       return EntrylistService.emptyEntrylist;
@@ -63,6 +66,12 @@ export class WebhookController {
     }
     await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
 
+    return;
+  };
+
+  private updateBop = async (entity: GameServer) => {
+    this.logger.debug(`updateBop: ${entity.home_name}`);
+    await this.fileManager.write('bop.json', await this.bop.fetch(), entity);
     return;
   };
 
