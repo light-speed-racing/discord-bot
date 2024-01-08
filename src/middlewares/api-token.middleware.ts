@@ -11,15 +11,17 @@ export class ApiTokenMiddleware implements NestMiddleware {
     const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
     const token = (req.header('x-api-token') || req.header('x-authorization')) ?? url.searchParams.get('token');
 
-    const isLocalhost = req.get('Host').includes('localhost');
-    if (!isLocalhost && token !== authorization_token) {
-      this.logger.error('Rejecting request', {
-        from: req.header('x-forwarded-for') || req.socket.remoteAddress,
-        date: new Date().toISOString(),
-        isLocalhost,
-        token,
-        url: `${url}`,
-      });
+    if (!token || token !== authorization_token) {
+      this.logger.error(
+        'Request was rejected. The API KEY was not provided. User `X-Api-Token` header or `token` query param',
+        {
+          from: req.header('x-forwarded-for') || req.socket.remoteAddress,
+          date: new Date().toISOString(),
+          isLocalhost: req.get('Host').includes('localhost'),
+          token,
+          url: `${req.originalUrl}`,
+        },
+      );
       throw new UnauthorizedException();
     }
 

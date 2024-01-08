@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { OpenGamePanelApi } from './open-game-panel-api.service';
 import { GameServer } from 'src/database/game-server.entity';
 import { FileManagerModule } from './file-manager-module.type';
@@ -16,9 +16,12 @@ import {
 type ConfigFile = AssistRulesJSON | ConfigurationJSON | Entrylist | EventJSON | EventRulesJSON | SettingsJSON | BopJSON;
 @Injectable()
 export class FileManager {
+  private logger = new Logger(FileManager.name);
+
   constructor(private readonly api: OpenGamePanelApi) {}
 
   async read<T extends ConfigFile>(filename: keyof ConfigFiles, entry: GameServer): Promise<T> {
+    this.logger.debug(`Reading ${filename} using OGP_API`);
     const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/get', {
       port: entry.IpPort.port,
       relative_path: `cfg/${filename}`,
@@ -32,6 +35,8 @@ export class FileManager {
     data: Record<string, unknown>,
     entry: GameServer,
   ): Promise<{ message: string; data: T }> {
+    this.logger.debug(`Updating ${filename} using OGP_API`, data);
+
     const content = {
       ...(await this.read(filename, entry)),
       ...data,

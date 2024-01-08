@@ -14,6 +14,7 @@ import { GameServer } from 'src/database/game-server.entity';
 @Controller('webhooks')
 export class WebhookController {
   private logger = new Logger(WebhookController.name);
+
   constructor(
     private readonly entrylist: EntrylistService,
     private readonly gameServer: GameServerService,
@@ -50,11 +51,12 @@ export class WebhookController {
       await this.notifyChannel(entity);
     }
 
-    return (await this.entrylist.fetch(entrylist_url)) ?? EntrylistService.emptyEntrylist;
+    return await this.entrylist.fetch(entity);
   }
 
-  private async updatePortsInConfiguration(entity: GameServer): Promise<void> {
+  private updatePortsInConfiguration = async (entity: GameServer): Promise<void> => {
     const { port } = entity.IpPort;
+    this.logger.debug(`updatePortsInConfiguration: ${entity.home_name}`);
     const existing = await this.fileManager.read<ConfigurationJSON>('configuration.json', entity);
     if (existing.tcpPort === port && existing.udpPort === port) {
       return;
@@ -62,9 +64,9 @@ export class WebhookController {
     await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
 
     return;
-  }
+  };
 
-  private async notifyChannel(entity: GameServer) {
+  private notifyChannel = async (entity: GameServer) => {
     const {
       custom_fields: { channel_id, role_id },
     } = entity;
@@ -97,5 +99,5 @@ export class WebhookController {
         }),
       ],
     });
-  }
+  };
 }
