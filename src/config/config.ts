@@ -1,30 +1,36 @@
 import { Type } from 'class-transformer';
-import { IsDefined, IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, ValidateNested } from 'class-validator';
 import { DatabaseConfig } from './database.config';
 import { DiscordConfig } from './discord.config';
 import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
+import { LfmConfig } from './lfm.config';
 
 export class RootConfig {
   @IsString()
   readonly env: 'production' | 'development' = 'production';
 
   @IsNumber()
-  readonly port: number = 3000;
+  @Type(() => Number)
+  readonly port: number;
 
-  @IsDefined()
   @Type(() => DiscordConfig)
+  @ValidateNested()
   readonly discord: DiscordConfig;
 
-  @IsDefined()
   @Type(() => DatabaseConfig)
+  @ValidateNested()
   readonly database: DatabaseConfig;
 
-  @IsDefined()
   @Type(() => GiphyConfig)
+  @ValidateNested()
   readonly giphy: GiphyConfig;
 
-  @IsDefined()
+  @Type(() => LfmConfig)
+  @ValidateNested()
+  readonly lfm: LfmConfig;
+
   @Type(() => OpenGamePanelConfig)
+  @ValidateNested()
   readonly openGamePanel: OpenGamePanelConfig;
 }

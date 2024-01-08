@@ -11,8 +11,9 @@ import {
   StringSelectMenuInteraction,
   StringSelectMenuOptionBuilder,
 } from 'discord.js';
-import { IsHost } from 'src/guard/is-host.guard';
 import { UseGuards } from '@nestjs/common';
+import { HasCustomId } from '../../guard/has-custom-id.guard';
+import { HasRole } from 'src/guard/has-role.guard';
 
 @SubCommand({
   name: 'restart',
@@ -26,13 +27,13 @@ export class RestartGameServerSubcommand {
     private readonly gameManager: GameManager,
   ) {}
 
-  @UseGuards(IsHost)
+  @UseGuards(new HasRole('Host'))
   @Handler()
   async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
     this.allServers = await this.repository.find();
 
     const server = new StringSelectMenuBuilder()
-      .setCustomId('restartGameServer')
+      .setCustomId(RestartGameServerSubcommand.name)
       .setPlaceholder('Select a server')
       .addOptions(
         this.allServers.map(({ home_name }, index) => {
@@ -47,11 +48,8 @@ export class RestartGameServerSubcommand {
   }
 
   @On('interactionCreate')
-  async onSubmit(@IA() { customId, values, message }: StringSelectMenuInteraction) {
-    if (customId !== 'restartGameServer') {
-      return;
-    }
-
+  @UseGuards(new HasCustomId(RestartGameServerSubcommand.name))
+  async onSubmit(@IA() { values, message }: StringSelectMenuInteraction) {
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
     await message.reply({ content: `I'm restarting **${selectedServer.home_name}**. Please wait...` });

@@ -34,8 +34,8 @@ export class GameServer {
     },
   })
   custom_fields: null | {
-    entrylist_url?: string;
-    channel_id?: string;
-    role_id?: string;
+    entrylist_url?: string | undefined;
+    channel_id?: string | undefined;
+    role_id?: string | undefined;
   };
 }

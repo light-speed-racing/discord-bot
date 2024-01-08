@@ -2,11 +2,11 @@ import { IsString } from 'class-validator';
 
 export class OpenGamePanelConfig {
   @IsString()
-  readonly authorizationToken: string;
+  readonly authorization_token: string;
 
   @IsString()
   readonly ip: string;
 
   @IsString()
-  readonly apiToken: string;
+  readonly api_token: string;
 }

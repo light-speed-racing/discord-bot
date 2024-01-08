@@ -11,16 +11,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       type: 'mysql',
       host: this.config.database.host,
       port: this.config.database.port,
-      database: this.config.database.databaseName,
+      database: this.config.database.database_name,
       username: this.config.database.username,
       password: this.config.database.password,
       entities: ['dist/src/**/*.entity.js'],
-      // migrations: ['dist/src/database/migrations/*.js'],
       autoLoadEntities: true,
-      // migrationsRun: this.config.env === 'development',
-      // migrationsTransactionMode: 'each',
-      // schema: 'public',
-      // synchronize: false,
       logging: true,
     };
   }
