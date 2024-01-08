@@ -27,7 +27,7 @@ jobs:
     # needs:
     #   - build
     steps:
-      - uses: appleboy/ssh-action@v1.0.2
+      - uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.PATTY_HOST }}
           username: ${{ secrets.PATTY_USERNAME }}
