@@ -4,12 +4,13 @@ import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
 import { ChannelService } from './channel.service';
 import { TextChannel, roleMention } from 'discord.js';
-import { ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
+import { BopJSON, ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { GiphyService } from 'src/giphy/giphy.service';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
+import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -17,6 +18,7 @@ export class WebhookController {
 
   constructor(
     private readonly entrylist: EntrylistService,
+    private readonly bop: BalanceOfPerformanceService,
     private readonly gameServer: GameServerService,
     private readonly channel: ChannelService,
     private readonly giphy: GiphyService,
@@ -28,8 +30,13 @@ export class WebhookController {
     return 'Hello World';
   }
 
-  @Post('pre-start')
-  async preStart(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
+  @Get('bop')
+  async getBop(): Promise<BopJSON> {
+    return (await this.bop.fetch()) as any;
+  }
+
+  @Post('entrylist')
+  async getEntrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
 
     const entity = !!homedir && (await this.gameServer.homedir(homedir));

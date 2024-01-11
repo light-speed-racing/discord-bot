@@ -30,6 +30,7 @@ import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/pre-start');
+    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/entrylist');
+    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/bop');
   }
 }

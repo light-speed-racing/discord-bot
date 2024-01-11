@@ -14,6 +14,7 @@ import {
 } from '../assetto-corsa-competizione.types';
 
 type ConfigFile = AssistRulesJSON | ConfigurationJSON | Entrylist | EventJSON | EventRulesJSON | SettingsJSON | BopJSON;
+
 @Injectable()
 export class FileManager {
   private logger = new Logger(FileManager.name);
