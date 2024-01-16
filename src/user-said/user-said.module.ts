@@ -1,19 +1,23 @@
 import { Module } from '@nestjs/common';
-import { SiakozSaidEvent } from './siakoz-said.event';
 import { ChristianMullerSaidEvent } from './christian-muller-said.event';
 import { AnyoneSaidRaveEvent } from './anyone-said-rave.event';
 import { GiphyModule } from 'src/giphy/giphy.module';
-import { SpencerOrAndrewSaidEvent } from './spencer-or-andrew-said.event';
+import { SpencerSaidEvent } from './spencer-said.event';
 import { AnyoneSaysAnythingEvent } from './anyone-says-anything.event';
+import { OssiSaidEvent } from './ossi-said.event';
+import { EeekSaidEvent } from './eeek-said.event';
+import { AnyoneSaidHowDareYouEvent } from './anyone-said-how-dare-you.event';
 
 @Module({
   imports: [GiphyModule],
   providers: [
-    SiakozSaidEvent,
+    EeekSaidEvent,
     ChristianMullerSaidEvent,
     AnyoneSaidRaveEvent,
-    SpencerOrAndrewSaidEvent,
+    SpencerSaidEvent,
+    OssiSaidEvent,
     AnyoneSaysAnythingEvent,
+    AnyoneSaidHowDareYouEvent,
   ],
 })
 export class UserSaidModule {}
