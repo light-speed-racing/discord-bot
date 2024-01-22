@@ -11,7 +11,7 @@ export class EeekSaidEvent {
   constructor(private readonly giphy: GiphyService) {}
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('eeekdk'), new Likelihood(5))
+  @UseGuards(new MessageSendByUsername('eeekdk'), new Likelihood(1))
   async respond(message: Message) {
     return sample([
       `That is the most profound thing I have ever heard someone say. If everybody were 5% as smart as ${message.author} the world would be a much better place`,

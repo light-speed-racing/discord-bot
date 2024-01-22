@@ -9,7 +9,7 @@ import { HasBeenMemberLongerThan } from 'src/guard/has-been-member-longer-than.g
 @Injectable()
 export class AnyoneSaysAnythingEvent {
   @On('messageCreate')
-  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(2))
+  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(1))
   async onMessage(message: Message): Promise<void> {
     const messages = [
       `I am sooo mad at you!!! How dare you...!! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
