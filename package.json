@@ -31,7 +31,7 @@
     "axios": "^1.6.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "discord.js": "14.13.0",
+    "discord.js": "14.14.1",
     "dotenv-vault": "^1.25.0",
     "isomorphic-fetch": "^3.0.0",
     "lodash.inrange": "^3.3.6",
