@@ -30,9 +30,11 @@ export class WebhookController {
     return 'Hello World';
   }
 
-  @Get('bop')
-  async getBop(): Promise<BopJSON> {
-    return (await this.bop.fetch()) as any;
+  @Post('bop')
+  async getBop(@Body() { homedir }: PreStartDto): Promise<BopJSON> {
+    const entity = !!homedir && (await this.gameServer.homedir(homedir));
+
+    return await this.bop.fetch(entity.custom_fields.bop_provider);
   }
 
   @Post('entrylist')

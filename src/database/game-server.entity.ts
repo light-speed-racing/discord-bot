@@ -2,6 +2,8 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Server } from './server.entity';
 import { IpPort } from './ip-port.entity';
 
+export type BopProvider = 'kunos' | 'lfm';
+
 @Entity({
   name: 'ogpgbserver_homes',
 })
@@ -34,8 +36,12 @@ export class GameServer {
     },
   })
   custom_fields: null | {
+    /** @deprecated */
     entrylist_url?: string | undefined;
     channel_id?: string | undefined;
     role_id?: string | undefined;
+
+    simgrid_id?: string | undefined;
+    bop_provider?: BopProvider | undefined;
   };
 }

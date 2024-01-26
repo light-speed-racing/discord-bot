@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { BopJSON } from 'src/assetto-corsa-competizione.types';
 import { RootConfig } from 'src/config/config';
+import { BopProvider } from 'src/database/game-server.entity';
 
 @Injectable()
 export class BalanceOfPerformanceService {
@@ -11,7 +12,17 @@ export class BalanceOfPerformanceService {
 
   constructor(private readonly http: HttpService, private readonly config: RootConfig) {}
 
-  async fetch() {
+  async fetch(provider: BopProvider): Promise<BopJSON> {
+    switch (provider) {
+      case 'lfm':
+        return this.fetchLfmBop();
+      case 'kunos':
+      default:
+        return {};
+    }
+  }
+
+  private async fetchLfmBop() {
     this.logger.debug('Fetching BOP from LFM');
     const url = new URL(this.config.lfm.url);
     url.searchParams.set('k', this.config.lfm.token);
