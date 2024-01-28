@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { GameServer } from 'src/database/game-server.entity';
 import {
   ActionRowBuilder,
-  ClientEvents,
+  Interaction,
   Message,
   StringSelectMenuBuilder,
   StringSelectMenuInteraction,
@@ -29,12 +29,12 @@ export class StartGameServerSubcommand {
 
   @UseGuards(new HasRole('Host'))
   @Handler()
-  async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
+  async handle(@EventParams() [interaction]: [Interaction]): Promise<Message> {
     this.allServers = await this.repository.find();
 
     const server = new StringSelectMenuBuilder()
       .setCustomId(StartGameServerSubcommand.name)
-      .setPlaceholder('Select a server')
+      .setPlaceholder('Select the server you would like to start')
       .addOptions(
         this.allServers.map(({ home_name }, index) => {
           return new StringSelectMenuOptionBuilder().setLabel(home_name).setValue(`${index}`);
@@ -49,12 +49,15 @@ export class StartGameServerSubcommand {
 
   @On('interactionCreate')
   @UseGuards(new HasCustomId(StartGameServerSubcommand.name))
-  async onSubmit(@IA() { values, message }: StringSelectMenuInteraction) {
+  async onSubmit(@IA() { values, message, member }: StringSelectMenuInteraction) {
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
     await message.reply({ content: `I'm starting **${selectedServer.home_name}**. Please wait...` });
-    const response = await this.gameManager.start(selectedServer);
+    const { message: content } = await this.gameManager.start(selectedServer);
 
-    return await message.reply({ content: `${response.message}` });
+    return await message.reply({
+      content,
+      nonce: member.user.username,
+    });
   }
 }

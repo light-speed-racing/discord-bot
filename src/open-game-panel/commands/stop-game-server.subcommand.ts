@@ -34,7 +34,7 @@ export class StopGameServerSubcommand {
 
     const select = new StringSelectMenuBuilder()
       .setCustomId(StopGameServerSubcommand.name)
-      .setPlaceholder('Select a server')
+      .setPlaceholder('Select the server you would like to stop')
       .addOptions(
         this.allServers.map(({ home_name }, index) => {
           return new StringSelectMenuOptionBuilder().setLabel(home_name).setValue(`${index}`);
@@ -49,12 +49,15 @@ export class StopGameServerSubcommand {
 
   @On('interactionCreate')
   @UseGuards(new HasCustomId(StopGameServerSubcommand.name))
-  async onSubmit(@IA() { values, message }: StringSelectMenuInteraction) {
+  async onSubmit(@IA() { values, message, member }: StringSelectMenuInteraction) {
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
     await message.reply({ content: `I'm stopping **${selectedServer.home_name}**. Please wait...` });
     const response = await this.gameManager.stop(selectedServer);
 
-    return await message.reply({ content: `${response.message}` });
+    return await message.reply({
+      content: response.message,
+      nonce: member.user.username,
+    });
   }
 }

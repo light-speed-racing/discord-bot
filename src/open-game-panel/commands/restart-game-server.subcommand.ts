@@ -34,7 +34,7 @@ export class RestartGameServerSubcommand {
 
     const server = new StringSelectMenuBuilder()
       .setCustomId(RestartGameServerSubcommand.name)
-      .setPlaceholder('Select a server')
+      .setPlaceholder('Select the server you would like to restart')
       .addOptions(
         this.allServers.map(({ home_name }, index) => {
           return new StringSelectMenuOptionBuilder().setLabel(home_name).setValue(`${index}`);
@@ -49,12 +49,15 @@ export class RestartGameServerSubcommand {
 
   @On('interactionCreate')
   @UseGuards(new HasCustomId(RestartGameServerSubcommand.name))
-  async onSubmit(@IA() { values, message }: StringSelectMenuInteraction) {
+  async onSubmit(@IA() { values, message, member }: StringSelectMenuInteraction) {
     const selectedServer = this.allServers.at(Number(values.at(0)));
 
     await message.reply({ content: `I'm restarting **${selectedServer.home_name}**. Please wait...` });
     const response = await this.gameManager.restart(selectedServer);
 
-    return await message.reply({ content: `${response.message}` });
+    return await message.reply({
+      content: response.message,
+      nonce: member.user.username,
+    });
   }
 }
