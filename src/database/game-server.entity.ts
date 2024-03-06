@@ -32,16 +32,24 @@ export class GameServer {
     nullable: true,
     transformer: {
       to: (value: string) => value,
-      from: (value: string) => !!value && JSON.parse(value),
+      from: (value: string) => {
+        if (!value) {
+          return;
+        }
+        const json = JSON.parse(value);
+
+        return {
+          ...json,
+          is_enabled: json.is_enabled === '1' ? true : false,
+        };
+      },
     },
   })
   custom_fields: null | {
-    /** @deprecated */
-    entrylist_url?: string | undefined;
+    is_enabled: boolean;
+    bop_provider: BopProvider;
     channel_id?: string | undefined;
     role_id?: string | undefined;
-
-    simgrid_id?: string | undefined;
-    bop_provider?: BopProvider | undefined;
+    simgrid_id?: number | undefined;
   };
 }

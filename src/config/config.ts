@@ -5,6 +5,7 @@ import { DiscordConfig } from './discord.config';
 import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
 import { LfmConfig } from './lfm.config';
+import { SimgridConfig } from './simgrid.config';
 
 export class RootConfig {
   @IsString()
@@ -29,6 +30,10 @@ export class RootConfig {
   @Type(() => LfmConfig)
   @ValidateNested()
   readonly lfm: LfmConfig;
+
+  @Type(() => SimgridConfig)
+  @ValidateNested()
+  readonly simgrid: SimgridConfig;
 
   @Type(() => OpenGamePanelConfig)
   @ValidateNested()

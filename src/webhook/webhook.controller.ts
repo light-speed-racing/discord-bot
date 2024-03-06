@@ -40,27 +40,24 @@ export class WebhookController {
   @Post('entrylist')
   async getEntrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
-
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
+    const { channel_id, simgrid_id, is_enabled } = entity.custom_fields;
 
-    if (!entity) {
-      this.logger.error('Entity was not found or no homedir provided. Sending empty entrylist');
-      return EntrylistService.emptyEntrylist;
+    if (!is_enabled) {
+      return;
     }
 
-    const { channel_id, entrylist_url } = entity.custom_fields;
+    if (!simgrid_id) {
+      return EntrylistService.emptyEntrylist;
+    }
 
     await this.updatePortsInConfiguration(entity);
-
-    if (!entrylist_url) {
-      return EntrylistService.emptyEntrylist;
-    }
 
     if (channel_id) {
       await this.notifyChannel(entity);
     }
 
-    return await this.entrylist.fetch(entity);
+    return await this.entrylist.fetch(simgrid_id);
   }
 
   private updatePortsInConfiguration = async (entity: GameServer): Promise<void> => {
