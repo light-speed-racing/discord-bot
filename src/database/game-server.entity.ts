@@ -45,11 +45,14 @@ export class GameServer {
       },
     },
   })
-  custom_fields: null | {
-    is_enabled: boolean;
-    bop_provider: BopProvider;
-    channel_id?: string | undefined;
-    role_id?: string | undefined;
-    simgrid_id?: number | undefined;
-  };
+  custom_fields:
+    | null
+    | undefined
+    | {
+        is_enabled: boolean;
+        bop_provider: BopProvider;
+        channel_id?: string | undefined;
+        role_id?: string | undefined;
+        simgrid_id?: number | undefined;
+      };
 }

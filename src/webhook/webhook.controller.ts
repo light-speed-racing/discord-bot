@@ -34,20 +34,19 @@ export class WebhookController {
   async getBop(@Body() { homedir }: PreStartDto): Promise<BopJSON> {
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
-    if (!entity.custom_fields.is_enabled) {
+    if (!entity.custom_fields?.is_enabled) {
       return;
     }
 
-    return await this.bop.fetch(entity.custom_fields.bop_provider);
+    return await this.bop.fetch(entity.custom_fields?.bop_provider);
   }
 
   @Post('entrylist')
   async getEntrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incommimng request', { homedir });
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
-    // const { channel_id, simgrid_id, is_enabled } = entity.custom_fields;
 
-    if (!entity.custom_fields.is_enabled) {
+    if (!entity.custom_fields?.is_enabled) {
       return;
     }
 
