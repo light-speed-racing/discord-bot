@@ -3,30 +3,26 @@ import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { Entrylist, EntrylistEntry } from 'src/assetto-corsa-competizione.types';
-import { GameServer } from 'src/database/game-server.entity';
+import { RootConfig } from 'src/config/config';
 import { Patreons } from 'src/patreons';
 
 @Injectable()
 export class EntrylistService {
   private readonly logger = new Logger(EntrylistService.name);
 
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService, private readonly config: RootConfig) {}
 
   static emptyEntrylist: Entrylist = {
     entries: [],
     forceEntryList: 0,
   };
 
-  async fetch(entity: GameServer): Promise<Entrylist> {
-    const {
-      home_name,
-      custom_fields: { entrylist_url },
-    } = entity;
-    this.logger.debug(`Fetching entrylist for: ${home_name}`);
-
+  async fetch(id: number, format: 'json' | 'csv' | 'ini' = 'json'): Promise<Entrylist> {
+    const url = `${this.config.simgrid.url}/v1/championships/${id}/entrylist?format=${format}`;
     const { data } = await firstValueFrom(
-      this.httpService.get<Entrylist>(entrylist_url).pipe(
+      this.httpService.get<Entrylist>(url).pipe(
         catchError((error: AxiosError) => {
+          console.log('Error', error);
           throw error.message;
         }),
       ),
