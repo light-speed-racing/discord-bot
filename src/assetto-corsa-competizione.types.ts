@@ -98,6 +98,7 @@ export type EventJSON = {
     | 'nurburgring'
     | 'oulton_park'
     | 'paul_ricard'
+    | 'red_bull_ring'
     | 'silverstone'
     | 'snetterton'
     | 'spa'

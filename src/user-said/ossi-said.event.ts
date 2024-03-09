@@ -12,7 +12,7 @@ export class OssiSaidEvent {
   constructor(private readonly giphy: GiphyService) {}
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('ojk41'), new Likelihood(1))
+  @UseGuards(new MessageSendByUsername('ojk41'), new Likelihood(3))
   async onMessage(message: Message): Promise<void> {
     const { data } = await this.giphy.search('finland');
 

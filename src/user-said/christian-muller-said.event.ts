@@ -11,7 +11,7 @@ export class ChristianMullerSaidEvent {
   @UseGuards(new MessageSendByUsername('hypn0tik4735'), new Likelihood(5))
   respond(message: Message) {
     return sample([
-      `Five championships... And then you give up.. Pfft. Youa re not the ${message.author} you use to be`,
+      `Five championships... And then you give up.. Pfft. How dare you?!? You are not the ${message.author} you use to be`,
       `It's a Bird... It's a Plane... No...! It's ${message.author}`,
       `Guys! Is that ${message.author}? The many time champion...?!?`,
       `Meet the "hall of famer": ${message.author}`,
