@@ -7,6 +7,7 @@ import { AnyoneSaysAnythingEvent } from './anyone-says-anything.event';
 import { OssiSaidEvent } from './ossi-said.event';
 import { EeekSaidEvent } from './eeek-said.event';
 import { AnyoneSaidHowDareYouEvent } from './anyone-said-how-dare-you.event';
+import { AyrtonSaidEvent } from './ayrton-said.event';
 
 @Module({
   imports: [GiphyModule],
@@ -16,6 +17,7 @@ import { AnyoneSaidHowDareYouEvent } from './anyone-said-how-dare-you.event';
     AnyoneSaidRaveEvent,
     SpencerSaidEvent,
     OssiSaidEvent,
+    AyrtonSaidEvent,
     AnyoneSaysAnythingEvent,
     AnyoneSaidHowDareYouEvent,
   ],

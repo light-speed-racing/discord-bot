@@ -8,13 +8,13 @@ import { Likelihood } from 'src/guard/likelyhood.guard';
 import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 
 @Injectable()
-export class SpencerSaidEvent {
+export class AyrtonSaidEvent {
   constructor(private readonly giphy: GiphyService) {}
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('skeez0414'), new Likelihood(2))
+  @UseGuards(new MessageSendByUsername('ayrton85'), new Likelihood(2))
   async onMessage(message: Message): Promise<void> {
-    const { data } = await this.giphy.search('america');
+    const { data } = await this.giphy.search('holland');
 
     const { images } = sample(data);
 

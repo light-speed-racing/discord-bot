@@ -9,7 +9,7 @@ import { HasBeenMemberLongerThan } from 'src/guard/has-been-member-longer-than.g
 @Injectable()
 export class AnyoneSaysAnythingEvent {
   @On('messageCreate')
-  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(2))
+  @UseGuards(MessageIsSendByAUser, new HasBeenMemberLongerThan(2, 'w'), new Likelihood(1))
   async onMessage(message: Message): Promise<void> {
     const messages = [
       `I am sooo mad at you!!! How dare you...!! Go hug a tree and give me proof or I will ban you! #furyofgreta`,
@@ -27,6 +27,16 @@ export class AnyoneSaysAnythingEvent {
       `If excuses were renewable energy, you'd have solved the climate crisis by now, ${message.author}!`,
       `${message.author}'s carbon footprint is so extravagant, it's like you're auditioning for a starring role in 'Planet Polluter: The Sequel.'`,
       `I've seen more sustainable practices in a toddler's finger painting than in your daily routine!`,
+      'Just as every drop of rain contributes to the ocean, every turn on the track fuels my passion for racing and drives my commitment to sustainability.',
+      'In the race for a greener future, every lap counts. I may love the speed of racing cars, but I love our planet even more.',
+      "The roar of the engine ignites my spirit, but it's the whisper of the wind through the trees that reminds me of the importance of eco-friendly racing.",
+      'Every curve on the track is a reminder that we must navigate the twists and turns of climate change with skill and determination.',
+      'The adrenaline rush of racing fuels my desire to accelerate the transition to clean energy and sustainable practices.',
+      "Just as a well-tuned engine maximizes performance, optimizing our planet's resources is crucial for a sustainable future.",
+      'Behind the wheel, I find focus and determination, qualities that drive me to advocate for a world where racing and environmental conservation go hand in hand.',
+      'Every pit stop is an opportunity to fine-tune both the car and our environmental efforts, ensuring peak performance on and off the track.',
+      "The thrill of competition pales in comparison to the urgency of protecting our planet. Let's race towards a future where sustainability takes the checkered flag.",
+      `As a racer, ${message.author}. I understand the need for speed, but as an environmentalist, I recognize the need for balance. Let's race responsibly, with the planet in our rearview mirror.`,
     ];
     await message.reply(sample(messages));
   }
