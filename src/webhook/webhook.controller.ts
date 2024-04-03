@@ -46,6 +46,8 @@ export class WebhookController {
     this.logger.log('Incommimng request', { homedir });
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
+    await this.updatePortsInConfiguration(entity);
+
     if (!entity.custom_fields?.is_enabled) {
       return;
     }
@@ -53,8 +55,6 @@ export class WebhookController {
     if (!entity.custom_fields?.simgrid_id) {
       return EntrylistService.emptyEntrylist;
     }
-
-    await this.updatePortsInConfiguration(entity);
 
     if (entity.custom_fields?.channel_id) {
       await this.notifyChannel(entity);
