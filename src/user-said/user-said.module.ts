@@ -8,6 +8,7 @@ import { OssiSaidEvent } from './ossi-said.event';
 import { EeekSaidEvent } from './eeek-said.event';
 import { AnyoneSaidHowDareYouEvent } from './anyone-said-how-dare-you.event';
 import { AyrtonSaidEvent } from './ayrton-said.event';
+import { PatreonSaysAnythingEvent } from './patreon-says-anything.event';
 
 @Module({
   imports: [GiphyModule],
@@ -20,6 +21,7 @@ import { AyrtonSaidEvent } from './ayrton-said.event';
     AyrtonSaidEvent,
     AnyoneSaysAnythingEvent,
     AnyoneSaidHowDareYouEvent,
+    PatreonSaysAnythingEvent,
   ],
 })
 export class UserSaidModule {}
