@@ -8,6 +8,7 @@ export type Patreon = {
 type SteamId = number;
 
 export const Patreons = new Map<SteamId, Patreon>()
+  .set(76561199626011162, { raceNumber: 11, discordId: 1200506777570127912, steamId: 'S76561199626011162' }) // S Gee
   .set(76561198051239559, { raceNumber: 13, discordId: 883616496906014741, steamId: 'S76561198051239559' }) // Tickner
   .set(76561198342638728, { raceNumber: 16, discordId: 688405680734077019, steamId: 'S76561198342638728' }) // Stefano Furlan
   .set(76561199247468623, { raceNumber: 30, discordId: 878356315385258014, steamId: 'S76561199247468623' }) // Müller
