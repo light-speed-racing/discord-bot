@@ -31,6 +31,15 @@ export class FileManager {
     return JSON.parse(message) as T;
   }
 
+  isEmpty = async (filename: keyof ConfigFiles, { IpPort }: GameServer) => {
+    const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/get', {
+      port: IpPort.port,
+      relative_path: `cfg/${filename}`,
+    });
+
+    return !message.length;
+  };
+
   async write<T extends ConfigFile>(
     filename: keyof ConfigFiles,
     data: Record<string, unknown>,

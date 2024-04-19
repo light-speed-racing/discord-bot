@@ -25,10 +25,9 @@ export class OpenGamePanelApi {
   }
 
   async get<T extends keyof FileManagerModule, Message = string>(module: T, parameters: FileManagerModule[T]) {
-    const url = this.url(module, parameters);
     this.logger.debug(`Fetching data using module: ${module}`);
     const { data } = await firstValueFrom(
-      this.http.get<{ status: number; message: Message }>(`${url}`).pipe(
+      this.http.get<{ status: number; message: Message }>(`${this.url(module, parameters)}`).pipe(
         catchError((error: AxiosError) => {
           throw error.message;
         }),

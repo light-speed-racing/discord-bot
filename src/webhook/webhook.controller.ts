@@ -46,11 +46,11 @@ export class WebhookController {
     this.logger.log('Incommimng request', { homedir });
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
-    await this.updatePortsInConfiguration(entity);
-
     if (!entity.custom_fields?.is_enabled) {
       return;
     }
+
+    await this.updateConfigurationJson(entity);
 
     if (!entity.custom_fields?.simgrid_id) {
       return EntrylistService.emptyEntrylist;
@@ -63,10 +63,27 @@ export class WebhookController {
     return await this.entrylist.fetch(entity.custom_fields?.simgrid_id);
   }
 
-  private updatePortsInConfiguration = async (entity: GameServer): Promise<void> => {
-    const { port } = entity.IpPort;
-    this.logger.debug(`updatePortsInConfiguration: ${entity.home_name}`);
+  private updateConfigurationJson = async (entity: GameServer): Promise<void> => {
+    const {
+      home_name,
+      IpPort: { port },
+    } = entity;
+    this.logger.debug(`updateConfigurationJson: ${home_name}`);
+    if (await this.fileManager.isEmpty('configuration.json', entity)) {
+      await this.fileManager.write<ConfigurationJSON>(
+        'configuration.json',
+        { lanDiscovery: 1, maxConnections: 250, registerToLobby: 1, configVersion: 1, tcpPort: port, udpPort: port },
+        entity,
+      );
+
+      return;
+    }
     const existing = await this.fileManager.read<ConfigurationJSON>('configuration.json', entity);
+
+    if (!existing) {
+      this.logger.debug(`No confiuguration.json was found`);
+    }
+
     if (existing.tcpPort === port && existing.udpPort === port) {
       return;
     }
