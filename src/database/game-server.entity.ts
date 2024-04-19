@@ -50,6 +50,7 @@ export class GameServer {
     | undefined
     | {
         is_enabled: boolean;
+        live_weather: boolean;
         bop_provider: BopProvider;
         channel_id?: string | undefined;
         role_id?: string | undefined;

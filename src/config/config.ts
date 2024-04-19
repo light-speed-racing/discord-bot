@@ -6,6 +6,7 @@ import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
 import { LfmConfig } from './lfm.config';
 import { SimgridConfig } from './simgrid.config';
+import { OpenWeatherApiConfig } from './open-weather-api.config';
 
 export class RootConfig {
   @IsString()
@@ -38,4 +39,8 @@ export class RootConfig {
   @Type(() => OpenGamePanelConfig)
   @ValidateNested()
   readonly openGamePanel: OpenGamePanelConfig;
+
+  @Type(() => OpenWeatherApiConfig)
+  @ValidateNested()
+  readonly openWeatherApi: OpenWeatherApiConfig;
 }

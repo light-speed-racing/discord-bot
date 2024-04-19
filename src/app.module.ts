@@ -12,6 +12,7 @@ import { SimgridModule } from './simgrid/simgrid.module';
 // import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
     SimgridModule,
     // OpenGamePanelModule,
     HealthModule,
+    WeatherModule,
   ],
   providers: [],
 })

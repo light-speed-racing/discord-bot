@@ -81,31 +81,35 @@ export type EventRulesJSON = {
   tyreSetCount?: number;
 };
 
+export type Track =
+  | 'barcelona'
+  | 'brands_hatch'
+  | 'cota'
+  | 'donington'
+  | 'hungaroring'
+  | 'imola'
+  | 'indianapolis'
+  | 'kyalami'
+  | 'laguna_seca'
+  | 'misano'
+  | 'monza'
+  | 'mount_panorama'
+  | 'nurburgring'
+  | 'oulton_park'
+  | 'paul_ricard'
+  | 'red_bull_ring'
+  | 'silverstone'
+  | 'snetterton'
+  | 'spa'
+  | 'suzuka'
+  | 'watkins_glen'
+  | 'zandvoort'
+  | 'zandvoort'
+  | 'nurburgring_24h';
+
 export type EventJSON = {
-  track:
-    | 'barcelona'
-    | 'brands_hatch'
-    | 'cota'
-    | 'donington'
-    | 'hungaroring'
-    | 'imola'
-    | 'indianapolis'
-    | 'kyalami'
-    | 'laguna_seca'
-    | 'misano'
-    | 'monza'
-    | 'mount_panorama'
-    | 'nurburgring'
-    | 'oulton_park'
-    | 'paul_ricard'
-    | 'red_bull_ring'
-    | 'silverstone'
-    | 'snetterton'
-    | 'spa'
-    | 'suzuka'
-    | 'watkins_glen'
-    | 'zandvoort'
-    | 'zandvoort';
+  track: Track;
+
   eventType: 'E_3h' | 'E_6h' | 'E_9h' | 'E_24h';
   sessions: Array<{
     hourOfDay: number;

@@ -11,6 +11,7 @@ import { EmbedBuilder } from '@discordjs/builders';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
 import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
+import { WeatherService } from 'src/weather/weather.service';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -23,10 +24,14 @@ export class WebhookController {
     private readonly channel: ChannelService,
     private readonly giphy: GiphyService,
     private readonly fileManager: FileManager,
+    private readonly weather: WeatherService,
   ) {}
 
   @Get('/')
   async helloWorld() {
+    const entity = await this.gameServer.homedir('/home/cyg_server/OGP_User_Files/25');
+    return await this.updateWeather(entity);
+
     return 'Hello World';
   }
 
@@ -46,11 +51,14 @@ export class WebhookController {
     this.logger.log('Incommimng request', { homedir });
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
 
+    await this.updateConfigurationJson(entity);
+
     if (!entity.custom_fields?.is_enabled) {
       return;
     }
-
-    await this.updateConfigurationJson(entity);
+    if (!entity.custom_fields?.live_weather) {
+      await this.updateWeather(entity);
+    }
 
     if (!entity.custom_fields?.simgrid_id) {
       return EntrylistService.emptyEntrylist;
@@ -88,6 +96,19 @@ export class WebhookController {
       return;
     }
     await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
+
+    return;
+  };
+
+  private updateWeather = async (entity: GameServer): Promise<void> => {
+    const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
+    const weather = await this.weather.forecastFor(eventJSON.track);
+    const data = {
+      ...eventJSON,
+      ...weather.at('12:00'),
+    };
+
+    await this.fileManager.write<EventJSON>('event.json', data, entity);
 
     return;
   };
