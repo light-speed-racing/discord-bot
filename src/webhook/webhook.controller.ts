@@ -3,7 +3,7 @@ import { PreStartDto } from './pre-start.dto';
 import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
 import { ChannelService } from './channel.service';
-import { TextChannel, roleMention } from 'discord.js';
+import { Colors, TextChannel, roleMention } from 'discord.js';
 import { BopJSON, ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { GiphyService } from 'src/giphy/giphy.service';
 import sample from 'lodash.sample';
@@ -12,6 +12,7 @@ import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
 import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
 import { WeatherService } from 'src/weather/weather.service';
+import capitalize from 'lodash.capitalize';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -30,7 +31,7 @@ export class WebhookController {
   @Get('/')
   async helloWorld() {
     const entity = await this.gameServer.homedir('/home/cyg_server/OGP_User_Files/25');
-    return await this.updateWeather(entity);
+    return await this.notifyChannel(entity);
 
     return 'Hello World';
   }
@@ -105,7 +106,7 @@ export class WebhookController {
     const weather = await this.weather.forecastFor(eventJSON.track);
     const data = {
       ...eventJSON,
-      ...weather.at('12:00'),
+      ...weather.at('15:00'),
     };
 
     await this.fileManager.write<EventJSON>('event.json', data, entity);
@@ -137,12 +138,26 @@ export class WebhookController {
         .join('\n'),
       embeds: [
         new EmbedBuilder({
-          fields: [
-            { name: 'Server Name', value: `${settings.serverName}`, inline: true },
-            { name: 'Password', value: `${settings.password}`, inline: true },
-            { name: 'Track', value: `${event.track}`, inline: true },
-          ],
           image: { url: sample(data).images.downsized.url },
+        }),
+        new EmbedBuilder({
+          title: 'Server configuration',
+          color: Colors.DarkBlue,
+          fields: [
+            { name: 'Server Name', value: `${settings.serverName}` },
+            { name: 'Password', value: `${settings.password}` },
+            { name: 'Track', value: `${capitalize(event.track).replace(/\_/g, ' ')}` },
+          ],
+        }),
+        new EmbedBuilder({
+          title: 'Weather forecast',
+          color: Colors.DarkBlue,
+          fields: [
+            { name: 'Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
+            { name: 'Cloud level', value: `${event.cloudLevel * 100}%`, inline: true },
+            { name: 'Rain', value: `${event.rain * 100}%`, inline: true },
+            { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
+          ],
         }),
       ],
     });

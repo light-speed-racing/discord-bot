@@ -109,7 +109,6 @@ export type Track =
 
 export type EventJSON = {
   track: Track;
-
   eventType: 'E_3h' | 'E_6h' | 'E_9h' | 'E_24h';
   sessions: Array<{
     hourOfDay: number;
