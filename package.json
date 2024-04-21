@@ -25,6 +25,7 @@
     "@nestjs/axios": "^3.0.1",
     "@nestjs/common": "9.3.10",
     "@nestjs/core": "9.3.10",
+    "@nestjs/event-emitter": "^2.0.4",
     "@nestjs/platform-express": "^10.2.10",
     "@nestjs/terminus": "^10.2.0",
     "@nestjs/typeorm": "^9.0.1",

@@ -13,12 +13,14 @@ import { SimgridModule } from './simgrid/simgrid.module';
 import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 import { WeatherModule } from './weather/weather.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
     ConfigModule,
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    EventEmitterModule.forRoot(),
     JokeModule,
     GiphyModule,
     WebhookModule,
