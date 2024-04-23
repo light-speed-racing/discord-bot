@@ -11,8 +11,6 @@ import { SimgridModule } from './simgrid/simgrid.module';
 // import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
-import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ScheduleModule } from '@nestjs/schedule';
 import { CommonModule } from './common/common.module';
 
 @Module({
@@ -20,8 +18,6 @@ import { CommonModule } from './common/common.module';
     ConfigModule,
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    EventEmitterModule.forRoot(),
-    ScheduleModule.forRoot(),
     JokeModule,
     WebhookModule,
     UserSaidModule,
