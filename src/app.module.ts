@@ -34,9 +34,9 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
   ],
   providers: [],
 })
-export class AppModule /* implements NestModule */ {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/entrylist');
-  //   consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/bop');
-  // }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/entrylist');
+    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/bop');
+  }
 }

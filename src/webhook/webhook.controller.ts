@@ -30,7 +30,6 @@ export class WebhookController {
 
   @Get('/')
   async helloWorld() {
-    // console.log(await this.simgrid.nextRaceOfChampionship(7451));
     return 'Hello World';
   }
 
