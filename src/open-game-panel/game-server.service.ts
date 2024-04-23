@@ -27,7 +27,6 @@ export class GameServerService {
       .filter((entry) => !!entry.custom_fields)
       .filter(({ custom_fields }) => !!custom_fields.is_enabled && custom_fields.server_type === server_type)
       .filter(({ custom_fields }) => !!custom_fields.simgrid_id && !!custom_fields.live_weather)
-      .filter(({ home_id }) => this.config.env === 'development' && home_id === 25 /*|| home_id === 6 */) // @TODO: This needs to be removed
       .filter(Boolean);
   }
 
