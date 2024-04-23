@@ -2,11 +2,17 @@ import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
 import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
-import { BopJSON, ConfigurationJSON, Entrylist } from 'src/assetto-corsa-competizione.types';
+import { BopJSON, ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
 import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
-import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EmbedBuilder, roleMention } from '@discordjs/builders';
+import sample from 'lodash.sample';
+import { Colors, TextChannel } from 'discord.js';
+import capitalize from 'lodash.capitalize';
+import { WeatherService } from 'src/common/weather.service';
+import { GiphyService } from 'src/common/giphy.service';
+import { DiscordChannelService } from 'src/common/discord-channel.service';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -17,7 +23,9 @@ export class WebhookController {
     private readonly bop: BalanceOfPerformanceService,
     private readonly gameServer: GameServerService,
     private readonly fileManager: FileManager,
-    private eventEmitter: EventEmitter2,
+    private readonly channel: DiscordChannelService,
+    private readonly giphy: GiphyService,
+    private readonly weather: WeatherService,
   ) {}
 
   @Get('/')
@@ -47,15 +55,17 @@ export class WebhookController {
       return;
     }
 
-    await this.eventEmitter.emitAsync('game-server.starting', { entity });
-
-    if (!entity.custom_fields?.simgrid_id) {
-      return EntrylistService.emptyEntrylist;
+    if (!entity.custom_fields?.live_weather) {
+      await this.updateWeather(entity);
     }
 
-    await this.eventEmitter.emitAsync('game-server.started', { entity });
+    if (entity.custom_fields?.channel_id) {
+      await this.notifyDiscordChannel(entity);
+    }
 
-    return await this.entrylist.fetch(entity.custom_fields?.simgrid_id);
+    return entity.custom_fields?.simgrid_id
+      ? await this.entrylist.fetch(entity.custom_fields?.simgrid_id)
+      : EntrylistService.emptyEntrylist;
   }
 
   private updateConfigurationJson = async (entity: GameServer): Promise<void> => {
@@ -86,4 +96,72 @@ export class WebhookController {
 
     return;
   };
+
+  private async notifyDiscordChannel(gameServer: GameServer) {
+    const { custom_fields } = gameServer;
+
+    const { data } = await this.giphy.search('race time');
+    const settings = await this.fileManager.read<SettingsJSON>('settings.json', gameServer);
+    const event = await this.fileManager.read<EventJSON>('event.json', gameServer);
+
+    return await this.channel.find<TextChannel>(custom_fields.channel_id).send({
+      content: [
+        [custom_fields.role_id && `${roleMention(custom_fields.role_id)}!`, `IT'S RACE TIME!`]
+          .filter(Boolean)
+          .join(' '),
+        'The server is starting...',
+        '**__As a back marker__**: Be predictable. Hold your line. Lift off the throttle to let the faster car by. Let faster cars by on the first straight',
+        '**__As a overtaking car__**: Be predictable. It is your job to overtake safely. No dive bombing. Wait till you are let by',
+        '**__Sportsmanship__**: When crashing re-enter safely. Wait for clear space to re-enter. If you cause a collision, be a gentleman and give back the spot',
+        '**__Be aware and be careful__**:  Please be very careful on the first couple of laps. Use the radar. Be careful - You might ruin the race for others if you are not careful',
+        '**__Safety on track!__**: PLEASE for the love of god. Please act in a safe manner! No turning around into incoming traffic! No full send on the first couple of laps!',
+        '',
+        'Also, please do not use the game chat during qualification and the race. It might cost you a 5sec penalty',
+      ]
+        .filter(Boolean)
+        .join('\n'),
+      embeds: [
+        new EmbedBuilder({
+          image: { url: sample(data).images.downsized.url },
+        }),
+        new EmbedBuilder({
+          title: 'Server configuration',
+          color: Colors.DarkBlue,
+          fields: [
+            { name: 'Server Name', value: `${settings.serverName}` },
+            { name: 'Password', value: `${settings.password}` },
+            { name: 'Track', value: `${capitalize(event.track).replace(/\_/g, ' ')}` },
+          ],
+        }),
+        new EmbedBuilder({
+          title: 'Weather forecast',
+          color: Colors.DarkBlue,
+          fields: [
+            { name: 'Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
+            { name: 'Cloud level', value: `${event.cloudLevel * 100}%`, inline: true },
+            { name: 'Rain', value: `${event.rain * 100}%`, inline: true },
+            { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
+          ],
+        }),
+      ],
+    });
+  }
+
+  private async updateWeather(entity: GameServer): Promise<void> {
+    const { custom_fields } = entity;
+    if (!custom_fields.is_enabled && !custom_fields?.live_weather) {
+      return;
+    }
+
+    const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
+    const weather = await this.weather.forecastFor(eventJSON.track);
+    const data = {
+      ...eventJSON,
+      ...weather.at('15:00'),
+    };
+
+    await this.fileManager.write<EventJSON>('event.json', data, entity);
+
+    return;
+  }
 }

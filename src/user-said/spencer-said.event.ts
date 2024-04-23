@@ -3,7 +3,7 @@ import { EmbedBuilder } from '@discordjs/builders';
 import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import sample from 'lodash.sample';
-import { GiphyService } from 'src/giphy/giphy.service';
+import { GiphyService } from 'src/common/giphy.service';
 import { Likelihood } from 'src/guard/likelyhood.guard';
 import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 

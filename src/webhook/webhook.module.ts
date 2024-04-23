@@ -1,17 +1,12 @@
 import { Module } from '@nestjs/common';
 import { WebhookController } from './webhook.controller';
-import { ChannelService } from './channel.service';
 import { DiscordModule } from '@discord-nestjs/core';
 import { SimgridModule } from 'src/simgrid/simgrid.module';
 import { OpenGamePanelModule } from 'src/open-game-panel/open-game-panel.module';
-import { GiphyModule } from 'src/giphy/giphy.module';
-import { WeatherModule } from 'src/weather/weather.module';
-import { GameServerStartedListener } from './game-server-started.listener';
-import { GameServerStartingListener } from './game-server-starting.listener';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
-  imports: [DiscordModule.forFeature(), SimgridModule, OpenGamePanelModule, GiphyModule, WeatherModule],
-  providers: [ChannelService, GameServerStartedListener, GameServerStartingListener],
+  imports: [DiscordModule.forFeature(), SimgridModule, OpenGamePanelModule, CommonModule],
   controllers: [WebhookController],
 })
 export class WebhookModule {}

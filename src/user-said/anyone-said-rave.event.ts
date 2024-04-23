@@ -5,7 +5,7 @@ import { MessageIsSendByAUser } from 'src/guard/message-is-send-by-a-user.guard'
 import { MessageContains } from 'src/guard/message-contains.guard';
 import sample from 'lodash.sample';
 import { EmbedBuilder } from '@discordjs/builders';
-import { GiphyService } from 'src/giphy/giphy.service';
+import { GiphyService } from 'src/common/giphy.service';
 
 @Injectable()
 export class AnyoneSaidRaveEvent {

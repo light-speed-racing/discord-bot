@@ -5,15 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/type-orm-configuration.service';
 import { ConfigModule } from './config/config.module';
 import { JokeModule } from './joke/joke.module';
-import { GiphyModule } from './giphy/giphy.module';
 import { WebhookModule } from './webhook/webhook.module';
 import { UserSaidModule } from './user-said/user-said.module';
 import { SimgridModule } from './simgrid/simgrid.module';
 // import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
-import { WeatherModule } from './weather/weather.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ScheduleModule } from '@nestjs/schedule';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -21,14 +21,14 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     EventEmitterModule.forRoot(),
+    ScheduleModule.forRoot(),
     JokeModule,
-    GiphyModule,
     WebhookModule,
     UserSaidModule,
     SimgridModule,
     // OpenGamePanelModule,
     HealthModule,
-    WeatherModule,
+    CommonModule,
   ],
   providers: [],
 })

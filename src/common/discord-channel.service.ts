@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Channel, Client } from 'discord.js';
 
 @Injectable()
-export class ChannelService {
+export class DiscordChannelService {
   constructor(
     @InjectDiscordClient()
     private readonly client: Client,
