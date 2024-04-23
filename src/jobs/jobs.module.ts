@@ -20,11 +20,16 @@ export class JobsModule implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    const cronTime = CronExpression.EVERY_DAY_AT_3AM;
+    this.registerJobRestartPracticeGameServers();
+  }
+
+  private async registerJobRestartPracticeGameServers() {
+    // const cronTime = CronExpression.EVERY_DAY_AT_3AM;
+    const cronTime = CronExpression.EVERY_10_SECONDS;
     const servers = await this.gameServer.getServersThatShouldHaveARestartJob('practice');
 
     servers.forEach(async (gameServer) => {
-      const name = `restrat-${gameServer.home_path.replace(/\//g, '__')}`;
+      const name = `job::restart-${gameServer.home_name.replace(/[\W_]+/g, '')}`;
 
       if (this.scheduler.doesExist('cron', name)) {
         this.logger.warn(`${name} is already registered!`);

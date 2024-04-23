@@ -2,10 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { GameServer, GameServerKind } from 'src/database/game-server.entity';
 import { Not, IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RootConfig } from 'src/config/config';
-import { ConfigurationJSON, EventJSON } from 'src/assetto-corsa-competizione.types';
+import { ConfigurationJSON, EventJSON, Track } from 'src/assetto-corsa-competizione.types';
 import { FileManager } from './file-manager.service';
 import { WeatherService } from 'src/common/weather.service';
+import { SimgridService } from 'src/simgrid/simgrid.service';
 
 @Injectable()
 export class GameServerService {
@@ -13,9 +13,9 @@ export class GameServerService {
   constructor(
     @InjectRepository(GameServer)
     private readonly repository: Repository<GameServer>,
-    private readonly config: RootConfig,
     private readonly fileManager: FileManager,
     private readonly weather: WeatherService,
+    private readonly simgrid: SimgridService,
   ) {}
 
   async homedir(home_path: string): Promise<GameServer> {
@@ -30,17 +30,11 @@ export class GameServerService {
       .filter(Boolean);
   }
 
-  async runPrestart(homedir: string) {
-    const entity = await this.homedir(homedir);
-    await this.updateConfigurationJson(entity);
-
-    if (entity.custom_fields?.live_weather) {
-      await this.updateWeather(entity);
-    }
-    return entity;
+  async updateTrack(entity: GameServer, track: Track) {
+    await this.fileManager.update<EventJSON>('event.json', { track }, entity);
   }
 
-  private async updateConfigurationJson(entity: GameServer) {
+  async updateConfigurationJson(entity: GameServer) {
     this.logger.debug(`updateConfigurationJson: ${entity.home_name}`);
     const {
       IpPort: { port },
@@ -71,7 +65,7 @@ export class GameServerService {
     return content;
   }
 
-  private async updateWeather(entity: GameServer) {
+  async updateEventJsonWithTrackAndWeather(entity: GameServer) {
     this.logger.debug(`updateWeather: ${entity.home_name}`);
     const { custom_fields } = entity;
     if (!custom_fields.is_enabled && !custom_fields?.live_weather) {
@@ -80,11 +74,15 @@ export class GameServerService {
 
     const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
 
+    const { in_game_name } = await this.simgrid.nextRaceOfChampionship(entity.custom_fields.simgrid_id);
+
     const data = {
       ...eventJSON,
-      ...(await this.weather.forecastFor(eventJSON.track)).at('15:00'),
+      track: in_game_name,
+      ...(await this.weather.forecastFor(in_game_name)).at('15:00'),
     } as EventJSON;
 
+    console.log(data);
     await this.fileManager.write<EventJSON>('event.json', data, entity);
 
     return data;

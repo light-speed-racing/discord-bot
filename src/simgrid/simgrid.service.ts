@@ -67,14 +67,20 @@ export class SimgridService {
 
     return {
       ...data,
-      races: data.races.map<Race>((item) => ({
-        ...item,
-        in_game_name: tracks.find((track) => track.name === item.track)?.in_game_name,
-      })),
+      races: data.races
+        .sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
+        .map<Race>((item) => ({
+          ...item,
+          in_game_name: tracks.find((track) => track.name === item.track)?.in_game_name,
+        })),
     };
   }
 
   async nextRaceOfChampionship(id: number) {
-    return (await this.championship(id)).races.find((race) => race.starts_at > new Date().toISOString()) ?? null;
+    const championship = await this.championship(id);
+
+    return championship.races.find((race) => {
+      return new Date(race.starts_at) > new Date();
+    });
   }
 }

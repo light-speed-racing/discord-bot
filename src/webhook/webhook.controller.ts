@@ -12,6 +12,7 @@ import { Colors, TextChannel } from 'discord.js';
 import capitalize from 'lodash.capitalize';
 import { GiphyService } from 'src/common/giphy.service';
 import { DiscordChannelService } from 'src/common/discord-channel.service';
+import { SimgridService } from 'src/simgrid/simgrid.service';
 
 @Controller('webhooks')
 export class WebhookController {
@@ -24,10 +25,12 @@ export class WebhookController {
     private readonly fileManager: FileManager,
     private readonly channel: DiscordChannelService,
     private readonly giphy: GiphyService,
+    private readonly simgrid: SimgridService,
   ) {}
 
   @Get('/')
   async helloWorld() {
+    // console.log(await this.simgrid.nextRaceOfChampionship(7451));
     return 'Hello World';
   }
 
@@ -46,7 +49,12 @@ export class WebhookController {
   async getEntrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
     this.logger.log('Incoming request POST -> entrylist', { homedir });
 
-    const entity = !!homedir && (await this.gameServer.runPrestart(homedir));
+    const entity = !!homedir && (await this.gameServer.homedir(homedir));
+
+    await this.gameServer.updateConfigurationJson(entity);
+    if (!entity.custom_fields.is_enabled && !entity.custom_fields?.live_weather) {
+      await this.gameServer.updateEventJsonWithTrackAndWeather(entity);
+    }
 
     if (entity.custom_fields?.channel_id) {
       await this.notifyDiscordChannel(entity);

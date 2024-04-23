@@ -45,7 +45,7 @@ export class FileManager {
     data: Record<string, unknown>,
     entry: GameServer,
   ): Promise<{ message: string; data: T }> {
-    this.logger.debug(`Write ${filename} using OGP_API`, data);
+    this.logger.debug(`Write ${filename} using OGP_API`);
 
     const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/save', {
       port: entry.IpPort.port,
@@ -63,7 +63,7 @@ export class FileManager {
     data: Record<string, unknown>,
     entry: GameServer,
   ): Promise<{ message: string; data: T }> {
-    this.logger.debug(`Updating ${filename} using OGP_API`, data);
+    this.logger.debug(`Updating ${filename} using OGP_API`);
 
     const content = {
       ...(await this.read(filename, entry)),
