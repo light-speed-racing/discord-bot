@@ -24,8 +24,7 @@ export class JobsModule implements OnModuleInit {
   }
 
   private async registerJobRestartPracticeGameServers() {
-    // const cronTime = CronExpression.EVERY_DAY_AT_3AM;
-    const cronTime = CronExpression.EVERY_10_SECONDS;
+    const cronTime = CronExpression.EVERY_DAY_AT_3AM;
     const servers = await this.gameServer.getServersThatShouldHaveARestartJob('practice');
 
     servers.forEach(async (gameServer) => {
