@@ -41,6 +41,7 @@ export class GameServer {
         return {
           ...json,
           is_enabled: json.is_enabled === '1' ? true : false,
+          live_weather: json.live_weather === '1' ? true : false,
         };
       },
     },
@@ -55,5 +56,8 @@ export class GameServer {
         channel_id?: string | undefined;
         role_id?: string | undefined;
         simgrid_id?: number | undefined;
+        server_type?: undefined | GameServerKind;
       };
 }
+
+export type GameServerKind = 'practice' | 'race' | 'unspecified';

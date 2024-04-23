@@ -75,6 +75,6 @@ export class SimgridService {
   }
 
   async nextRaceOfChampionship(id: number) {
-    return (await this.championship(id)).races.find((race) => race.starts_at > new Date().toISOString());
+    return (await this.championship(id)).races.find((race) => race.starts_at > new Date().toISOString()) ?? null;
   }
 }

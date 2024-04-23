@@ -110,7 +110,7 @@ export class WeatherService {
     return this;
   }
 
-  at(time: Time) {
+  at(time: Time = '15:00') {
     if (!this.list) {
       this.logger.error('No forecast available');
       return {};

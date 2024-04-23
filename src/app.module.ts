@@ -8,29 +8,35 @@ import { JokeModule } from './joke/joke.module';
 import { WebhookModule } from './webhook/webhook.module';
 import { UserSaidModule } from './user-said/user-said.module';
 import { SimgridModule } from './simgrid/simgrid.module';
-// import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
+import { OpenGamePanelModule } from './open-game-panel/open-game-panel.module';
 import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 import { CommonModule } from './common/common.module';
+import { JobsModule } from './jobs/jobs.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
     ConfigModule,
     DiscordModule.forRootAsync({ useClass: DiscordConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
     JokeModule,
     WebhookModule,
     UserSaidModule,
     SimgridModule,
-    // OpenGamePanelModule,
+    OpenGamePanelModule,
     HealthModule,
     CommonModule,
+    JobsModule,
   ],
   providers: [],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/entrylist');
-    consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/bop');
-  }
+export class AppModule /* implements NestModule */ {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/entrylist');
+  //   consumer.apply(ApiTokenMiddleware).forRoutes('webhooks/bop');
+  // }
 }

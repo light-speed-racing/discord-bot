@@ -2,7 +2,7 @@ import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { PreStartDto } from './pre-start.dto';
 import { EntrylistService } from '../simgrid/entrylist.service';
 import { GameServerService } from '../open-game-panel/game-server.service';
-import { BopJSON, ConfigurationJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
+import { BopJSON, Entrylist, EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { FileManager } from 'src/open-game-panel/file-manager.service';
 import { GameServer } from 'src/database/game-server.entity';
 import { BalanceOfPerformanceService } from 'src/simgrid/balance-of-performance.service';
@@ -10,7 +10,6 @@ import { EmbedBuilder, roleMention } from '@discordjs/builders';
 import sample from 'lodash.sample';
 import { Colors, TextChannel } from 'discord.js';
 import capitalize from 'lodash.capitalize';
-import { WeatherService } from 'src/common/weather.service';
 import { GiphyService } from 'src/common/giphy.service';
 import { DiscordChannelService } from 'src/common/discord-channel.service';
 
@@ -25,7 +24,6 @@ export class WebhookController {
     private readonly fileManager: FileManager,
     private readonly channel: DiscordChannelService,
     private readonly giphy: GiphyService,
-    private readonly weather: WeatherService,
   ) {}
 
   @Get('/')
@@ -46,18 +44,9 @@ export class WebhookController {
 
   @Post('entrylist')
   async getEntrylist(@Body() { homedir }: PreStartDto): Promise<Entrylist> {
-    this.logger.log('Incoming request', { homedir });
-    const entity = !!homedir && (await this.gameServer.homedir(homedir));
+    this.logger.log('Incoming request POST -> entrylist', { homedir });
 
-    await this.updateConfigurationJson(entity);
-
-    if (!entity.custom_fields?.is_enabled) {
-      return;
-    }
-
-    if (!entity.custom_fields?.live_weather) {
-      await this.updateWeather(entity);
-    }
+    const entity = !!homedir && (await this.gameServer.runPrestart(homedir));
 
     if (entity.custom_fields?.channel_id) {
       await this.notifyDiscordChannel(entity);
@@ -67,35 +56,6 @@ export class WebhookController {
       ? await this.entrylist.fetch(entity.custom_fields?.simgrid_id)
       : EntrylistService.emptyEntrylist;
   }
-
-  private updateConfigurationJson = async (entity: GameServer): Promise<void> => {
-    const {
-      home_name,
-      IpPort: { port },
-    } = entity;
-    this.logger.debug(`updateConfigurationJson: ${home_name}`);
-    if (await this.fileManager.isEmpty('configuration.json', entity)) {
-      await this.fileManager.write<ConfigurationJSON>(
-        'configuration.json',
-        { lanDiscovery: 1, maxConnections: 250, registerToLobby: 1, configVersion: 1, tcpPort: port, udpPort: port },
-        entity,
-      );
-
-      return;
-    }
-    const existing = await this.fileManager.read<ConfigurationJSON>('configuration.json', entity);
-
-    if (!existing) {
-      this.logger.debug(`No confiuguration.json was found`);
-    }
-
-    if (existing.tcpPort === port && existing.udpPort === port) {
-      return;
-    }
-    await this.fileManager.update('configuration.json', { ...existing, tcpPort: port, udpPort: port }, entity);
-
-    return;
-  };
 
   private async notifyDiscordChannel(gameServer: GameServer) {
     const { custom_fields } = gameServer;
@@ -145,23 +105,5 @@ export class WebhookController {
         }),
       ],
     });
-  }
-
-  private async updateWeather(entity: GameServer): Promise<void> {
-    const { custom_fields } = entity;
-    if (!custom_fields.is_enabled && !custom_fields?.live_weather) {
-      return;
-    }
-
-    const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
-    const weather = await this.weather.forecastFor(eventJSON.track);
-    const data = {
-      ...eventJSON,
-      ...weather.at('15:00'),
-    };
-
-    await this.fileManager.write<EventJSON>('event.json', data, entity);
-
-    return;
   }
 }
