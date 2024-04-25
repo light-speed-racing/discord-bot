@@ -40,7 +40,8 @@ export class GameServer {
 
         return {
           ...json,
-          is_enabled: json.is_enabled === '1' ? true : false,
+          is_enabled: Boolean(json.is_enabled),
+          live_weather: Boolean(json.live_weather),
         };
       },
     },

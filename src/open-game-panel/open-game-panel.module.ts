@@ -13,9 +13,15 @@ import { GameServerCommand } from './commands/game-server.command';
 import { StartGameServerSubcommand } from './commands/start-game-server.subcommand';
 import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
 import { StopGameServerSubcommand } from './commands/stop-game-server.subcommand';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GameServer, Server, IpPort]), DiscordModule.forFeature(), HttpModule],
+  imports: [
+    TypeOrmModule.forFeature([GameServer, Server, IpPort]),
+    DiscordModule.forFeature(),
+    HttpModule,
+    CommonModule,
+  ],
   providers: [
     GameServerService,
     OpenGamePanelApi,

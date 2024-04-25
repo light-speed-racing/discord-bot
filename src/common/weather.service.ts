@@ -66,7 +66,7 @@ export class WeatherService {
     const {
       coordinates: [latitude, longitude],
     } = RaceTracks[track];
-    this.logger.debug(`Getting weather for ${longitude}, ${latitude}`);
+    this.logger.debug(`Getting weather for ${track} (${longitude},${latitude})`);
 
     const url = new URL('https://api.openweathermap.org/data/2.5/forecast');
     url.searchParams.set('appid', this.config.openWeatherApi.token);

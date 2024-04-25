@@ -3,14 +3,20 @@ import { GameServer } from 'src/database/game-server.entity';
 import { Not, IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RootConfig } from 'src/config/config';
+import { FileManager } from './file-manager.service';
+import { ConfigurationJSON, EventJSON } from 'src/assetto-corsa-competizione.types';
+import { WeatherService } from 'src/common/weather.service';
 
 @Injectable()
 export class GameServerService {
   private logger = new Logger(GameServerService.name);
+
   constructor(
     @InjectRepository(GameServer)
     private readonly repository: Repository<GameServer>,
     private readonly config: RootConfig,
+    private readonly fileManager: FileManager,
+    private readonly weather: WeatherService,
   ) {}
 
   async homedir(home_path: string): Promise<GameServer> {
@@ -30,5 +36,62 @@ export class GameServerService {
       .filter(({ custom_fields }) => !!custom_fields.simgrid_id && !!custom_fields.live_weather)
       .filter(({ home_id }) => this.config.env === 'development' && home_id === 25) // @TODO: This needs to be removed
       .filter(Boolean);
+  }
+
+  updateConfigurationJson = async (entity: GameServer): Promise<void> => {
+    const {
+      home_name,
+      IpPort: { port },
+    } = entity;
+    this.logger.debug(`updateConfigurationJson: ${home_name}`);
+    if (await this.fileManager.isEmpty('configuration.json', entity)) {
+      const content = {
+        lanDiscovery: 1,
+        maxConnections: 250,
+        registerToLobby: 1,
+        configVersion: 1,
+        tcpPort: port,
+        udpPort: port,
+      };
+
+      await this.fileManager.write<ConfigurationJSON>('configuration.json', content, entity);
+
+      return;
+    }
+    const currentConfiguration = await this.fileManager.read<ConfigurationJSON>('configuration.json', entity);
+
+    if (!currentConfiguration) {
+      this.logger.debug(`No confiuguration.json was found`);
+    }
+
+    if (currentConfiguration.tcpPort === port && currentConfiguration.udpPort === port) {
+      return;
+    }
+    await this.fileManager.update(
+      'configuration.json',
+      { ...currentConfiguration, tcpPort: port, udpPort: port },
+      entity,
+    );
+
+    return;
+  };
+
+  async updateWeather(entity: GameServer): Promise<void> {
+    this.logger.debug(`updateWeather: ${entity.home_name}`);
+    const { custom_fields } = entity;
+    if (!custom_fields.is_enabled && !custom_fields?.live_weather) {
+      return;
+    }
+
+    const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
+    const weather = await this.weather.forecastFor(eventJSON.track);
+    const data = {
+      ...eventJSON,
+      ...weather.at('15:00'),
+    };
+
+    await this.fileManager.write<EventJSON>('event.json', data, entity);
+
+    return;
   }
 }
