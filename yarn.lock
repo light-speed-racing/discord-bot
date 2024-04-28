@@ -419,6 +419,14 @@
     multer "1.4.4-lts.1"
     tslib "2.6.2"
 
+"@nestjs/schedule@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/schedule/-/schedule-4.0.2.tgz#573061b152e174f1bf590f5ec00a2c400e8bbee8"
+  integrity sha512-po9oauE7fO0CjhDKvVC2tzEgjOUwhxYoIsXIVkgfu+xaDMmzzpmXY2s1LT4oP90Z+PaTtPoAHmhslnYmo4mSZg==
+  dependencies:
+    cron "3.1.7"
+    uuid "9.0.1"
+
 "@nestjs/schematics@9.0.4":
   version "9.0.4"
   resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-9.0.4.tgz#ab612f5a8e006ca1d617eddc8143ee00b766312b"
@@ -680,6 +688,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cron@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@types/cron/-/cron-2.4.0.tgz#884d7866187d26291df206c09805d06b147986e4"
+  integrity sha512-5bBaAkqvSFBX8JMi/xCofNzG5E594TNsApMz68dLd/sQYz/HGQqgcxGHTRjOvD4G3Y+YF1Oo3S7QdCvKt1KAJQ==
+  dependencies:
+    cron "*"
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.4.tgz#37fc1223f0786c39627068a12e94d6e6fc61de16"
@@ -775,6 +790,11 @@
   version "4.14.200"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.200.tgz#435b6035c7eba9cdf1e039af8212c9e9281e7149"
   integrity sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==
+
+"@types/luxon@~3.4.0":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-3.4.2.tgz#e4fc7214a420173cea47739c33cdf10874694db7"
+  integrity sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==
 
 "@types/mime@*":
   version "3.0.4"
@@ -1748,6 +1768,14 @@ create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+
+cron@*, cron@3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/cron/-/cron-3.1.7.tgz#3423d618ba625e78458fff8cb67001672d49ba0d"
+  integrity sha512-tlBg7ARsAMQLzgwqVxy8AZl/qlTc5nibqYwtNGoCrd+cV+ugI+tvZC1oT/8dFH8W455YrywGykx/KMmAqOr7Jw==
+  dependencies:
+    "@types/luxon" "~3.4.0"
+    luxon "~3.4.0"
 
 cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -3073,6 +3101,11 @@ lru-cache@^7.14.1:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
   integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
+
+luxon@~3.4.0:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.4.4.tgz#cf20dc27dc532ba41a169c43fdcc0063601577af"
+  integrity sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==
 
 magic-bytes.js@^1.0.15:
   version "1.5.0"
@@ -4444,6 +4477,11 @@ uuid@8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 uuid@^9.0.0:
   version "9.0.0"

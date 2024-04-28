@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { GameServer } from 'src/database/game-server.entity';
+import { GameServer, GameServerType } from 'src/database/game-server.entity';
 import { Not, IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RootConfig } from 'src/config/config';
@@ -29,12 +29,12 @@ export class GameServerService {
     return entity;
   }
 
-  async getServersThatShouldHaveARestartJob() {
+  async getServersThatShouldHaveARestartJob(serverType: GameServerType) {
     return (await this.repository.findBy({ custom_fields: Not(IsNull()) }))
       .filter((entry) => !!entry.custom_fields)
       .filter(({ custom_fields }) => !!custom_fields.is_enabled)
       .filter(({ custom_fields }) => !!custom_fields.simgrid_id && !!custom_fields.live_weather)
-      .filter(({ home_id }) => this.config.env === 'development' && home_id === 25) // @TODO: This needs to be removed
+      .filter(({ custom_fields }) => custom_fields?.server_type === serverType)
       .filter(Boolean);
   }
 

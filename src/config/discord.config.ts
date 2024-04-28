@@ -5,4 +5,7 @@ export class DiscordConfig {
   public readonly token!: string;
   @IsString()
   public readonly guild_id!: string;
+
+  @IsString()
+  public readonly logging_channel_id!: string;
 }
