@@ -13,8 +13,7 @@ import { HealthModule } from './health/health.module';
 import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 import { CommonModule } from './common/common.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { NightlyRestartGameServerTask } from './tasks/nightly-restart-game-server.task';
-import { TaskScheduleRegistery } from './task-schedule-registery';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -29,18 +28,7 @@ import { TaskScheduleRegistery } from './task-schedule-registery';
     OpenGamePanelModule,
     HealthModule,
     CommonModule,
-    ScheduleModule,
-  ],
-  providers: [
-    TaskScheduleRegistery,
-    NightlyRestartGameServerTask,
-    {
-      provide: 'SCHEDULES',
-      useFactory: (...schedules) => {
-        return schedules;
-      },
-      inject: [NightlyRestartGameServerTask],
-    },
+    TasksModule,
   ],
 })
 export class AppModule implements NestModule {
