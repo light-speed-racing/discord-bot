@@ -3,6 +3,7 @@ import { Server } from './server.entity';
 import { IpPort } from './ip-port.entity';
 
 export type BopProvider = 'kunos' | 'lfm';
+export type GameServerType = 'practice' | 'race' | 'undetermined';
 
 @Entity({
   name: 'ogpgbserver_homes',
@@ -56,5 +57,6 @@ export class GameServer {
         channel_id?: string | undefined;
         role_id?: string | undefined;
         simgrid_id?: number | undefined;
+        server_type: GameServerType;
       };
 }
