@@ -101,6 +101,7 @@ export class WebhookController {
         }),
         new EmbedBuilder({
           title: 'Weather forecast',
+          description: `As of 15:00 today at ${event.track} the forecast is`,
           color: Colors.DarkBlue,
           fields: [
             { name: 'Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
@@ -108,6 +109,7 @@ export class WebhookController {
             { name: 'Rain', value: `${event.rain * 100}%`, inline: true },
             { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
           ],
+          footer: { text: 'Note: these numbers is parameters to run a race weekend simulations' },
         }),
       ],
     });

@@ -10,7 +10,8 @@ import { WeatherService } from 'src/common/weather.service';
 import { SimgridService } from 'src/simgrid/simgrid.service';
 import { GameManager } from 'src/open-game-panel/game-manager.service';
 import { DiscordChannelService } from 'src/common/discord-channel.service';
-import { codeBlock } from 'discord.js';
+import { TextChannel, codeBlock } from 'discord.js';
+import { EmbedBuilder } from '@discordjs/builders';
 
 @Injectable()
 export class NightlyRestartGameServerTask extends AbstractScheduler {
@@ -41,10 +42,28 @@ export class NightlyRestartGameServerTask extends AbstractScheduler {
 
       await this.gameServer.updateConfigurationJson(server);
       await this.updateBop(eventJson.track, bop_provider, server);
-      await this.updateEvent(server, eventJson);
-
+      const event = await this.updateEvent(server, eventJson);
       await this.gameManager.restart(server);
       await this.channel.log(`[**${server.home_name}**]: Finished...`);
+
+      if (server.custom_fields.channel_id) {
+        return this.channel.find<TextChannel>(server.custom_fields.channel_id).send({
+          embeds: [
+            new EmbedBuilder({
+              title: 'Server Restarted',
+              description: `Server ${server.home_name} has been restarted and the weather has been updated`,
+              fields: [
+                { name: 'Track', value: `${event.track}` },
+                { name: 'Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
+                { name: 'Cloud level', value: `${event.cloudLevel * 100}%`, inline: true },
+                { name: 'Rain', value: `${event.rain * 100}%`, inline: true },
+                { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
+              ],
+              footer: { text: 'Note: these numbers is parameters to run a race weekend simulations' },
+            }),
+          ],
+        });
+      }
     }
   };
 
@@ -62,16 +81,14 @@ export class NightlyRestartGameServerTask extends AbstractScheduler {
     await this.channel.log(`[**${server.home_name}**]: event.json was updated...`);
     await this.channel.log(codeBlock(JSON.stringify(content)));
 
-    return;
+    return content;
   };
 
   updateBop = async (track: Track, provider: BopProvider, server: GameServer) => {
     const { entries } = await this.bop.fetch(provider);
     const content = { entries: entries?.filter((entry) => entry.track === track) };
-
     await this.fileManager.write('bop.json', content, server);
-
     await this.channel.log(`[**${server.home_name}**]: bop.json was updated...`);
-    return;
+    return content;
   };
 }

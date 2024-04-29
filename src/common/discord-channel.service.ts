@@ -11,7 +11,7 @@ export class DiscordChannelService {
     private readonly config: RootConfig,
   ) {}
 
-  find<T extends Channel = Channel>(id: string): T {
+  find<T extends Channel = TextChannel>(id: string): T {
     return this.client.channels.resolve(id) as T;
   }
 
