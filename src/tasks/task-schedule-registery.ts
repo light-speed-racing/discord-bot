@@ -22,6 +22,10 @@ export class TaskScheduleRegistery implements OnApplicationBootstrap {
     this.logger.debug('Registering cron jobs');
 
     for (const { name, run, timeExpression } of this.schedules) {
+      if (this.scheduleRegistry.doesExist('cron', name)) {
+        this.scheduleRegistry.deleteCronJob(name);
+      }
+
       this.logger.debug(`${name} cron has added with expression ${timeExpression}`);
 
       this.scheduleRegistry.addCronJob(

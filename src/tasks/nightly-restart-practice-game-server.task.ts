@@ -14,8 +14,8 @@ import { TextChannel, codeBlock } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
 
 @Injectable()
-export class NightlyRestartGameServerTask extends AbstractScheduler {
-  public name = `${NightlyRestartGameServerTask.name}-with-serverType-PRACTICE`;
+export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
+  public name = `${NightlyRestartPracticeGameServerTask.name}-with-serverType-PRACTICE`;
   public timeExpression: string = CronExpression.EVERY_DAY_AT_3AM;
 
   constructor(
