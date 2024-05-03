@@ -56,7 +56,7 @@ export class GameServer {
         bop_provider: BopProvider;
         channel_id?: string | undefined;
         role_id?: string | undefined;
-        simgrid_id?: number | undefined;
+        simgrid_id?: string | undefined;
         server_type: GameServerType;
       };
 }

@@ -57,7 +57,7 @@ export class SimgridService {
     return data;
   }
 
-  async championship(id: number) {
+  async championship(id: string) {
     const { data } = await firstValueFrom(
       this.http.get<Championship>(`v1/championships/${id}`).pipe(
         catchError((error: AxiosError) => {
@@ -76,7 +76,7 @@ export class SimgridService {
     };
   }
 
-  async nextRaceOfChampionship(id: number) {
+  async nextRaceOfChampionship(id: string) {
     const { races } = await this.championship(id);
 
     return races
