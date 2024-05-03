@@ -25,10 +25,13 @@ type Championship = {
 
 type Race = {
   id: number;
-  race_name: string | '';
+  race_name: string;
   track: string;
   in_game_name: Track;
   starts_at: string;
+  results_available: boolean;
+  hot_lap: boolean;
+  ended: boolean;
 };
 
 type TracksResponse = Array<{
@@ -64,7 +67,6 @@ export class SimgridService {
       ),
     );
     const tracks = await this.tracks();
-
     return {
       ...data,
       races: data.races.map<Race>((item) => ({
@@ -75,6 +77,10 @@ export class SimgridService {
   }
 
   async nextRaceOfChampionship(id: number) {
-    return (await this.championship(id)).races.find((race) => race.starts_at > new Date().toISOString());
+    const { races } = await this.championship(id);
+
+    return races
+      .sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
+      .find((race) => !race.ended);
   }
 }

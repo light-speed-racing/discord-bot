@@ -56,7 +56,6 @@ export class WeatherService {
 
   protected track: Track;
   protected list: Record<Time, ForecaseItem>;
-  protected city: Forecast['city'];
 
   constructor(private readonly http: HttpService, private readonly config: RootConfig) {}
 
@@ -84,38 +83,7 @@ export class WeatherService {
         }),
       ),
     );
-
-    this.city = data.city;
-
-    this.list = data.list.reduce<Record<Time, ForecaseItem>>(
-      (acc, item) => {
-        const [hh, mm] = item.dt_txt.split(' ')[1].split(':');
-
-        return {
-          ...acc,
-          [`${hh}:${mm}`]: item,
-        };
-      },
-      {
-        '03:00': null,
-        '06:00': null,
-        '09:00': null,
-        '12:00': null,
-        '15:00': null,
-        '18:00': null,
-        '21:00': null,
-        '24:00': null,
-      },
-    );
-    return this;
-  }
-
-  at(time: Time) {
-    if (!this.list) {
-      this.logger.error('No forecast available');
-      return {};
-    }
-    const forecast = this.list[time];
+    const forecast = data.list.find((item) => item.dt_txt.includes('15:00'));
     const rain = this.rain(forecast);
 
     return {

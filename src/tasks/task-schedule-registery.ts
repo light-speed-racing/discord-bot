@@ -2,6 +2,7 @@ import { Inject, Injectable, Logger, OnApplicationBootstrap } from '@nestjs/comm
 import { AbstractScheduler } from './abstract-scheduler';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
+import { DiscordChannelService } from 'src/common/discord-channel.service';
 
 @Injectable()
 export class TaskScheduleRegistery implements OnApplicationBootstrap {
@@ -16,10 +17,12 @@ export class TaskScheduleRegistery implements OnApplicationBootstrap {
     @Inject('SCHEDULES')
     private readonly schedules: AbstractScheduler[],
     private readonly scheduleRegistry: SchedulerRegistry,
+    private readonly discord: DiscordChannelService,
   ) {}
 
   async registerCronJobs() {
     this.logger.debug('Registering cron jobs');
+    this.discord.log('Registering cron jobs');
 
     for (const { name, run, timeExpression } of this.schedules) {
       if (this.scheduleRegistry.doesExist('cron', name)) {
@@ -27,6 +30,7 @@ export class TaskScheduleRegistery implements OnApplicationBootstrap {
       }
 
       this.logger.debug(`${name} cron has added with expression ${timeExpression}`);
+      this.discord.log(`${name} cron has added with expression ${timeExpression}`);
 
       this.scheduleRegistry.addCronJob(
         name,
@@ -34,11 +38,12 @@ export class TaskScheduleRegistery implements OnApplicationBootstrap {
           timeExpression,
           () => {
             this.logger.debug(`${name} cron is starting with expression ${timeExpression}`);
-
+            this.discord.log(`${name} cron is starting with expression ${timeExpression}`);
             run();
           },
           () => {
             this.logger.debug(`${name} cron has completed with expression ${timeExpression}`);
+            this.discord.log(`${name} cron has completed with expression ${timeExpression}`);
           },
           true,
         ),

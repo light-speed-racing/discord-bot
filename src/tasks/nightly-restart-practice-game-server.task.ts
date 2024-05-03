@@ -70,10 +70,9 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
   updateEvent = async (server: GameServer, currentConfig: EventJSON) => {
     const { in_game_name } = await this.simgrid.nextRaceOfChampionship(server.custom_fields.simgrid_id);
 
-    const weather = await this.weather.forecastFor(in_game_name);
     const content = {
       ...currentConfig,
-      ...weather.at('15:00'),
+      ...(await this.weather.forecastFor(in_game_name)),
       track: in_game_name,
     };
     await this.fileManager.write('event.json', content, server);

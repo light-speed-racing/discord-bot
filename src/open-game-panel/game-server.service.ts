@@ -84,10 +84,10 @@ export class GameServerService {
     }
 
     const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
-    const weather = await this.weather.forecastFor(eventJSON.track);
+
     const data = {
       ...eventJSON,
-      ...weather.at('15:00'),
+      ...(await this.weather.forecastFor(eventJSON.track)),
     };
 
     await this.fileManager.write<EventJSON>('event.json', data, entity);
