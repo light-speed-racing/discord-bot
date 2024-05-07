@@ -19,4 +19,9 @@ export class DiscordChannelService {
     const channel = this.find<TextChannel>(this.config.discord.logging_channel_id);
     return await channel.send(message);
   }
+
+  async weatherUpdate(payload: unknown) {
+    const channel = this.find(this.config.discord.weather_update_channel_id);
+    return await channel.send(payload);
+  }
 }

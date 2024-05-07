@@ -11,8 +11,8 @@ import { time } from 'discord.js';
 
 @Injectable()
 export class NightlyStartRaceGameServersTask extends AbstractScheduler {
-  public name = `${NightlyStartRaceGameServersTask.name}-with-serverType-RACE`;
-  public timeExpression = CronExpression.EVERY_DAY_AT_6PM;
+  name = `${NightlyStartRaceGameServersTask.name}-with-serverType-RACE`;
+  timeExpression = CronExpression.EVERY_DAY_AT_6PM;
 
   constructor(
     private readonly gameServer: GameServerService,

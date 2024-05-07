@@ -8,4 +8,7 @@ export class DiscordConfig {
 
   @IsString()
   public readonly logging_channel_id!: string;
+
+  @IsString()
+  public readonly weather_update_channel_id!: string;
 }
