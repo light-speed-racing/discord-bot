@@ -107,7 +107,13 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
   };
 
   private updateEvent = async (server: GameServer, currentConfig: EventJSON) => {
-    const { in_game_name } = await this.simgrid.nextRaceOfChampionship(server.custom_fields.simgrid_id);
+    const event = await this.simgrid.nextRaceOfChampionship(server.custom_fields.simgrid_id);
+
+    if (!event) {
+      return;
+    }
+
+    const { in_game_name } = event;
 
     const content = {
       ...currentConfig,
