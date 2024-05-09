@@ -40,17 +40,35 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
 
       const eventJson = await this.fileManager.read<EventJSON>('event.json', server);
 
-      await this.gameServer.updateConfigurationJson(server);
+      try {
+        await this.gameServer.updateConfigurationJson(server);
+      } catch (error) {
+        console.warn('Could not update configuration', server);
+      }
+      try {
+        await this.updateEvent(server, eventJson);
+      } catch (error) {
+        console.warn('Could not update the event', server);
+      }
+      try {
+        await this.updateBop(eventJson.track, bop_provider, server);
+      } catch (error) {
+        console.warn('Could not update bop', server);
+      }
 
-      await this.updateEvent(server, eventJson);
-
-      await this.updateBop(eventJson.track, bop_provider, server);
-      await this.gameManager.restart(server);
-
+      try {
+        await this.gameManager.restart(server);
+      } catch (error) {
+        console.warn('Could not restart server', server);
+      }
       if (server.custom_fields.channel_id) {
         await this.notifyChannel(server);
       }
-      await this.sendWeatherUpdate(server);
+      try {
+        await this.sendWeatherUpdate(server);
+      } catch (error) {
+        console.warn('Could not send weather update', error);
+      }
 
       await this.channel.log(`[**${server.home_name}**]: Finished...`);
     }
