@@ -20,22 +20,28 @@ export class EntrylistService {
     const entries = response
       .map(({ entries }) => entries)
       .flat()
-      .sort(this.moveAdminsToBottom);
+      .reduce(this.moveAdminsToBottom, { drivers: [], admins: [] });
 
     return {
-      entries,
+      entries: [...entries.drivers, ...entries.admins],
       forceEntryList: 1,
     };
   };
 
   // If having multiple admins in the entrylist, move them to the bottom to allow admins who is signed up to join the server
-  private moveAdminsToBottom = (a: Entrylist['entries'][number], b: Entrylist['entries'][number]) => {
-    return (
-      (a.drivers[0].firstName as any) - (b.drivers[0].firstName as any) &&
-      (a.drivers[0].lastName as any) - (b.drivers[0].lastName as any) &&
-      (a.drivers[0].shortName as any) - (b.drivers[0].shortName as any) &&
-      a.drivers[0].nationality - b.drivers[0].nationality
-    );
+  private moveAdminsToBottom = (acc: { drivers: EntrylistEntry[]; admins: EntrylistEntry[] }, curr: EntrylistEntry) => {
+    const [driver] = curr.drivers;
+    if (driver.hasOwnProperty('firstName') || driver.hasOwnProperty('lastName')) {
+      return {
+        ...acc,
+        drivers: [...acc.drivers, curr],
+      };
+    }
+
+    return {
+      ...acc,
+      admins: [...acc.admins, curr],
+    };
   };
 
   private request = async (id: string, format: 'json' | 'csv' | 'ini' = 'json'): Promise<Entrylist> => {
