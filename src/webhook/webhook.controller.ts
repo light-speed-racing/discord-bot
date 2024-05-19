@@ -50,8 +50,8 @@ export class WebhookController {
 
     await this.gameServer.updateConfigurationJson(entity);
 
-    if (custom_fields?.is_enabled && custom_fields?.live_weather) {
-      await this.gameServer.updateWeather(entity);
+    if (custom_fields?.is_enabled) {
+      await this.gameServer.updateEventJson(entity);
     }
 
     if (custom_fields?.channel_id) {

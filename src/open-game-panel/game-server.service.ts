@@ -2,10 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { GameServer, GameServerType } from 'src/database/game-server.entity';
 import { Not, IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RootConfig } from 'src/config/config';
 import { FileManager } from './file-manager.service';
-import { ConfigurationJSON, EventJSON } from 'src/assetto-corsa-competizione.types';
+import { ConfigurationJSON, EventJSON, Track } from 'src/assetto-corsa-competizione.types';
 import { WeatherService } from 'src/common/weather.service';
+import { SimgridService } from 'src/simgrid/simgrid.service';
 
 @Injectable()
 export class GameServerService {
@@ -14,12 +14,12 @@ export class GameServerService {
   constructor(
     @InjectRepository(GameServer)
     private readonly repository: Repository<GameServer>,
-    private readonly config: RootConfig,
+    private readonly simgrid: SimgridService,
     private readonly fileManager: FileManager,
     private readonly weather: WeatherService,
   ) {}
 
-  async homedir(home_path: string): Promise<GameServer> {
+  homedir = async (home_path: string): Promise<GameServer> => {
     this.logger.log('Getting custom fields for:', home_path);
 
     const entity = await this.repository.findOneByOrFail({ home_path });
@@ -27,16 +27,16 @@ export class GameServerService {
     this.logger.log('Found:', JSON.stringify(entity));
 
     return entity;
-  }
+  };
 
-  async getServersThatShouldHaveARestartJob(serverType: GameServerType) {
+  getServersThatShouldHaveARestartJob = async (serverType: GameServerType) => {
     return (await this.repository.findBy({ custom_fields: Not(IsNull()) }))
       .filter((entry) => !!entry.custom_fields)
       .filter(({ custom_fields }) => !!custom_fields.is_enabled)
       .filter(({ custom_fields }) => !!custom_fields.simgrid_id && !!custom_fields.live_weather)
       .filter(({ custom_fields }) => custom_fields?.server_type === serverType)
       .filter(Boolean);
-  }
+  };
 
   updateConfigurationJson = async (entity: GameServer): Promise<void> => {
     const {
@@ -76,22 +76,41 @@ export class GameServerService {
     return;
   };
 
-  async updateWeather(entity: GameServer): Promise<void> {
+  updateEventJson = async (entity: GameServer): Promise<EventJSON> => {
     this.logger.debug(`updateWeather: ${entity.home_name}`);
     const { custom_fields } = entity;
-    if (!custom_fields.is_enabled && !custom_fields?.live_weather) {
+    if (!custom_fields.is_enabled && !custom_fields?.live_weather && !custom_fields.simgrid_id) {
       return;
     }
 
     const eventJSON = await this.fileManager.read<EventJSON>('event.json', entity);
+    const track = (await this.getTrackForNextEvent(entity)) ?? eventJSON.track;
+    const forecast = await this.weather.forecastFor(track);
 
     const data = {
       ...eventJSON,
-      ...(await this.weather.forecastFor(eventJSON.track)),
+      ...forecast,
+      track,
     };
 
     await this.fileManager.write<EventJSON>('event.json', data, entity);
 
-    return;
-  }
+    return data;
+  };
+
+  private getTrackForNextEvent = async (entity: GameServer): Promise<Track | undefined> => {
+    this.logger.debug(`getTrackForNextEvent: ${entity.home_name}`);
+
+    if (!entity.custom_fields?.simgrid_id) {
+      return undefined;
+    }
+
+    const event = await this.simgrid.nextRaceOfChampionship(entity.custom_fields.simgrid_id);
+
+    if (!event) {
+      return undefined;
+    }
+
+    return event.in_game_name;
+  };
 }

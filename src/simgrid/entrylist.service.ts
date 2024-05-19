@@ -1,14 +1,13 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { Entrylist, EntrylistEntry } from 'src/assetto-corsa-competizione.types';
 import { RootConfig } from 'src/config/config';
 import { Patreons } from 'src/patreons';
+
 @Injectable()
 export class EntrylistService {
-  private readonly logger = new Logger(EntrylistService.name);
-
   constructor(private readonly httpService: HttpService, private readonly config: RootConfig) {}
 
   static emptyEntrylist: Entrylist = {
@@ -17,10 +16,27 @@ export class EntrylistService {
   };
 
   fetch = async (ids: string): Promise<Entrylist> => {
-    const result = await Promise.all(ids.split(',').map((id) => this.request(id)));
+    const response = await Promise.all(ids.split(',').map((id) => this.request(id)));
+
+    const { drivers, admins } = response
+      .flatMap(({ entries }) => entries)
+      .reduce<{ drivers: EntrylistEntry[]; admins: [] }>(
+        // If having multiple admins in the entrylist, move them to the bottom to allow admins who is signed up to join the server
+        (acc, curr) => {
+          const [driver] = curr.drivers;
+          const isAdmin = !('firstName' in driver) && !('lastName' in driver);
+          const key = isAdmin ? 'admins' : 'drivers';
+
+          return {
+            ...acc,
+            [key]: [...acc[key], curr],
+          };
+        },
+        { drivers: [], admins: [] },
+      );
 
     return {
-      entries: result.map((r) => r.entries).flat(),
+      entries: [...drivers, ...admins],
       forceEntryList: 1,
     };
   };

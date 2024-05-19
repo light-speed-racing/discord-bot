@@ -40,35 +40,19 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
 
       const eventJson = await this.fileManager.read<EventJSON>('event.json', server);
 
-      try {
-        await this.gameServer.updateConfigurationJson(server);
-      } catch (error) {
-        console.warn('Could not update configuration', server);
-      }
-      try {
-        await this.updateEvent(server, eventJson);
-      } catch (error) {
-        console.warn('Could not update the event', server);
-      }
-      try {
-        await this.updateBop(eventJson.track, bop_provider, server);
-      } catch (error) {
-        console.warn('Could not update bop', server);
-      }
+      await this.gameServer.updateConfigurationJson(server);
 
-      try {
-        await this.gameManager.restart(server);
-      } catch (error) {
-        console.warn('Could not restart server', server);
-      }
+      await this.updateEvent(server);
+
+      await this.updateBop(eventJson.track, bop_provider, server);
+
+      await this.gameManager.restart(server);
+
       if (server.custom_fields.channel_id) {
         await this.notifyChannel(server);
       }
-      try {
-        await this.sendWeatherUpdate(server);
-      } catch (error) {
-        console.warn('Could not send weather update', error);
-      }
+
+      await this.sendWeatherUpdate(server);
 
       await this.channel.log(`[**${server.home_name}**]: Finished...`);
     }
@@ -97,8 +81,8 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
           fields: [
             { name: '🏎️ Track', value: `${eventJson.track.toUpperCase()}` },
             { name: '🌡️ Ambient temp.', value: `${eventJson.ambientTemp}°C` },
-            { name: '☁️ Cloud level', value: `${eventJson.cloudLevel * 100}%` },
-            { name: '🌧️ Rain', value: `${eventJson.rain * 100}%` },
+            { name: '☁️ Cloud level', value: `${Number(eventJson.cloudLevel * 100).toFixed(2)}%` },
+            { name: '🌧️ Rain', value: `${Number(eventJson.rain * 100).toFixed(2)}%` },
             { name: 'Weather randomness', value: `${eventJson.weatherRandomness}` },
           ],
         }),
@@ -106,21 +90,8 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
     });
   };
 
-  private updateEvent = async (server: GameServer, currentConfig: EventJSON) => {
-    const event = await this.simgrid.nextRaceOfChampionship(server.custom_fields.simgrid_id);
-
-    if (!event) {
-      return;
-    }
-
-    const { in_game_name } = event;
-
-    const content = {
-      ...currentConfig,
-      ...(await this.weather.forecastFor(in_game_name)),
-      track: in_game_name,
-    };
-    await this.fileManager.write('event.json', content, server);
+  private updateEvent = async (server: GameServer) => {
+    const content = await this.gameServer.updateEventJson(server);
 
     await this.channel.log(`[**${server.home_name}**]: event.json was updated...`);
     await this.channel.log(codeBlock(JSON.stringify(content)));

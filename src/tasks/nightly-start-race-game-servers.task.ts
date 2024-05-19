@@ -33,6 +33,7 @@ export class NightlyStartRaceGameServersTask extends AbstractScheduler {
       const { simgrid_id } = server.custom_fields;
       const taskName = this.taskName(server);
       const simgridEvent = await this.simgrid.nextRaceOfChampionship(simgrid_id);
+
       if (!simgridEvent) {
         this.discord.log(
           `The simgrid event with id ${simgrid_id} does not have any races following ${new Date().toISOString()}`,
