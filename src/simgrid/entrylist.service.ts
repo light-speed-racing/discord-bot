@@ -17,30 +17,27 @@ export class EntrylistService {
 
   fetch = async (ids: string): Promise<Entrylist> => {
     const response = await Promise.all(ids.split(',').map((id) => this.request(id)));
-    const entries = response
-      .map(({ entries }) => entries)
-      .flat()
-      .reduce(this.moveAdminsToBottom, { drivers: [], admins: [] });
+
+    const { drivers, admins } = response
+      .flatMap(({ entries }) => entries)
+      .reduce<{ drivers: EntrylistEntry[]; admins: [] }>(
+        // If having multiple admins in the entrylist, move them to the bottom to allow admins who is signed up to join the server
+        (acc, curr) => {
+          const [driver] = curr.drivers;
+          const isAdmin = !('firstName' in driver) && !('lastName' in driver);
+          const key = isAdmin ? 'admins' : 'drivers';
+
+          return {
+            ...acc,
+            [key]: [...acc[key], curr],
+          };
+        },
+        { drivers: [], admins: [] },
+      );
 
     return {
-      entries: [...entries.drivers, ...entries.admins],
+      entries: [...drivers, ...admins],
       forceEntryList: 1,
-    };
-  };
-
-  // If having multiple admins in the entrylist, move them to the bottom to allow admins who is signed up to join the server
-  private moveAdminsToBottom = (acc: { drivers: EntrylistEntry[]; admins: EntrylistEntry[] }, curr: EntrylistEntry) => {
-    const [driver] = curr.drivers;
-    if (driver.hasOwnProperty('firstName') || driver.hasOwnProperty('lastName')) {
-      return {
-        ...acc,
-        drivers: [...acc.drivers, curr],
-      };
-    }
-
-    return {
-      ...acc,
-      admins: [...acc.admins, curr],
     };
   };
 
