@@ -14,6 +14,7 @@ import { DiscordModule } from '@discord-nestjs/core';
 // import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
 // import { StopGameServerSubcommand } from './commands/stop-game-server.subcommand';
 import { CommonModule } from 'src/common/common.module';
+import { SimgridModule } from 'src/simgrid/simgrid.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CommonModule } from 'src/common/common.module';
     DiscordModule.forFeature(),
     HttpModule,
     CommonModule,
+    SimgridModule,
   ],
   providers: [
     GameServerService,
