@@ -79,11 +79,11 @@ export class NightlyRestartPracticeGameServerTask extends AbstractScheduler {
           
           Data is provided by [openweathermap.org](https://openweathermap.org/)`,
           fields: [
-            { name: '🏎️ Track', value: `${eventJson.track.toUpperCase()}` },
-            { name: '🌡️ Ambient temp.', value: `${eventJson.ambientTemp}°C` },
-            { name: '☁️ Cloud level', value: `${Number(eventJson.cloudLevel * 100).toFixed(2)}%` },
-            { name: '🌧️ Rain', value: `${Number(eventJson.rain * 100).toFixed(2)}%` },
-            { name: 'Weather randomness', value: `${eventJson.weatherRandomness}` },
+            { name: '🏎️ Track', value: `${eventJson.track.toUpperCase()}`, inline: true },
+            { name: '🌡️ Ambient temp.', value: `${eventJson.ambientTemp}°C`, inline: true },
+            { name: '☁️ Cloud level', value: `${Number(eventJson.cloudLevel * 100).toFixed(0)}%`, inline: true },
+            { name: '🌧️ Rain', value: `${Number(eventJson.rain * 100).toFixed(0)}%`, inline: true },
+            { name: 'Weather randomness', value: `${eventJson.weatherRandomness}`, inline: true },
           ],
         }),
       ],

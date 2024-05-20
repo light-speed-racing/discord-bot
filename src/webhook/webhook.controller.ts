@@ -105,8 +105,8 @@ export class WebhookController {
           color: Colors.DarkBlue,
           fields: [
             { name: 'Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
-            { name: 'Cloud level', value: `${event.cloudLevel * 100}%`, inline: true },
-            { name: 'Rain', value: `${event.rain * 100}%`, inline: true },
+            { name: '☁️ Cloud level', value: `${Number(event.cloudLevel * 100).toFixed(0)}%`, inline: true },
+            { name: '🌧️ Rain', value: `${Number(event.rain * 100).toFixed(0)}%`, inline: true },
             { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
           ],
           footer: { text: 'Note: these numbers is parameters to run a race weekend simulations' },
