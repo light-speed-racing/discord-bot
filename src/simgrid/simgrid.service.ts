@@ -11,7 +11,7 @@ type Championship = {
   end_date: null;
   capacity: number;
   total_slots_taken: number;
-  races: Array<Race>;
+  races?: Array<Race>;
   teams_enabled: boolean;
   entry_fee_required: boolean;
   entry_fee_cents: number | null;
@@ -69,7 +69,7 @@ export class SimgridService {
     const tracks = await this.tracks();
     return {
       ...data,
-      races: data.races.map<Race>((item) => ({
+      races: data?.races?.map((item) => ({
         ...item,
         in_game_name: tracks.find((track) => track.name === item.track)?.in_game_name,
       })),
