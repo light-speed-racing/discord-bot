@@ -42,6 +42,10 @@ export class NightlyStartRaceGameServersTask extends AbstractScheduler {
       home_name,
     } = server;
     const race = await this.simgrid.nextRaceOfChampionship(simgrid_id);
+
+    if (!race) {
+      return;
+    }
     this.logger.debug(`[${home_name}]: Next race will be at ${race.track} on ${race.starts_at}`, race);
     const taskName = this.taskName(server);
 
