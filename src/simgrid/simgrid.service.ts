@@ -23,7 +23,7 @@ type Championship = {
   results_url: string;
 };
 
-type Race = {
+export type Race = {
   id: number;
   race_name: string;
   track: string;
@@ -76,11 +76,17 @@ export class SimgridService {
     };
   }
 
-  async nextRaceOfChampionship(id: string) {
+  async nextRaceOfChampionship(id: string): Promise<Race | null> {
     const { races } = await this.championship(id);
 
-    return races
-      .sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
+    const race = races
+      ?.sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
       .find((race) => !race.ended);
+
+    if (!race) {
+      return null;
+    }
+
+    return race;
   }
 }

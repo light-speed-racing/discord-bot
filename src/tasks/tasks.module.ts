@@ -20,5 +20,6 @@ const tasks = [NightlyRestartPracticeGameServerTask, NightlyStartRaceGameServers
       inject: tasks,
     },
   ],
+  exports: tasks,
 })
 export class TasksModule {}
