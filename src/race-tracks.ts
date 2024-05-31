@@ -27,5 +27,6 @@ export const RaceTracks: Record<Track, RaceTrack> = {
   spa: { coordinates: [50.4372, 5.9714] },
   suzuka: { coordinates: [34.8431, 136.5417] },
   watkins_glen: { coordinates: [42.3392, -76.9283] },
+  zolder: { coordinates: [51.0347, 5.2617] },
   zandvoort: { coordinates: [52.3886, 4.5422] },
 };

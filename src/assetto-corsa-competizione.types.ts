@@ -103,7 +103,7 @@ export type Track =
   | 'spa'
   | 'suzuka'
   | 'watkins_glen'
-  | 'zandvoort'
+  | 'zolder'
   | 'zandvoort'
   | 'nurburgring_24h';
 
