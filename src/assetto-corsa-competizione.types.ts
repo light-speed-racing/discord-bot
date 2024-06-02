@@ -69,15 +69,16 @@ export type AssistRulesJSON = {
 export type EventRulesJSON = {
   qualifyStandingType?: 1 | 2;
   superpoleMaxCar?: unknown;
-  pitWindowLengthSec?: number;
-  isRefuellingAllowedInRace?: number;
+  pitWindowLengthSec?: -1 | number;
+  driverStintTimeSec?: -1 | number;
+  isRefuellingAllowedInRace?: boolean;
   isRefuellingTimeFixed?: boolean;
-  mandatoryPitstopCount?: boolean;
-  maxTotalDrivingTime?: number;
-  maxDriversCount?: number;
-  isMandatoryPitstopRefuellingRequired?: 0 | 1;
-  isMandatoryPitstopTyreChangeRequired?: 0 | 1;
-  isMandatoryPitstopSwapDriverRequired?: 0 | 1;
+  mandatoryPitstopCount?: -1 | number;
+  maxTotalDrivingTime?: -1 | number;
+  maxDriversCount?: -1 | number;
+  isMandatoryPitstopRefuellingRequired?: boolean;
+  isMandatoryPitstopTyreChangeRequired?: boolean;
+  isMandatoryPitstopSwapDriverRequired?: boolean;
   tyreSetCount?: number;
 };
 

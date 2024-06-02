@@ -29,7 +29,7 @@ export class GameServerService {
     return entity;
   };
 
-  getServersThatShouldHaveARestartJob = async (serverType: GameServerType) => {
+  serverByType = async (serverType: GameServerType) => {
     return (await this.repository.findBy({ custom_fields: Not(IsNull()) }))
       .filter((entry) => !!entry.custom_fields)
       .filter(({ custom_fields }) => !!custom_fields.is_enabled)
