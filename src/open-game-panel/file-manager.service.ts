@@ -35,6 +35,26 @@ export class FileManager {
     }
   }
 
+  async list(path: string, entry: GameServer) {
+    const response = await this.api.get<
+      keyof FileManagerModule,
+      {
+        files: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+        directorys: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+        binarys: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+      }
+    >('litefm/list', {
+      port: entry.IpPort.port,
+      relative_path: `${path}`,
+    });
+
+    return JSON.parse(JSON.stringify(response.message)) as {
+      files: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+      directorys: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+      binarys: Record<string, { group: 'None'; user: 'cyg_server'; filename: string; size: number }>;
+    };
+  }
+
   isEmpty = async (filename: keyof ConfigFiles, { IpPort }: GameServer) => {
     const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/get', {
       port: IpPort.port,

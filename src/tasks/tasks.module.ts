@@ -5,10 +5,12 @@ import { SimgridModule } from 'src/simgrid/simgrid.module';
 import { DiscordModule } from '@discord-nestjs/core';
 import { RestartPracticeServersTask } from './restart-practice-server.task';
 import { ServerTaskManager } from './server-task.manager';
+import { StartRaceServerTask } from './start-race-server.task';
 
+const providers = [ServerTaskManager, RestartPracticeServersTask, StartRaceServerTask];
 @Module({
   imports: [DiscordModule.forFeature(), OpenGamePanelModule, CommonModule, SimgridModule],
-  providers: [RestartPracticeServersTask, ServerTaskManager],
-  exports: [RestartPracticeServersTask, ServerTaskManager],
+  providers: [...providers],
+  exports: [...providers],
 })
 export class TasksModule {}
