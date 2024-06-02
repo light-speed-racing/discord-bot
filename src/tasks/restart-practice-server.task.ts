@@ -35,23 +35,23 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
         const event = await this.manager.event(server);
         await this.manager.eventRules(server);
         await this.manager.assistRules(server);
-        const { serverName } = await this.filemanager.read<SettingsJSON>('settings.json', server);
+        const settings = await this.filemanager.read<SettingsJSON>('settings.json', server);
         this.discord.log(`Restarted server: ${server.home_name}`);
         const result = await this.gameManager.restart(server);
 
-        await this.sendWeatherUpdate(serverName, event.data);
-        this.logger.verbose(serverName, result);
+        await this.sendWeatherUpdate(settings, event.data);
+        this.logger.verbose(settings.serverName, result);
       } catch (error) {
         console.log(error);
       }
     }
   }
 
-  private sendWeatherUpdate = async (serverName: string, event: EventJSON) => {
+  private sendWeatherUpdate = async (settings: SettingsJSON, event: EventJSON) => {
     return this.discord.weatherUpdate({
       embeds: [
         new EmbedBuilder({
-          title: `Weather forecast for **${serverName}**`,
+          title: `Weather forecast for **${settings.serverName}**`,
           description: `As of **3 pm** localtime today at **${event.track.toUpperCase()}** the forecast is...
 
           **Please note** that these parameters is used to run a race weekend simulation. The actual weather might differ...
@@ -59,6 +59,8 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
           
           Data is provided by [openweathermap.org](https://openweathermap.org/)`,
           fields: [
+            { name: 'Server name', value: `${settings.serverName}`, inline: true },
+            { name: 'Password', value: `${settings.password}`, inline: true },
             { name: '🏎️ Track', value: `${event.track.toUpperCase()}`, inline: true },
             { name: '🌡️ Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
             { name: '☁️ Cloud level', value: `${Number(event.cloudLevel * 100).toFixed(0)}%`, inline: true },
