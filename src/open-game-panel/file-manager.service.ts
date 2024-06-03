@@ -22,7 +22,7 @@ export class FileManager {
   constructor(private readonly api: OpenGamePanelApi) {}
 
   async read<T extends ConfigFile>(filename: keyof ConfigFiles, entry: GameServer): Promise<T> {
-    this.logger.debug(`Reading ${filename} using OGP_API`);
+    this.logger.verbose(`Reading ${filename} using OGP_API`);
     try {
       const { message } = await this.api.get<keyof FileManagerModule, string>('litefm/get', {
         port: entry.IpPort.port,

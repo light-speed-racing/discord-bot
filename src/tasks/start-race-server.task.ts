@@ -15,6 +15,8 @@ import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 export class StartRaceServerTask implements OnApplicationBootstrap {
   private readonly logger = new Logger(StartRaceServerTask.name);
 
+  readonly DURARION_IN_MINUTES = 10;
+
   constructor(
     private readonly gameServer: GameServerService,
     private readonly gameManager: GameManager,
@@ -28,8 +30,6 @@ export class StartRaceServerTask implements OnApplicationBootstrap {
   onApplicationBootstrap() {
     this.handle();
   }
-
-  DURARION_IN_MINUTES = 10;
 
   @Cron(CronExpression.EVERY_10_MINUTES)
   async handle() {

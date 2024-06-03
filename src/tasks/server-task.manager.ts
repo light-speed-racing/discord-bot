@@ -5,6 +5,7 @@ import {
   Entrylist,
   EventJSON,
   EventRulesJSON,
+  Track,
 } from 'src/assetto-corsa-competizione.types';
 import { WeatherService } from 'src/common/weather.service';
 import { GameServer } from 'src/database/game-server.entity';
@@ -15,7 +16,6 @@ import { Race, SimgridService } from 'src/simgrid/simgrid.service';
 @Injectable()
 export class ServerTaskManager {
   private readonly logger = new Logger(ServerTaskManager.name);
-  protected race?: Race = undefined;
 
   constructor(
     private readonly entrylistService: EntrylistService,
@@ -52,14 +52,14 @@ export class ServerTaskManager {
   }
 
   async event(server: GameServer): Promise<{ message: string; data: EventJSON }> {
-    const weather = await this.weather(server);
-
+    const race = await this.nextRaceOfChampionship(server);
+    const weather = await this.weather(race.in_game_name);
     const existing = await this.filemanager.read<EventJSON>('event.json', server);
 
     const data = {
       ...existing,
       ...weather,
-      track: this.race?.in_game_name ?? weather.track ?? 'snetterton',
+      track: race?.in_game_name ?? weather.track ?? 'snetterton',
     };
 
     return await this.filemanager.update<EventJSON>('event.json', data, server);
@@ -108,10 +108,6 @@ export class ServerTaskManager {
   private nextRaceOfChampionship = async ({ home_id, home_name, custom_fields }: GameServer): Promise<Race> => {
     this.logger.debug(`[${home_id}] ${home_name}: Finding next race of championship ${custom_fields?.simgrid_id}`);
 
-    if (this.race) {
-      return this.race;
-    }
-
     try {
       if (!custom_fields?.simgrid_id) {
         throw new Error(`[${home_id}] ${home_name}: Simgrid ID is missing`);
@@ -123,20 +119,14 @@ export class ServerTaskManager {
           `[${home_id}] ${home_name}: No race was found on Simgrid with the ID ${custom_fields?.simgrid_id}`,
         );
       }
-      this.race = race;
+
       return race;
     } catch (error) {
       throw new Error(error);
     }
   };
 
-  private weather = async (server: GameServer): Promise<Partial<EventJSON>> => {
-    await this.nextRaceOfChampionship(server);
-
-    if (!this.race?.in_game_name) {
-      throw new Error(`[${server.home_id}] ${server.home_name}: The race does not seem to have an ingame name`);
-    }
-
-    return await this.weatherService.forecastFor(this.race.in_game_name);
+  private weather = async (track: Track): Promise<Partial<EventJSON>> => {
+    return await this.weatherService.forecastFor(track);
   };
 }

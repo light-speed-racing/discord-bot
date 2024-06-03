@@ -7,6 +7,7 @@ import { GameManager } from 'src/open-game-panel/game-manager.service';
 import { DiscordChannelService } from 'src/common/discord-channel.service';
 import { EmbedBuilder } from '@discordjs/builders';
 import { EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
+import { GameServer } from 'src/database/game-server.entity';
 
 @Injectable()
 export class RestartPracticeServersTask implements OnApplicationBootstrap {
@@ -36,10 +37,10 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
         await this.manager.eventRules(server);
         await this.manager.assistRules(server);
         const settings = await this.filemanager.read<SettingsJSON>('settings.json', server);
-        this.discord.log(`Restarted server: ${server.home_name}`);
         const result = await this.gameManager.restart(server);
+        this.discord.log(`Restarted server: ${server.home_name}`);
 
-        await this.sendWeatherUpdate(settings, event.data);
+        await this.sendWeatherUpdate(settings, event.data, server);
         this.logger.verbose(settings.serverName, result);
       } catch (error) {
         console.log(error);
@@ -47,7 +48,7 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
     }
   }
 
-  private sendWeatherUpdate = async (settings: SettingsJSON, event: EventJSON) => {
+  private sendWeatherUpdate = async (settings: SettingsJSON, event: EventJSON, server: GameServer) => {
     return this.discord.weatherUpdate({
       embeds: [
         new EmbedBuilder({
@@ -59,14 +60,17 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
           
           Data is provided by [openweathermap.org](https://openweathermap.org/)`,
           fields: [
-            { name: 'Server name', value: `${settings.serverName}`, inline: true },
-            { name: 'Password', value: `${settings.password}`, inline: true },
+            { name: 'Server name', value: `${settings.serverName}` },
+            { name: 'Password', value: `${settings.password}` },
             { name: '🏎️ Track', value: `${event.track.toUpperCase()}`, inline: true },
             { name: '🌡️ Ambient temp.', value: `${event.ambientTemp}°C`, inline: true },
             { name: '☁️ Cloud level', value: `${Number(event.cloudLevel * 100).toFixed(0)}%`, inline: true },
             { name: '🌧️ Rain', value: `${Number(event.rain * 100).toFixed(0)}%`, inline: true },
             { name: 'Weather randomness', value: `${event.weatherRandomness}`, inline: true },
           ],
+          footer: {
+            text: `${server.home_name}`,
+          },
         }),
       ],
     });
