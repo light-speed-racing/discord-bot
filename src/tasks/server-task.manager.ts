@@ -68,7 +68,6 @@ export class ServerTaskManager {
   async eventRules(server: GameServer): Promise<{ message: string; data: EventRulesJSON }> {
     const existing = await this.filemanager.read<EventRulesJSON>('eventRules.json', server);
     const data = {
-      ...existing,
       qualifyStandingType: 1,
       pitWindowLengthSec: -1,
       driverStintTimeSec: -1,
@@ -81,6 +80,7 @@ export class ServerTaskManager {
       isMandatoryPitstopTyreChangeRequired: false,
       isMandatoryPitstopSwapDriverRequired: false,
       tyreSetCount: 50,
+      ...existing,
     };
 
     return await this.filemanager.update<EventRulesJSON>('eventRules.json', data, server);
@@ -90,7 +90,6 @@ export class ServerTaskManager {
     const existing = await this.filemanager.read<AssistRulesJSON>('assistRules.json', server);
 
     const data = {
-      ...existing,
       disableIdealLine: 0,
       disableAutosteer: 0,
       stabilityControlLevelMax: 0,
@@ -100,6 +99,7 @@ export class ServerTaskManager {
       disableAutoEngineStart: 0,
       disableAutoWiper: 0,
       disableAutoLights: 0,
+      ...existing,
     };
 
     return await this.filemanager.update<AssistRulesJSON>('assistRules.json', data, server);
