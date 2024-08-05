@@ -9,7 +9,7 @@ import sample from 'lodash.sample';
 @Injectable()
 export class PatreonSaysAnythingEvent {
   @On('messageCreate')
-  @UseGuards(MessageIsSendByAUser, MemberIsPatreon, new Likelihood(2))
+  @UseGuards(MessageIsSendByAUser, MemberIsPatreon, new Likelihood(5))
   async onMessage(message: Message): Promise<void> {
     const messages = [
       `We love you ${message.member} ❤️🩷🩵💚🧡💙🤍💛💓💞💝 <#974936858981187634>`,

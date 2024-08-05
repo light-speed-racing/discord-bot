@@ -9,6 +9,8 @@ import { AnyoneSaidHowDareYouEvent } from './anyone-said-how-dare-you.event';
 import { AyrtonSaidEvent } from './ayrton-said.event';
 import { PatreonSaysAnythingEvent } from './patreon-says-anything.event';
 import { CommonModule } from 'src/common/common.module';
+import { TonySaidEvent } from './tony-said.event';
+import { PiresSaidEvent } from './pires-said.event';
 
 @Module({
   imports: [CommonModule],
@@ -22,6 +24,8 @@ import { CommonModule } from 'src/common/common.module';
     AnyoneSaysAnythingEvent,
     AnyoneSaidHowDareYouEvent,
     PatreonSaysAnythingEvent,
+    TonySaidEvent,
+    PiresSaidEvent,
   ],
 })
 export class UserSaidModule {}

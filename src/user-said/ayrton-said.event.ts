@@ -1,5 +1,4 @@
 import { On } from '@discord-nestjs/core';
-import { EmbedBuilder } from '@discordjs/builders';
 import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import sample from 'lodash.sample';
@@ -12,18 +11,22 @@ export class AyrtonSaidEvent {
   constructor(private readonly giphy: GiphyService) {}
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('ayrton85'), new Likelihood(2))
-  async onMessage(message: Message): Promise<void> {
-    const { data } = await this.giphy.search('holland');
-
-    const { images } = sample(data);
-
-    await message.reply({
-      embeds: [
-        new EmbedBuilder({
-          image: { url: images.downsized.url },
-        }),
-      ],
-    });
+  @UseGuards(new MessageSendByUsername('ayrton85'), new Likelihood(3))
+  async onMessage(message: Message): Promise<string> {
+    return sample([
+      sample((await this.giphy.search('ayrton')).data).images.downsized.url,
+      sample((await this.giphy.search('greta lover')).data).images.downsized.url,
+      sample((await this.giphy.search('so young')).data).images.downsized.url,
+      sample((await this.giphy.search('who are even are you')).data).images.downsized.url,
+      sample((await this.giphy.search('greta')).data).images.downsized.url,
+      sample((await this.giphy.search('nederlands')).data).images.downsized.url,
+      sample((await this.giphy.search('holland')).data).images.downsized.url,
+      sample((await this.giphy.search('belgium')).data).images.downsized.url,
+      sample((await this.giphy.search('love belgium')).data).images.downsized.url,
+      sample((await this.giphy.search('mario kart')).data).images.downsized.url,
+      sample((await this.giphy.search('slow')).data).images.downsized.url,
+      sample((await this.giphy.search('baby boy')).data).images.downsized.url,
+      `Wait, ${message.author}.... You are in love with me?!? Wow...`,
+    ]);
   }
 }
