@@ -53,13 +53,13 @@ export class ServerTaskManager {
 
   async event(server: GameServer): Promise<{ message: string; data: EventJSON }> {
     const race = await this.nextRaceOfChampionship(server);
-    const weather = await this.weather(race.in_game_name);
     const existing = await this.filemanager.read<EventJSON>('event.json', server);
+    const weather = await this.weather(race.in_game_name ?? existing.track);
 
     const data = {
       ...existing,
       ...weather,
-      track: race?.in_game_name ?? weather.track ?? 'snetterton',
+      track: race?.in_game_name ?? weather.track ?? existing.track,
     };
 
     return await this.filemanager.update<EventJSON>('event.json', data, server);
