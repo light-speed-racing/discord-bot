@@ -55,8 +55,9 @@ export class RestartGameServerSubcommand {
   @UseGuards(new HasCustomId(RestartGameServerSubcommand.name))
   async onSubmit(@IA() interaction: StringSelectMenuInteraction, @IA('values') [home_id]: number[]) {
     const server = await this.repository.findOne({ where: { home_id } });
-    await interaction.reply({ content: `I'm restarting **${server.home_name}**. Please wait...` });
+    await interaction.deferReply();
+    await interaction.editReply({ content: `I'm restarting **${server.home_name}**. Please wait...` });
     await this.gameManager.restart(server);
-    return await interaction.followUp({ content: `**${server.home_name}** was restarted.` });
+    await interaction.followUp({ content: `**${server.home_name}** was restarted.` });
   }
 }
