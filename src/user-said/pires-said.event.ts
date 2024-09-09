@@ -12,6 +12,14 @@ export class PiresSaidEvent {
   @On('messageCreate')
   @UseGuards(new MessageSendByUsername('manois'), new Likelihood(3))
   async respond() {
-    return sample([sample((await this.giphy.search('bacalhau')).data).images.downsized.url]);
+    return sample([
+      sample((await this.giphy.search('bacalhau')).data).images.downsized.url,
+      sample((await this.giphy.search('portugal')).data).images.downsized.url,
+      sample((await this.giphy.search('porto gal')).data).images.downsized.url,
+      sample((await this.giphy.search('porto')).data).images.downsized.url,
+      sample((await this.giphy.search('mega diamond earing')).data).images.downsized.url,
+      'Just as Toto said... 🎤🎤 I bless the rain down in Portogal...',
+      'Eye spy with my little eye: one that is slower than Carsten... 🐢🐢',
+    ]);
   }
 }
