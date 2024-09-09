@@ -9,12 +9,10 @@ import { HttpModule } from '@nestjs/axios';
 import { GameManager } from './game-manager.service';
 import { FileManager } from './file-manager.service';
 import { DiscordModule } from '@discord-nestjs/core';
-// import { GameServerCommand } from './commands/game-server.command';
-// import { StartGameServerSubcommand } from './commands/start-game-server.subcommand';
-// import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
-// import { StopGameServerSubcommand } from './commands/stop-game-server.subcommand';
 import { CommonModule } from 'src/common/common.module';
 import { SimgridModule } from 'src/simgrid/simgrid.module';
+import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
+import { GameServerCommand } from './commands/game-server.command';
 
 @Module({
   imports: [
@@ -30,10 +28,8 @@ import { SimgridModule } from 'src/simgrid/simgrid.module';
     GameManager,
 
     FileManager,
-    // GameServerCommand,
-    // StartGameServerSubcommand,
-    // StopGameServerSubcommand,
-    // RestartGameServerSubcommand,
+    GameServerCommand,
+    RestartGameServerSubcommand,
   ],
   exports: [GameServerService, OpenGamePanelApi, GameManager, FileManager],
 })

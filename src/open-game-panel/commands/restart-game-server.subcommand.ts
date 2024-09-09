@@ -1,4 +1,4 @@
-import { SubCommand, Handler, IA, EventParams, On } from '@discord-nestjs/core';
+import { SubCommand, Handler, IA, On, EventParams } from '@discord-nestjs/core';
 import { GameManager } from '../game-manager.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -6,7 +6,6 @@ import { GameServer } from 'src/database/game-server.entity';
 import {
   ActionRowBuilder,
   ClientEvents,
-  Message,
   StringSelectMenuBuilder,
   StringSelectMenuInteraction,
   StringSelectMenuOptionBuilder,
@@ -20,7 +19,6 @@ import { HasRole } from 'src/guard/has-role.guard';
   description: 'Restart a game server',
 })
 export class RestartGameServerSubcommand {
-  private allServers: Array<GameServer>;
   constructor(
     @InjectRepository(GameServer)
     private readonly repository: Repository<GameServer>,
@@ -29,35 +27,36 @@ export class RestartGameServerSubcommand {
 
   @UseGuards(new HasRole('Host'))
   @Handler()
-  async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']): Promise<Message> {
-    this.allServers = await this.repository.find();
-
-    const server = new StringSelectMenuBuilder()
-      .setCustomId(RestartGameServerSubcommand.name)
-      .setPlaceholder('Select the server you would like to restart')
-      .addOptions(
-        this.allServers.map(({ home_name }, index) => {
-          return new StringSelectMenuOptionBuilder().setLabel(home_name).setValue(`${index}`);
-        }),
-      );
-
-    // @ts-expect-error sdfdsf
+  async handle(@EventParams() [interaction]: ClientEvents['interactionCreate']) {
+    // @ts-expect-error the type for interaction is not correct
     return await interaction.reply({
-      components: [new ActionRowBuilder().addComponents(server)],
+      components: [
+        new ActionRowBuilder().addComponents(
+          new StringSelectMenuBuilder()
+            .setCustomId(RestartGameServerSubcommand.name)
+            .setPlaceholder('Select the server you would like to restart')
+            .addOptions(
+              (
+                await this.repository.find()
+              ).map(
+                (server) =>
+                  new StringSelectMenuOptionBuilder({
+                    label: server.home_name,
+                    value: `${server.home_id}`,
+                  }),
+              ),
+            ),
+        ),
+      ],
     });
   }
 
   @On('interactionCreate')
   @UseGuards(new HasCustomId(RestartGameServerSubcommand.name))
-  async onSubmit(@IA() { values, message, member }: StringSelectMenuInteraction) {
-    const selectedServer = this.allServers.at(Number(values.at(0)));
-
-    await message.reply({ content: `I'm restarting **${selectedServer.home_name}**. Please wait...` });
-    const response = await this.gameManager.restart(selectedServer);
-
-    return await message.reply({
-      content: response.message,
-      nonce: member.user.username,
-    });
+  async onSubmit(@IA() interaction: StringSelectMenuInteraction, @IA('values') [home_id]: number[]) {
+    const server = await this.repository.findOne({ where: { home_id } });
+    await interaction.reply({ content: `I'm restarting **${server.home_name}**. Please wait...` });
+    await this.gameManager.restart(server);
+    return await interaction.followUp({ content: `**${server.home_name}** was restarted.` });
   }
 }
