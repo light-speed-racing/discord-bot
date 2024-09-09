@@ -10,6 +10,7 @@ import { GameServer } from 'src/database/game-server.entity';
 import { SimgridService } from 'src/simgrid/simgrid.service';
 import moment from 'moment';
 import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
+import { RootConfig } from 'src/config/config';
 
 @Injectable()
 export class StartRaceServerTask implements OnApplicationBootstrap {
@@ -18,6 +19,7 @@ export class StartRaceServerTask implements OnApplicationBootstrap {
   readonly DURARION_IN_MINUTES = 10;
 
   constructor(
+    private readonly config: RootConfig,
     private readonly gameServer: GameServerService,
     private readonly gameManager: GameManager,
     private readonly manager: ServerTaskManager,
@@ -28,6 +30,9 @@ export class StartRaceServerTask implements OnApplicationBootstrap {
   ) {}
 
   onApplicationBootstrap() {
+    if (this.config.env === 'development') {
+      return console.info('[StartRaceServerTask] Development mode enabled. Task will not run.');
+    }
     this.handle();
   }
 

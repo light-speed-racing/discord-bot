@@ -8,12 +8,14 @@ import { DiscordChannelService } from 'src/common/discord-channel.service';
 import { EmbedBuilder } from '@discordjs/builders';
 import { EventJSON, SettingsJSON } from 'src/assetto-corsa-competizione.types';
 import { GameServer } from 'src/database/game-server.entity';
+import { RootConfig } from 'src/config/config';
 
 @Injectable()
 export class RestartPracticeServersTask implements OnApplicationBootstrap {
   private readonly logger = new Logger(RestartPracticeServersTask.name);
 
   constructor(
+    private readonly config: RootConfig,
     private readonly gameServer: GameServerService,
     private readonly gameManager: GameManager,
     private readonly manager: ServerTaskManager,
@@ -22,6 +24,9 @@ export class RestartPracticeServersTask implements OnApplicationBootstrap {
   ) {}
 
   onApplicationBootstrap() {
+    if (this.config.env === 'development') {
+      return console.info('[RestartPracticeServersTask] Development mode enabled. Task will not run.');
+    }
     this.handle();
   }
 
