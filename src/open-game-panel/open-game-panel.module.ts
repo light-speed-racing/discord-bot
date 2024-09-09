@@ -13,6 +13,8 @@ import { CommonModule } from 'src/common/common.module';
 import { SimgridModule } from 'src/simgrid/simgrid.module';
 import { RestartGameServerSubcommand } from './commands/restart-game-server.subcommand';
 import { GameServerCommand } from './commands/game-server.command';
+import { StartGameServerSubcommand } from './commands/start-game-server.subcommand';
+import { StopGameServerSubcommand } from './commands/stop-game-server.subcommand';
 
 @Module({
   imports: [
@@ -26,10 +28,11 @@ import { GameServerCommand } from './commands/game-server.command';
     GameServerService,
     OpenGamePanelApi,
     GameManager,
-
     FileManager,
     GameServerCommand,
     RestartGameServerSubcommand,
+    StartGameServerSubcommand,
+    StopGameServerSubcommand,
   ],
   exports: [GameServerService, OpenGamePanelApi, GameManager, FileManager],
 })
