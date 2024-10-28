@@ -106,6 +106,7 @@ export type Track =
   | 'watkins_glen'
   | 'zolder'
   | 'zandvoort'
+  | 'valencia'
   | 'nurburgring_24h';
 
 export type EventJSON = {
