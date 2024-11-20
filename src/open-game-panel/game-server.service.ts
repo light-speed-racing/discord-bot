@@ -79,7 +79,7 @@ export class GameServerService {
   updateEventJson = async (entity: GameServer): Promise<EventJSON> => {
     this.logger.debug(`updateWeather: ${entity.home_name}`);
     const { custom_fields } = entity;
-    if (!custom_fields.is_enabled && !custom_fields?.live_weather && !custom_fields.simgrid_id) {
+    if (!custom_fields?.live_weather) {
       return;
     }
 

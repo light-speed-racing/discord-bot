@@ -1,7 +1,5 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { AxiosError } from 'axios';
-import { catchError, firstValueFrom } from 'rxjs';
 import { Entrylist, EntrylistEntry } from 'src/assetto-corsa-competizione.types';
 import { RootConfig } from 'src/config/config';
 import { Patreons } from 'src/patreons';
@@ -43,15 +41,8 @@ export class EntrylistService {
 
   private request = async (id: string, format: 'json' | 'csv' | 'ini' = 'json'): Promise<Entrylist> => {
     const url = `${this.config.simgrid.url}/v1/championships/${id}/entrylist?format=${format}`;
-    const { data } = await firstValueFrom(
-      this.httpService.get<Entrylist>(url).pipe(
-        catchError((error: AxiosError) => {
-          console.log('Error', error);
-          throw error.message;
-        }),
-      ),
-    );
 
+    const { data } = await this.httpService.axiosRef.get<Entrylist>(url);
     return {
       entries: data.entries.map(this.ensurePatreonRaceNumber),
       forceEntryList: data.forceEntryList,

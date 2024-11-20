@@ -48,11 +48,13 @@ export class WebhookController {
     const entity = !!homedir && (await this.gameServer.homedir(homedir));
     const { custom_fields } = entity;
 
+    if (!custom_fields.is_enabled) {
+      return;
+    }
+
     await this.gameServer.updateConfigurationJson(entity);
 
-    if (custom_fields?.is_enabled) {
-      await this.gameServer.updateEventJson(entity);
-    }
+    await this.gameServer.updateEventJson(entity);
 
     if (custom_fields?.channel_id) {
       await this.notifyDiscordChannel(entity);

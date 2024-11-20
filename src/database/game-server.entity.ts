@@ -41,8 +41,8 @@ export class GameServer {
 
         return {
           ...json,
-          is_enabled: Boolean(json.is_enabled),
-          live_weather: Boolean(json.live_weather),
+          is_enabled: json.is_enabled.toLowerCase() === 'on' ? true : false,
+          live_weather: json.live_weather.toLowerCase() === 'on' ? true : false,
         };
       },
     },
