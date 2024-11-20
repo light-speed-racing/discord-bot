@@ -41,8 +41,8 @@ export class GameServer {
 
         return {
           ...json,
-          is_enabled: json.is_enabled.toLowerCase() === 'on' ? true : false,
-          live_weather: json.live_weather.toLowerCase() === 'on' ? true : false,
+          is_enabled: stringToBoolean(json.is_enabled),
+          live_weather: stringToBoolean(json.live_weather),
         };
       },
     },
@@ -60,3 +60,11 @@ export class GameServer {
         server_type: GameServerType;
       };
 }
+
+const stringToBoolean = (b?: 'on' | 'off'): boolean => {
+  if (!b || b.toLowerCase()) {
+    return false;
+  }
+
+  return b === 'on';
+};
