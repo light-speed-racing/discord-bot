@@ -43,6 +43,7 @@ export class EntrylistService {
     const url = `${this.config.simgrid.url}/v1/championships/${id}/entrylist?format=${format}`;
 
     const { data } = await this.httpService.axiosRef.get<Entrylist>(url);
+
     return {
       entries: data.entries.map(this.ensurePatreonRaceNumber),
       forceEntryList: data.forceEntryList,

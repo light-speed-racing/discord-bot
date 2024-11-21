@@ -37,34 +37,25 @@ export class GameServer {
         if (!value) {
           return;
         }
-        const json = JSON.parse(value);
-
+        const json = JSON.parse(value) as CustomFields<{
+          is_enabled: '1' | '0';
+          live_weather: '1' | '0';
+        }>;
         return {
           ...json,
-          is_enabled: stringToBoolean(json.is_enabled),
-          live_weather: stringToBoolean(json.live_weather),
+          is_enabled: json.is_enabled === '1',
+          live_weather: json.live_weather === '1',
         };
       },
     },
   })
-  custom_fields:
-    | null
-    | undefined
-    | {
-        is_enabled: boolean;
-        live_weather: boolean;
-        bop_provider: BopProvider;
-        channel_id?: string | undefined;
-        role_id?: string | undefined;
-        simgrid_id?: string | undefined;
-        server_type: GameServerType;
-      };
+  custom_fields: null | undefined | CustomFields;
 }
 
-const stringToBoolean = (b?: 'on' | 'off'): boolean => {
-  if (!b || b.toLowerCase()) {
-    return false;
-  }
-
-  return b === 'on';
+type CustomFields<T = { is_enabled: boolean; live_weather: boolean }> = T & {
+  bop_provider: BopProvider;
+  channel_id?: string | undefined;
+  role_id?: string | undefined;
+  simgrid_id?: string | undefined;
+  server_type: GameServerType;
 };
