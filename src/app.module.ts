@@ -14,6 +14,7 @@ import { ApiTokenMiddleware } from './middlewares/api-token.middleware';
 import { CommonModule } from './common/common.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './tasks/tasks.module';
+import { OpenaiModule } from './openai/openai.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { TasksModule } from './tasks/tasks.module';
     HealthModule,
     CommonModule,
     TasksModule,
+    OpenaiModule,
   ],
 })
 export class AppModule implements NestModule {

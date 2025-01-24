@@ -98,7 +98,7 @@ export class WeatherService {
   cloudLevel = (item: ForecaseItem) => item?.clouds.all / 100;
 
   rain = (item: ForecaseItem) => {
-    const n = item?.rain?.['3h'] / 10 ?? 0;
+    const n = item?.rain?.['3h'] / 10;
 
     if (!n) {
       return 0;

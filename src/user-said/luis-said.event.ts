@@ -8,19 +8,19 @@ import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 import { OpenaiService } from 'src/openai/openai.service';
 
 @Injectable()
-export class AyrtonSaidEvent {
+export class LuisSaidEvent {
   constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) { }
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('ayrton85'), new Likelihood(3))
-  async onMessage(message: Message): Promise<string> {
+  @UseGuards(new MessageSendByUsername('whitetip13'), new Likelihood(3))
+  async respond(message: Message) {
     return sample([
-      sample((await this.giphy.search('ayrton')).data).images.downsized.url,
-      sample((await this.giphy.search('nederlands')).data).images.downsized.url,
-      sample((await this.giphy.search('love belgium')).data).images.downsized.url,
-      `Wait, ${message.author}.... You are in love with me?!? Wow...`,
-      await this.chatgpt.insult("Ayrton's dad named him after Ayrton Senna", message.author.id),
+      sample((await this.giphy.search('coach')).data).images.downsized.url,
       await this.chatgpt.reply(message.content),
+      await this.chatgpt.insult(
+        'Luis comes from Germany and he does some super good coaching sessions',
+        message.author.id,
+      ),
     ]);
   }
 }

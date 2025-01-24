@@ -1,5 +1,4 @@
 import { On } from '@discord-nestjs/core';
-import { EmbedBuilder } from '@discordjs/builders';
 import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import sample from 'lodash.sample';
@@ -9,17 +8,15 @@ import { MessageSendByUsername } from 'src/guard/message-send-by.guard';
 import { OpenaiService } from 'src/openai/openai.service';
 
 @Injectable()
-export class SpencerSaidEvent {
-  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) { }
+export class Dan2DaGSaidEvent {
+  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) {}
 
   @On('messageCreate')
-  @UseGuards(new MessageSendByUsername('skeez0414'), new Likelihood(2))
+  @UseGuards(new MessageSendByUsername('dan.2.da.g'), new Likelihood(3))
   async respond(message: Message) {
     return sample([
-      await this.chatgpt.insult('Tell me how slow Spencer is', message.author.id),
-      await this.chatgpt.insult('Spencer is the fastes turtle in a race car?', message.author.id),
+      await this.chatgpt.insult('Dan is a beautifull man.', message.author.id),
       await this.chatgpt.reply(message.content),
-      sample((await this.giphy.search('america')).data).images.downsized.url,
     ]);
   }
 }

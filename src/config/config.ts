@@ -7,6 +7,7 @@ import { OpenGamePanelConfig } from './open-game-panel.config';
 import { LfmConfig } from './lfm.config';
 import { SimgridConfig } from './simgrid.config';
 import { OpenWeatherApiConfig } from './open-weather-api.config';
+import { OpenaiConfig } from './openai.config';
 
 export class RootConfig {
   @IsString()
@@ -43,4 +44,8 @@ export class RootConfig {
   @Type(() => OpenWeatherApiConfig)
   @ValidateNested()
   readonly openWeatherApi: OpenWeatherApiConfig;
+
+  @Type(() => OpenaiConfig)
+  @ValidateNested()
+  readonly openai: OpenaiConfig;
 }

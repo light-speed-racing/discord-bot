@@ -11,9 +11,14 @@ import { PatreonSaysAnythingEvent } from './patreon-says-anything.event';
 import { CommonModule } from 'src/common/common.module';
 import { TonySaidEvent } from './tony-said.event';
 import { PiresSaidEvent } from './pires-said.event';
+import { OpenaiModule } from 'src/openai/openai.module';
+import { PhillzskillzSaidEvent } from './phillzskillz-said.event';
+import { Dan2DaGSaidEvent } from './Dan2Dag-said.event';
+import { FatPicassoSaidEvent } from './fatpicasso-said.event';
+import { LuisSaidEvent } from './luis-said.event';
 
 @Module({
-  imports: [CommonModule],
+  imports: [CommonModule, OpenaiModule],
   providers: [
     EeekSaidEvent,
     ChristianMullerSaidEvent,
@@ -26,6 +31,10 @@ import { PiresSaidEvent } from './pires-said.event';
     PatreonSaysAnythingEvent,
     TonySaidEvent,
     PiresSaidEvent,
+    PhillzskillzSaidEvent,
+    Dan2DaGSaidEvent,
+    FatPicassoSaidEvent,
+    LuisSaidEvent,
   ],
 })
 export class UserSaidModule {}
