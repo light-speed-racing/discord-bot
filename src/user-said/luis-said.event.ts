@@ -9,7 +9,7 @@ import { OpenaiService } from 'src/openai/openai.service';
 
 @Injectable()
 export class LuisSaidEvent {
-  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) { }
+  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) {}
 
   @On('messageCreate')
   @UseGuards(new MessageSendByUsername('whitetip13'), new Likelihood(3))
@@ -19,6 +19,10 @@ export class LuisSaidEvent {
       await this.chatgpt.reply(message.content),
       await this.chatgpt.insult(
         'Luis comes from Germany and he does some super good coaching sessions',
+        message.author.id,
+      ),
+      await this.chatgpt.insult(
+        'Luis is the fastest simracer in the world, he is so fast that he can lap the entire field in 1 lap',
         message.author.id,
       ),
     ]);

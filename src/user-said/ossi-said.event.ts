@@ -24,6 +24,7 @@ export class OssiSaidEvent {
       await this.chatgpt.reply('Make a haiku about snow and how much it lights up in finland'),
       await this.chatgpt.reply('Tell me a very short oneline story about how blonde Ossi is'),
       await this.chatgpt.reply('In how many ways does Ossi resemble Kimi Räikkönen?'),
+      await this.chatgpt.reply('Tell Ossi how much you like him because of his calmness and blonde hair'),
     ]);
   }
 }

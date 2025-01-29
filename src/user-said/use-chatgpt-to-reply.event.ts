@@ -49,14 +49,11 @@ export class UseChatGptToReplyEvent {
   )
   async onMessage(message: Message): Promise<string> {
     return sample([
-      await this.chatgpt.insult(
-        'Ask the user why they are so slow and point out that this is a simracing community',
-        message.author.id,
-      ),
-      await this.chatgpt.insult(
-        `Please tell me a shot story about why ${message.author.displayName} is so slow`,
-        message.author.id,
-      ),
+      await this.chatgpt.insult('Ask the user why they are doing simracing', message.author.id),
+      await this.chatgpt.insult(`Tell me a shot story about ${message.author.displayName}`, message.author.id),
+      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message.content),
       await this.chatgpt.reply(message.content),
     ]);
   }
