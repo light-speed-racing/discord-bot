@@ -1,5 +1,4 @@
 import { On } from '@discord-nestjs/core';
-import { EmbedBuilder } from '@discordjs/builders';
 import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import sample from 'lodash.sample';

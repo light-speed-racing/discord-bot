@@ -11,10 +11,13 @@ import { TonySaidEvent } from './tony-said.event';
 import { OpenaiModule } from 'src/openai/openai.module';
 import { LuisSaidEvent } from './luis-said.event';
 import { UseChatGptToReplyEvent } from './use-chatgpt-to-reply.event';
+import { ReplyWhenMentionedEvent } from './reply-when-mentioned.event';
+import { DiscordModule } from '@discord-nestjs/core';
 
 @Module({
-  imports: [CommonModule, OpenaiModule],
+  imports: [CommonModule, OpenaiModule, DiscordModule.forFeature()],
   providers: [
+    ReplyWhenMentionedEvent,
     EeekSaidEvent,
     ChristianMullerSaidEvent,
     AnyoneSaidRaveEvent,
