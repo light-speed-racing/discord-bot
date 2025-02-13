@@ -16,7 +16,7 @@ export class LuisSaidEvent {
   async respond(message: Message) {
     return sample([
       sample((await this.giphy.search('coach')).data).images.downsized.url,
-      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message),
       await this.chatgpt.insult(
         'Luis comes from Germany and he does some super good coaching sessions',
         message.author.id,

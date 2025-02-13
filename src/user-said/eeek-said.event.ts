@@ -22,7 +22,7 @@ export class EeekSaidEvent {
       sample((await this.giphy.search('king')).data).images.downsized.url,
       sample((await this.giphy.search('beauty')).data).images.downsized.url,
       await this.chatgpt.insult('Carsten is called the worldsslowestsimracer', message.author.id),
-      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message),
     ]);
   }
 }

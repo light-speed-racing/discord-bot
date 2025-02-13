@@ -9,7 +9,7 @@ import { OpenaiService } from 'src/openai/openai.service';
 
 @Injectable()
 export class SpencerSaidEvent {
-  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) { }
+  constructor(private readonly giphy: GiphyService, private readonly chatgpt: OpenaiService) {}
 
   @On('messageCreate')
   @UseGuards(new MessageSendByUsername('skeez0414'), new Likelihood(2))
@@ -17,7 +17,7 @@ export class SpencerSaidEvent {
     return sample([
       await this.chatgpt.insult('Tell me how slow Spencer is', message.author.id),
       await this.chatgpt.insult('Spencer is the fastes turtle in a race car?', message.author.id),
-      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message),
       sample((await this.giphy.search('america')).data).images.downsized.url,
     ]);
   }

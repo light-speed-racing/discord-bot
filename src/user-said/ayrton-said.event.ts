@@ -20,7 +20,7 @@ export class AyrtonSaidEvent {
       sample((await this.giphy.search('love belgium')).data).images.downsized.url,
       `Wait, ${message.author}.... You are in love with me?!? Wow...`,
       await this.chatgpt.insult("Ayrton's dad named him after Ayrton Senna", message.author.id),
-      await this.chatgpt.reply(message.content),
+      await this.chatgpt.reply(message),
     ]);
   }
 }

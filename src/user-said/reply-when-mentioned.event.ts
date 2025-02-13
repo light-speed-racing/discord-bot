@@ -12,6 +12,6 @@ export class ReplyWhenMentionedEvent {
   @On('messageCreate')
   @UseGuards(MessageIsSendByAUser, IAmMentionedOrRepliedTo)
   async respond(message: Message) {
-    return await this.chatgpt.reply(message.content);
+    return await this.chatgpt.reply(message);
   }
 }
