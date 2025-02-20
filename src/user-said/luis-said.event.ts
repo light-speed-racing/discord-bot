@@ -15,16 +15,8 @@ export class LuisSaidEvent {
   @UseGuards(new MessageSendByUsername('whitetip13'), new Likelihood(3))
   async respond(message: Message) {
     return sample([
-      sample((await this.giphy.search('coach')).data).images.downsized.url,
+      sample((await this.giphy.search('germany')).data).images.downsized.url,
       await this.chatgpt.reply(message),
-      await this.chatgpt.insult(
-        'Luis comes from Germany and he does some super good coaching sessions',
-        message.author.id,
-      ),
-      await this.chatgpt.insult(
-        'Luis is the fastest simracer in the world, he is so fast that he can lap the entire field in 1 lap',
-        message.author.id,
-      ),
     ]);
   }
 }
