@@ -21,8 +21,8 @@ export class OssiSaidEvent {
       sample((await this.giphy.search('ossi')).data).images.downsized.url,
       sample((await this.giphy.search('greta')).data).images.downsized.url,
       await this.chatgpt.reply(message),
-      await this.chatgpt.insult('Make a haiku about snow and how much it lights up in finland', message.author.id),
-      await this.chatgpt.insult('Tell me a very short oneline story about how blonde Ossi is', message.author.id),
+      await this.chatgpt.insult('Make a haiku about snow and how much it lights up in finland', message),
+      await this.chatgpt.insult('Tell me a very short oneline story about how blonde Ossi is', message),
     ]);
   }
 }

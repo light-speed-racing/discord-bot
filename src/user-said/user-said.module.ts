@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ChristianMullerSaidEvent } from './christian-muller-said.event';
-import { AnyoneSaidRaveEvent } from './anyone-said-rave.event';
+import { UserSaidEvent } from './user-said.event';
 import { SpencerSaidEvent } from './spencer-said.event';
 import { OssiSaidEvent } from './ossi-said.event';
 import { EeekSaidEvent } from './eeek-said.event';
@@ -18,9 +18,9 @@ import { DiscordModule } from '@discord-nestjs/core';
   imports: [CommonModule, OpenaiModule, DiscordModule.forFeature()],
   providers: [
     ReplyWhenMentionedEvent,
+    UserSaidEvent,
     EeekSaidEvent,
     ChristianMullerSaidEvent,
-    AnyoneSaidRaveEvent,
     SpencerSaidEvent,
     OssiSaidEvent,
     AyrtonSaidEvent,

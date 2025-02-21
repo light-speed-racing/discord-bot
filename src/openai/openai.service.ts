@@ -14,7 +14,7 @@ export class OpenaiService {
     });
   }
 
-  async insult(prompt: string, userId: string) {
+  async insult(prompt: string, message: Message) {
     const { choices } = await this.openAiService.chat.completions.create({
       model: 'gpt-4o',
       messages: [
@@ -26,9 +26,9 @@ export class OpenaiService {
           You use a lot of sarcasm and make fun of them. 
           You can from time to time be very mean and you enjoy making fun of people.
 
-          You will be provided information about the driver and their discord id and you will use it to ping them. Example: <@${userId}>.
+          You will be provided information about the driver and their discord id and you will use it to ping them. Example: <@${message.author}>.
 
-          Their discord id is <@${userId}>`,
+          Their discord id is <@${message.author}>`,
         },
         {
           role: 'user',

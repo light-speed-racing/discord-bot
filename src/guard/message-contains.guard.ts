@@ -9,16 +9,14 @@ export class MessageContains implements CanActivate {
   private readonly words: string[];
 
   constructor(...words: string[]) {
-    this.words = words;
+    this.words = words.map((word) => word.toLowerCase());
   }
 
   canActivate(context: DiscordExecutionContext): boolean {
     const message = context.getArgByIndex<Message>(0).content.toLowerCase();
 
     return this.words.some((word) => {
-      const w = word.toLowerCase();
-
-      return message.includes(` ${w}`) || message.includes(`${w} `);
+      return message.includes(`${word}`) || message.includes(`${word}`);
     });
   }
 }
