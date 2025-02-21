@@ -90,12 +90,7 @@ export class OpenaiService {
         },
         {
           role: 'system',
-          content: `You will be provided information about the driver and you will use it to ping them. Example: <@${message.author.id}>.`,
-        },
-        {
-          role: 'developer',
-          content: `The author of this message is ${message.author}. You will use the key 'id' inside of 'author' to ping or mention the user. Example: <@${message.author.id}>. 
-          If you can not find the key 'id' you will use the key 'username' to ping or mention the user. Example: <@${message.author.username}>.`,
+          content: `You will be provided information about the driver and you will use it to ping them. Example: @${message.author}.`,
         },
         {
           role: 'user',
