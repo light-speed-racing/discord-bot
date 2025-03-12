@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { Message } from 'discord.js';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { RootConfig } from 'src/config/config';
+import { DoNotReplyWhenChannelNameContains } from 'src/guard/do-not-reply-when-channel-name-contains.guard';
 
+@UseGuards(new DoNotReplyWhenChannelNameContains('ticket', 'announcement'))
 @Injectable()
 export class OpenaiService {
   private openAiService: OpenAI;
@@ -26,9 +28,9 @@ export class OpenaiService {
           You use a lot of sarcasm and make fun of them. 
           You can from time to time be very mean and you enjoy making fun of people.
 
-          You will be provided information about the driver and their discord id and you will use it to ping them. Example: <@${message.author}>.
+          You will be provided information about the driver and their discord id and you will use it to ping them. Example: ${message.author}.
 
-          Their discord id is <@${message.author}>`,
+          Their discord id is ${message.author}`,
         },
         {
           role: 'user',

@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, UseGuards } from '@nestjs/common';
-import { Client, Message, MessageType } from 'discord.js';
+import { ChannelType, Client, Message, MessageType } from 'discord.js';
 import { MessageIsSendByAUser } from './message-is-send-by-a-user.guard';
 import { InjectDiscordClient } from '@discord-nestjs/core';
 
@@ -16,6 +16,11 @@ export class IAmMentionedOrRepliedTo implements CanActivate {
 
   async canActivate(context: DiscordExecutionContext): Promise<boolean> {
     const message = context.getArgByIndex<Message>(0);
+
+    if (message.channel.type === ChannelType.AnnouncementThread) {
+      return;
+    }
+
     const reference = !!message.reference && (await message.channel.messages.fetch(message.reference.messageId));
 
     return (
