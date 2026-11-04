@@ -1,0 +1,4994 @@
+{
+  "entries": [
+    {
+      "track": "red_bull_ring",
+      "carModel": 31,
+      "ballastKg": 5
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 20,
+      "ballastKg": -22
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 30,
+      "ballastKg": 28
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 32,
+      "ballastKg": -21
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 21,
+      "ballastKg": -23
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 33,
+      "ballastKg": 7
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 35,
+      "ballastKg": 23
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 25,
+      "ballastKg": 9
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 34,
+      "ballastKg": -18
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 36,
+      "ballastKg": 13,
+      "restrictor": 0
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 8,
+      "ballastKg": -4
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 6,
+      "ballastKg": 4
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 15,
+      "ballastKg": -22,
+      "restrictor": 0
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 50,
+      "ballastKg": -16
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 51,
+      "ballastKg": -15
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 52,
+      "ballastKg": -7
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 53,
+      "ballastKg": -1
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 55,
+      "ballastKg": 21
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 56,
+      "ballastKg": -13
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 57,
+      "ballastKg": -7
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 59,
+      "ballastKg": 22
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 60,
+      "ballastKg": 14
+    },
+    {
+      "track": "red_bull_ring",
+      "carModel": 61,
+      "ballastKg": 2
+    },
+    {
+      "track": "barcelona",
+      "carModel": 31,
+      "ballastKg": -3
+    },
+    {
+      "track": "barcelona",
+      "carModel": 20,
+      "ballastKg": -5
+    },
+    {
+      "track": "barcelona",
+      "carModel": 30,
+      "ballastKg": -3
+    },
+    {
+      "track": "barcelona",
+      "carModel": 32,
+      "ballastKg": 20
+    },
+    {
+      "track": "barcelona",
+      "carModel": 21,
+      "ballastKg": -5
+    },
+    {
+      "track": "barcelona",
+      "carModel": 33,
+      "ballastKg": 12
+    },
+    {
+      "track": "barcelona",
+      "carModel": 35,
+      "ballastKg": -3
+    },
+    {
+      "track": "barcelona",
+      "carModel": 25,
+      "ballastKg": -7
+    },
+    {
+      "track": "barcelona",
+      "carModel": 34,
+      "ballastKg": 6
+    },
+    {
+      "track": "barcelona",
+      "carModel": 36,
+      "ballastKg": -7,
+      "restrictor": 20
+    },
+    {
+      "track": "barcelona",
+      "carModel": 8,
+      "ballastKg": 0
+    },
+    {
+      "track": "barcelona",
+      "carModel": 6,
+      "ballastKg": -7
+    },
+    {
+      "track": "barcelona",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "barcelona",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "barcelona",
+      "carModel": 50,
+      "ballastKg": 14
+    },
+    {
+      "track": "barcelona",
+      "carModel": 51,
+      "ballastKg": -22
+    },
+    {
+      "track": "barcelona",
+      "carModel": 52,
+      "ballastKg": -2
+    },
+    {
+      "track": "barcelona",
+      "carModel": 53,
+      "ballastKg": -1
+    },
+    {
+      "track": "barcelona",
+      "carModel": 55,
+      "ballastKg": 9
+    },
+    {
+      "track": "barcelona",
+      "carModel": 56,
+      "ballastKg": -9
+    },
+    {
+      "track": "barcelona",
+      "carModel": 57,
+      "ballastKg": -16
+    },
+    {
+      "track": "barcelona",
+      "carModel": 59,
+      "ballastKg": 7
+    },
+    {
+      "track": "barcelona",
+      "carModel": 60,
+      "ballastKg": 10
+    },
+    {
+      "track": "barcelona",
+      "carModel": 61,
+      "ballastKg": 9
+    },
+    {
+      "track": "barcelona",
+      "carModel": 58,
+      "ballastKg": 5
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 31,
+      "ballastKg": 8
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 20,
+      "ballastKg": 6
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 30,
+      "ballastKg": 11
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 32,
+      "ballastKg": -3
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 21,
+      "ballastKg": -11
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 33,
+      "ballastKg": 16
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 35,
+      "ballastKg": 29
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 25,
+      "ballastKg": -5
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 34,
+      "ballastKg": -2
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 36,
+      "ballastKg": -21,
+      "restrictor": 19
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 8,
+      "ballastKg": -14
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 6,
+      "ballastKg": -15
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 24,
+      "ballastKg": -27
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 50,
+      "ballastKg": 4
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 51,
+      "ballastKg": -18
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 52,
+      "ballastKg": -28
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 53,
+      "ballastKg": 11
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 55,
+      "ballastKg": -6
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 56,
+      "ballastKg": -13
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 57,
+      "ballastKg": -3
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 59,
+      "ballastKg": 21
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 60,
+      "ballastKg": -1
+    },
+    {
+      "track": "brands_hatch",
+      "carModel": 61,
+      "ballastKg": 32
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 31,
+      "ballastKg": 16
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 20,
+      "ballastKg": 1
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 30,
+      "ballastKg": 7
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 32,
+      "ballastKg": 17
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 21,
+      "ballastKg": -14
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 33,
+      "ballastKg": 10
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 35,
+      "ballastKg": 21
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 25,
+      "ballastKg": -9
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 34,
+      "ballastKg": 16
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 36,
+      "ballastKg": -9,
+      "restrictor": 20
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 6,
+      "ballastKg": -23
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 23,
+      "ballastKg": -6
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 22,
+      "ballastKg": -13
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 24,
+      "ballastKg": -15
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 50,
+      "ballastKg": 14
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 51,
+      "ballastKg": -18
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 52,
+      "ballastKg": -29
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 53,
+      "ballastKg": 0
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 55,
+      "ballastKg": -11
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 56,
+      "ballastKg": -7
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 57,
+      "ballastKg": 1
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 59,
+      "ballastKg": 4
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 60,
+      "ballastKg": 28
+    },
+    {
+      "track": "hungaroring",
+      "carModel": 61,
+      "ballastKg": 17
+    },
+    {
+      "track": "misano",
+      "carModel": 31,
+      "ballastKg": 6
+    },
+    {
+      "track": "misano",
+      "carModel": 20,
+      "ballastKg": 4
+    },
+    {
+      "track": "misano",
+      "carModel": 30,
+      "ballastKg": 13
+    },
+    {
+      "track": "misano",
+      "carModel": 32,
+      "ballastKg": 3
+    },
+    {
+      "track": "misano",
+      "carModel": 21,
+      "ballastKg": -3
+    },
+    {
+      "track": "misano",
+      "carModel": 33,
+      "ballastKg": 21
+    },
+    {
+      "track": "misano",
+      "carModel": 35,
+      "ballastKg": 7
+    },
+    {
+      "track": "misano",
+      "carModel": 25,
+      "ballastKg": 23
+    },
+    {
+      "track": "misano",
+      "carModel": 34,
+      "ballastKg": 1
+    },
+    {
+      "track": "misano",
+      "carModel": 36,
+      "ballastKg": -23,
+      "restrictor": 20
+    },
+    {
+      "track": "misano",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 6,
+      "ballastKg": -1
+    },
+    {
+      "track": "misano",
+      "carModel": 22,
+      "ballastKg": -6
+    },
+    {
+      "track": "misano",
+      "carModel": 23,
+      "ballastKg": -18
+    },
+    {
+      "track": "misano",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "misano",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "misano",
+      "carModel": 50,
+      "ballastKg": 4
+    },
+    {
+      "track": "misano",
+      "carModel": 51,
+      "ballastKg": -1
+    },
+    {
+      "track": "misano",
+      "carModel": 52,
+      "ballastKg": -33
+    },
+    {
+      "track": "misano",
+      "carModel": 53,
+      "ballastKg": 12
+    },
+    {
+      "track": "misano",
+      "carModel": 55,
+      "ballastKg": 9
+    },
+    {
+      "track": "misano",
+      "carModel": 56,
+      "ballastKg": 18
+    },
+    {
+      "track": "misano",
+      "carModel": 57,
+      "ballastKg": -19
+    },
+    {
+      "track": "misano",
+      "carModel": 59,
+      "ballastKg": -5
+    },
+    {
+      "track": "misano",
+      "carModel": 60,
+      "ballastKg": 7
+    },
+    {
+      "track": "misano",
+      "carModel": 61,
+      "ballastKg": 8
+    },
+    {
+      "track": "monza",
+      "carModel": 31,
+      "ballastKg": -3
+    },
+    {
+      "track": "monza",
+      "carModel": 20,
+      "ballastKg": 4
+    },
+    {
+      "track": "monza",
+      "carModel": 30,
+      "ballastKg": 17
+    },
+    {
+      "track": "monza",
+      "carModel": 32,
+      "ballastKg": 11
+    },
+    {
+      "track": "monza",
+      "carModel": 21,
+      "ballastKg": -27
+    },
+    {
+      "track": "monza",
+      "carModel": 33,
+      "ballastKg": 3
+    },
+    {
+      "track": "monza",
+      "carModel": 35,
+      "ballastKg": 6
+    },
+    {
+      "track": "monza",
+      "carModel": 25,
+      "ballastKg": 0
+    },
+    {
+      "track": "monza",
+      "carModel": 34,
+      "ballastKg": -9
+    },
+    {
+      "track": "monza",
+      "carModel": 36,
+      "ballastKg": -2,
+      "restrictor": 19
+    },
+    {
+      "track": "monza",
+      "carModel": 8,
+      "ballastKg": -22
+    },
+    {
+      "track": "monza",
+      "carModel": 6,
+      "ballastKg": 22
+    },
+    {
+      "track": "monza",
+      "carModel": 15,
+      "ballastKg": -6,
+      "restrictor": 0
+    },
+    {
+      "track": "monza",
+      "carModel": 22,
+      "ballastKg": -23
+    },
+    {
+      "track": "monza",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "monza",
+      "carModel": 50,
+      "ballastKg": -17
+    },
+    {
+      "track": "monza",
+      "carModel": 51,
+      "ballastKg": -29
+    },
+    {
+      "track": "monza",
+      "carModel": 52,
+      "ballastKg": -2
+    },
+    {
+      "track": "monza",
+      "carModel": 53,
+      "ballastKg": 11
+    },
+    {
+      "track": "monza",
+      "carModel": 55,
+      "ballastKg": 0
+    },
+    {
+      "track": "monza",
+      "carModel": 56,
+      "ballastKg": -15
+    },
+    {
+      "track": "monza",
+      "carModel": 57,
+      "ballastKg": 9
+    },
+    {
+      "track": "monza",
+      "carModel": 59,
+      "ballastKg": 1
+    },
+    {
+      "track": "monza",
+      "carModel": 60,
+      "ballastKg": 39
+    },
+    {
+      "track": "monza",
+      "carModel": 61,
+      "ballastKg": 3
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 31,
+      "ballastKg": -14
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 20,
+      "ballastKg": 0
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 30,
+      "ballastKg": 27
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 32,
+      "ballastKg": 12
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 21,
+      "ballastKg": 1
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 33,
+      "ballastKg": 15
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 35,
+      "ballastKg": -6
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 25,
+      "ballastKg": -1
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 34,
+      "ballastKg": 0
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 36,
+      "ballastKg": -19,
+      "restrictor": 20
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 8,
+      "ballastKg": -16
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 6,
+      "ballastKg": 1
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 15,
+      "ballastKg": -25,
+      "restrictor": 0
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 50,
+      "ballastKg": 12
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 51,
+      "ballastKg": -12
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 52,
+      "ballastKg": -19
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 53,
+      "ballastKg": 0
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 55,
+      "ballastKg": -8
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 56,
+      "ballastKg": 10
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 57,
+      "ballastKg": -7
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 59,
+      "ballastKg": 4
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 60,
+      "ballastKg": -3
+    },
+    {
+      "track": "nurburgring",
+      "carModel": 61,
+      "ballastKg": 21
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 31,
+      "ballastKg": -2
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 20,
+      "ballastKg": 15
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 30,
+      "ballastKg": 2
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 32,
+      "ballastKg": -3
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 21,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 33,
+      "ballastKg": 3
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 35,
+      "ballastKg": 3
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 25,
+      "ballastKg": 5
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 34,
+      "ballastKg": -9
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 36,
+      "ballastKg": 16,
+      "restrictor": 0
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 8,
+      "ballastKg": -8
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 6,
+      "ballastKg": 15
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 22,
+      "ballastKg": -9
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 15,
+      "ballastKg": -11,
+      "restrictor": 0
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 50,
+      "ballastKg": 11
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 51,
+      "ballastKg": -19
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 52,
+      "ballastKg": 1
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 53,
+      "ballastKg": 3
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 55,
+      "ballastKg": 1
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 56,
+      "ballastKg": -20
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 57,
+      "ballastKg": -9
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 59,
+      "ballastKg": 6
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 60,
+      "ballastKg": 9
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 61,
+      "ballastKg": 15
+    },
+    {
+      "track": "paul_ricard",
+      "carModel": 58,
+      "ballastKg": 26
+    },
+    {
+      "track": "silverstone",
+      "carModel": 31,
+      "ballastKg": 18
+    },
+    {
+      "track": "silverstone",
+      "carModel": 20,
+      "ballastKg": 5
+    },
+    {
+      "track": "silverstone",
+      "carModel": 30,
+      "ballastKg": 10
+    },
+    {
+      "track": "silverstone",
+      "carModel": 32,
+      "ballastKg": 16
+    },
+    {
+      "track": "silverstone",
+      "carModel": 21,
+      "ballastKg": -2
+    },
+    {
+      "track": "silverstone",
+      "carModel": 33,
+      "ballastKg": 14
+    },
+    {
+      "track": "silverstone",
+      "carModel": 35,
+      "ballastKg": 14
+    },
+    {
+      "track": "silverstone",
+      "carModel": 25,
+      "ballastKg": -9
+    },
+    {
+      "track": "silverstone",
+      "carModel": 34,
+      "ballastKg": 6
+    },
+    {
+      "track": "silverstone",
+      "carModel": 36,
+      "ballastKg": -15,
+      "restrictor": 19
+    },
+    {
+      "track": "silverstone",
+      "carModel": 8,
+      "ballastKg": -24
+    },
+    {
+      "track": "silverstone",
+      "carModel": 6,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 22,
+      "ballastKg": -1
+    },
+    {
+      "track": "silverstone",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "silverstone",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "silverstone",
+      "carModel": 50,
+      "ballastKg": 24
+    },
+    {
+      "track": "silverstone",
+      "carModel": 51,
+      "ballastKg": -4
+    },
+    {
+      "track": "silverstone",
+      "carModel": 52,
+      "ballastKg": -15
+    },
+    {
+      "track": "silverstone",
+      "carModel": 53,
+      "ballastKg": 0
+    },
+    {
+      "track": "silverstone",
+      "carModel": 55,
+      "ballastKg": -4
+    },
+    {
+      "track": "silverstone",
+      "carModel": 56,
+      "ballastKg": -7
+    },
+    {
+      "track": "silverstone",
+      "carModel": 57,
+      "ballastKg": -27
+    },
+    {
+      "track": "silverstone",
+      "carModel": 59,
+      "ballastKg": -1
+    },
+    {
+      "track": "silverstone",
+      "carModel": 60,
+      "ballastKg": 2
+    },
+    {
+      "track": "silverstone",
+      "carModel": 61,
+      "ballastKg": 32
+    },
+    {
+      "track": "spa",
+      "carModel": 31,
+      "ballastKg": 6
+    },
+    {
+      "track": "spa",
+      "carModel": 20,
+      "ballastKg": 2
+    },
+    {
+      "track": "spa",
+      "carModel": 30,
+      "ballastKg": 7
+    },
+    {
+      "track": "spa",
+      "carModel": 32,
+      "ballastKg": 8
+    },
+    {
+      "track": "spa",
+      "carModel": 21,
+      "ballastKg": -19
+    },
+    {
+      "track": "spa",
+      "carModel": 33,
+      "ballastKg": -3
+    },
+    {
+      "track": "spa",
+      "carModel": 35,
+      "ballastKg": 11
+    },
+    {
+      "track": "spa",
+      "carModel": 25,
+      "ballastKg": -8
+    },
+    {
+      "track": "spa",
+      "carModel": 34,
+      "ballastKg": 5
+    },
+    {
+      "track": "spa",
+      "carModel": 36,
+      "ballastKg": 3,
+      "restrictor": 19
+    },
+    {
+      "track": "spa",
+      "carModel": 8,
+      "ballastKg": -20
+    },
+    {
+      "track": "spa",
+      "carModel": 6,
+      "ballastKg": 10
+    },
+    {
+      "track": "spa",
+      "carModel": 15,
+      "ballastKg": 6,
+      "restrictor": 0
+    },
+    {
+      "track": "spa",
+      "carModel": 22,
+      "ballastKg": 5
+    },
+    {
+      "track": "spa",
+      "carModel": 24,
+      "ballastKg": -22
+    },
+    {
+      "track": "spa",
+      "carModel": 23,
+      "ballastKg": -24
+    },
+    {
+      "track": "spa",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "spa",
+      "carModel": 50,
+      "ballastKg": 9
+    },
+    {
+      "track": "spa",
+      "carModel": 51,
+      "ballastKg": -17
+    },
+    {
+      "track": "spa",
+      "carModel": 52,
+      "ballastKg": -18
+    },
+    {
+      "track": "spa",
+      "carModel": 53,
+      "ballastKg": -7
+    },
+    {
+      "track": "spa",
+      "carModel": 55,
+      "ballastKg": -10
+    },
+    {
+      "track": "spa",
+      "carModel": 56,
+      "ballastKg": 6
+    },
+    {
+      "track": "spa",
+      "carModel": 57,
+      "ballastKg": -19
+    },
+    {
+      "track": "spa",
+      "carModel": 59,
+      "ballastKg": 13
+    },
+    {
+      "track": "spa",
+      "carModel": 60,
+      "ballastKg": 6
+    },
+    {
+      "track": "spa",
+      "carModel": 61,
+      "ballastKg": 37
+    },
+    {
+      "track": "spa",
+      "carModel": 58,
+      "ballastKg": 16
+    },
+    {
+      "track": "zolder",
+      "carModel": 31,
+      "ballastKg": -3
+    },
+    {
+      "track": "zolder",
+      "carModel": 20,
+      "ballastKg": -15
+    },
+    {
+      "track": "zolder",
+      "carModel": 30,
+      "ballastKg": 16
+    },
+    {
+      "track": "zolder",
+      "carModel": 32,
+      "ballastKg": -3
+    },
+    {
+      "track": "zolder",
+      "carModel": 21,
+      "ballastKg": -2
+    },
+    {
+      "track": "zolder",
+      "carModel": 33,
+      "ballastKg": 5
+    },
+    {
+      "track": "zolder",
+      "carModel": 35,
+      "ballastKg": 7
+    },
+    {
+      "track": "zolder",
+      "carModel": 25,
+      "ballastKg": 14
+    },
+    {
+      "track": "zolder",
+      "carModel": 34,
+      "ballastKg": -7
+    },
+    {
+      "track": "zolder",
+      "carModel": 36,
+      "ballastKg": 2,
+      "restrictor": 20
+    },
+    {
+      "track": "zolder",
+      "carModel": 8,
+      "ballastKg": -10
+    },
+    {
+      "track": "zolder",
+      "carModel": 6,
+      "ballastKg": -5
+    },
+    {
+      "track": "zolder",
+      "carModel": 15,
+      "ballastKg": -26,
+      "restrictor": 0
+    },
+    {
+      "track": "zolder",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "zolder",
+      "carModel": 50,
+      "ballastKg": 7
+    },
+    {
+      "track": "zolder",
+      "carModel": 51,
+      "ballastKg": -20
+    },
+    {
+      "track": "zolder",
+      "carModel": 52,
+      "ballastKg": -18
+    },
+    {
+      "track": "zolder",
+      "carModel": 53,
+      "ballastKg": 5
+    },
+    {
+      "track": "zolder",
+      "carModel": 55,
+      "ballastKg": 4
+    },
+    {
+      "track": "zolder",
+      "carModel": 56,
+      "ballastKg": -8
+    },
+    {
+      "track": "zolder",
+      "carModel": 57,
+      "ballastKg": -12
+    },
+    {
+      "track": "zolder",
+      "carModel": 59,
+      "ballastKg": -2
+    },
+    {
+      "track": "zolder",
+      "carModel": 60,
+      "ballastKg": 35
+    },
+    {
+      "track": "zolder",
+      "carModel": 61,
+      "ballastKg": 10
+    },
+    {
+      "track": "zolder",
+      "carModel": 58,
+      "ballastKg": 2
+    },
+    {
+      "track": "imola",
+      "carModel": 31,
+      "ballastKg": 2
+    },
+    {
+      "track": "imola",
+      "carModel": 20,
+      "ballastKg": 0
+    },
+    {
+      "track": "imola",
+      "carModel": 30,
+      "ballastKg": 0
+    },
+    {
+      "track": "imola",
+      "carModel": 32,
+      "ballastKg": 13
+    },
+    {
+      "track": "imola",
+      "carModel": 21,
+      "ballastKg": -14
+    },
+    {
+      "track": "imola",
+      "carModel": 33,
+      "ballastKg": 2
+    },
+    {
+      "track": "imola",
+      "carModel": 35,
+      "ballastKg": 12
+    },
+    {
+      "track": "imola",
+      "carModel": 25,
+      "ballastKg": 11
+    },
+    {
+      "track": "imola",
+      "carModel": 34,
+      "ballastKg": 11
+    },
+    {
+      "track": "imola",
+      "carModel": 36,
+      "ballastKg": -10,
+      "restrictor": 20
+    },
+    {
+      "track": "imola",
+      "carModel": 8,
+      "ballastKg": -19
+    },
+    {
+      "track": "imola",
+      "carModel": 6,
+      "ballastKg": -6
+    },
+    {
+      "track": "imola",
+      "carModel": 22,
+      "ballastKg": -29
+    },
+    {
+      "track": "imola",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "imola",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "imola",
+      "carModel": 50,
+      "ballastKg": 15
+    },
+    {
+      "track": "imola",
+      "carModel": 51,
+      "ballastKg": -17
+    },
+    {
+      "track": "imola",
+      "carModel": 52,
+      "ballastKg": -10
+    },
+    {
+      "track": "imola",
+      "carModel": 53,
+      "ballastKg": 8
+    },
+    {
+      "track": "imola",
+      "carModel": 55,
+      "ballastKg": -6
+    },
+    {
+      "track": "imola",
+      "carModel": 56,
+      "ballastKg": -8
+    },
+    {
+      "track": "imola",
+      "carModel": 57,
+      "ballastKg": -16
+    },
+    {
+      "track": "imola",
+      "carModel": 59,
+      "ballastKg": 14
+    },
+    {
+      "track": "imola",
+      "carModel": 60,
+      "ballastKg": 7
+    },
+    {
+      "track": "imola",
+      "carModel": 61,
+      "ballastKg": 13
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 31,
+      "ballastKg": 6
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 20,
+      "ballastKg": -1
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 30,
+      "ballastKg": 7
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 32,
+      "ballastKg": 14
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 21,
+      "ballastKg": -4
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 33,
+      "ballastKg": 17
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 35,
+      "ballastKg": 9
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 25,
+      "ballastKg": 4
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 34,
+      "ballastKg": 3
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 36,
+      "ballastKg": -19,
+      "restrictor": 20
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 6,
+      "ballastKg": -2
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 23,
+      "ballastKg": -9
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 22,
+      "ballastKg": -12
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 15,
+      "ballastKg": -25,
+      "restrictor": 0
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 50,
+      "ballastKg": 2
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 51,
+      "ballastKg": -6
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 52,
+      "ballastKg": -15
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 53,
+      "ballastKg": -6
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 55,
+      "ballastKg": -10
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 56,
+      "ballastKg": -3
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 57,
+      "ballastKg": 0
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 59,
+      "ballastKg": -12
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 60,
+      "ballastKg": 4
+    },
+    {
+      "track": "zandvoort",
+      "carModel": 61,
+      "ballastKg": 40
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 31,
+      "ballastKg": 17
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 20,
+      "ballastKg": 2
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 30,
+      "ballastKg": -9
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 32,
+      "ballastKg": -21
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 21,
+      "ballastKg": -11
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 33,
+      "ballastKg": 7
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 35,
+      "ballastKg": 22
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 25,
+      "ballastKg": -3
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 34,
+      "ballastKg": -15
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 36,
+      "ballastKg": 10,
+      "restrictor": 19
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 8,
+      "ballastKg": 10
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 6,
+      "ballastKg": -11
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 22,
+      "ballastKg": -2
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 15,
+      "ballastKg": -15,
+      "restrictor": 0
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 50,
+      "ballastKg": 16
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 51,
+      "ballastKg": -35
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 52,
+      "ballastKg": -27
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 53,
+      "ballastKg": 0
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 55,
+      "ballastKg": -28
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 56,
+      "ballastKg": -22
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 57,
+      "ballastKg": -27
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 59,
+      "ballastKg": -40
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 60,
+      "ballastKg": 40
+    },
+    {
+      "track": "mount_panorama",
+      "carModel": 61,
+      "ballastKg": -22
+    },
+    {
+      "track": "suzuka",
+      "carModel": 31,
+      "ballastKg": 1
+    },
+    {
+      "track": "suzuka",
+      "carModel": 20,
+      "ballastKg": 1
+    },
+    {
+      "track": "suzuka",
+      "carModel": 30,
+      "ballastKg": -5
+    },
+    {
+      "track": "suzuka",
+      "carModel": 32,
+      "ballastKg": 13
+    },
+    {
+      "track": "suzuka",
+      "carModel": 21,
+      "ballastKg": -18
+    },
+    {
+      "track": "suzuka",
+      "carModel": 33,
+      "ballastKg": -3
+    },
+    {
+      "track": "suzuka",
+      "carModel": 35,
+      "ballastKg": 11
+    },
+    {
+      "track": "suzuka",
+      "carModel": 25,
+      "ballastKg": 10
+    },
+    {
+      "track": "suzuka",
+      "carModel": 34,
+      "ballastKg": 14
+    },
+    {
+      "track": "suzuka",
+      "carModel": 36,
+      "ballastKg": -3,
+      "restrictor": 19
+    },
+    {
+      "track": "suzuka",
+      "carModel": 8,
+      "ballastKg": -25
+    },
+    {
+      "track": "suzuka",
+      "carModel": 6,
+      "ballastKg": 4
+    },
+    {
+      "track": "suzuka",
+      "carModel": 22,
+      "ballastKg": -16
+    },
+    {
+      "track": "suzuka",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "suzuka",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "suzuka",
+      "carModel": 50,
+      "ballastKg": -14
+    },
+    {
+      "track": "suzuka",
+      "carModel": 51,
+      "ballastKg": -17
+    },
+    {
+      "track": "suzuka",
+      "carModel": 52,
+      "ballastKg": -40
+    },
+    {
+      "track": "suzuka",
+      "carModel": 53,
+      "ballastKg": -12
+    },
+    {
+      "track": "suzuka",
+      "carModel": 55,
+      "ballastKg": -10
+    },
+    {
+      "track": "suzuka",
+      "carModel": 56,
+      "ballastKg": -10
+    },
+    {
+      "track": "suzuka",
+      "carModel": 57,
+      "ballastKg": -23
+    },
+    {
+      "track": "suzuka",
+      "carModel": 59,
+      "ballastKg": -1
+    },
+    {
+      "track": "suzuka",
+      "carModel": 60,
+      "ballastKg": 13
+    },
+    {
+      "track": "suzuka",
+      "carModel": 61,
+      "ballastKg": 40
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 31,
+      "ballastKg": 11
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 20,
+      "ballastKg": -2
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 30,
+      "ballastKg": 1
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 32,
+      "ballastKg": 0
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 21,
+      "ballastKg": 20
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 33,
+      "ballastKg": 13
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 35,
+      "ballastKg": -6
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 25,
+      "ballastKg": -7
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 34,
+      "ballastKg": -1
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 36,
+      "ballastKg": -7,
+      "restrictor": 0
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 6,
+      "ballastKg": 7
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 23,
+      "ballastKg": 13
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 22,
+      "ballastKg": -16
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 50,
+      "ballastKg": -2
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 51,
+      "ballastKg": 2
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 52,
+      "ballastKg": -18
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 53,
+      "ballastKg": 9
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 55,
+      "ballastKg": -6
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 56,
+      "ballastKg": -6
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 57,
+      "ballastKg": 7
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 59,
+      "ballastKg": -12
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 60,
+      "ballastKg": 22
+    },
+    {
+      "track": "laguna_seca",
+      "carModel": 61,
+      "ballastKg": 5
+    },
+    {
+      "track": "kyalami",
+      "carModel": 31,
+      "ballastKg": 6
+    },
+    {
+      "track": "kyalami",
+      "carModel": 20,
+      "ballastKg": 16
+    },
+    {
+      "track": "kyalami",
+      "carModel": 30,
+      "ballastKg": 6
+    },
+    {
+      "track": "kyalami",
+      "carModel": 32,
+      "ballastKg": 0
+    },
+    {
+      "track": "kyalami",
+      "carModel": 21,
+      "ballastKg": -15
+    },
+    {
+      "track": "kyalami",
+      "carModel": 33,
+      "ballastKg": -2
+    },
+    {
+      "track": "kyalami",
+      "carModel": 35,
+      "ballastKg": 12
+    },
+    {
+      "track": "kyalami",
+      "carModel": 25,
+      "ballastKg": 2
+    },
+    {
+      "track": "kyalami",
+      "carModel": 34,
+      "ballastKg": 3
+    },
+    {
+      "track": "kyalami",
+      "carModel": 36,
+      "ballastKg": 0,
+      "restrictor": 19
+    },
+    {
+      "track": "kyalami",
+      "carModel": 8,
+      "ballastKg": -16
+    },
+    {
+      "track": "kyalami",
+      "carModel": 6,
+      "ballastKg": -11
+    },
+    {
+      "track": "kyalami",
+      "carModel": 23,
+      "ballastKg": 17
+    },
+    {
+      "track": "kyalami",
+      "carModel": 22,
+      "ballastKg": -29
+    },
+    {
+      "track": "kyalami",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "kyalami",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "kyalami",
+      "carModel": 50,
+      "ballastKg": 15
+    },
+    {
+      "track": "kyalami",
+      "carModel": 51,
+      "ballastKg": -10
+    },
+    {
+      "track": "kyalami",
+      "carModel": 52,
+      "ballastKg": -16
+    },
+    {
+      "track": "kyalami",
+      "carModel": 53,
+      "ballastKg": 2
+    },
+    {
+      "track": "kyalami",
+      "carModel": 55,
+      "ballastKg": -8
+    },
+    {
+      "track": "kyalami",
+      "carModel": 56,
+      "ballastKg": 33
+    },
+    {
+      "track": "kyalami",
+      "carModel": 57,
+      "ballastKg": -9
+    },
+    {
+      "track": "kyalami",
+      "carModel": 59,
+      "ballastKg": -16
+    },
+    {
+      "track": "kyalami",
+      "carModel": 60,
+      "ballastKg": 7
+    },
+    {
+      "track": "kyalami",
+      "carModel": 61,
+      "ballastKg": 3
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 31,
+      "ballastKg": -4
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 20,
+      "ballastKg": 26
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 30,
+      "ballastKg": 0
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 32,
+      "ballastKg": -10
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 21,
+      "ballastKg": 1
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 33,
+      "ballastKg": 13
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 35,
+      "ballastKg": 8
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 25,
+      "ballastKg": -2
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 34,
+      "ballastKg": -1
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 36,
+      "ballastKg": -7,
+      "restrictor": 20
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 6,
+      "ballastKg": 15
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 22,
+      "ballastKg": -8
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 23,
+      "ballastKg": -22
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 15,
+      "ballastKg": -26,
+      "restrictor": 0
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 50,
+      "ballastKg": 12
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 51,
+      "ballastKg": -22
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 52,
+      "ballastKg": -8
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 53,
+      "ballastKg": 12
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 55,
+      "ballastKg": -11
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 56,
+      "ballastKg": -22
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 57,
+      "ballastKg": 15
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 59,
+      "ballastKg": -7
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 60,
+      "ballastKg": 15
+    },
+    {
+      "track": "oulton_park",
+      "carModel": 61,
+      "ballastKg": 16
+    },
+    {
+      "track": "donington",
+      "carModel": 31,
+      "ballastKg": 7
+    },
+    {
+      "track": "donington",
+      "carModel": 20,
+      "ballastKg": 17
+    },
+    {
+      "track": "donington",
+      "carModel": 30,
+      "ballastKg": 31
+    },
+    {
+      "track": "donington",
+      "carModel": 32,
+      "ballastKg": -8
+    },
+    {
+      "track": "donington",
+      "carModel": 21,
+      "ballastKg": 1
+    },
+    {
+      "track": "donington",
+      "carModel": 33,
+      "ballastKg": -4
+    },
+    {
+      "track": "donington",
+      "carModel": 35,
+      "ballastKg": -12
+    },
+    {
+      "track": "donington",
+      "carModel": 25,
+      "ballastKg": -11
+    },
+    {
+      "track": "donington",
+      "carModel": 34,
+      "ballastKg": 4
+    },
+    {
+      "track": "donington",
+      "carModel": 36,
+      "ballastKg": -4,
+      "restrictor": 20
+    },
+    {
+      "track": "donington",
+      "carModel": 8,
+      "ballastKg": -26
+    },
+    {
+      "track": "donington",
+      "carModel": 6,
+      "ballastKg": 4
+    },
+    {
+      "track": "donington",
+      "carModel": 23,
+      "ballastKg": -22
+    },
+    {
+      "track": "donington",
+      "carModel": 15,
+      "ballastKg": -27,
+      "restrictor": 0
+    },
+    {
+      "track": "donington",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "donington",
+      "carModel": 50,
+      "ballastKg": -10
+    },
+    {
+      "track": "donington",
+      "carModel": 51,
+      "ballastKg": -12
+    },
+    {
+      "track": "donington",
+      "carModel": 52,
+      "ballastKg": -34
+    },
+    {
+      "track": "donington",
+      "carModel": 53,
+      "ballastKg": 2
+    },
+    {
+      "track": "donington",
+      "carModel": 55,
+      "ballastKg": -10
+    },
+    {
+      "track": "donington",
+      "carModel": 56,
+      "ballastKg": 4
+    },
+    {
+      "track": "donington",
+      "carModel": 57,
+      "ballastKg": -22
+    },
+    {
+      "track": "donington",
+      "carModel": 59,
+      "ballastKg": -8
+    },
+    {
+      "track": "donington",
+      "carModel": 60,
+      "ballastKg": -1
+    },
+    {
+      "track": "donington",
+      "carModel": 61,
+      "ballastKg": 40
+    },
+    {
+      "track": "snetterton",
+      "carModel": 31,
+      "ballastKg": -3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 20,
+      "ballastKg": 1
+    },
+    {
+      "track": "snetterton",
+      "carModel": 30,
+      "ballastKg": 15
+    },
+    {
+      "track": "snetterton",
+      "carModel": 32,
+      "ballastKg": 7
+    },
+    {
+      "track": "snetterton",
+      "carModel": 21,
+      "ballastKg": 11
+    },
+    {
+      "track": "snetterton",
+      "carModel": 33,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 35,
+      "ballastKg": -8
+    },
+    {
+      "track": "snetterton",
+      "carModel": 25,
+      "ballastKg": 9
+    },
+    {
+      "track": "snetterton",
+      "carModel": 34,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 36,
+      "ballastKg": -8,
+      "restrictor": 20
+    },
+    {
+      "track": "snetterton",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 6,
+      "ballastKg": 10
+    },
+    {
+      "track": "snetterton",
+      "carModel": 22,
+      "ballastKg": -27
+    },
+    {
+      "track": "snetterton",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "snetterton",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "snetterton",
+      "carModel": 50,
+      "ballastKg": 18
+    },
+    {
+      "track": "snetterton",
+      "carModel": 51,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 52,
+      "ballastKg": -23
+    },
+    {
+      "track": "snetterton",
+      "carModel": 53,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 55,
+      "ballastKg": -1
+    },
+    {
+      "track": "snetterton",
+      "carModel": 56,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 57,
+      "ballastKg": 3
+    },
+    {
+      "track": "snetterton",
+      "carModel": 59,
+      "ballastKg": -16
+    },
+    {
+      "track": "snetterton",
+      "carModel": 60,
+      "ballastKg": -6
+    },
+    {
+      "track": "snetterton",
+      "carModel": 61,
+      "ballastKg": 16
+    },
+    {
+      "track": "snetterton",
+      "carModel": 58,
+      "ballastKg": 12
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 31,
+      "ballastKg": 11
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 20,
+      "ballastKg": 5
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 30,
+      "ballastKg": 3
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 32,
+      "ballastKg": 17
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 21,
+      "ballastKg": -25
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 33,
+      "ballastKg": 13
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 35,
+      "ballastKg": -1
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 25,
+      "ballastKg": 6
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 34,
+      "ballastKg": -4
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 36,
+      "ballastKg": -11,
+      "restrictor": 20
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 8,
+      "ballastKg": -10
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 6,
+      "ballastKg": -3
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 24,
+      "ballastKg": -3
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 22,
+      "ballastKg": -5
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 23,
+      "ballastKg": -18
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 15,
+      "ballastKg": -24,
+      "restrictor": 0
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 50,
+      "ballastKg": 25
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 51,
+      "ballastKg": 1
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 52,
+      "ballastKg": -8
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 53,
+      "ballastKg": -3
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 55,
+      "ballastKg": -2
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 56,
+      "ballastKg": 11
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 57,
+      "ballastKg": -27
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 59,
+      "ballastKg": -9
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 60,
+      "ballastKg": -2
+    },
+    {
+      "track": "indianapolis",
+      "carModel": 61,
+      "ballastKg": 13
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 31,
+      "ballastKg": 18
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 20,
+      "ballastKg": 22
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 30,
+      "ballastKg": -4
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 32,
+      "ballastKg": 2
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 21,
+      "ballastKg": -24
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 33,
+      "ballastKg": 10
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 35,
+      "ballastKg": 8
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 25,
+      "ballastKg": 20
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 34,
+      "ballastKg": -1
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 36,
+      "ballastKg": -17,
+      "restrictor": 20
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 8,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 6,
+      "ballastKg": 12
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 22,
+      "ballastKg": -4
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 15,
+      "ballastKg": -17,
+      "restrictor": 0
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 24,
+      "ballastKg": -22
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 50,
+      "ballastKg": -1
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 51,
+      "ballastKg": -13
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 52,
+      "ballastKg": -3
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 53,
+      "ballastKg": 0
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 55,
+      "ballastKg": 0
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 56,
+      "ballastKg": -4
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 57,
+      "ballastKg": -8
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 59,
+      "ballastKg": 6
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 60,
+      "ballastKg": 4
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 61,
+      "ballastKg": 18
+    },
+    {
+      "track": "watkins_glen",
+      "carModel": 58,
+      "ballastKg": 20
+    },
+    {
+      "track": "cota",
+      "carModel": 31,
+      "ballastKg": 10
+    },
+    {
+      "track": "cota",
+      "carModel": 20,
+      "ballastKg": 7
+    },
+    {
+      "track": "cota",
+      "carModel": 30,
+      "ballastKg": 5
+    },
+    {
+      "track": "cota",
+      "carModel": 32,
+      "ballastKg": 6
+    },
+    {
+      "track": "cota",
+      "carModel": 21,
+      "ballastKg": -8
+    },
+    {
+      "track": "cota",
+      "carModel": 33,
+      "ballastKg": -12
+    },
+    {
+      "track": "cota",
+      "carModel": 35,
+      "ballastKg": 2
+    },
+    {
+      "track": "cota",
+      "carModel": 25,
+      "ballastKg": 5
+    },
+    {
+      "track": "cota",
+      "carModel": 34,
+      "ballastKg": 24
+    },
+    {
+      "track": "cota",
+      "carModel": 36,
+      "ballastKg": -13,
+      "restrictor": 19
+    },
+    {
+      "track": "cota",
+      "carModel": 8,
+      "ballastKg": -27
+    },
+    {
+      "track": "cota",
+      "carModel": 6,
+      "ballastKg": 2
+    },
+    {
+      "track": "cota",
+      "carModel": 23,
+      "ballastKg": -27
+    },
+    {
+      "track": "cota",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "cota",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "cota",
+      "carModel": 50,
+      "ballastKg": 26
+    },
+    {
+      "track": "cota",
+      "carModel": 51,
+      "ballastKg": 8
+    },
+    {
+      "track": "cota",
+      "carModel": 52,
+      "ballastKg": -12
+    },
+    {
+      "track": "cota",
+      "carModel": 53,
+      "ballastKg": 11
+    },
+    {
+      "track": "cota",
+      "carModel": 55,
+      "ballastKg": -7
+    },
+    {
+      "track": "cota",
+      "carModel": 56,
+      "ballastKg": -1
+    },
+    {
+      "track": "cota",
+      "carModel": 57,
+      "ballastKg": -13
+    },
+    {
+      "track": "cota",
+      "carModel": 59,
+      "ballastKg": -17
+    },
+    {
+      "track": "cota",
+      "carModel": 60,
+      "ballastKg": -21
+    },
+    {
+      "track": "cota",
+      "carModel": 61,
+      "ballastKg": 26
+    },
+    {
+      "track": "cota",
+      "carModel": 58,
+      "ballastKg": 10
+    },
+    {
+      "track": "valencia",
+      "carModel": 31,
+      "ballastKg": 8
+    },
+    {
+      "track": "valencia",
+      "carModel": 20,
+      "ballastKg": -7
+    },
+    {
+      "track": "valencia",
+      "carModel": 30,
+      "ballastKg": 13
+    },
+    {
+      "track": "valencia",
+      "carModel": 32,
+      "ballastKg": 0
+    },
+    {
+      "track": "valencia",
+      "carModel": 21,
+      "ballastKg": 2
+    },
+    {
+      "track": "valencia",
+      "carModel": 33,
+      "ballastKg": 8
+    },
+    {
+      "track": "valencia",
+      "carModel": 35,
+      "ballastKg": 9
+    },
+    {
+      "track": "valencia",
+      "carModel": 25,
+      "ballastKg": 1
+    },
+    {
+      "track": "valencia",
+      "carModel": 34,
+      "ballastKg": 2
+    },
+    {
+      "track": "valencia",
+      "carModel": 36,
+      "ballastKg": -22,
+      "restrictor": 19
+    },
+    {
+      "track": "valencia",
+      "carModel": 8,
+      "ballastKg": -16
+    },
+    {
+      "track": "valencia",
+      "carModel": 6,
+      "ballastKg": 1
+    },
+    {
+      "track": "valencia",
+      "carModel": 23,
+      "ballastKg": -29
+    },
+    {
+      "track": "valencia",
+      "carModel": 15,
+      "ballastKg": -30,
+      "restrictor": 0
+    },
+    {
+      "track": "valencia",
+      "carModel": 22,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 19,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 17,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 10,
+      "ballastKg": -30
+    },
+    {
+      "track": "valencia",
+      "carModel": 50,
+      "ballastKg": 5
+    },
+    {
+      "track": "valencia",
+      "carModel": 51,
+      "ballastKg": -7
+    },
+    {
+      "track": "valencia",
+      "carModel": 52,
+      "ballastKg": -19
+    },
+    {
+      "track": "valencia",
+      "carModel": 53,
+      "ballastKg": 5
+    },
+    {
+      "track": "valencia",
+      "carModel": 55,
+      "ballastKg": 2
+    },
+    {
+      "track": "valencia",
+      "carModel": 56,
+      "ballastKg": 7
+    },
+    {
+      "track": "valencia",
+      "carModel": 57,
+      "ballastKg": -2
+    },
+    {
+      "track": "valencia",
+      "carModel": 59,
+      "ballastKg": 1
+    },
+    {
+      "track": "valencia",
+      "carModel": 60,
+      "ballastKg": -7
+    },
+    {
+      "track": "valencia",
+      "carModel": 61,
+      "ballastKg": 15
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 31,
+      "ballastKg": 3
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 20,
+      "ballastKg": 18
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 30,
+      "ballastKg": 18
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 32,
+      "ballastKg": 7
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 21,
+      "ballastKg": -26
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 33,
+      "ballastKg": 5
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 35,
+      "ballastKg": 1
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 25,
+      "ballastKg": -19
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 34,
+      "ballastKg": -28
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 36,
+      "ballastKg": 8,
+      "restrictor": 0
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 8,
+      "ballastKg": 15
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 6,
+      "ballastKg": -2
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 15,
+      "ballastKg": -9,
+      "restrictor": 20
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 22,
+      "ballastKg": -24
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 24,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 7,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 23,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 14,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 3,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 13,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 5,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 0,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 12,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 11,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 16,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 2,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 1,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 4,
+      "ballastKg": -30
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 50,
+      "ballastKg": 2
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 51,
+      "ballastKg": -9
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 52,
+      "ballastKg": -6
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 53,
+      "ballastKg": -12
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 55,
+      "ballastKg": 7
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 56,
+      "ballastKg": -29
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 57,
+      "ballastKg": 1
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 59,
+      "ballastKg": 33
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 60,
+      "ballastKg": 9
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 61,
+      "ballastKg": 5
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 58,
+      "ballastKg": 12
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 80,
+      "ballastKg": 28
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 82,
+      "ballastKg": 29
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 83,
+      "ballastKg": 20
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 84,
+      "ballastKg": -8
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 85,
+      "ballastKg": -13
+    },
+    {
+      "track": "nurburgring_24h",
+      "carModel": 86,
+      "ballastKg": -40
+    }
+  ]
+}

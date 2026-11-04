@@ -4,7 +4,6 @@ import { DatabaseConfig } from './database.config';
 import { DiscordConfig } from './discord.config';
 import { GiphyConfig } from './giphy.config';
 import { OpenGamePanelConfig } from './open-game-panel.config';
-import { LfmConfig } from './lfm.config';
 import { SimgridConfig } from './simgrid.config';
 import { OpenWeatherApiConfig } from './open-weather-api.config';
 import { OpenaiConfig } from './openai.config';
@@ -28,10 +27,6 @@ export class RootConfig {
   @Type(() => GiphyConfig)
   @ValidateNested()
   readonly giphy: GiphyConfig;
-
-  @Type(() => LfmConfig)
-  @ValidateNested()
-  readonly lfm: LfmConfig;
 
   @Type(() => SimgridConfig)
   @ValidateNested()
