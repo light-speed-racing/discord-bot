@@ -267,6 +267,14 @@ on other branches do not deploy. Use the manual trigger to retry or apply update
 environment secrets without a new commit. New release directories are immutable,
 including when redeploying the same commit.
 
+When the bot connects to Discord at startup, it posts
+`bot is online, running <short commit>` in its existing logging channel, using the
+first seven characters of the deployed commit (`unknown` for local runs without a
+deployment ID). This happens once per process, including deployments,
+server restarts, and manual restarts. It confirms the Discord connection; use
+`/health` to verify application health and the deployed release. A notification
+failure is logged without stopping the bot. No additional secrets are needed.
+
 ## Logs, rollback, and recovery
 
 Under the original bot folder:
