@@ -110,7 +110,7 @@ export class WeatherService {
   ambientTemp = (item: ForecaseItem) => {
     const temperature = round(item?.main.feels_like);
 
-    return temperature >= 15 ? temperature : 15;
+    return temperature >= 8 ? temperature : 8;
   };
 
   randomness = (rain: number): EventJSON['weatherRandomness'] => {
