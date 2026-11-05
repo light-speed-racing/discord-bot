@@ -44,6 +44,7 @@ jobs:
         run: npx tsc --noEmit --incremental false
 
       - name: Test
+        shell: powershell
         env:
           POWERSHELL_BINARY: powershell.exe
         run: npm test
