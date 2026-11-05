@@ -16,7 +16,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.config.database.password,
       entities: ['dist/src/**/*.entity.js'],
       autoLoadEntities: true,
-      logging: true,
+      logging: false,
     };
   }
 }

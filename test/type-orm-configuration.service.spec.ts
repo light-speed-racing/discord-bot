@@ -28,7 +28,7 @@ describe('TypeOrmConfigService', () => {
       password: 'secret',
       entities: ['dist/src/**/*.entity.js'],
       autoLoadEntities: true,
-      logging: true,
+      logging: false,
     });
   });
 });
