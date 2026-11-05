@@ -8,6 +8,14 @@ The idea beghind this bot is to make every day live easier.
 
 This bot is build using [nestjs](https://nestjs.com/), [fjodor-rybakov/discord-nestjs](https://github.com/fjodor-rybakov/discord-nestjs), [typeorm](https://typeorm.io/) with [@netsjs/typeorm](https://docs.nestjs.com/techniques/database)
 
+### Windows deployment
+
+Pushes to `master` and the **Deploy Windows bot** workflow's **Run workflow** button
+use the same checked release and deployment process. Follow the
+[Windows setup and deployment guide](docs/windows-deployment.md) to configure SSH,
+the background task, GitHub secrets, and the first cutover. Deployment stays disabled
+until the repository variable `WINDOWS_DEPLOY_ENABLED` is set to `true`.
+
 ### Service tests
 
 Run `npm test` to execute the TypeScript service suites in `test/*.spec.ts`.

@@ -12,7 +12,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "node --require ts-node/register --require tsconfig-paths/register --test --test-concurrency=2 test/*.spec.ts",
+    "test": "node --require ts-node/register --require tsconfig-paths/register --test --test-concurrency=2 \"test/*.spec.ts\"",
     "env:pull": "yarn dotenv-vault pull",
     "env:push": "yarn dotenv-vault push"
   },

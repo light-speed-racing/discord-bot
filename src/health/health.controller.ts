@@ -18,6 +18,8 @@ export class HealthController {
       env: this.config.env,
       port: this.config.port,
       time: new Date().toISOString(),
+      deploymentReleaseId: process.env.DEPLOYMENT_RELEASE_ID,
+      deploymentInstanceId: process.env.DEPLOYMENT_INSTANCE_ID,
       ...(await this.health.check([
         () => this.http.pingCheck('internet connection', 'https://google.com'),
         () => this.http.pingCheck('open-game-panel', `http://${this.config.openGamePanel.ip}`),
