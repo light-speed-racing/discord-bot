@@ -50,7 +50,7 @@ jobs:
         run: npm test
 
       - name: Lint tests and changed application code
-        run: npx eslint "test/**/*.ts" src/health/health.controller.ts
+        run: npx eslint "test/**/*.ts" src/health/health.controller.ts src/config/config.module.ts
 
       - name: Build
         run: npm run build

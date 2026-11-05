@@ -112,8 +112,11 @@ no passphrase. Keep its private key for `SSH_KEY`; install only the `.pub` conte
 on the Windows server. The transport supports a local Windows username, DNS/IPv4
 host, and configurable SSH port.
 
-For an account in the local Administrators group, OpenSSH uses
-`C:\ProgramData\ssh\administrators_authorized_keys`. Append the public key without
+With the default `Match Group administrators` rule in `sshd_config`, OpenSSH uses
+`C:\ProgramData\ssh\administrators_authorized_keys` for administrator accounts. Check
+the active configuration first: without that rule, the configured per-user
+`AuthorizedKeysFile` applies, commonly `.ssh\authorized_keys` under the user profile.
+Append the public key to the applicable file without
 removing existing keys. Remove inherited permissions and allow Administrators and
 SYSTEM, as required by Windows OpenSSH:
 
