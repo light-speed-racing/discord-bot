@@ -44,9 +44,9 @@ type TracksResponse = Array<{
 export class SimgridService {
   constructor(private readonly http: HttpService) {}
 
-  async tracks(gameId = 1) {
+  async tracks(gameId = 1): Promise<TracksResponse> {
     const { data } = await firstValueFrom(
-      this.http.get<TracksResponse>(`v1/games/${gameId}/tracks`).pipe(
+      this.http.get<TracksResponse | { data: TracksResponse }>(`v1/games/${gameId}/tracks`).pipe(
         catchError((error: AxiosError) => {
           console.error('Error', error);
           throw error.message;
@@ -54,7 +54,12 @@ export class SimgridService {
       ),
     );
 
-    return data;
+    const tracks = Array.isArray(data) ? data : data?.data;
+    if (!Array.isArray(tracks)) {
+      throw new Error('Unexpected SimGrid tracks response: expected a tracks array');
+    }
+
+    return tracks;
   }
 
   async championship(id: string) {
