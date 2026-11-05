@@ -1,0 +1,93 @@
+export const botSecretNames = [
+  'BOT_PORT',
+  'DISCORD_TOKEN',
+  'DISCORD__GUILD_ID',
+  'DISCORD__LOGGING_CHANNEL_ID',
+  'DISCORD__WEATHER_UPDATE_CHANNEL_ID',
+  'DATABASE__HOST',
+  'DATABASE__PORT',
+  'DATABASE__USERNAME',
+  'DATABASE__PASSWORD',
+  'DATABASE__DATABASE_NAME',
+  'GIPHY__APIKEY',
+  'SIMGRID__URL',
+  'SIMGRID__TOKEN',
+  'OPENGAMEPANEL__IP',
+  'OPENGAMEPANEL__API_TOKEN',
+  'OPENGAMEPANEL__AUTHORIZATION_TOKEN',
+  'OPENWEATHERAPI__TOKEN',
+  'OPENAI__APIKEY',
+] as const;
+
+export type BotSecretName = (typeof botSecretNames)[number];
+export type BotSettings = Record<BotSecretName, string>;
+
+export const botSettings: BotSettings = {
+  BOT_PORT: '4321',
+  DISCORD_TOKEN: `token # $ = spaces 'apostrophe' "double" literal\\n literal\\r Unicode-雪`,
+  DISCORD__GUILD_ID: 'guild-`tick`',
+  DISCORD__LOGGING_CHANNEL_ID: 'logging-channel',
+  DISCORD__WEATHER_UPDATE_CHANNEL_ID: 'weather-channel',
+  DATABASE__HOST: 'database.example.test',
+  DATABASE__PORT: '3306',
+  DATABASE__USERNAME: 'bot user',
+  DATABASE__PASSWORD: 'password-with-$-and-#',
+  DATABASE__DATABASE_NAME: 'discord=bot',
+  GIPHY__APIKEY: 'giphy-key',
+  SIMGRID__URL: 'https://simgrid.example.test/api?mode=full',
+  SIMGRID__TOKEN: 'simgrid-token',
+  OPENGAMEPANEL__IP: '192.0.2.10',
+  OPENGAMEPANEL__API_TOKEN: 'panel-api-token',
+  OPENGAMEPANEL__AUTHORIZATION_TOKEN: 'panel-authorization-token',
+  OPENWEATHERAPI__TOKEN: 'weather-api-token',
+  OPENAI__APIKEY: 'openai-api-key',
+};
+
+export const expectedEnvironmentValues = {
+  env: 'production',
+  port: botSettings.BOT_PORT,
+  discord__token: botSettings.DISCORD_TOKEN,
+  discord__guild_id: botSettings.DISCORD__GUILD_ID,
+  discord__logging_channel_id: botSettings.DISCORD__LOGGING_CHANNEL_ID,
+  discord__weather_update_channel_id: botSettings.DISCORD__WEATHER_UPDATE_CHANNEL_ID,
+  database__host: botSettings.DATABASE__HOST,
+  database__port: botSettings.DATABASE__PORT,
+  database__username: botSettings.DATABASE__USERNAME,
+  database__password: botSettings.DATABASE__PASSWORD,
+  database__database_name: botSettings.DATABASE__DATABASE_NAME,
+  giphy__apiKey: botSettings.GIPHY__APIKEY,
+  simgrid__url: botSettings.SIMGRID__URL,
+  simgrid__token: botSettings.SIMGRID__TOKEN,
+  openGamePanel__ip: botSettings.OPENGAMEPANEL__IP,
+  openGamePanel__api_token: botSettings.OPENGAMEPANEL__API_TOKEN,
+  openGamePanel__authorization_token: botSettings.OPENGAMEPANEL__AUTHORIZATION_TOKEN,
+  openWeatherApi__token: botSettings.OPENWEATHERAPI__TOKEN,
+  openai__apiKey: botSettings.OPENAI__APIKEY,
+};
+
+export const expectedRootConfig = {
+  env: 'production',
+  port: 4321,
+  discord: {
+    token: botSettings.DISCORD_TOKEN,
+    guild_id: botSettings.DISCORD__GUILD_ID,
+    logging_channel_id: botSettings.DISCORD__LOGGING_CHANNEL_ID,
+    weather_update_channel_id: botSettings.DISCORD__WEATHER_UPDATE_CHANNEL_ID,
+  },
+  database: {
+    host: botSettings.DATABASE__HOST,
+    port: 3306,
+    username: botSettings.DATABASE__USERNAME,
+    password: botSettings.DATABASE__PASSWORD,
+    database_name: botSettings.DATABASE__DATABASE_NAME,
+  },
+  giphy: { apiKey: botSettings.GIPHY__APIKEY },
+  simgrid: { url: botSettings.SIMGRID__URL, token: botSettings.SIMGRID__TOKEN },
+  openGamePanel: {
+    ip: botSettings.OPENGAMEPANEL__IP,
+    api_token: botSettings.OPENGAMEPANEL__API_TOKEN,
+    authorization_token: botSettings.OPENGAMEPANEL__AUTHORIZATION_TOKEN,
+  },
+  openWeatherApi: { token: botSettings.OPENWEATHERAPI__TOKEN },
+  openai: { apiKey: botSettings.OPENAI__APIKEY },
+};

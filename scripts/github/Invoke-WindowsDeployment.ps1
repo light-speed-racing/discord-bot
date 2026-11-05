@@ -17,6 +17,8 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 Set-StrictMode -Version Latest
 
+. (Join-Path $PSScriptRoot 'BotEnvironment.ps1')
+
 function Get-RequiredEnvironmentValue {
     param([Parameter(Mandatory = $true)][string] $Name)
 
@@ -100,7 +102,7 @@ $userName = (Get-RequiredEnvironmentValue -Name 'PATTY_USERNAME').Trim()
 $privateKey = Get-RequiredEnvironmentValue -Name 'SSH_KEY'
 $knownHosts = Get-RequiredEnvironmentValue -Name 'SSH_KNOWN_HOSTS'
 $portValue = [Environment]::GetEnvironmentVariable('PATTY_PORT')
-$environmentFile = [Environment]::GetEnvironmentVariable('BOT_ENV_FILE')
+$environmentFile = New-BotEnvironmentContent
 
 if ($hostName -notmatch '^[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?$') {
     throw 'PATTY_HOST must be a DNS name or IPv4 address without command-line metacharacters.'

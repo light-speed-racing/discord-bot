@@ -165,6 +165,8 @@ Windows Task Scheduler stores these credentials; they are not written to GitHub
 or deployment configuration. Choose an account that can read the bot's `.env` and
 release files, write its logs, and reach the database and APIs. Its local/domain
 policy must allow batch logon. An account/password change requires updating the task.
+For an unattended setup, an existing in-memory `PSCredential` can be supplied with
+`-Credential`. Keep its password out of command-line arguments and script files.
 
 The default task name is `LightSpeedDiscordBot`; `-TaskName` and `-NodePath` are
 available for deliberate overrides. Setup registers the task but does not start
@@ -186,27 +188,58 @@ Add these **production environment secrets**:
 | `PATTY_PORT`      | SSH port; optional, defaults to `22`                                          |
 | `SSH_KEY`         | Complete dedicated private key, including BEGIN/END lines; not the public key |
 | `SSH_KNOWN_HOSTS` | Verified host-key line obtained above                                         |
-| `BOT_ENV_FILE`    | Optional complete production `.env` contents, with line breaks                |
 
 Set the **production environment variable** `WINDOWS_BOT_PATH` to the absolute
 original bot folder, for example `C:\Users\your-user\Desktop\discord-bot`.
 
-### Writing `.env` from GitHub secrets
+### Writing `.env` from individual GitHub secrets
 
-Paste the complete file into the `BOT_ENV_FILE` secret, retaining the application's
-existing variable names and `__` nesting separators. Do not paste production secrets
-into a workflow file, issue, or commit. GitHub secrets have a 48 KB limit.
+Add each application setting as its own **production environment secret**, using
+the names below. Copy each value from the corresponding production setting; do not
+include surrounding `.env` quotes in the GitHub secret value. The workflow writes
+the exact nested key names and letter case expected by the application's loader.
 
-When `BOT_ENV_FILE` is set, transport uploads it separately over SSH to a protected
+| GitHub secret                        | Generated `.env` key                                      |
+| ------------------------------------ | --------------------------------------------------------- |
+| `BOT_PORT`                           | `port` — currently `3000`, matching the task's health URL |
+| `DISCORD_TOKEN`                      | `discord__token`                                          |
+| `DISCORD__GUILD_ID`                  | `discord__guild_id`                                       |
+| `DISCORD__LOGGING_CHANNEL_ID`        | `discord__logging_channel_id`                             |
+| `DISCORD__WEATHER_UPDATE_CHANNEL_ID` | `discord__weather_update_channel_id`                      |
+| `DATABASE__HOST`                     | `database__host`                                          |
+| `DATABASE__PORT`                     | `database__port`                                          |
+| `DATABASE__USERNAME`                 | `database__username`                                      |
+| `DATABASE__PASSWORD`                 | `database__password`                                      |
+| `DATABASE__DATABASE_NAME`            | `database__database_name`                                 |
+| `GIPHY__APIKEY`                      | `giphy__apiKey`                                           |
+| `SIMGRID__URL`                       | `simgrid__url`                                            |
+| `SIMGRID__TOKEN`                     | `simgrid__token`                                          |
+| `OPENGAMEPANEL__IP`                  | `openGamePanel__ip`                                       |
+| `OPENGAMEPANEL__API_TOKEN`           | `openGamePanel__api_token`                                |
+| `OPENGAMEPANEL__AUTHORIZATION_TOKEN` | `openGamePanel__authorization_token`                      |
+| `OPENWEATHERAPI__TOKEN`              | `openWeatherApi__token`                                   |
+| `OPENAI__APIKEY`                     | `openai__apiKey`                                          |
+
+The generated file also sets `env=production`. All 18 settings must be present and
+nonblank when using GitHub-managed configuration. A partial set fails before any
+SSH connection or server change, reporting only missing secret names. If all 18
+are unset, deployment preserves the server's existing `.env`.
+
+Values are single-line strings. The serializer preserves spaces, hashes, dollar
+signs, backslashes, and quotes using a compatible `.env` delimiter. Line breaks,
+NUL characters, and quote combinations that the installed dotenv parser cannot
+represent safely are rejected before deployment, without printing the value.
+
+The transport uploads the generated file separately over SSH to a protected
 temporary folder. Deployment backs up the previous `.env`, replaces it only while
 the task is stopped, and restricts access to the task account, Administrators, and
 SYSTEM. A failed deployment restores the previous file and permissions along with
 the previous application. Successful deployment removes the temporary backup.
 
-Leave the secret unset to preserve the server's `.env` unchanged. Removing the
-secret later does not remove the deployed `.env`. Keep the file's HTTP port aligned
-with the configured health URL. Secret changes take effect on the next deployment;
-you can rerun the manual workflow for the same commit.
+The former `BOT_ENV_FILE` secret is no longer used and can be removed. Removing all
+application secrets later does not remove the server's deployed `.env`. Keep
+`BOT_PORT` aligned with the task's health URL. Secret changes take effect on the
+next deployment; you can rerun the manual workflow for the same commit.
 
 The secret file is never included in the downloadable build artifact. Workflow
 output does not print its contents. Application logs still follow the application's
@@ -265,6 +298,10 @@ Start-ScheduledTask -TaskName LightSpeedDiscordBot
 ## Validation scope
 
 `npm test` includes TypeScript launcher, health identity, and deployment tests.
+The individual-secret serializer tests round-trip the generated file through the
+installed dotenv loader and validate the complete application configuration.
+These tests require PowerShell; on macOS/Linux, set `POWERSHELL_BINARY` to a
+portable `pwsh` executable to run them locally. Windows CI supplies PowerShell 5.1.
 Windows-specific task/ACL transaction tests and the Windows PowerShell 5.1 parser
 run in the Windows verification workflow. Local macOS tests cannot establish that
 SSH, scheduled-task account policy, server permissions, production credentials,

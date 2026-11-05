@@ -43,7 +43,24 @@ jobs:
           PATTY_PORT: ${{ secrets.PATTY_PORT }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-          BOT_ENV_FILE: ${{ secrets.BOT_ENV_FILE }}
+          BOT_PORT: ${{ secrets.BOT_PORT }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD__GUILD_ID: ${{ secrets.DISCORD__GUILD_ID }}
+          DISCORD__LOGGING_CHANNEL_ID: ${{ secrets.DISCORD__LOGGING_CHANNEL_ID }}
+          DISCORD__WEATHER_UPDATE_CHANNEL_ID: ${{ secrets.DISCORD__WEATHER_UPDATE_CHANNEL_ID }}
+          DATABASE__HOST: ${{ secrets.DATABASE__HOST }}
+          DATABASE__PORT: ${{ secrets.DATABASE__PORT }}
+          DATABASE__USERNAME: ${{ secrets.DATABASE__USERNAME }}
+          DATABASE__PASSWORD: ${{ secrets.DATABASE__PASSWORD }}
+          DATABASE__DATABASE_NAME: ${{ secrets.DATABASE__DATABASE_NAME }}
+          GIPHY__APIKEY: ${{ secrets.GIPHY__APIKEY }}
+          SIMGRID__URL: ${{ secrets.SIMGRID__URL }}
+          SIMGRID__TOKEN: ${{ secrets.SIMGRID__TOKEN }}
+          OPENGAMEPANEL__IP: ${{ secrets.OPENGAMEPANEL__IP }}
+          OPENGAMEPANEL__API_TOKEN: ${{ secrets.OPENGAMEPANEL__API_TOKEN }}
+          OPENGAMEPANEL__AUTHORIZATION_TOKEN: ${{ secrets.OPENGAMEPANEL__AUTHORIZATION_TOKEN }}
+          OPENWEATHERAPI__TOKEN: ${{ secrets.OPENWEATHERAPI__TOKEN }}
+          OPENAI__APIKEY: ${{ secrets.OPENAI__APIKEY }}
           WINDOWS_BOT_PATH: ${{ vars.WINDOWS_BOT_PATH }}
           DEPLOY_RELEASE_ID: ${{ github.sha }}
         run: |

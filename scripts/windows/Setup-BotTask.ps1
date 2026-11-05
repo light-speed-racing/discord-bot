@@ -8,7 +8,9 @@ param(
 
     [string]$TaskName = 'LightSpeedDiscordBot',
 
-    [string]$NodePath
+    [string]$NodePath,
+
+    [PSCredential]$Credential
 )
 
 Set-StrictMode -Version Latest
@@ -111,9 +113,11 @@ $settings = New-ScheduledTaskSettingsSet `
     -RestartInterval (New-TimeSpan -Minutes 1) `
     -StartWhenAvailable
 
-$defaultUser = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-$credential = Get-Credential -UserName $defaultUser -Message 'Credentials for the Discord bot Scheduled Task'
-$password = $credential.GetNetworkCredential().Password
+if ($null -eq $Credential) {
+    $defaultUser = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $Credential = Get-Credential -UserName $defaultUser -Message 'Credentials for the Discord bot Scheduled Task'
+}
+$password = $Credential.GetNetworkCredential().Password
 try {
     Register-ScheduledTask `
         -TaskPath '\' `
@@ -121,13 +125,13 @@ try {
         -Action $action `
         -Trigger $trigger `
         -Settings $settings `
-        -User $credential.UserName `
+        -User $Credential.UserName `
         -Password $password `
         -RunLevel Limited | Out-Null
 }
 finally {
     $password = $null
-    $credential = $null
+    $Credential = $null
 }
 
 Write-Host "Registered Scheduled Task '$TaskName'. It has not been started."

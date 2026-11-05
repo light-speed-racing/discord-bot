@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, it } from 'node:test';
+import { parse } from 'dotenv';
+import { botSecretNames, botSettings, expectedEnvironmentValues, type BotSettings } from './fixtures/bot-settings';
 
 const scriptPath = path.resolve(__dirname, '../scripts/github/Invoke-WindowsDeployment.ps1');
 const releaseId = 'a'.repeat(40);
@@ -103,22 +105,26 @@ catch {
     fs.rmSync(fixturePath, { recursive: true, force: true });
   });
 
-  function runHarness(failScp = false): HarnessResult {
+  function runHarness(options: { failScp?: boolean; settings?: Partial<BotSettings> | null } = {}): HarnessResult {
+    const botEnvironment = Object.fromEntries(botSecretNames.map((name) => [name, '']));
+    if (options.settings !== null) {
+      Object.assign(botEnvironment, options.settings ?? botSettings);
+    }
     const result = spawnSync('powershell.exe', ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', harnessPath], {
       encoding: 'utf8',
       env: {
         ...process.env,
+        ...botEnvironment,
         PATTY_HOST: 'deploy.example.test',
         PATTY_USERNAME: 'deploy-user',
         PATTY_PORT: '2222',
         SSH_KEY: 'secret-private-key\r\nsecond-line-without-final-newline',
         SSH_KNOWN_HOSTS: 'deploy.example.test ssh-ed25519 secret-host-key\r\nsecond-host',
-        BOT_ENV_FILE: 'DISCORD__TOKEN=secret-discord-token\r\nVALUE=unchanged',
         TEST_TRANSPORT_SCRIPT: scriptPath,
         TEST_ARCHIVE_PATH: archivePath,
         TEST_RELEASE_ID: releaseId,
         TEST_BOT_PATH: hostileBotPath,
-        TEST_FAIL_SCP: failScp ? '1' : '0',
+        TEST_FAIL_SCP: options.failScp ? '1' : '0',
       },
     });
 
@@ -147,8 +153,8 @@ catch {
     for (const option of ['BatchMode=yes', 'IdentitiesOnly=yes', 'StrictHostKeyChecking=yes']) {
       assert.ok(allArguments.includes(option), `Missing SSH option: ${option}`);
     }
-    for (const secret of ['secret-private-key', 'secret-host-key', 'secret-discord-token']) {
-      assert.doesNotMatch(allArguments.join('\n'), new RegExp(secret));
+    for (const secret of ['secret-private-key', 'secret-host-key', ...Object.values(botSettings)]) {
+      assert.equal(allArguments.join('\n').includes(secret), false);
     }
 
     const scpCalls = result.calls.filter(({ command }) => command === 'scp');
@@ -162,10 +168,33 @@ catch {
     assert.equal(sshCall?.knownHostsEndsWithLineFeed, true);
 
     const environmentCall = scpCalls.find(({ arguments: args }) => args.at(-1)?.endsWith('/environment.env'));
-    assert.equal(
-      Buffer.from(environmentCall?.environmentBase64 ?? '', 'base64').toString('utf8'),
-      'DISCORD__TOKEN=secret-discord-token\r\nVALUE=unchanged',
-    );
+    const environmentContent = Buffer.from(environmentCall?.environmentBase64 ?? '', 'base64').toString('utf8');
+    assert.deepEqual(parse(environmentContent), expectedEnvironmentValues);
+  });
+
+  it('deploys without uploading an environment file when every bot setting is absent', () => {
+    const result = runHarness({ settings: null });
+
+    assert.equal(result.succeeded, true, result.error);
+    const scpCalls = result.calls.filter(({ command }) => command === 'scp');
+    assert.equal(scpCalls.length, 1);
+    assert.ok(scpCalls[0].arguments.at(-1)?.endsWith('/release.zip'));
+    const deployCommand = decodeRemoteCommands(result.calls).find((command) => command.includes('$deployArguments'));
+    assert.ok(deployCommand);
+    assert.match(deployCommand, /\$hasEnvironmentFile = \[Convert\]::ToBoolean\('False'\)/);
+  });
+
+  it('rejects partial bot settings before making an SSH or SCP call', () => {
+    const suppliedValue = 'must-not-appear-in-errors';
+    const result = runHarness({ settings: { BOT_PORT: suppliedValue } });
+
+    assert.equal(result.succeeded, false);
+    assert.deepEqual(result.calls, []);
+    assert.equal(result.error.includes(suppliedValue), false);
+    assert.equal(result.error.includes('BOT_PORT'), false);
+    for (const missingName of botSecretNames.slice(1)) {
+      assert.match(result.error, new RegExp(missingName));
+    }
   });
 
   it('keeps a hostile bot path as encoded data in the actual remote command', () => {
@@ -181,7 +210,7 @@ catch {
   });
 
   it('runs remote cleanup after an SCP failure and does not invoke deployment', () => {
-    const result = runHarness(true);
+    const result = runHarness({ failScp: true });
     assert.equal(result.succeeded, false);
     assert.match(result.error, /Could not upload the release archive \(exit code 23\)/);
 
