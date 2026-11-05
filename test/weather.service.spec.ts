@@ -93,7 +93,7 @@ describe('WeatherService', () => {
     assert.deepEqual(await service.forecastFor('monza'), {
       track: 'monza',
       cloudLevel: 0.55,
-      ambientTemp: 15,
+      ambientTemp: 8,
       rain: 0,
       weatherRandomness: 3,
     });
